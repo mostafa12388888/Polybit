@@ -7,7 +7,7 @@
 
     switch ($styling) {
         case 'light-link':
-            $classes .= " hover:bg-gray-100 dark:bg-dark-700 dark:hover:brightness-95 focus:bg-gray-100 dark:focus:brightness-95 active:bg-gray-200 dark:active:brightness-90";
+            $classes .= " hover:bg-gray-100 dark:hover:bg-dark-700 focus:bg-gray-100 dark:focus:bg-dark-700 active:bg-gray-200 dark:active:bg-dark-600";
             break;
         case 'light':
             $classes .= " bg-gray-100 dark:bg-dark-700 hover:brightness-95 focus:brightness-95 active:brightness-90";

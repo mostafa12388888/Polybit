@@ -7,3 +7,7 @@
         @apply text-dark-200;
     }
 }
+
+[x-cloak] {
+    display: none;
+}

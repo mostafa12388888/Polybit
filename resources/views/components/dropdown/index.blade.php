@@ -27,6 +27,7 @@ switch ($align) {
         shouldBeExpanded: false,
         toggleOpen () {
             this.open = ! this.open
+            this.expanded = this.open
         },
         expand () {
             this.shouldBeExpanded = true

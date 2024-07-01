@@ -42,7 +42,7 @@
             }
         </style>
     </head>
-    <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-gray-100 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-[0.9rem] lg:text-base relative">
+    <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-gray-100 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-[0.9rem] lg:text-base relative border-gray-100">
         @include('layouts.partials._header')
 
         <main class="flex-grow">
