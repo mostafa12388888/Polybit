@@ -13,7 +13,7 @@
     </x-link>
     <!-- End Logo -->
 
-    <nav class="px-2 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 flex md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8" x-cloak
+    <nav class="px-4 sm:px-6 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 flex md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8" x-cloak
         x-ref="nav"
         x-show.flex="open"
             x-transition:enter="transition ease-out duration-200"
@@ -40,327 +40,15 @@
     
                 <x-slot:content>
                     <div class="md:overflow-auto">
-                        <div class="z-50 flex flex-wrap max-md:flex-col gap-y-4 container mx-auto md:py-6">
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="#" class="font-semibold">{{ __('Blog Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ __('Blog Sub Category') }}</x-dropdown.link>
-                            </div>
+                        <div class="z-50 flex flex-wrap max-md:flex-col gap-y-8 container mx-auto md:py-6">
+                            @foreach (range(1, rand(4, 8)) as $item)
+                                <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
+                                    <x-dropdown.link href="#" class="text-base font-semibold">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                    @foreach (range(1, rand(2, 5)) as $item)
+                                        <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </x-slot>
@@ -378,40 +66,15 @@
     
                 <x-slot:content>
                     <div class="md:overflow-auto">
-                        <div class="z-50 flex flex-wrap max-md:flex-col gap-y-4 container mx-auto md:py-6">
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="" class="font-semibold">{{ __('Product Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="" class="font-semibold">{{ __('Product Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="" class="font-semibold">{{ __('Product Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="" class="font-semibold">{{ __('Product Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-                            </div>
-        
-                            <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12 2xl:w-2/12">
-                                <x-dropdown.link href="" class="font-semibold">{{ __('Product Category') }}</x-dropdown.link>
-                                <x-dropdown.link href="" class="pl-8 rtl:pl-8">{{ __('Product Sub Category') }}</x-dropdown.link>
-        
-                            </div>
+                        <div class="z-50 flex flex-wrap max-md:flex-col gap-y-8 container mx-auto md:py-6">
+                            @foreach (range(1, rand(4, 8)) as $item)
+                                <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
+                                    <x-dropdown.link href="#" class="text-base font-semibold">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                    @foreach (range(1, rand(2, 5)) as $item)
+                                        <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </x-slot>

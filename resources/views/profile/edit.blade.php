@@ -1,5 +1,5 @@
 <x-app-layout>
-    <header class="px-2 bg-white dark:bg-dark-800 shadow">
+    <header class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow">
         <div class="container mx-auto py-6">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-dark-100 leading-tight">
                 {{ __('Profile') }}
@@ -7,7 +7,7 @@
         </div>
     </header>
 
-    <div class="px-2 py-12">
+    <div class="px-4 sm:px-6 py-12">
         <div class="container mx-auto space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-dark-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">

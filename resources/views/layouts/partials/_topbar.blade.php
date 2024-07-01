@@ -1,5 +1,5 @@
 <!-- TopBar -->
-<div class="md:bg-gray-200 md:dark:bg-dark-900 px-4 md:px-2 mt-2 md:mt-0 md:text-[.7rem]">
+<div class="md:bg-gray-200 md:dark:bg-dark-900 px-4 md:px-6 mt-2 md:mt-0 md:text-[.7rem]">
     <nav class="container mx-auto flex flex-col md:flex-row flex-wrap md:items-center justify-between gap-4">
         <div class="max-md:border-t dark:border-dark-700 p-4 md:p-0 flex flex-wrap items-center justify-center gap-4 max-md:order-4">
             <x-link styling="link" class="!py-1" href="#">{{ __('About us') }}</x-link>
@@ -51,12 +51,12 @@
                 </x-dropdown>
             </div>
 
-            <x-link styling="link" class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-2" href="#">
+            <x-link styling="link" class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-2" href="tel:+201068977712">
                 <x-icons.phone class="!w-4 !h-4" stroke-width="1" />
                 <span dir="ltr">+201068977712</span>
             </x-link>
             
-            <x-link styling="link" class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-3" href="#">
+            <x-link styling="link" class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-3" href="mail:info@ichemeg.com">
                 <x-icons.envelope class="!w-4 !h-4" stroke-width="1" />
                 <span dir="ltr">info@ichemeg.com</span>
             </x-link>
