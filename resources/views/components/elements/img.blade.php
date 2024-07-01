@@ -1,0 +1,1 @@
+<img src="{{ $attributes->get('src') }}" {{ $attributes->except('src')->merge(['class' => 'bg-black/10']) }} />
