@@ -30,7 +30,7 @@
             name="q" id="query" placeholder="{{ __('Search...') }}" 
             wire:model.live.debounce.750ms="query" :value="$query" 
             @input="$el.value ? focus() : focusOut()" 
-            class="relative focus:border-primary-300 dark:focus:border-transparent border-transparent outline-none px-4 py-2.5 w-full ltr:pr-20 rtl:pl-20"
+            class="relative dark:focus:bg-dark-600/70 focus:border-primary-300 dark:focus:border-transparent border-transparent outline-none px-4 py-2.5 w-full ltr:pr-20 rtl:pl-20"
             x-bind:class="focused ? '!rounded-b-none !border-x-transparent !border-t-transparent' : ''" 
             autocomplete="off" />
 
@@ -41,21 +41,20 @@
                     <p>Serach result</p>
                 </div>
             @empty
-                <div class="px-6 py-6 dark:border-dark-700/70" wire:loading.remove>
+                <div class="text-center px-6 py-6 dark:border-dark-700/70" wire:loading.remove.block>
                     @if(empty(trim($query)))
-                        <div class="text-center">
-                            <x-spinner class="!w-6 !h-6" />
-                        </div>
+                        <x-spinner class="!w-6 !h-6" />
                     @else
                         <p>{{ __('No search results found') }}.</p>
                     @endif
+
                     @error('query')
                         <p class="py-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                     @enderror
                 </div>
             @endforelse
 
-            <div class="px-6 py-6 text-center" wire:loading.block>
+            <div class="px-6 py-6 text-center dark:border-dark-700/70" wire:loading.block>
                 <x-spinner class="!w-6 !h-6" />
             </div>
 

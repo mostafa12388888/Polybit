@@ -39,11 +39,11 @@
                     </x-slot>
     
                     <x-slot:content>
-                        <x-dropdown.link styling="link" class="py-4" href="{{ request()->url() }}?dir=rtl">
+                        <x-dropdown.link :navigate="false" styling="link" class="py-4" href="{{ request()->url() }}?dir=rtl">
                             <img class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/eg.webp">
                             <span>العربية</span>
                         </x-link>
-                        <x-dropdown.link styling="link" class="py-4" href="{{ request()->url() }}">
+                        <x-dropdown.link :navigate="false" styling="link" class="py-4" href="{{ request()->url() }}">
                             <img class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/us.webp">
                             <span>English</span>
                         </x-link>

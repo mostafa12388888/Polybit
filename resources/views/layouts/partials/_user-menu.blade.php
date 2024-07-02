@@ -1,5 +1,5 @@
 @auth
-    <x-dropdown align="end" dropdownClasses="w-full sm:w-48" wrapperClasses="sm:relative">
+    <x-dropdown align="end" dropdownClasses="w-full sm:w-48 pt-2" wrapperClasses="sm:relative">
         <x-slot:trigger>
             <x-button styling="light" class="h-11 px-2 flex gap-1.5 items-center justify-center">
                 <x-icons.user class="!w-5 !h-5" />
@@ -8,14 +8,18 @@
         </x-slot>
 
         <x-slot:content>
-            <x-dropdown.link href="{{ route('profile.edit') }}">{{ __('Profile') }}</x-dropdown.link>
+            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
+                <x-icons.cog class="!w-5 !h-5" />
+                <span>{{ __('Profile') }}</span>
+            </x-dropdown.link>
             
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
-                <x-dropdown.link :navigate="false" href="javascript:void(0)" 
+                <x-dropdown.link class="flex gap-3 px-4" :navigate="false" href="javascript:void(0)" 
                     onclick="event.preventDefault(); this.closest('form').submit();">
-                    {{ __('Log Out') }}
+                    <x-icons.logout class="!w-5 !h-5" />
+                    <span>{{ __('Log Out') }}</span>
                 </x-dropdown.link>
             </form>
         </x-slot>

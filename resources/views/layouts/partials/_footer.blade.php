@@ -95,8 +95,9 @@
     </div>
 
     <div class="p-4 bg-gray-200 dark:bg-dark-900/40">
-        <div class="container mx-auto text-center">
-            <p>{{ __("© :year :app. All rights reserved.", ['year' => date('Y'), 'app' => config('app.name')]) }}</p>
+        <div class="container mx-auto flex items-center justify-center sm:justify-between flex-col sm:flex-row gap-4">
+            <p>{{ __("© :year :app, All rights reserved", ['year' => date('Y'), 'app' => config('app.name')]) }}.</p>
+            <a href="#">{{ __("Developed by brmjyat") }}.</a>
         </div>
     </div>
 </footer>

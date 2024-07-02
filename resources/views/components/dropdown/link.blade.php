@@ -1,18 +1,6 @@
-@php
-    $navigate = true;
-    $url = $attributes->get('href');
+@props(['navigate' => true])
 
-    $domain = parse_url($url, PHP_URL_HOST);
-    $current_domain = parse_url(url()->current(), PHP_URL_HOST);
-    $navigate = $navigate && ($domain == $current_domain) ? true : false;
-    
-    try {
-        $new_route = app('router')->getRoutes()->match(app('request')->create($url));
-        $navigate = $navigate && $new_route->getName() == 'videos.show' ? true : false;
-    } catch (\Throwable $th) {
-        //
-    }
-@endphp
+@php ($url = $attributes->get('href'))
 
 
 <a {{ $url && ! in_array($url, ['javascript:void(0)', '#']) && $navigate ? 'wire:navigate' : '' }} {{ $attributes->merge([
