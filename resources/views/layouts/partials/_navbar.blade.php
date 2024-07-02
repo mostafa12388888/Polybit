@@ -5,6 +5,7 @@
     <x-button styling="light-link" class="md:hidden !p-1.5" @click="open = !open">
         <x-icons.menu class="!w-7 !h-7" x-show="! open"/>
         <x-icons.close class="!w-7 !h-7" x-cloak x-show="open"/>
+        <span class="sr-only">{{ __('Toggle Navbar') }}</span>
     </x-button>
 
     <!-- Logo -->
