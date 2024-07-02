@@ -22,7 +22,7 @@
     @keydown.up="$focus.wrap().previous()"
 >
     <!-- Overlay -->
-    <div class="bg-dark-800/40 fixed top-0 bottom-0 left-0 right-0"
+    <div wire:ignore class="bg-dark-800/40 fixed top-0 bottom-0 left-0 right-0"
         x-cloak x-show="focused" x-transition.opacity @click.stop="reset"></div>
 
     <div>
