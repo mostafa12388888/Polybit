@@ -1,5 +1,5 @@
 <x-app-layout>
     @include('home.partials._top-slider')
 
-    <div style="height: 1000px"></div>
+    @include('home.partials._features')
 </x-app-layout>

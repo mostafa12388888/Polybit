@@ -29,7 +29,7 @@
                         <div class="flex max-md:flex-grow">
                             <x-button styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
                                 <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
-                                    <x-icons.globe stroke-width="1" class="!w-5 !h-5" />
+                                    <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
                                     <span>{{ request()->dir == 'rtl' ? 'العربية' : 'English' }}</span>
                                 </div>
                                 
