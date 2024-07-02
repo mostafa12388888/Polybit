@@ -3,7 +3,7 @@
     x-trap.inert.noautofocus.noscroll="open"
 >
     <x-button styling="light-link" class="md:hidden !p-1.5" @click="open = !open">
-        <x-icons.menu class="!w-7 !h-7" x-cloak x-show="! open"/>
+        <x-icons.menu class="!w-7 !h-7" x-show="! open"/>
         <x-icons.close class="!w-7 !h-7" x-cloak x-show="open"/>
     </x-button>
 
@@ -13,20 +13,22 @@
     </x-link>
     <!-- End Logo -->
 
-    <nav class="px-4 sm:px-6 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 flex md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8" x-cloak
+    <nav class="px-4 sm:px-6 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 hidden md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8"
         x-ref="nav"
         x-show.flex="open"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="transform opacity-0"
-            x-transition:enter-end="transform opacity-100"
-            x-transition:leave="transition ease-in duration-75"
-            x-transition:leave-start="transform opacity-100"
-            x-transition:leave-end="transform opacity-0"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="transform opacity-0"
+        x-transition:enter-end="transform opacity-100"
+        x-transition:leave="transition ease-in duration-75"
+        x-transition:leave-start="transform opacity-100"
+        x-transition:leave-end="transform opacity-0"
         x-data="{
             setHeight () {
                 $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px)';
             }
-        }" @resize.window="setHeight" x-init="setHeight">
+        }" 
+        @resize.window="setHeight" 
+        x-init="$el.classList.remove('hidden'); $el.classList.add('flex'); setHeight()">
         <div class="w-full md:container mx-auto md:flex">
             <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-gray-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-gray-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                 <x-slot:trigger>
