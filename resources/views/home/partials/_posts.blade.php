@@ -1,6 +1,6 @@
-<div class="bg-gradient-to-b from-primary-50/60 to-primary-200/40 dark:from-dark-600/40 dark:to-dark-600/40 px-4 sm:px-6 py-12 md:py-20 xl:py-28 relative">
+<div class="bg-gradient-to-b from-primary-50/60 to-primary-200/40 dark:from-dark-600/40 dark:to-dark-600/40 px-4 sm:px-6 py-16 md:py-20 xl:py-28 relative">
     <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
-        <h2 class="text-primary-800 dark:text-dark-100 text-xl md:text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Latest Blog Posts') }}</h2>
+        <h2 class="text-primary-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Latest Blog Posts') }}</h2>
 
         <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden">{{ __('Discover the Projects that Define Our Commitment to Quality') }}</p>
 

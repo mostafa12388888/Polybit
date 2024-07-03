@@ -1,8 +1,8 @@
-<div class="bg-white dark:bg-dark-600/40 px-4 sm:px-6 py-12 md:py-24 xl:py-36 relative">
-    <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-15 z-0 bg-contain bg-no-repeat bg-center" style="background-image: url('/storage/map.webp');"></div>
+<div class="bg-white dark:bg-dark-600/40 px-4 sm:px-6 py-16 md:py-24 xl:py-36 relative">
+    <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-15 z-0 bg-contain" style="background-image: url('/storage/map.webp');"></div>
 
     <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
-        <h2 class="text-primary-800 dark:text-dark-100 text-xl md:text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Spice up your construction game') }}</h2>
+        <h2 class="text-primary-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Spice up your construction game') }}</h2>
 
         <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden">{{ __('Ignite excellence with us in the realm of Expansion Joint Manufacturing!') }}</p>
 
