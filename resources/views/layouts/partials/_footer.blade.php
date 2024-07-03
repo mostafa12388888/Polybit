@@ -10,49 +10,55 @@
                 </x-link>
                 <!-- End Logo -->
     
-                <x-link styling="link" href="tel:+201022000050" class="flex gap-2">
-                    <x-icons.phone class="!w-5 !h-5" width-stroke="1" />
+                <x-link href="tel:+201022000050" class="flex gap-2">
+                    <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                     <span>+20 1022000050</span>
                 </x-link>
     
-                <x-link styling="link" href="tel:+201080029701" class="flex gap-2">
-                    <x-icons.phone class="!w-5 !h-5" width-stroke="1" />
+                <x-link href="tel:+201080029701" class="flex gap-2">
+                    <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                     <span>+20 1080029701</span>
                 </x-link>
     
-                <x-link styling="link" href="tel:+201068977712" class="flex gap-2">
-                    <x-icons.phone class="!w-5 !h-5" width-stroke="1" />
+                <x-link href="tel:+201068977712" class="flex gap-2">
+                    <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                     <span>+20 1068977712</span>
                 </x-link>
     
-                <x-link styling="link" href="mail:info@ichemeg.com" class="flex gap-2">
-                    <x-icons.envelope class="!w-5 !h-5" width-stroke="1" />
+                <x-link href="mail:info@ichemeg.com" class="flex gap-2">
+                    <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                     <span>info@ichemeg.com</span>
                 </x-link>
 
+                <div class="flex gap-2 text-gray-700 dark:text-dark-100">
+                    <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose" width-stroke="1" />
+                    <p class="sm:max-w-64 text-balance">22 El-Shaheed Mohammed Abd El-Hady, Nasr City, Cairo</p>
+                </div>
+                
+
                 <div class="w-full flex-grow flex-wrap flex gap-2 mt-4 max-sm:items-center max-sm:justify-center max-sm:text-center max-w-96">
                     <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.facebook class="!w-5 !h-5 text-primary-500 dark:text-dark-300" />
+                        <x-icons.facebook class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
                         <span class="sr-only">{{ __('Facebook Link') }}</span>
                     </x-link>
                     
                     <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.twitter class="!w-5 !h-5 text-primary-500 dark:text-dark-300" />
+                        <x-icons.twitter class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
                         <span class="sr-only">{{ __('Twitter Link') }}</span>
                     </x-link>
                     
                     <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.youtube class="!w-7 !h-5 text-primary-500 dark:text-dark-300" />
+                        <x-icons.youtube class="!w-7 !h-5 text-dark-500 dark:text-dark-300" />
                         <span class="sr-only">{{ __('Youtube Link') }}</span>
                     </x-link>
                     
                     <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.linkedin class="!w-5 !h-5 text-primary-500 dark:text-dark-300" />
+                        <x-icons.linkedin class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
                         <span class="sr-only">{{ __('Linkedin Link') }}</span>
                     </x-link>
 
                     <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.link class="!w-5 !h-5 text-primary-500 dark:text-dark-300" />
+                        <x-icons.link class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
                         <span class="sr-only">{{ __('External Link') }}</span>
                     </x-link>
                 </div>
@@ -62,39 +68,37 @@
                 <div class="flex flex-col gap-3 flex-grow min-w-64">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</h4>
 
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                    @foreach (range(1,5) as $item)
+                        <x-link href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                    @endforeach
                 </div>
-
+                
                 <div class="flex flex-col gap-3 flex-grow min-w-64">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</h4>
-
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
-                    <x-link styling="link" href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                    
+                    @foreach (range(1,5) as $item)
+                        <x-link href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                    @endforeach
                 </div>
 
                 <div class="lg:flex flex-col gap-3 flex-grow min-w-64 hidden">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Support') }}</h4>
 
-                    <x-link styling="link" href="#">{{ __('Contact Us') }}</x-link>
-                    <x-link styling="link" href="#">{{ __('FAQs') }}</x-link>
+                    <x-link href="#">{{ __('Contact Us') }}</x-link>
+                    <x-link href="#">{{ __('FAQs') }}</x-link>
                 </div>
             </div>
         </div>
 
         <div class="container mx-auto flex flex-col flex-grow">
             <div class="w-full flex-grow flex flex-wrap gap-x-6 gap-y-3 items-center justify-center">
-                <x-link styling="link" href="#">{{ __('Store') }}</x-link>
-                <x-link styling="link" href="#">{{ __('Blog') }}</x-link>
-                <x-link styling="link" href="#">{{ __('About Us') }}</x-link>
-                <x-link styling="link" href="#">{{ __('Privacy Policy') }}</x-link>
-                <x-link styling="link" href="#">{{ __('Terms Of Service') }}</x-link>
-                <x-link styling="link" href="#" class="lg:hidden">{{ __('Contact Us') }}</x-link>
-                <x-link styling="link" href="#" class="lg:hidden">{{ __('FAQs') }}</x-link>
+                <x-link href="#">{{ __('Store') }}</x-link>
+                <x-link href="#">{{ __('Blog') }}</x-link>
+                <x-link href="#">{{ __('About Us') }}</x-link>
+                <x-link href="#">{{ __('Privacy Policy') }}</x-link>
+                <x-link href="#">{{ __('Terms Of Service') }}</x-link>
+                <x-link href="#" class="lg:hidden">{{ __('Contact Us') }}</x-link>
+                <x-link href="#" class="lg:hidden">{{ __('FAQs') }}</x-link>
             </div>
         </div>
     </div>

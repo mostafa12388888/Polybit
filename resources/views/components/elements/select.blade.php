@@ -8,7 +8,7 @@
             $classes .= " rounded-md border-none bg-white dark:bg-dark-700 hover:bg-gray-50 dark:hover:brightness-95 focus:bg-gray-50 dark:focus:brightness-95 active:bg-gray-100 dark:active:brightness-90 shadow-sm";
             break;
         case 'light':
-            $classes .= " rounded-md border-none bg-gray-100 dark:bg-dark-700 hover:bg-gray-200/70 dark:hover:bg-dark-600  focus:bg-gray-200/70 dark:focus:bg-dark-600 active:bg-gray-300/60 dark:active:brightness-90 shadow-sm";
+            $classes .= " rounded-md border-none bg-gray-100 dark:bg-dark-700 hover:bg-gray-200/70 dark:hover:bg-dark-600 focus:bg-gray-200/70 dark:focus:bg-dark-600 active:bg-gray-300/60 dark:active:brightness-90 shadow-sm";
             break;
         case 'simple':
             $classes .= " rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50";

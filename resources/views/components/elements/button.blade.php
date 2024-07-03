@@ -26,7 +26,7 @@
     switch ($size) {
         case 'xs': $classes .= ' px-2 py-1 text-xs'; break;
         case 'sm': $classes .= ' px-3 py-1 text-sm'; break;
-        case 'md': $classes .= ' px-4 py-2 '; break;
+        case 'md': $classes .= ' px-4 py-2'; break;
         case 'lg': $classes .= ' px-6 py-3 text-lg'; break;
         case 'xl': $classes .= ' px-8 py-4 text-xl'; break;
         case '2xl': $classes .= ' px-10 py-5 text-2xl'; break;

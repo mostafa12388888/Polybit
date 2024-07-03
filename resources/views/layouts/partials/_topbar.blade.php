@@ -2,8 +2,8 @@
 <div class="md:bg-gray-200 md:dark:bg-dark-900 px-4 md:px-6 mt-2 md:mt-0 md:text-[.7rem]">
     <nav class="container mx-auto flex flex-col md:flex-row flex-wrap md:items-center justify-between gap-4">
         <div class="max-md:border-t dark:border-dark-700 p-4 md:p-0 flex flex-wrap items-center justify-center gap-4 max-md:order-4">
-            <x-link styling="link" class="!py-1" href="#">{{ __('About us') }}</x-link>
-            <x-link styling="link" class="!py-1" href="#">{{ __('Contact') }}</x-link>
+            <x-link class="!py-1" href="#">{{ __('About us') }}</x-link>
+            <x-link class="!py-1" href="#">{{ __('Contact') }}</x-link>
         </div>
         
         <div class="flex flex-wrap md:items-center flex-col md:flex-row-reverse gap-4">
@@ -39,11 +39,11 @@
                     </x-slot>
     
                     <x-slot:content>
-                        <x-dropdown.link :navigate="false" styling="link" class="py-4" href="{{ request()->url() }}?dir=rtl">
+                        <x-dropdown.link :navigate="false" class="py-4" href="{{ request()->url() }}?dir=rtl">
                             <img class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/eg.webp">
                             <span>العربية</span>
                         </x-link>
-                        <x-dropdown.link :navigate="false" styling="link" class="py-4" href="{{ request()->url() }}">
+                        <x-dropdown.link :navigate="false" class="py-4" href="{{ request()->url() }}">
                             <img class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/us.webp">
                             <span>English</span>
                         </x-link>
@@ -51,12 +51,12 @@
                 </x-dropdown>
             </div>
 
-            <x-link styling="link" class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-2" href="tel:+201068977712">
+            <x-link class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-2" href="tel:+201068977712">
                 <x-icons.phone class="!w-4 !h-4" stroke-width="1" />
                 <span dir="ltr">+201068977712</span>
             </x-link>
             
-            <x-link styling="link" class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-3" href="mail:info@ichemeg.com">
+            <x-link class="!py-1 flex items-center gap-1.5 md:flex-row-reverse max-md:order-3" href="mail:info@ichemeg.com">
                 <x-icons.envelope class="!w-4 !h-4" stroke-width="1" />
                 <span dir="ltr">info@ichemeg.com</span>
             </x-link>
