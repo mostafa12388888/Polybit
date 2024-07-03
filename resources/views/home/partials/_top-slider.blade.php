@@ -3,7 +3,7 @@
     direction: '{{ direction() }}',
     autoplay: 3000,
 }).mount());">
-<div data-glide-el="track" class="glide__track">
+    <div data-glide-el="track" class="glide__track">
         <ul class="glide__slides h-72 sm:h-80 md:h-96 lg:h-[30rem] xl:h-[34rem] 2xl:h-[42rem]">
             @foreach (range(1,3) as $slide)
                 <li class="glide__slide h-full relative">
@@ -22,7 +22,7 @@
                             </div>
                         </div>
 
-                        <img loading="eager" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full h-full object-cover" alt="">
+                        <img loading="lazy" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full h-full object-cover" alt="">
                     </div>
                 </li>
             @endforeach
