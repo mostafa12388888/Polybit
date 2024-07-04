@@ -1,6 +1,6 @@
 <footer class="bg-white dark:bg-dark-800 dark:border-dark-500">
     <div class="py-8 sm:py-14 px-4 sm:px-6 relative">
-        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center pointer-events-none" style="background-image: url('/storage/texture.webp');"></div>
+        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/storage/texture.webp');"></div>
 
         <div class="container mx-auto flex flex-grow max-md:flex-wrap max-sm:items-center max-sm:justify-center max-sm:text-center gap-12 mb-8 sm:mb-12">
             <div class="flex flex-col gap-4 min-w-64 max-sm:items-center max-sm:justify-center max-sm:text-center">
