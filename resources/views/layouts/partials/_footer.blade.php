@@ -31,7 +31,7 @@
                 </x-link>
 
                 <div class="flex gap-2 text-gray-700 dark:text-dark-100">
-                    <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose" width-stroke="1" />
+                    <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose hidden sm:inline" width-stroke="1" />
                     <p class="sm:max-w-64 text-balance">22 El-Shaheed Mohammed Abd El-Hady, Nasr City, Cairo</p>
                 </div>
                 
