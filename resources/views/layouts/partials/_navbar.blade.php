@@ -1,6 +1,6 @@
 <div class="flex gap-2 items-center"
     x-data="{open: null}"
-    x-trap.inert.noautofocus.noscroll="open"
+    x-trap.inert.noautofocus="open"
 >
     <x-button styling="light-link" class="md:hidden !p-1.5" @click="open = !open">
         <x-icons.menu class="!w-7 !h-7" x-show="! open"/>
