@@ -2,7 +2,7 @@
     @include('layouts.partials._topbar')
 </div>
 
-<header class="sticky top-0 bg-white dark:bg-dark-700 z-20" x-ref="header">
+<header class="sticky top-0 bg-white dark:bg-dark-700 z-20 border-b border-dark-200 dark:border-dark-700/80" x-ref="header">
     <div class="bg-white dark:bg-dark-800/70 shadow mx-auto px-4 sm:px-6 py-3 relative">
         <div class="container mx-auto flex gap-3 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
             @include('layouts.partials._navbar')
