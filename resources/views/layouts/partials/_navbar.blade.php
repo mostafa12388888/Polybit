@@ -14,7 +14,7 @@
     </x-link>
     <!-- End Logo -->
 
-    <nav class="px-4 sm:px-6 max-md:pb-24 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 hidden md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8"
+    <nav class="px-4 sm:px-6 max-md:pb-6 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 hidden md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8"
         x-ref="nav"
         x-show.flex="open"
         x-transition:enter="transition ease-out duration-200"
@@ -25,7 +25,7 @@
         x-transition:leave-end="transform opacity-50 -translate-x-full"
         x-data="{
             setHeight () {
-                $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px)';
+                $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px - 4.5rem)';
             }
         }" 
         @resize.window="setHeight" 
