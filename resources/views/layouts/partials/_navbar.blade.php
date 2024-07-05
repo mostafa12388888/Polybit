@@ -25,7 +25,7 @@
         x-transition:leave-end="transform opacity-50 -translate-x-full"
         x-data="{
             setHeight () {
-                $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px - 4.5rem)';
+                $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px - 4.5rem + 1px)';
             }
         }" 
         @resize.window="setHeight" 
