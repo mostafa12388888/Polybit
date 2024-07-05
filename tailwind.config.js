@@ -14,10 +14,24 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                "sans": ['Roboto', 'Almarai', ...defaultTheme.fontFamily.sans],
-                "sans-ar": ['Almarai', 'Roboto', ...defaultTheme.fontFamily.sans],
+                "sans": ['Klavika', 'Almarai', ...defaultTheme.fontFamily.sans],
+                "sans-ar": ['Almarai', 'Klavika', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                primarys: {
+                    DEFAULT: '#B2D1DE',
+                    50: '#F9FCFD',
+                    100: '#EBF3F6',
+                    200: '#CFE2EA',
+                    300: '#B2D1DE',
+                    400: '#8BBACD',
+                    500: '#63A2BC',
+                    600: '#4687A2',
+                    700: '#35667B',
+                    800: '#244654',
+                    900: '#13252C',
+                    950: '#0B1519'
+                },
                 primary: colors.zinc,
                 secondary: colors.teal,
                 dark: colors.zinc,

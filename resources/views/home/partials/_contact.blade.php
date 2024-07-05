@@ -5,7 +5,7 @@
         </div>
 
         <div class="flex flex-col gap-6 lg:gap-8 max-md:text-center">
-            <p class="text-primary-800 dark:text-dark-100 text-2xl lg:text-3xl font-bold">{{ __('Ready to connect') }}</p>
+            <p class="text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl font-bold">{{ __('Ready to connect') }}</p>
     
             <p class="text-base xl:text-lg font-light">{{ __('Drop us a line and let\'s build something extraordinary together!') }}</p>
     

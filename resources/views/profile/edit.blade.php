@@ -1,7 +1,7 @@
 <x-app-layout>
     <header class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow">
         <div class="container mx-auto py-6">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-dark-100 leading-tight">
+            <h2 class="uppercase font-semibold text-xl text-gray-800 dark:text-dark-100 leading-tight">
                 {{ __('Profile') }}
             </h2>
         </div>

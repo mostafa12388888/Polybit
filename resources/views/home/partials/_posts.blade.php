@@ -1,6 +1,6 @@
-<div class="bg-gradient-to-b from-primary-50/60 to-primary-200/40 dark:from-dark-600/40 dark:to-dark-600/40 px-4 sm:px-6 py-16 md:py-20 xl:py-28 relative">
+<div class="bg-gradient-to-b from-primary-50/50 to-primary-200/50 dark:from-dark-600/40 dark:to-dark-600/40 px-4 sm:px-6 py-16 md:py-20 xl:py-28 relative">
     <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
-        <h2 class="text-primary-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Latest Blog Posts') }}</h2>
+        <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Latest Blog Posts') }}</h2>
 
         <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden">{{ __('Discover the Projects that Define Our Commitment to Quality') }}</p>
 
@@ -19,18 +19,18 @@
                 <ul class="glide__slides">
                     @foreach (range(1,6) as $slide)
                         <li class="glide__slide h-full relative">
-                            <x-link href="#" class="post flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none overflow-hidden">
+                            <x-link href="#" class="post flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none overflow-hidden !rounded-xl">
                                 <div class="relative">
                                     <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="w-full max-sm:aspect-video sm:h-44 md:h-56 lg:h-72 xl:h-56 2xl:h-72 object-cover" alt="">
     
-                                    <div class="overlay opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-primary-900/60  flex items-center justify-center text-white">
+                                    <div class="overlay opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-dark-900/60 flex items-center justify-center text-white">
                                         <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />
                                     </div>
                                 </div>
 
                                 <div class="flex flex-col gap-3 px-6 pt-8 pb-6">
                                     <h5 class="font-semibold truncate lg:text-lg">{{ str()->title(fake()->sentence(3)) }}</h5>
-                                    <p class="font-light line-clamp-2">{{ str()->title(fake()->sentence(20)) }}</p>
+                                    <p class="font-light line-clamp-2">{{ fake()->sentence(20) }}</p>
                                 </div>
 
                                 <div class="flex gap-2 items-center border-t border-dark-100 dark:border-dark-600/80 px-6 py-6">

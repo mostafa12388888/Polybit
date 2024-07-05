@@ -7,7 +7,7 @@
         <div class="container mx-auto flex gap-3 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
             @include('layouts.partials._navbar')
 
-            <div class="xl:hidden md:order-1">
+            <div class="xl:hidden order-1 md:order-1">
                 <x-button styling="light" class="!rounded-xl aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleSearch">
                     <x-icons.search class="!w-5 !h-5" />
                     <span class="sr-only">{{ __('Show Search Bar') }}</span>
@@ -18,7 +18,9 @@
             <div class="flex-grow xl:hidden"></div>
 
             <div class="flex flex-row-reverse gap-2 md:gap-2.5 xl:flex-grow-0 order-2 items-center">
-                @include('layouts.partials._user-menu')            
+                <div class="hidden sm:block">
+                    @include('layouts.partials._user-menu')
+                </div>
                 
                 <x-button styling="light" class="!rounded-xl aspect-square w-11 h-11 !p-0 hidden md:flex items-center justify-center" @click="toggleDarkMode">
                     <x-icons.moon class="!w-5 !h-5" x-show="! darkMode"/>
@@ -26,9 +28,9 @@
                     <span class="sr-only">{{ __('Toggle Dark Mode') }}</span>
                 </x-button>
 
-                <x-button styling="light" class="!rounded-xl aspect-square w-11 h-11 !p-0 flex items-center justify-center relative" @click="toggleSearch">
+                <x-button styling="light" class="hidden sm:flex !rounded-xl aspect-square w-11 h-11 !p-0 items-center justify-center relative" @click="toggleSearch">
                     <x-icons.cart class="!w-5 !h-5" />
-                    <span class="text-xs w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center absolute -top-2 ltr:-left-1 rtl:-right-1">{{ rand(1, 20) }}</span>
+                    <span class="text-xs w-6 h-6 bg-dark-500 text-white rounded-full flex items-center justify-center absolute -top-2 ltr:-left-1 rtl:-right-1">{{ rand(1, 20) }}</span>
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </x-button>
 

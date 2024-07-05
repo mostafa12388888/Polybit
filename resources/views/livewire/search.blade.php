@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <x-button styling="link" class="absolute top-0 ltr:right-0 rtl:left-0 z-10 h-full px-6 ltr:rounded-l-none rtl:rounded-r-none ltr:border-l rtl:border-r border-gray-200/60 dark:border-dark-800/20 focus:bg-gray-200/70 focus:dark:bg-dark-700"
+    <x-button styling="link" class="absolute top-0 ltr:right-0 rtl:left-0 z-10 h-full px-6 ltr:rounded-l-none rtl:rounded-r-none ltr:border-l rtl:border-r border-primary-200/60 dark:border-dark-800/20 focus:bg-primary-200/70 focus:dark:bg-dark-700"
         x-bind:class="focused ? '!rounded-b-none' : ''">
         <x-icons.search class="" class="!w-5 !h-5"/>
         <span class="sr-only">{{ __('Search') }}</span>

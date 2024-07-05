@@ -12,8 +12,14 @@
         }
         this.search = ! this.search;
     },
-    toggleDarkMode(){
-        this.darkMode = ! this.darkMode;
+    toggleDarkMode(e, status = null){
+        console.log(status)
+        if(status !== null) {
+            this.darkMode = status;
+        } else {
+            this.darkMode = ! this.darkMode;
+        }
+
         Cookies.set('darkMode', this.darkMode);
         $dispatch('darkModeToggled');
     }
@@ -28,6 +34,22 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <style>
+            @font-face {
+                font-family: 'Klavika';
+                font-style: normal;
+                font-weight: 100;
+                font-display: swap;
+                src: url({{ asset('/fonts/klavika-light.woff') }}) format('woff2');
+            }
+            @font-face {
+                font-family: 'Klavika';
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+                src: url({{ asset('/fonts/klavika-regular.woff') }}) format('woff2');
+            }
+        </style>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
 
@@ -39,7 +61,7 @@
             }
         </style>
     </head>
-    <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-gray-100 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-[0.9rem] lg:text-base relative border-gray-100">
+    <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base lg:text-[1.1rem] relative border-gray-100">
         @include('layouts.partials._header')
 
         <main class="flex-grow">
@@ -47,5 +69,7 @@
         </main>
 
         @include('layouts.partials._footer')
+
+        @include('layouts.partials._bottom-navbar')
     </body>
 </html>

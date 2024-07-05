@@ -18,11 +18,11 @@
         x-ref="nav"
         x-show.flex="open"
         x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="transform opacity-0"
+        x-transition:enter-start="transform opacity-50 -translate-x-full"
         x-transition:enter-end="transform opacity-100"
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="transform opacity-100"
-        x-transition:leave-end="transform opacity-0"
+        x-transition:leave-end="transform opacity-50 -translate-x-full"
         x-data="{
             setHeight () {
                 $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px)';
@@ -31,7 +31,7 @@
         @resize.window="setHeight" 
         x-init="$el.classList.remove('hidden'); $el.classList.add('flex'); setHeight()">
         <div class="w-full md:container mx-auto md:flex">
-            <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-gray-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-gray-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
+            <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-primary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                 <x-slot:trigger>
                     <div class="pb-1 flex flex-grow">
                         <x-link styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" href="#">

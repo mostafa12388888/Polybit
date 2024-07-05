@@ -1,4 +1,4 @@
-<footer class="bg-white dark:bg-dark-800 dark:border-dark-500">
+<footer class="bg-white/90 dark:bg-dark-800 dark:border-dark-500">
     <div class="py-8 sm:py-14 px-4 sm:px-6 relative">
         <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/storage/texture.webp');"></div>
 
@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <div class="p-4 bg-gray-200 dark:bg-dark-900/40">
+    <div class="p-4 bg-primary-600/15 dark:bg-dark-900/40">
         <div class="container mx-auto flex items-center justify-center sm:justify-between flex-col sm:flex-row gap-4">
             <p>{{ __("© :year :app, All rights reserved", ['year' => date('Y'), 'app' => config('app.name')]) }}.</p>
             <a href="#">{{ __("Developed by brmjyat") }}.</a>
