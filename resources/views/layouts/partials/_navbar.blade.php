@@ -87,8 +87,6 @@
 
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('About Us') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Contact') }}</x-link>
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Privacy Policy') }}</x-link>
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Terms Of Service') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('FAQs') }}</x-link>
         </div>
 
