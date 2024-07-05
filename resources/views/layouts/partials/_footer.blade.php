@@ -34,33 +34,9 @@
                     <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose hidden sm:inline" width-stroke="1" />
                     <p class="sm:max-w-64 text-balance">22 El-Shaheed Mohammed Abd El-Hady, Nasr City, Cairo</p>
                 </div>
-                
 
                 <div class="w-full flex-grow flex-wrap flex gap-2 mt-4 max-sm:items-center max-sm:justify-center max-sm:text-center max-w-96">
-                    <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.facebook class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                        <span class="sr-only">{{ __('Facebook Link') }}</span>
-                    </x-link>
-                    
-                    <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.twitter class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                        <span class="sr-only">{{ __('Twitter Link') }}</span>
-                    </x-link>
-                    
-                    <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.youtube class="!w-7 !h-5 text-dark-500 dark:text-dark-300" />
-                        <span class="sr-only">{{ __('Youtube Link') }}</span>
-                    </x-link>
-                    
-                    <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.linkedin class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                        <span class="sr-only">{{ __('Linkedin Link') }}</span>
-                    </x-link>
-
-                    <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                        <x-icons.link class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                        <span class="sr-only">{{ __('External Link') }}</span>
-                    </x-link>
+                    @include('layouts.partials._social-links')
                 </div>
             </div>
         

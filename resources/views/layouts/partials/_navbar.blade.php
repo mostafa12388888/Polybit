@@ -14,7 +14,7 @@
     </x-link>
     <!-- End Logo -->
 
-    <nav class="px-4 sm:px-6 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 hidden md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8"
+    <nav class="px-4 sm:px-6 max-md:pb-24 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 hidden md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8"
         x-ref="nav"
         x-show.flex="open"
         x-transition:enter="transition ease-out duration-200"
@@ -84,8 +84,18 @@
             </x-dropdown>
     
             <x-link styling="light-link" class="w-full max-md:py-4" href="#">{{ __('Projects') }}</x-link>
+
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('About Us') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Contact') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Privacy Policy') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Terms Of Service') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('FAQs') }}</x-link>
         </div>
 
+        <div class="md:hidden">
+        </div>
+        
+        
         <div class="md:hidden" x-cloak>
             @include('layouts.partials._topbar')
         </div>

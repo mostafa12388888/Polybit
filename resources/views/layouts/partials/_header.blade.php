@@ -7,7 +7,7 @@
         <div class="container mx-auto flex gap-3 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
             @include('layouts.partials._navbar')
 
-            <div class="xl:hidden order-1 md:order-1">
+            <div class="xl:hidden order-3">
                 <x-button styling="light" class="!rounded-xl aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleSearch">
                     <x-icons.search class="!w-5 !h-5" />
                     <span class="sr-only">{{ __('Show Search Bar') }}</span>
