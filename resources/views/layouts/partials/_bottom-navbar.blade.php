@@ -1,8 +1,8 @@
 <nav class="sm:hidden">
     <div class="mt-[4.5rem]"></div>
     
-    <div class="fixed bottom-0 left-0 z-50 w-full h-[4.5rem] bg-white border-t border-dark-200 dark:bg-dark-700 dark:border-dark-800/40">
-        <div class="dark:bg-dark-800/70 h-full">
+    <div class="fixed bottom-0 left-0 z-50 w-full h-[4.5rem] bg-white dark:bg-dark-700">
+        <div class="dark:bg-dark-800/70 h-full border-t border-dark-200 dark:border-dark-700/40">
             <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
                 <x-link class="inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none" href="{{ route('home') }}">
                     <x-icons.home class="!w-5 !h-5" />
