@@ -8,11 +8,6 @@ use Livewire\Component;
 #[Lazy]
 class Comments extends Component
 {
-    public function mount()
-    {
-        sleep(2);
-    }
-
     public function placeholder()
     {
         return <<<'HTML'
