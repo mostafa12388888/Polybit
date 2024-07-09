@@ -5,7 +5,7 @@
         <x-breadcrumb :last="true">{{ str()->limit(__('FAQ'), 17) }}</x-breadcrumb>
     </x-slot>
 
-    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:px-4 md:py-8 lg:py-12 relative">
+    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-4 md:px-4 md:py-8 lg:py-12 relative">
         <div class="container mx-auto flex flex-col lg:flex-row gap-4 mb-6 max-md:mt-6">
             <div class="max-w-4xl flex-grow w-full lg:w-8/12 2xl:w-9/12 flex flex-col gap-4 max-sm:px-4">
                 <h2 class="font-semibold text-lg uppercase text-gray-800 dark:text-dark-100">{{ __('Find answers to frequently asked questions.') }}</h2>
@@ -25,7 +25,7 @@
                             @endif
                             <x-icons.chevron-down x-show="expanded" />
     
-                            <h2 class="font-semibold uppercase text-gray-800 dark:text-dark-100">{{ str()->title(fake()->sentence(5)) }}</h2>
+                            <h2 class="font-semibold text-gray-800 dark:text-dark-100">{{ str()->title(fake()->sentence(5)) }}</h2>
                         </button>
                         <div x-show="expanded" x-collapse>
                             <p class="pb-6 px-4 md:px-6 xl:px-8">{{ fake()->paragraph(rand(10,25)) }}</p>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex-grow max-w-full w-full lg:w-4/12 2xl:w-3/12 flex flex-col overflow-hidden max-lg:divide-y lg:gap-4">
-                <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-4 dark:border-dark-800 max-lg:py-10 flex flex-col">
+                <div class="bg-white dark:bg-dark-700/30 dark:sm:bg-dark-700/60 p-4 md:p-6 xl:p-8 sm:rounded-md gap-4 dark:border-dark-800 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-1">{{ __('Have any questions ?') }}</h3>
                     
                     <p>We'd love to hear from you.</p>
@@ -66,7 +66,7 @@
         </div>
     </section>
 
-    <section class="flex-grow bg-dark-100 sm:bg-white dark:bg-dark-800/50 sm:p-2 md:p-4 lg:py-4 pattern dark:pattern-dark">
+    <section class="flex-grow bg-dark-100 sm:bg-white dark:bg-dark-800/60 sm:p-2 md:p-4 lg:py-4 pattern dark:pattern-dark">
         <div class="container mx-auto">
             <x-link :href="route('posts.index')" class="max-w-2xl mx-auto flex-grow justify-center w-full lg:w-8/12 2xl:w-9/12 flex items-center gap-4 !py-6 max-sm:px-4">
                 <div class="shrink-0 opacity-80">
