@@ -27,6 +27,6 @@
 @else
     <x-link styling="primary" class="h-11 px-2 flex gap-1.5 items-center justify-center" href="{{ route('login') }}">
         <x-icons.user class="!w-5 !h-5" />
-        <span class="hidden sm:inline">{{ __('Sign In') }}</span>
+        <span class="hidden sm:inline">{{ __('Login') }}</span>
     </x-link>
 @endauth

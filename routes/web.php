@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');
 
+Route::view('/products', 'products.index')->name('products.index');
+Route::view('/products/{product}', 'products.show')->name('products.show');
+
+Route::view('/posts', 'posts.index')->name('posts.index');
+Route::view('/posts/{post}', 'posts.show')->name('posts.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

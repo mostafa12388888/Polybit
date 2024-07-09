@@ -36,35 +36,61 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <style>
             @font-face {
-                font-family: 'Klavika';
+                font-family: 'Klavika-Light';
                 font-style: normal;
-                font-weight: 100;
+                font-weight: 400;
                 font-display: swap;
                 src: url({{ asset('/fonts/klavika-light.woff') }}) format('woff2');
             }
             @font-face {
-                font-family: 'Klavika';
+                font-family: 'Klavika-Regular';
                 font-style: normal;
                 font-weight: 600;
                 font-display: swap;
                 src: url({{ asset('/fonts/klavika-regular.woff') }}) format('woff2');
             }
         </style>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet"> --}}
+        {{-- <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet"> --}}
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <style>
-            * {
-                /* box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.1); */
-            }
-        </style>
     </head>
     <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base lg:text-[1.1rem] relative border-gray-100">
         @include('layouts.partials._header')
 
-        <main class="flex-grow">
+        <main class="flex-grow flex flex-col">
+            @if ($heading ?? null)
+                <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm z-10 relative overflow-hidden">
+                    <div class="absolute w-full h-full top-0 left-0 opacity-50 dark:opacity-100 z-20 bg-cover bg-no-repeat bg-center pointer-events-none" style="background-image: url('/storage/header-background.webp');"></div>
+
+                    <div class="container mx-auto py-10 lg:py-12">
+                        <h1 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">
+                            {{ $heading }}
+                        </h1>
+                    </div>
+                </div>
+            @endif
+            
+            @if ($breadcrumbs ?? null)
+                <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm z-20">
+                    <div class="border-t border-dark-100 dark:border-dark-700/50">
+                        <div class="container mx-auto py-3 text-sm flex items-center gap-2">
+                            <x-breadcrumb class="flex items-center justify-center gap-1.5">
+                                <x-icons.home class="!w-5 !h-5" stroke-width="1" /> 
+                                <span>Home</span>
+                            </x-breadcrumb>
+
+                            {{ $breadcrumbs }}
+                        </div>
+                    </div>
+                </div>
+            @endif
+            
             {{ $slot }}
         </main>
 

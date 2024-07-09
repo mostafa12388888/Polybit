@@ -1,9 +1,9 @@
-<div class="flex gap-2 items-center"
+<div class="flex max-md:gap-2 items-center"
     x-data="{open: null}"
     x-trap.inert.noautofocus="open"
 >
     <x-button styling="light-link" class="md:hidden !p-1.5" @click="open = !open">
-        <x-icons.menu class="!w-7 !h-7" x-show="! open"/>
+        <x-icons.menu class="!w-8 !h-8" stroke-width="2.2" x-show="! open"/>
         <x-icons.close class="!w-7 !h-7" x-cloak x-show="open"/>
         <span class="sr-only">{{ __('Toggle Navbar') }}</span>
     </x-button>
@@ -25,7 +25,8 @@
         x-transition:leave-end="transform opacity-50 -translate-x-full"
         x-data="{
             setHeight () {
-                $el.style.height = 'calc(100vh - ' + ($refs.header.getBoundingClientRect().height) + 'px - 4.5rem + 1px)';
+                offset = $refs.header.getBoundingClientRect().height + $refs.bottomNavbar.getBoundingClientRect().height - 1;
+                $el.style.height = 'calc(100vh - ' + offset + 'px)';
             }
         }" 
         @resize.window="setHeight" 
@@ -34,7 +35,7 @@
             <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-primary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                 <x-slot:trigger>
                     <div class="pb-1 flex flex-grow">
-                        <x-link styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" href="#">
+                        <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent :href="route('posts.index')">
                             <span>{{ __('Blog') }}</span>
                             <x-icons.chevron-down class="!w-4 !h-4" />
                         </x-link>
@@ -46,9 +47,9 @@
                         <div class="z-50 flex flex-wrap max-md:flex-col gap-y-8 container mx-auto md:py-6">
                             @foreach (range(1, rand(4, 8)) as $item)
                                 <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
-                                    <x-dropdown.link href="#" class="text-base font-semibold">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                    <x-dropdown.link :href="route('posts.index')" class="text-base font-semibold">{{ fake()->sentence(4) }}</x-dropdown.link>
                                     @foreach (range(1, rand(2, 5)) as $item)
-                                        <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                        <x-dropdown.link :href="route('posts.index')" class="pl-8 rtl:pl-8">{{ fake()->sentence(4) }}</x-dropdown.link>
                                     @endforeach
                                 </div>
                             @endforeach
@@ -60,7 +61,7 @@
             <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-gray-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-gray-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                 <x-slot:trigger>
                     <div class="pb-1 flex flex-grow">
-                        <x-link styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" href="#">
+                        <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent :href="route('products.index')">
                             <span>{{ __('Products') }}</span>
                             <x-icons.chevron-down class="!w-4 !h-4" />
                         </x-link>
@@ -72,9 +73,9 @@
                         <div class="z-50 flex flex-wrap max-md:flex-col gap-y-8 container mx-auto md:py-6">
                             @foreach (range(1, rand(4, 8)) as $item)
                                 <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
-                                    <x-dropdown.link href="#" class="text-base font-semibold">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                    <x-dropdown.link :href="route('products.index')" class="text-base font-semibold">{{ fake()->sentence(4) }}</x-dropdown.link>
                                     @foreach (range(1, rand(2, 5)) as $item)
-                                        <x-dropdown.link href="#" class="pl-8 rtl:pl-8">{{ fake()->sentence(4) }}</x-dropdown.link>
+                                        <x-dropdown.link :href="route('products.index')" class="pl-8 rtl:pl-8">{{ fake()->sentence(4) }}</x-dropdown.link>
                                     @endforeach
                                 </div>
                             @endforeach
@@ -83,7 +84,7 @@
                 </x-slot>
             </x-dropdown>
     
-            <x-link styling="light-link" class="w-full max-md:py-4" href="#">{{ __('Projects') }}</x-link>
+            <x-link styling="light-link" class="w-full max-md:py-4 md:hidden lg:inline" href="#">{{ __('Projects') }}</x-link>
 
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('About Us') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Contact') }}</x-link>

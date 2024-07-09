@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-b from-primary-50/50 to-primary-200/50 dark:from-dark-600/40 dark:to-dark-600/40 px-4 sm:px-6 py-16 md:py-20 xl:py-28 relative">
+<div class="bg-primary-100 dark:bg-dark-600/40 px-4 sm:px-6 py-12 md:py-16 xl:py-24 relative">
     <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
         <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Latest Blog Posts') }}</h2>
 
@@ -19,31 +19,7 @@
                 <ul class="glide__slides">
                     @foreach (range(1,6) as $slide)
                         <li class="glide__slide h-full relative">
-                            <x-link href="#" class="post flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none overflow-hidden !rounded-md">
-                                <div class="relative">
-                                    <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="w-full max-sm:aspect-video sm:h-44 md:h-56 lg:h-72 xl:h-56 2xl:h-72 object-cover" alt="">
-    
-                                    <div class="overlay opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-dark-900/60 flex items-center justify-center text-white">
-                                        <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col gap-3 px-6 pt-8 pb-6">
-                                    <h5 class="font-semibold truncate lg:text-lg">{{ str()->title(fake()->sentence(3)) }}</h5>
-                                    <p class="font-light line-clamp-2">{{ fake()->sentence(20) }}</p>
-                                </div>
-
-                                <div class="flex gap-2 items-center border-t border-dark-100 dark:border-dark-600/80 px-6 py-6">
-                                    <div class="flex gap-2">
-                                        <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
-                                        <span class="text-sm font-light line-clamp-1">{{ str()->limit(str()->title(fake()->sentence(2)), 240) }}</span>
-                                    </div>
-                                    <div class="flex gap-2">
-                                        <x-icons.tag class="flex-shrink-0 !w-4 !h-4" />
-                                        <span class="text-sm font-light line-clamp-1">{{ str()->limit(str()->title(fake()->sentence(3)), 240) }}</span>
-                                    </div>
-                                </div>
-                            </x-link>
+                            @include('posts.partials._post-card-vertical')
                         </li>
                     @endforeach
                 </ul>

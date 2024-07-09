@@ -1,6 +1,6 @@
-<footer class="bg-white/90 dark:bg-dark-800 dark:border-dark-500">
+<footer class="{{ optional(request()->route())->getName() == 'home' ? 'bg-white' : 'bg-dark-50' }} dark:bg-dark-800 dark:border-dark-500">
     <div class="py-8 sm:py-14 px-4 sm:px-6 relative">
-        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/storage/texture.webp');"></div>
+        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/storage/footer-background.webp');"></div>
 
         <div class="container mx-auto flex flex-grow max-md:flex-wrap max-sm:items-center max-sm:justify-center max-sm:text-center gap-12 mb-8 sm:mb-12">
             <div class="flex flex-col gap-4 min-w-64 max-sm:items-center max-sm:justify-center max-sm:text-center">
@@ -45,7 +45,7 @@
                     <h4 class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</h4>
 
                     @foreach (range(1,5) as $item)
-                        <x-link href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                        <x-link :href="route('products.index')">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
                     @endforeach
                 </div>
                 
@@ -53,7 +53,7 @@
                     <h4 class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</h4>
                     
                     @foreach (range(1,5) as $item)
-                        <x-link href="#">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                        <x-link :href="route('posts.index')">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
                     @endforeach
                 </div>
 
@@ -68,8 +68,8 @@
 
         <div class="container mx-auto flex flex-col flex-grow">
             <div class="w-full flex-grow flex flex-wrap gap-x-6 gap-y-3 items-center justify-center">
-                <x-link href="#">{{ __('Store') }}</x-link>
-                <x-link href="#">{{ __('Blog') }}</x-link>
+                <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
+                <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
                 <x-link href="#">{{ __('About Us') }}</x-link>
                 <x-link href="#">{{ __('Privacy Policy') }}</x-link>
                 <x-link href="#">{{ __('Terms Of Service') }}</x-link>
@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    <div class="p-4 bg-primary-600/15 dark:bg-dark-900/40">
+    <div class="p-4 bg-primary-100/10 dark:bg-dark-900/40">
         <div class="container mx-auto flex items-center justify-center sm:justify-between flex-col sm:flex-row gap-4">
             <p>{{ __("© :year :app, All rights reserved", ['year' => date('Y'), 'app' => config('app.name')]) }}.</p>
             <a href="#">{{ __("Developed by brmjyat") }}.</a>

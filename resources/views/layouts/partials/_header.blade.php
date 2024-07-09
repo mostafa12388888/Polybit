@@ -2,13 +2,13 @@
     @include('layouts.partials._topbar')
 </div>
 
-<header class="sticky top-0 bg-white dark:bg-dark-700 z-20 border-b border-dark-200 dark:border-dark-800/20" x-ref="header">
-    <div class="bg-white dark:bg-dark-800/70 shadow mx-auto px-4 sm:px-6 py-3 relative">
+<header class="sticky top-0 bg-white dark:bg-dark-700 z-30 border-b border-dark-200 dark:border-dark-800/20" x-ref="header">
+    <div class="bg-white dark:bg-dark-800/70 shadow shadow-dark-100 dark:shadow-none mx-auto px-4 sm:px-6 py-3 relative">
         <div class="container mx-auto flex gap-3 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
             @include('layouts.partials._navbar')
 
-            <div class="xl:hidden order-3">
-                <x-button styling="light" class="!rounded-xl aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleSearch">
+            <div class="xl:hidden order-3 md:order-1">
+                <x-button styling="light" class="!rounded-md aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleSearch">
                     <x-icons.search class="!w-5 !h-5" />
                     <span class="sr-only">{{ __('Show Search Bar') }}</span>
                 </x-button>
@@ -22,13 +22,13 @@
                     @include('layouts.partials._user-menu')
                 </div>
                 
-                <x-button styling="light" class="!rounded-xl aspect-square w-11 h-11 !p-0 hidden md:flex items-center justify-center" @click="toggleDarkMode">
+                <x-button styling="light" class="!rounded-md aspect-square w-11 h-11 !p-0 hidden md:flex items-center justify-center" @click="toggleDarkMode">
                     <x-icons.moon class="!w-5 !h-5" x-show="! darkMode"/>
                     <x-icons.sun class="!w-5 !h-5" x-cloak x-show="darkMode"/>
                     <span class="sr-only">{{ __('Toggle Dark Mode') }}</span>
                 </x-button>
 
-                <x-button styling="light" class="hidden sm:flex !rounded-xl aspect-square w-11 h-11 !p-0 items-center justify-center relative" @click="toggleSearch">
+                <x-button styling="light" class="hidden sm:flex !rounded-md aspect-square w-11 h-11 !p-0 items-center justify-center relative" @click="toggleSearch">
                     <x-icons.cart class="!w-5 !h-5" />
                     <span class="text-xs w-6 h-6 bg-dark-500 text-white rounded-full flex items-center justify-center absolute -top-2 ltr:-left-1 rtl:-right-1">{{ rand(1, 20) }}</span>
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
