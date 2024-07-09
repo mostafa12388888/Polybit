@@ -59,13 +59,13 @@
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-800 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Related posts you might like') }}</h3>
                     @foreach (range(1,6) as $item)
-                        <x-link :href="route('products.index')">{{ fake()->sentence(4) }}</x-link>
+                        <x-link :href="route('posts.show', str()->slug(fake()->sentence(4)))">{{ fake()->sentence(4) }}</x-link>
                     @endforeach
                 </div>
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-800 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Our latest posts') }}</h3>
                     @foreach (range(1,6) as $item)
-                        <x-link :href="route('products.index')">{{ fake()->sentence(4) }}</x-link>
+                        <x-link :href="route('posts.show', str()->slug(fake()->sentence(4)))">{{ fake()->sentence(4) }}</x-link>
                     @endforeach
                 </div>
             </div>
