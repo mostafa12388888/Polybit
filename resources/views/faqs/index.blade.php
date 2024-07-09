@@ -5,15 +5,15 @@
         <x-breadcrumb :last="true">{{ str()->limit(__('FAQ'), 17) }}</x-breadcrumb>
     </x-slot>
 
-    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:p-4 lg:py-12 xl:py-14 relative">
-        <div class="container mx-auto flex flex-col lg:flex-row gap-4 mb-6">
+    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:px-4 md:py-8 lg:py-12 relative">
+        <div class="container mx-auto flex flex-col lg:flex-row gap-4 mb-6 max-md:mt-6">
             <div class="max-w-4xl flex-grow w-full lg:w-8/12 2xl:w-9/12 flex flex-col gap-4 max-sm:px-4">
                 <h2 class="font-semibold text-lg uppercase text-gray-800 dark:text-dark-100">{{ __('Find answers to frequently asked questions.') }}</h2>
                 <p>{{ __('Welcome to our FAQ page! Here, you\'ll find answers to the most common questions about our services and products. If you can\'t find the information you\'re looking for, please feel free to contact our support team.') }}</p>
             </div>
         </div>
 
-        <div class="container mx-auto flex flex-col lg:flex-row gap-4">
+        <div class="container mx-auto flex flex-col lg:flex-row gap-4 lg:gap-6">
             <div class="flex-grow w-full lg:w-8/12 2xl:w-9/12 flex flex-col gap-4 max-sm:p-4">
                 @foreach (range(1,10) as $item)
                     <div class="flex-grow bg-white dark:bg-dark-700/60 rounded-md  flex flex-col" x-data="{ expanded: false }">
