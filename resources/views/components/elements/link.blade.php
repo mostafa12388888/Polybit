@@ -37,6 +37,7 @@
 @endphp
 
 @php ($url = $attributes->get('href'))
+@php ($navigate = false)
 
 <a {{ $url && ! in_array($url, ['javascript:void(0)', '#']) && $navigate ? 'wire:navigate ' : '' }}{{ $attributes->merge([
     'href' => 'javascript:void(0)', 

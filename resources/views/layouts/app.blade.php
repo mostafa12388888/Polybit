@@ -60,7 +60,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base lg:text-[1.1rem] relative border-gray-100">
+    <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-gray-100">
         @include('layouts.partials._header')
 
         <main class="flex-grow flex flex-col">
@@ -80,7 +80,7 @@
                 <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm z-20">
                     <div class="border-t border-dark-100 dark:border-dark-700/50">
                         <div class="container mx-auto py-3 text-sm flex items-center gap-2">
-                            <x-breadcrumb class="flex items-center justify-center gap-1.5">
+                            <x-breadcrumb class="flex items-center justify-center gap-1.5" :href="route('home')">
                                 <x-icons.home class="!w-5 !h-5" stroke-width="1" /> 
                                 <span>Home</span>
                             </x-breadcrumb>

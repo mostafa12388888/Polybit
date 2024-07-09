@@ -71,8 +71,8 @@
                 <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
                 <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
                 <x-link href="#">{{ __('About Us') }}</x-link>
-                <x-link href="#">{{ __('Privacy Policy') }}</x-link>
-                <x-link href="#">{{ __('Terms Of Service') }}</x-link>
+                <x-link href="{{ route('pages.show', str()->slug('Privacy Policy')) }}">{{ __('Privacy Policy') }}</x-link>
+                <x-link href="{{ route('pages.show', str()->slug('Terms Of Service')) }}">{{ __('Terms Of Service') }}</x-link>
                 <x-link href="#" class="lg:hidden">{{ __('Contact Us') }}</x-link>
                 <x-link href="#" class="lg:hidden">{{ __('FAQs') }}</x-link>
             </div>
