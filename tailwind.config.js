@@ -16,9 +16,9 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                "header": ['Nunito', 'Almarai', ...defaultTheme.fontFamily.sans],
-                "sans": ['Nunito', 'Almarai', ...defaultTheme.fontFamily.sans],
-                "sans-ar": ['Almarai', 'Nunito', ...defaultTheme.fontFamily.sans],
+                "header": ['Klavika-Light', 'Almarai', ...defaultTheme.fontFamily.sans],
+                "sans": ['Klavika-Light', 'Almarai', ...defaultTheme.fontFamily.sans],
+                "sans-ar": ['Almarai', 'Klavika-Light', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primarys: {
