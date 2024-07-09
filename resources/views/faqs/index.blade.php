@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex-grow max-w-full w-full lg:w-4/12 2xl:w-3/12 flex flex-col overflow-hidden max-lg:divide-y lg:gap-4">
-                <div class="bg-white dark:bg-dark-700/30 dark:sm:bg-dark-700/60 p-4 md:p-6 xl:p-8 sm:rounded-md gap-4 dark:border-dark-800 max-lg:py-10 flex flex-col">
+                <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 sm:rounded-md gap-4 dark:border-dark-800 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-1">{{ __('Have any questions ?') }}</h3>
                     
                     <p>We'd love to hear from you.</p>
@@ -66,7 +66,7 @@
         </div>
     </section>
 
-    <section class="flex-grow bg-dark-100 sm:bg-white dark:bg-dark-800/60 sm:p-2 md:p-4 lg:py-4 pattern dark:pattern-dark">
+    <section class="flex-grow bg-dark-100 sm:bg-white dark:bg-dark-700/25 dark:sm:bg-dark-700/50 sm:p-2 md:p-4 lg:py-4 pattern dark:pattern-dark">
         <div class="container mx-auto">
             <x-link :href="route('posts.index')" class="max-w-2xl mx-auto flex-grow justify-center w-full lg:w-8/12 2xl:w-9/12 flex items-center gap-4 !py-6 max-sm:px-4">
                 <div class="shrink-0 opacity-80">
