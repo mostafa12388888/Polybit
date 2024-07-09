@@ -36,14 +36,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <style>
             @font-face {
-                font-family: 'Klavika-Light';
+                font-family: 'Klavika';
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
                 src: url({{ asset('/fonts/klavika-light.woff') }}) format('woff2');
             }
             @font-face {
-                font-family: 'Klavika-Regular';
+                font-family: 'Klavika';
                 font-style: normal;
                 font-weight: 600;
                 font-display: swap;
@@ -54,9 +54,9 @@
         {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet"> --}}
-        {{-- <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

@@ -14,6 +14,8 @@ Route::view('/posts/{post}', 'posts.show')->name('posts.show');
 
 Route::view('/pages/{page}', 'pages.show')->name('pages.show');
 
+Route::view('/faq', 'faqs.index')->name('faq');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

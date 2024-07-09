@@ -61,7 +61,7 @@
                     <h4 class="text-lg font-semibold mb-2">{{ __('Support') }}</h4>
 
                     <x-link href="#">{{ __('Contact Us') }}</x-link>
-                    <x-link href="#">{{ __('FAQs') }}</x-link>
+                    <x-link href="{{ route('faq') }}">{{ __('FAQ') }}</x-link>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 <x-link href="{{ route('pages.show', str()->slug('Privacy Policy')) }}">{{ __('Privacy Policy') }}</x-link>
                 <x-link href="{{ route('pages.show', str()->slug('Terms Of Service')) }}">{{ __('Terms Of Service') }}</x-link>
                 <x-link href="#" class="lg:hidden">{{ __('Contact Us') }}</x-link>
-                <x-link href="#" class="lg:hidden">{{ __('FAQs') }}</x-link>
+                <x-link href="{{ route('faq') }}" class="lg:hidden">{{ __('FAQ') }}</x-link>
             </div>
         </div>
     </div>

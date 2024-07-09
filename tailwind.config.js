@@ -16,9 +16,9 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                "header": ['Klavika-Light', 'Almarai', ...defaultTheme.fontFamily.sans],
-                "sans": ['Klavika-Light', 'Almarai', ...defaultTheme.fontFamily.sans],
-                "sans-ar": ['Almarai', 'Klavika-Light', ...defaultTheme.fontFamily.sans],
+                "header": ['Klavika', 'Almarai', ...defaultTheme.fontFamily.sans],
+                "sans": ['Klavika', 'Almarai', ...defaultTheme.fontFamily.sans],
+                "sans-ar": ['Almarai', 'Klavika', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primarys: {
