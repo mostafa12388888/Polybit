@@ -19,7 +19,7 @@
                 <ul class="glide__slides">
                     @foreach (range(1,6) as $slide)
                         <li class="glide__slide h-full relative">
-                            <x-link href="#" class="group flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none border dark:border-none !rounded-md overflow-hidden">
+                            <x-link :href="route('projects.show', str()->slug(fake()->sentence(4)))" class="group flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none border dark:border-none !rounded-md overflow-hidden">
                                 <div class="relative">
                                     <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="w-full max-sm:aspect-video sm:h-44 md:h-56 lg:h-72 xl:h-56 2xl:h-72 object-cover" alt="">
     

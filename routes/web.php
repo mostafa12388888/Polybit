@@ -12,6 +12,9 @@ Route::view('/products/{product}', 'products.show')->name('products.show');
 Route::view('/posts', 'posts.index')->name('posts.index');
 Route::view('/posts/{post}', 'posts.show')->name('posts.show');
 
+Route::view('/projects', 'projects.index')->name('projects.index');
+Route::view('/projects/{post}', 'projects.show')->name('projects.show');
+
 Route::view('/pages/{page}', 'pages.show')->name('pages.show');
 
 Route::view('/faq', 'faqs.index')->name('faq');
