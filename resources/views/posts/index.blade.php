@@ -9,7 +9,7 @@
         <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
 
             <div class="w-full flex gap-12 sm:gap-16 items-center flex-wrap">
-                @foreach (range(1, 16) as $item)
+                @foreach (range(1, 12) as $item)
                     <div class="2xl:w-4/12 max-w-4xl flex-grow flex">
                         @include('posts.partials._post-card-horizontal')
                     </div>
