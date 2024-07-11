@@ -24,21 +24,21 @@
                 <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
                     <h3>{{ str()->title(fake()->sentence(5)) }}</h3>
                     
-                    <p>{{ fake()->paragraph(rand(4,5)) }}</p>
+                    <p>{{ fake()->paragraph(rand(3,4)) }}</p>
 
-                    <div class="w-full rounded-md border overflow-hidden">
-                        <table class="w-full divide-y bg-gray-50 my-0 text-base">
-                            <tr class="even:bg-white even:dark:bg-gray-800 dark:border-gray-700">
-                                <td class="p-4 lg:p-6 font-semibold">{{ __('Location') }}</td>
-                                <td class="p-4 lg:p-6">{{ fake()->sentence(rand(3,5)) }}</td>
+                    <div class="w-full rounded-md border overflow-hidden dark:border-dark-700">
+                        <table class="w-full divide-y bg-gray-50 dark:bg-dark-700/70 my-0 text-base">
+                            <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
+                                <td class="p-4 lg:p-6 font-semibold align-middle">{{ __('Location') }}</td>
+                                <td class="p-4 lg:p-6 w-full">{{ fake()->sentence(rand(3,5)) }}</td>
                             </tr>
-                            <tr class="even:bg-white even:dark:bg-gray-800 dark:border-gray-700">
-                                <td class="p-4 lg:p-6 font-semibold">{{ __('Consultant') }}</td>
-                                <td class="p-4 lg:p-6">{{ fake()->sentence(rand(3,5)) }}</td>
+                            <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
+                                <td class="p-4 lg:p-6 font-semibold align-middle">{{ __('Consultant') }}</td>
+                                <td class="p-4 lg:p-6 w-full">{{ fake()->sentence(rand(3,5)) }}</td>
                             </tr>
-                            <tr class="even:bg-white even:dark:bg-gray-800 dark:border-gray-700">
-                                <td class="p-4 lg:p-6 font-semibold">{{ __('Contractor') }}</td>
-                                <td class="p-4 lg:p-6">{{ fake()->sentence(rand(3,5)) }}</td>
+                            <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
+                                <td class="p-4 lg:p-6 font-semibold align-middle">{{ __('Contractor') }}</td>
+                                <td class="p-4 lg:p-6 w-full">{{ fake()->sentence(rand(3,5)) }}</td>
                             </tr>
                         </table>
                     </div>

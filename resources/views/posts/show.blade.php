@@ -22,7 +22,6 @@
                     <p>{{ fake()->paragraph(rand(10,25)) }}</p>
                     <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="">
                     <p>{{ fake()->paragraph(rand(10,25)) }}</p>
-    
                 </div>
                 
                 <div class="border-t border-dark-100 dark:border-dark-700 pt-4 bg-white dark:bg-dark-50 dark:opacity-85 py-8 px-2 md:px-4 xl:px-6">
