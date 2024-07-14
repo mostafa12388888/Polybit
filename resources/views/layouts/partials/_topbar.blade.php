@@ -3,7 +3,7 @@
     <nav class="container mx-auto flex flex-col md:flex-row flex-wrap md:items-center justify-between gap-4">
         <div class="max-md:hidden dark:border-dark-700 p-4 md:p-0 flex flex-wrap items-center justify-center gap-4">
             <x-link class="!py-1" href="#">{{ __('About us') }}</x-link>
-            <x-link class="!py-1" href="#">{{ __('Contact') }}</x-link>
+            <x-link class="!py-1" :href="route('contact-us')">{{ __('Contact') }}</x-link>
         </div>
         
         <div class="flex flex-wrap md:items-center flex-col md:flex-row-reverse gap-4">

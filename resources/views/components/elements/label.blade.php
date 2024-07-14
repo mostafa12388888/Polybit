@@ -4,6 +4,6 @@
     {{ $value ?? $slot }}
     
     @if(isset($required) && $required != false)
-    <span class="text-red-400 p-1 text-lg">*</span>
+        <span class="text-red-400 p-1 text-lg">*</span>
     @endif
 </label>

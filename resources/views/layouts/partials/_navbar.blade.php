@@ -87,7 +87,7 @@
             <x-link styling="light-link" class="w-full max-md:py-4 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
 
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('About Us') }}</x-link>
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" href="#">{{ __('Contact') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('contact-us')">{{ __('Contact') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('faq')">{{ __('FAQ') }}</x-link>
         </div>
 

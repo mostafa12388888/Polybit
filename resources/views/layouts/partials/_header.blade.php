@@ -28,11 +28,11 @@
                     <span class="sr-only">{{ __('Toggle Dark Mode') }}</span>
                 </x-button>
 
-                <x-button styling="light" class="hidden sm:flex !rounded-md aspect-square w-11 h-11 !p-0 items-center justify-center relative" @click="toggleSearch">
+                <x-link :href="route('cart')" styling="light" class="hidden sm:flex !rounded-md aspect-square w-11 h-11 !p-0 items-center justify-center relative">
                     <x-icons.cart class="!w-5 !h-5" />
                     <span class="text-xs w-6 h-6 bg-dark-500 text-white rounded-full flex items-center justify-center absolute -top-2 ltr:-left-1 rtl:-right-1">{{ rand(1, 20) }}</span>
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
-                </x-button>
+                </x-link>
 
                 <div class="text-center " style="direction:ltr;">
                     <span class="sm:hidden">xs</span>

@@ -8,6 +8,7 @@ Route::view('/search', 'home.index')->name('search');
 
 Route::view('/products', 'products.index')->name('products.index');
 Route::view('/products/{product}', 'products.show')->name('products.show');
+Route::view('/cart', 'products.cart')->name('cart');
 
 Route::view('/posts', 'posts.index')->name('posts.index');
 Route::view('/posts/{post}', 'posts.show')->name('posts.show');
@@ -16,6 +17,8 @@ Route::view('/projects', 'projects.index')->name('projects.index');
 Route::view('/projects/{post}', 'projects.show')->name('projects.show');
 
 Route::view('/pages/{page}', 'pages.show')->name('pages.show');
+
+Route::view('/contact-us', 'pages.contact-us')->name('contact-us');
 
 Route::view('/faq', 'faqs.index')->name('faq');
 

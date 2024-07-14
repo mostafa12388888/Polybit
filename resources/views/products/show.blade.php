@@ -6,9 +6,9 @@
         <x-breadcrumb :last="true">{{ str()->limit(fake()->sentence(10), 17) }}</x-breadcrumb>
     </x-slot>
 
-    <article class="flex-grow bg-white dark:bg-dark-800/70 pb-6 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
+    <section class="flex-grow bg-white dark:bg-dark-800/70 pb-6 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col gap-20">
-            <div class="flex flex-col lg:flex-row gap-12 brig">
+            <div class="flex flex-col lg:flex-row gap-12">
                 <div class="relative flex-grow shrink-0 w-full lg:max-w-md xl:max-w-xl">
                     @include('products.partials._product-images')
                 </div>
@@ -35,12 +35,12 @@
                             <x-label for="" class="sm:pe-8 sm:py-5 sm:!pt-12 table-cell max-w-fit">{{ __('Color') }}:</x-label>
     
                             <div class="table-cell">
-                                <div class="flex gap-1.5 flex-wrap -mx-1">
+                                <div class="flex gap-0.5 flex-wrap -mx-1">
                                     @php($colors = collect(['bg-black', 'bg-slate-500', 'bg-dark-500', 'bg-zinc-500', 'bg-neutral-500', 'bg-stone-500', 'bg-red-500', 'bg-orange-500', 'bg-amber-500', 'bg-yellow-500', 'bg-lime-500', 'bg-green-500', 'bg-emerald-500', 'bg-teal-500', 'bg-cyan-500', 'bg-sky-500', 'bg-blue-500', 'bg-indigo-500', 'bg-violet-500', 'bg-purple-500', 'bg-fuchsia-500', 'bg-pink-500', 'bg-rose-500'])->shuffle())
 
-                                    @foreach (range(3, rand(3, 15)) as $item)
+                                    @foreach (range(1, rand(3, 15)) as $item)
                                         @php($color = $colors->pop())
-                                        <button class="flex hover:ring-1 focus:ring-2 ring-primary-400 rounded p-1 items-center justify-center">
+                                        <button class="flex hover:ring-1 focus:ring-2 ring-primary-400 rounded p-1.5 items-center justify-center">
                                             <span class="block w-9 h-9 shadow {{ $color }} rounded"></span>
                                         </button>
                                     @endforeach
@@ -154,7 +154,7 @@
                 </div>
             </div>
         </div>
-    </article>
+    </section>
 
     @include('products.partials._related-products')
 </x-app-layout>

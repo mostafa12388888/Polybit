@@ -60,8 +60,8 @@
                 <div class="lg:flex flex-col gap-3 flex-grow min-w-64 hidden">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Support') }}</h4>
 
-                    <x-link href="#">{{ __('Contact Us') }}</x-link>
-                    <x-link href="{{ route('faq') }}">{{ __('FAQ') }}</x-link>
+                    <x-link :href="route('contact-us')">{{ __('Contact Us') }}</x-link>
+                    <x-link :href="route('faq')">{{ __('FAQ') }}</x-link>
                 </div>
             </div>
         </div>
@@ -71,10 +71,10 @@
                 <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
                 <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
                 <x-link href="#">{{ __('About Us') }}</x-link>
-                <x-link href="{{ route('pages.show', str()->slug('Privacy Policy')) }}">{{ __('Privacy Policy') }}</x-link>
-                <x-link href="{{ route('pages.show', str()->slug('Terms Of Service')) }}">{{ __('Terms Of Service') }}</x-link>
-                <x-link href="#" class="lg:hidden">{{ __('Contact Us') }}</x-link>
-                <x-link href="{{ route('faq') }}" class="lg:hidden">{{ __('FAQ') }}</x-link>
+                <x-link :href="route('pages.show', str()->slug('Privacy Policy'))">{{ __('Privacy Policy') }}</x-link>
+                <x-link :href="route('pages.show', str()->slug('Terms Of Service'))">{{ __('Terms Of Service') }}</x-link>
+                <x-link :href="route('contact-us')" class="lg:hidden">{{ __('Contact Us') }}</x-link>
+                <x-link :href="route('faq')" class="lg:hidden">{{ __('FAQ') }}</x-link>
             </div>
         </div>
     </div>
