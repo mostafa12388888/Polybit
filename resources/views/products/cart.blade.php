@@ -20,13 +20,13 @@
 
                 @foreach (range(1, rand(3, 7)) as $item)
                     <div class="flex lg:table-row gap-2 sm:gap-4 items-center justify-between">
-                        <div class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 shrink-0">
-                            <img src="{{ asset('/storage/product1.webp') }}" class="w-16 h-16 sm:w-20 sm:h-20 rounded-md" alt="">
-                        </div>
+                        <x-link :href="route('products.show', str()->slug(fake()->sentence(4)))" class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 shrink-0">
+                            <img src="{{ asset('/storage/product'.rand(1,4).'.webp') }}" class="w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover" alt="">
+                        </x-link>
                         
-                        <div class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 flex-grow">
-                            <h3>{{ fake()->sentence(5) }}</h3>
-                        </div>
+                        <x-link :href="route('products.show', str()->slug(fake()->sentence(4)))" class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 flex-grow">
+                            <h3 class="line-clamp-3">{{ fake()->sentence(4) }}</h3>
+                        </x-link>
 
                         <div class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700">
                             <x-input type="number" class="w-14 sm:w-20" value="{{ rand(1, 5) }}" />
