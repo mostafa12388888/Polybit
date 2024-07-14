@@ -1,5 +1,5 @@
-<div class="glide overflow-hidden min-[2561px]:rounded-2xl min-[2561px]:container min-[2561px]:mx-auto relative" 
-    x-init="$nextTick(() => new Glide($el, {type: 'carousel', direction: '{{ direction() }}', autoplay: 3000,}).mount());">
+<div class="glide" {{ $attributes->merge(['class' => 'overflow-hidden  relative']) }} 
+    x-init="$nextTick(() => new Glide($el, {type: 'carousel', direction: '{{ direction() }}', autoplay: 50000,}).mount());">
     <div data-glide-el="track" class="glide__track">
         {{ $slot }}
     </div>

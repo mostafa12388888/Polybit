@@ -34,14 +34,14 @@
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </x-button>
 
-                {{-- <div class="text-center " style="direction:ltr;">
+                <div class="text-center " style="direction:ltr;">
                     <span class="sm:hidden">xs</span>
                     <span class="hidden sm:inline md:hidden">sm</span>
                     <span class="hidden md:inline lg:hidden">md</span>
                     <span class="hidden lg:inline xl:hidden">lg</span>
                     <span class="hidden xl:inline 2xl:hidden">xl</span>
                     <span class="hidden 2xl:inline 3xl:hidden">2xl</span>
-                </div> --}}
+                </div>
             </div>
             
             <div class="hidden xl:!flex flex-grow justify-center order-3 xl:order-1 w-full xl:w-auto" x-ref="search" x-bind:class="search === true ? '!flex' : ''">

@@ -35,7 +35,7 @@
             <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-primary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                 <x-slot:trigger>
                     <div class="pb-1 flex flex-grow">
-                        <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent :href="route('posts.index')">
+                        <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent="" :href="route('posts.index')">
                             <span>{{ __('Blog') }}</span>
                             <x-icons.chevron-down class="!w-4 !h-4" />
                         </x-link>
@@ -61,7 +61,7 @@
             <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-gray-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-gray-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                 <x-slot:trigger>
                     <div class="pb-1 flex flex-grow">
-                        <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent :href="route('products.index')">
+                        <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent="" :href="route('products.index')">
                             <span>{{ __('Products') }}</span>
                             <x-icons.chevron-down class="!w-4 !h-4" />
                         </x-link>

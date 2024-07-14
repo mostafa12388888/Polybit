@@ -13,6 +13,11 @@ export default {
         './app/Livewire/*.php',
     ],
 
+    safelist: [
+      'js-image-zoom__zoomed-image',
+      'js-image-zoom__zoomed-area',
+    ],
+
     theme: {
         extend: {
             fontFamily: {

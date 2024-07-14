@@ -20,6 +20,7 @@
         "@alpinejs/collapse": "^3.14.1",
         "@alpinejs/focus": "^3.14.1",
         "@glidejs/glide": "^3.6.1",
-        "js-cookie": "^3.0.5"
+        "js-cookie": "^3.0.5",
+        "js-image-zoom": "^0.7.0"
     }
 }

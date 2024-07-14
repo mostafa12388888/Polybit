@@ -68,36 +68,46 @@
                 </div>
             </div>
 
-            <div class="lg:rounded-md overflow-hidden mx-4 sm:mx-0" x-data="{tab: 1}">
-                <nav class="w-full flex max-lg:hidden bg-primary-50 dark:bg-dark-700/20">
-                    <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
-                        x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == 1}"
-                        @click="tab = 1">
-                        <span>Specifications</span>
-                    </x-button>
-                    <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
-                        x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == 2}"
-                        @click="tab = 2">
-                        <span>Additional Information</span>
-                    </x-button>
-                    <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
-                        x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == 3}"
-                        @click="tab = 3">
-                        <span>Warranty + Return Policy</span>
-                    </x-button>
-                    <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
-                        x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == 4}"
-                        @click="tab = 4">
-                        <span>Installation + Cleaning</span>
-                    </x-button>
-                    <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
-                        x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == 5}"
-                        @click="tab = 5">
-                        <span>Sustainability Documentation</span>
-                    </x-button>
+            <div class="lg:rounded-md overflow-hidden mx-4 sm:mx-0 shadow" x-data="{tab: 1}">
+                <nav class="w-full flex max-lg:hidden bg-primary-50 dark:bg-dark-700/40 divide-x">
+                    <div class="flex-grow border-dark-200/50 dark:border-dark-700/30">
+                        <x-button styling="link" class="w-full border-b-[6px] !shadow-none rounded-none py-5 border-dark-200/50 dark:border-dark-600/20"
+                            x-bind:class="{'border-b-dark-500 dark:border-b-dark-400': tab == 1}"
+                            @click="tab = 1">
+                            <span>Specifications</span>
+                        </x-button>
+                    </div>
+                    <div class="flex-grow border-dark-200/50 dark:border-dark-700/30">
+                        <x-button styling="link" class="w-full border-b-[6px] !shadow-none rounded-none py-5 border-dark-200/50 dark:border-dark-600/20"
+                            x-bind:class="{'border-b-dark-500 dark:border-b-dark-400': tab == 2}"
+                            @click="tab = 2">
+                            <span>Additional Information</span>
+                        </x-button>
+                    </div>
+                    <div class="flex-grow border-dark-200/50 dark:border-dark-700/30">
+                        <x-button styling="link" class="w-full border-b-[6px] !shadow-none rounded-none py-5 border-dark-200/50 dark:border-dark-600/20"
+                            x-bind:class="{'border-b-dark-500 dark:border-b-dark-400': tab == 3}"
+                            @click="tab = 3">
+                            <span>Warranty + Return Policy</span>
+                        </x-button>
+                    </div>
+                    <div class="flex-grow border-dark-200/50 dark:border-dark-700/30">
+                        <x-button styling="link" class="w-full border-b-[6px] !shadow-none rounded-none py-5 border-dark-200/50 dark:border-dark-600/20"
+                            x-bind:class="{'border-b-dark-500 dark:border-b-dark-400': tab == 4}"
+                            @click="tab = 4">
+                            <span>Installation + Cleaning</span>
+                        </x-button>
+                    </div>
+                    <div class="flex-grow border-dark-200/50 dark:border-dark-700/30">
+                        <x-button styling="link" class="w-full border-b-[6px] !shadow-none rounded-none py-5 border-dark-200/50 dark:border-dark-600/20"
+                            x-bind:class="{'border-b-dark-500 dark:border-b-dark-400': tab == 5}"
+                            @click="tab = 5">
+                            <span>Sustainability Documentation</span>
+                        </x-button>
+                    </div>
                 </nav>
 
-                <div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col gap-10 rounded-b-md lg:border lg:border-t-0 border-dark-200 dark:border-dark-600/50">
+                <div class="lg:p-6 lg:bg-dark-50 lg:dark:bg-dark-700/40 flex flex-col gap-10 rounded-b-md">
                     <div class="max-lg:!flex flex flex-col gap-4" x-show="tab == 1">
                         <h2 class="lg:hidden font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ __('Specifications') }}</h2>
 

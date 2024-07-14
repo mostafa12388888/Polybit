@@ -1,4 +1,4 @@
-<x-slider>
+<x-slider class="min-[2561px]:rounded-2xl min-[2561px]:container min-[2561px]:mx-auto">
     <ul class="glide__slides h-72 sm:h-80 md:h-96 lg:h-[30rem] xl:h-[34rem] 2xl:h-[42rem] min-[2561px]:h-[34rem]">
         @foreach (range(1,3) as $slide)
             <li class="glide__slide h-full relative">

@@ -2,7 +2,7 @@
     <x-slot name="heading">{{ __('Projects') }}</x-slot>
 
     <x-slot name="breadcrumbs">
-        <x-breadcrumb :last="true">Projects</x-breadcrumb>
+        <x-breadcrumb :last="true">{{__('Projects') }}</x-breadcrumb>
     </x-slot>
 
     <div class="flex-grow bg-gray-100 dark:bg-dark-800/70 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
