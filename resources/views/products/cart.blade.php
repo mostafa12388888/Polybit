@@ -47,7 +47,7 @@
             <div class="flex-grow max-w-full w-full xl:w-4/12 2xl:w-3/12 flex flex-col overflow-hidden max-xl:divide-y gap-4">
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 sm:rounded-md gap-4 dark:border-dark-800 max-xl:py-10 flex flex-col">
                     <p class="hidden lg:block">Please ensure all item details and quantities are correct before placing order</p>
-                    <x-link styling="primary" :href="route('contact-us')" class="text-center py-4">{{ __('Request A Quote') }}</x-link>
+                    <x-link styling="primary" :href="route('request-quote')" class="text-center py-4">{{ __('Request A Quote') }}</x-link>
                     <x-link styling="light" :href="route('products.index')" class="text-center">{{ __('Continue Shopping') }}</x-link>
                 </div>
 

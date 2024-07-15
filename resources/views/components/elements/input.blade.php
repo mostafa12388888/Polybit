@@ -1,4 +1,4 @@
-@props(['styling' => ''])
+@props(['styling' => '', 'disabled' => false])
 
 @php
     $classes = "";
@@ -22,7 +22,7 @@
     }
 @endphp
 
-<input {{ ($disabled ?? false) ? 'disabled' : '' }} {!! $attributes->merge([
+<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge([
     'type' => 'text',
     'class' => $classes,
 ]) !!}>

@@ -1,11 +1,9 @@
 <x-app-layout>
-    <header class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow">
-        <div class="container mx-auto py-6">
-            <h2 class="uppercase font-semibold text-xl text-gray-800 dark:text-dark-100 leading-tight">
-                {{ __('Profile') }}
-            </h2>
-        </div>
-    </header>
+    <x-slot name="heading">{{ __('Profile') }}</x-slot>
+
+    <x-slot name="breadcrumbs">
+        <x-breadcrumb :last="true">{{ __('Profile') }}</x-breadcrumb>
+    </x-slot>
 
     <div class="px-4 sm:px-6 py-12">
         <div class="container mx-auto space-y-6">

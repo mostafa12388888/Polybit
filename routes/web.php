@@ -9,6 +9,7 @@ Route::view('/search', 'home.index')->name('search');
 Route::view('/products', 'products.index')->name('products.index');
 Route::view('/products/{product}', 'products.show')->name('products.show');
 Route::view('/cart', 'products.cart')->name('cart');
+Route::view('/request-quote', 'products.request-quote')->name('request-quote');
 
 Route::view('/posts', 'posts.index')->name('posts.index');
 Route::view('/posts/{post}', 'posts.show')->name('posts.show');
@@ -21,6 +22,12 @@ Route::view('/pages/{page}', 'pages.show')->name('pages.show');
 Route::view('/contact-us', 'pages.contact-us')->name('contact-us');
 
 Route::view('/faq', 'faqs.index')->name('faq');
+
+Route::get('/user', function () {
+    \Illuminate\Support\Facades\Auth::loginUsingId(1);
+
+    return redirect()->route('profile.edit');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

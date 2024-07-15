@@ -6,7 +6,7 @@
         <x-breadcrumb :last="true">{{ str()->limit(fake()->sentence(10), 17) }}</x-breadcrumb>
     </x-slot>
 
-    <article class="flex-grow bg-white dark:bg-dark-800/70 pb-6 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
+    <section class="flex-grow bg-white dark:bg-dark-800/70 pb-6 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col gap-20">
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="relative flex-grow shrink-0 w-full lg:max-w-md xl:max-w-xl">
@@ -164,7 +164,7 @@
                 </div>
             </div>
         </div>
-    </article>
+    </section>
 
     @include('products.partials._related-products')
 </x-app-layout>

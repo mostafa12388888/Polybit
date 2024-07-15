@@ -70,7 +70,7 @@
             <div class="w-full flex-grow flex flex-wrap gap-x-6 gap-y-3 items-center justify-center">
                 <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
                 <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
-                <x-link href="#">{{ __('About Us') }}</x-link>
+                <x-link :href="route('pages.show', str()->slug('About Us'))">{{ __('About Us') }}</x-link>
                 <x-link :href="route('pages.show', str()->slug('Privacy Policy'))">{{ __('Privacy Policy') }}</x-link>
                 <x-link :href="route('pages.show', str()->slug('Terms Of Service'))">{{ __('Terms Of Service') }}</x-link>
                 <x-link :href="route('contact-us')" class="lg:hidden">{{ __('Contact Us') }}</x-link>
