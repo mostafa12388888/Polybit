@@ -2,7 +2,7 @@
     <x-slot name="heading">{{ __('Request Quote') }}</x-slot>
 
     <x-slot name="breadcrumbs">
-        <x-breadcrumb :href="route('projects.index')">{{ __('Products') }}</x-breadcrumb>
+        <x-breadcrumb :href="route('products.index')">{{ __('Products') }}</x-breadcrumb>
         <x-breadcrumb :last="true">{{ __('Request Quote') }}</x-breadcrumb>
     </x-slot>
 
