@@ -55,7 +55,7 @@
 
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8 relative">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
-            <div class="lg:rounded-md overflow-hidden lg:shadow bg-white flex-grow order-3 lg:order-1">
+            <div class="lg:rounded-md overflow-hidden lg:shadow bg-white dark:bg-dark-700/60 flex-grow order-3 lg:order-1">
                 <iframe class="w-full h-full min-h-96" src="https://maps.google.com/maps?q=22%20%D8%A7%D9%84%D8%B4%D9%87%D9%8A%D8%AF%20%D9%85%D8%AD%D9%85%D8%AF%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D9%87%D8%A7%D8%AF%D9%8A%D8%8C%20%D9%85%D8%B3%D8%A7%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D8%AF%D8%B3%D9%8A%D9%86%D8%8C%20%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D9%86%D8%B5%D8%B1%D8%8C%20%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9%20%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AC%204451722&t=m&z=10&output=embed"></iframe>
             </div>
 

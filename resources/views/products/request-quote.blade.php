@@ -8,7 +8,7 @@
 
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
-            <div class="lg:rounded-md overflow-hidden bg-white w-full lg:max-w-sm relative flex flex-col order-3 lg:order-1">
+            <div class="lg:rounded-md overflow-hidden bg-white dark:bg-dark-700/60 w-full lg:max-w-sm relative flex flex-col order-3 lg:order-1">
                 <div class="flex gap-2 flex-wrap justify-between items-center p-4 border-y lg:border-t-0 border-dark-200/70 dark:border-dark-700">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100">{{ __('Order Summery') }}</h3>
 
@@ -21,7 +21,7 @@
                 <div class="relative flex-grow overflow-auto">
                     <div class="divide-y lg:absolute">
                         @foreach (range(1, rand(3,10)) as $item)
-                            <x-link class="flex gap-2 sm:gap-4 items-center border-dashed !p-4" :href="route('products.show', str()->slug(fake()->sentence(4)))">
+                            <x-link class="flex gap-2 sm:gap-4 items-center border-dashed border-dark-200/70 dark:border-dark-700 !p-4" :href="route('products.show', str()->slug(fake()->sentence(4)))">
                                 <img src="{{ asset('/storage/product'.rand(1,4).'.webp') }}" class="shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover" alt="">
                                 
                                 <div class="flex-grow">
@@ -44,7 +44,7 @@
 
                     <p>Please provide the following details so we can offer you a comprehensive quote tailored to your needs.</p>
 
-                    <hr>
+                    <hr class="border-dark-200/70 dark:border-dark-700">
 
                     <div class="flex flex-col gap-3">
                         <x-label for="">{{ __('Your Name') }}</x-label>
