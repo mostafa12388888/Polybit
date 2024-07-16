@@ -39,9 +39,9 @@
     </head>
 
     <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 rtl:text-right">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-dark-900 pattern dark:pattern-dark">
+        <div class="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-dark-900 pattern dark:pattern-dark">
 
-            <div class="w-full sm:max-w-xl shadow-md overflow-hidden sm:rounded-lg flex flex-col dark:bg-dark-800">
+            <div class="w-full sm:max-w-xl sm:shadow-md overflow-hidden sm:rounded-lg flex flex-col dark:bg-dark-800">
                 <div class="text-center bg-gray-50 dark:bg-dark-800 px-6 lg:px-10 py-8">
                     <x-link :href="route('home')">
                         <x-application-logo class="h-12 fill-current text-gray-500" />
