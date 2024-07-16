@@ -3,6 +3,22 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
+// TODO: Users
+// TODO: Projects
+
+// TODO: BlogCategories
+// TODO: Posts
+
+// TODO: StoreCategories
+// TODO: Attributes
+// TODO: Options
+// TODO: OptionValues
+// TODO: Products
+
+// TODO: Localization
+// TODO: Settings
+
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');
 
