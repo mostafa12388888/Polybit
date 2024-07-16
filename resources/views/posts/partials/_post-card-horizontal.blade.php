@@ -1,6 +1,6 @@
 <x-link href="#" class="group flex max-sm:flex-col gap-6 text-start items-start !p-0 shadow-none overflow-hidden !rounded-none" :href="route('posts.show', str()->slug(fake()->sentence(3)))">
     <div class="relative flex-shrink-0 rounded-md overflow-hidden">
-        <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="w-full aspect-[8/5] sm:aspect-[8/7] md:aspect-[8/5] sm:w-64 md:w-96 lg:w-96 object-cover" alt="">
+        <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="w-full aspect-[8/5] sm:aspect-[8/7] md:aspect-[8/5] sm:w-64 md:w-96 lg:w-96 object-cover" alt="" />
 
         <div class="group-hover:opacity-100 opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-dark-900/60 flex items-center justify-center text-white">
             <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />

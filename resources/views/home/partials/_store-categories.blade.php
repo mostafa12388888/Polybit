@@ -23,7 +23,7 @@
                     @foreach (range(1,6) as $slide)
                         <li class="glide__slide h-full">
                             <x-link href="#" class="group flex items-center text-start gap-3 !px-3 !py-10 aspect-video bg-white dark:bg-dark-900/40 shadow-md shadow-dark-200 dark:shadow-none !rounded-xl mx-2 my-10 overflow-hidden relative" :href="route('products.index')">
-                                <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" alt="">
+                                <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" alt="" />
 
                                 <div class="group-hover:bg-primary-900/60 transition-colors absolute w-full h-full top-0 left-0 bg-dark-900/40"></div>
                                 

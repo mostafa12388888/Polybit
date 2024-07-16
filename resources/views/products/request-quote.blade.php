@@ -22,7 +22,7 @@
                     <div class="divide-y lg:absolute">
                         @foreach (range(1, rand(3,10)) as $item)
                             <x-link class="flex gap-2 sm:gap-4 items-center border-dashed border-dark-200/70 dark:border-dark-700 !p-4" :href="route('products.show', str()->slug(fake()->sentence(4)))">
-                                <img src="{{ asset('/storage/product'.rand(1,4).'.webp') }}" class="shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover" alt="">
+                                <x-img src="{{ asset('/storage/product'.rand(1,4).'.webp') }}" class="shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover" alt="" />
                                 
                                 <div class="flex-grow">
                                     <h3 class="line-clamp-3">{{ fake()->sentence(4) }}</h3>

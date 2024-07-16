@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                    <img loading="lazy" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full h-full object-cover" alt="">
+                    <x-img loading="lazy" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full h-full object-cover" alt="" />
                 </div>
             </li>
         @endforeach

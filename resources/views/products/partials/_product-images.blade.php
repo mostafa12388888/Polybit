@@ -37,7 +37,7 @@
 }">
     <div x-init="$watch('imageSource', () => initImageZoom()); $nextTick(() => initImageZoom())">
         <div class="overflow-hidden">
-            <img class="sm:rounded-md" :src="imageSource" class="w-full" alt="">
+            <x-img class="w-full sm:rounded-md min-h-72" x-bind:src="imageSource" alt="" />
         </div>
     </div>
 
@@ -45,7 +45,7 @@
         <template x-for="image in images">
             <button class="shrink-0 w-20 bg-gray-100 dark:bg-dark-400 !h-auto aspect-4/3 rounded overflow-hidden border border-dark-100 dark:border-dark-700"
                 @click="imageSource = image.full">
-                <img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover" alt="">
+                <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover" alt="" />
             </button>
         </template>
     </div>

@@ -11,16 +11,16 @@
             <div class="lg:rounded-md flex-grow w-full lg:w-8/12 2xl:w-9/12 overflow-hidden">
                 <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
                     <p>{{ fake()->paragraph(rand(7,14)) }}</p>
-                    <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="">
+                    <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="" />
                     <p>{{ fake()->paragraph(rand(10,15)) }}</p>
                     <h3>{{ str()->title(fake()->sentence(10)) }}</h3>
                     <p>{{ fake()->paragraph(rand(10,25)) }}</p>
-                    <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="">
+                    <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="" />
                     <h3>{{ str()->title(fake()->sentence(10)) }}</h3>
                     <p>{{ fake()->paragraph(rand(10,25)) }}</p>
                     <h3>{{ str()->title(fake()->sentence(10)) }}</h3>
                     <p>{{ fake()->paragraph(rand(10,25)) }}</p>
-                    <img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="">
+                    <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="max-w-full" alt="" />
                     <p>{{ fake()->paragraph(rand(10,25)) }}</p>
                 </div>
                 

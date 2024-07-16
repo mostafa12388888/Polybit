@@ -14,7 +14,7 @@
                         <ul class="glide__slides w-full">
                             @foreach (collect(range(1,3))->shuffle() as $slide)
                                 <li class="glide__slide h-full relative">
-                                    <img loading="lazy" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full aspect-video object-cover" alt="">
+                                    <x-img loading="lazy" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full aspect-video object-cover" alt="" />
                                 </li>
                             @endforeach
                         </ul>
