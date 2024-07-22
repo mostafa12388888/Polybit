@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -17,12 +18,21 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Outerweb\FilamentTranslatableFields\Filament\Plugins\FilamentTranslatableFieldsPlugin;
+use Statikbe\FilamentTranslationManager\FilamentChainedTranslationManagerPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        \Filament\Support\Components\Component::configureUsing(function ($component): void {
+            if (method_exists($component, 'translateLabel')) {
+                $component->label('admin.'.$component->getLabel())->translateLabel();
+            }
+        });
+
         return $panel
+            ->defaultThemeMode(ThemeMode::Light)
             ->default()
             ->id('admin')
             ->path('admin')
@@ -54,6 +64,15 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->viteTheme('resources/css/filament/dashboard/theme.css');
+            ->plugins([
+                FilamentTranslatableFieldsPlugin::make()->supportedLocales([
+                    'ar' => 'Arabic',
+                    'en' => 'English',
+                ]),
+
+                FilamentChainedTranslationManagerPlugin::make(),
+            ])
+            ->viteTheme('resources/css/filament/dashboard/theme.css')
+            ->font('Almarai');
     }
 }

@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
 // TODO: Users
 // TODO: Projects
 
@@ -15,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 // TODO: Options
 // TODO: OptionValues
 // TODO: Products
+
+// TODO: Orders
+
+// TODO: Contact Messages
+
+// TODO: Pages
+
+// TODO: FAQ
 
 // TODO: Localization
 // TODO: Settings
