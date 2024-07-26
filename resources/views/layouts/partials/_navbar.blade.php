@@ -9,7 +9,7 @@
     </x-button>
 
     <!-- Logo -->
-    <x-link href="{{ route('home') }}">
+    <x-link href="{{ route('home') }}" class="max-h-16 overflow-hidden">
         <x-application-logo class="h-10" />
     </x-link>
     <!-- End Logo -->

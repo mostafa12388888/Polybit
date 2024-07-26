@@ -23,7 +23,7 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationGroup = 'Users';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -79,7 +79,7 @@ class UserResource extends Resource
         return $infolist->schema([
             \Filament\Infolists\Components\Section::make()->schema([
                 TextEntry::make('id'),
-                TextEntry::make('name')->translateLabel(),
+                TextEntry::make('name'),
                 TextEntry::make('slug')->label('admin.Username'),
                 TextEntry::make('email'),
                 TextEntry::make('is_admin')->state(fn (User $user) => $user->is_admin ? 'True' : 'False'),
@@ -121,6 +121,11 @@ class UserResource extends Resource
     }
 
     public static function getTitleCasePluralModelLabel(): string
+    {
+        return __('admin.Users');
+    }
+
+    public static function getNavigationGroup(): ?string
     {
         return __('admin.Users');
     }

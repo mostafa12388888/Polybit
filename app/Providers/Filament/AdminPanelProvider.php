@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use Awcodes\Curator\CuratorPlugin;
+use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -9,6 +11,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -27,9 +30,13 @@ class AdminPanelProvider extends PanelProvider
     {
         \Filament\Support\Components\Component::configureUsing(function ($component): void {
             if (method_exists($component, 'translateLabel')) {
-                $component->label('admin.'.$component->getLabel())->translateLabel();
+                // If it's not in arabic translate it
+                // Arabic characters fall within the Unicode range \u0600-\u06FF and \u0750-\u077F.
+                if (config('app.locale') != 'ar' || ! (bool) preg_match('/[\x{0600}-\x{06FF}\x{0750}-\x{077F}]/u', $component->getLabel())) {
+                    $component->label('admin.'.$component->getLabel())->translateLabel();
+                }
             }
-        });
+        }, null, false);
 
         return $panel
             ->defaultThemeMode(ThemeMode::Light)
@@ -66,11 +73,21 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentTranslatableFieldsPlugin::make()->supportedLocales([
-                    'ar' => 'Arabic',
+                    'ar' => 'العربية',
                     'en' => 'English',
                 ]),
 
+                SpatieLaravelTranslatablePlugin::make()->defaultLocales(['ar', 'en']),
+
                 FilamentChainedTranslationManagerPlugin::make(),
+
+                QuickCreatePlugin::make()->sortBy('navigation'),
+
+                CuratorPlugin::make()
+                    ->label(__('admin.File'))
+                    ->navigationLabel(__('admin.Files Manager'))
+                    ->pluralLabel(__('admin.Files'))
+                    ->navigationGroup(__('admin.Settings')),
             ])
             ->viteTheme('resources/css/filament/dashboard/theme.css')
             ->font('Almarai');

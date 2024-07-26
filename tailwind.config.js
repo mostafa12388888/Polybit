@@ -16,6 +16,8 @@ export default {
     safelist: [
       'js-image-zoom__zoomed-image',
       'js-image-zoom__zoomed-area',
+      'filament-tiptap-grid',
+      'filament-tiptap-grid-builder',
     ],
 
     theme: {

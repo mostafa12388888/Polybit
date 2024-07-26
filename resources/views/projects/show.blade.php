@@ -24,7 +24,7 @@
                 <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
                     <h3>{{ str()->title(fake()->sentence(5)) }}</h3>
                     
-                    <p>{{ fake()->paragraph(rand(6,10)) }}</p>
+                    <p>{!! \App\Models\Project::latest()->first()->description !!}</p>
                 </div>
                 
                 <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 max-w-full">
