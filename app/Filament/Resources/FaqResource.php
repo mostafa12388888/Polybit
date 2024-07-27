@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PageResource\Pages;
-use App\Models\Page;
+use App\Filament\Resources\FaqResource\Pages;
+use App\Models\Faq;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
@@ -16,13 +16,13 @@ use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Support\Facades\Blade;
 
-class PageResource extends Resource
+class FaqResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = Page::class;
+    protected static ?string $model = Faq::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
     protected static ?int $navigationSort = 9;
 
@@ -30,8 +30,8 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required()->columnSpanFull(),
-                TiptapEditor::make('body')->columnSpanFull(),
+                TextInput::make('question')->required()->columnSpanFull(),
+                TiptapEditor::make('answer')->columnSpanFull(),
             ]);
     }
 
@@ -40,12 +40,18 @@ class PageResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('question')->sortable()->searchable(),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -55,59 +61,47 @@ class PageResource extends Resource
         return $infolist->schema([
             \Filament\Infolists\Components\Section::make()->schema([
                 TextEntry::make('id'),
-                TextEntry::make('title'),
-                TextEntry::make('slug'),
-                TextEntry::make('created_at')->dateTime(),
-            ])->columns(2),
+                TextEntry::make('question')->columnSpanFull(),
 
-            \Filament\Infolists\Components\Section::make()->schema([
-                TextEntry::make('body')->columnSpanFull()->hiddenLabel()->html()->state(function (Page $page) {
-                    $content = $page->body ? tiptap_converter()->asHTML($page->body) : __('admin.No Content');
+                TextEntry::make('answer')->state(function (Faq $faq) {
+                    $content = $faq->answer ? tiptap_converter()->asHTML($faq->answer) : '';
 
                     return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
-                }),
-            ]),
-        ]);
+                })->html()->columnSpanFull(),
+
+                TextEntry::make('created_at')->dateTime(),
+            ])->columns(2)->columnSpan(2),
+        ])->columns(2);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPages::route('/'),
-            'create' => Pages\CreatePage::route('/create'),
-            'view' => Pages\ViewPage::route('/{record}'),
-            'edit' => Pages\EditPage::route('/{record}/edit'),
+            'index' => Pages\ListFaqs::route('/'),
+            'create' => Pages\CreateFaq::route('/create'),
+            'view' => Pages\ViewFaq::route('/{record}'),
+            'edit' => Pages\EditFaq::route('/{record}/edit'),
         ];
-    }
-
-    public static function canCreate(): bool
-    {
-        return false;
-    }
-
-    public static function canDeleteAny(): bool
-    {
-        return false;
     }
 
     public static function getModelLabel(): string
     {
-        return __('admin.page');
+        return __('admin.faq');
     }
 
     public static function getTitleCaseModelLabel(): string
     {
-        return __('admin.Page');
+        return __('admin.Faq');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('admin.pages');
+        return __('admin.faqs');
     }
 
     public static function getTitleCasePluralModelLabel(): string
     {
-        return __('admin.Pages');
+        return __('admin.Faqs');
     }
 
     public static function getNavigationGroup(): ?string
