@@ -35,6 +35,8 @@ class ProjectResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
+    protected static ?string $navigationGroup = 'More';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -45,16 +47,8 @@ class ProjectResource extends Resource
                     TextInput::make('slug')->required()->prefix('projects/')->columnSpanFull()->extraAttributes(['style' => 'direction: ltr']),
 
                     TiptapEditor::make('description')->required()->columnSpanFull()
-                        ->extraInputAttributes(['style' => 'min-height: 12rem;'])
-                        ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(2000),
-
-                    CuratorPicker::make('images')->multiple()
-                        ->buttonLabel('admin.Add Images')
-                        ->acceptedFileTypes(['image/*'])
-                        ->listDisplay(true)->size('sm')
-                        ->directory('projects')
-                        ->relationship('media_items', 'id')
-                        ->columnSpanFull(),
+                        ->profile('minimal')
+                        ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
 
                     TableRepeater::make('attributes')->headers([
                         Header::make('key')->label(__('admin.Attribute')),
@@ -63,6 +57,14 @@ class ProjectResource extends Resource
                         TextInput::make('key')->required(),
                         TextInput::make('value')->required(),
                     ])->columnSpanFull()->columns(2)->defaultItems(4),
+
+                    CuratorPicker::make('images')->multiple()
+                        ->buttonLabel('admin.Add Images')
+                        ->acceptedFileTypes(['image/*'])
+                        ->listDisplay(true)->size('sm')
+                        ->directory('projects')
+                        ->relationship('media_items', 'id')
+                        ->columnSpanFull(),
                 ])->columns(2),
             ]);
     }
@@ -164,8 +166,8 @@ class ProjectResource extends Resource
         return __('admin.Projects');
     }
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string
     {
-        return __('admin.Projects');
+        return __('admin.More');
     }
 }

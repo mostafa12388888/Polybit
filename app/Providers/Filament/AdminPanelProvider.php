@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use Awcodes\Curator\CuratorPlugin;
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
+use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -32,11 +33,15 @@ class AdminPanelProvider extends PanelProvider
             if (method_exists($component, 'translateLabel')) {
                 // If it's not in arabic translate it
                 // Arabic characters fall within the Unicode range \u0600-\u06FF and \u0750-\u077F.
-                if (config('app.locale') != 'ar' || ! (bool) preg_match('/[\x{0600}-\x{06FF}\x{0750}-\x{077F}]/u', $component->getLabel())) {
+                if (app()->getLocale() != 'ar' || ! (bool) preg_match('/[\x{0600}-\x{06FF}\x{0750}-\x{077F}]/u', $component->getLabel())) {
                     $component->label('admin.'.$component->getLabel())->translateLabel();
                 }
             }
         }, null, false);
+
+        // LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+        //     $switch->locales(array_keys(locales()))->circular();
+        // });
 
         return $panel
             ->defaultThemeMode(ThemeMode::Light)
@@ -72,12 +77,10 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                FilamentTranslatableFieldsPlugin::make()->supportedLocales([
-                    'ar' => 'العربية',
-                    'en' => 'English',
-                ]),
+                FilamentTranslatableFieldsPlugin::make()->supportedLocales(locales()),
 
-                SpatieLaravelTranslatablePlugin::make()->defaultLocales(['ar', 'en']),
+                SpatieLaravelTranslatablePlugin::make()
+                    ->defaultLocales(collect(array_keys(locales()))->sort(fn ($locale) => $locale == config('app.locale') ? 0 : 1)->values()->toArray()),
 
                 FilamentChainedTranslationManagerPlugin::make(),
 

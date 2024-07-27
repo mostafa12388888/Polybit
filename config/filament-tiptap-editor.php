@@ -23,7 +23,7 @@ return [
             'link', 'media', 'oembed', 'table', 'grid', 'grid-builder', 'details', '|', 'code', 'code-block', 'source', 'blocks',
         ],
         'simple' => ['heading', 'hr', 'bullet-list', 'ordered-list', 'checked-list', '|', 'bold', 'italic', 'lead', 'small', '|', 'link', 'media'],
-        'minimal' => ['bold', 'italic', 'link', 'bullet-list', 'ordered-list'],
+        'minimal' => ['heading', 'bold', 'italic', 'link', 'bullet-list', 'ordered-list'],
         'none' => [],
     ],
 

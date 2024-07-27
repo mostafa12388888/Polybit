@@ -16,17 +16,19 @@ class CreateProject extends CreateRecord
     {
         parent::mount();
 
-        $this->data['attributes'] = [
-            ['key' => __('admin.Location', [], 'ar'), 'value'],
-            ['key' => __('admin.Consultant', [], 'ar'), 'value'],
-            ['key' => __('admin.Contractor', [], 'ar'), 'value'],
-        ];
+        foreach (array_keys(locales()) as $locale) {
+            $default_project_attributes = [
+                (string) str()->uuid() => ['key' => __('admin.Location', [], $locale), 'value'],
+                (string) str()->uuid() => ['key' => __('admin.Consultant', [], $locale), 'value'],
+                (string) str()->uuid() => ['key' => __('admin.Contractor', [], $locale), 'value'],
+            ];
 
-        $this->otherLocaleData['en']['attributes'] = [
-            ['key' => __('admin.Location', [], 'en'), 'value'],
-            ['key' => __('admin.Consultant', [], 'en'), 'value'],
-            ['key' => __('admin.Contractor', [], 'en'), 'value'],
-        ];
+            if (config('app.locale') == $locale) {
+                $this->data['attributes'] = $default_project_attributes;
+            } else {
+                $this->otherLocaleData[$locale]['attributes'] = $default_project_attributes;
+            }
+        }
     }
 
     protected function getHeaderActions(): array

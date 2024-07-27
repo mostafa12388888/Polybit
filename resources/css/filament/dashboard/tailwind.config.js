@@ -17,6 +17,7 @@ export default {
     ],
 
     safelist: [
+      'tiptap-content',
       'filament-tiptap-grid-builder',
       'filament-tiptap-grid',
       'fi-in-table-repeatable',

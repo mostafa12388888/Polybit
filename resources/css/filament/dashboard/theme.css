@@ -23,6 +23,10 @@
         @apply pattern dark:pattern-dark;
     }
 
+    .tiptap-content {
+        @apply !min-h-48
+    }
+
     .filament-tiptap-grid, 
     .filament-tiptap-grid-builder {
         @apply grid gap-4

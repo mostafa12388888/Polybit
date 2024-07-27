@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Users
-// TODO: Projects
+// Projects
 
 // TODO: BlogCategories
 // TODO: Posts
