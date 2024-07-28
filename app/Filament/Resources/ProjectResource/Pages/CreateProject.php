@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Contracts\Support\Htmlable;
 
 class CreateProject extends CreateRecord
 {
@@ -29,6 +30,13 @@ class CreateProject extends CreateRecord
                 $this->otherLocaleData[$locale]['attributes'] = $default_project_attributes;
             }
         }
+    }
+
+    public function getTitle(): string|Htmlable
+    {
+        return __('filament-panels::resources/pages/create-record.title', [
+            'label' => static::getResource()::getModelLabel(),
+        ]);
     }
 
     protected function getHeaderActions(): array

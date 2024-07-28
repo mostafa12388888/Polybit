@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 // TODO: Contact Messages
 
-// TODO: Pages
+// Pages
 
-// TODO: FAQ
+// FAQ
 
 // TODO: Localization
 // TODO: Settings

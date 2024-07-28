@@ -33,7 +33,7 @@ class ProjectResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = -3;
 
     protected static ?string $navigationGroup = 'More';
 
@@ -44,7 +44,7 @@ class ProjectResource extends Resource
                 Section::make()->schema([
                     TextInput::make('title')->required()->columnSpanFull(),
                     Textarea::make('subtitle')->required()->columnSpanFull(),
-                    TextInput::make('slug')->required()->prefix('projects/')->columnSpanFull()->extraAttributes(['style' => 'direction: ltr']),
+                    TextInput::make('slug')->columnSpanFull(),
 
                     TiptapEditor::make('description')->required()->columnSpanFull()
                         ->profile('minimal')

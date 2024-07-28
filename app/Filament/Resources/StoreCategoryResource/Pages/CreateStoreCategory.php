@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\PageResource\Pages;
+namespace App\Filament\Resources\StoreCategoryResource\Pages;
 
-use App\Filament\Resources\PageResource;
+use App\Filament\Resources\StoreCategoryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Contracts\Support\Htmlable;
 
-class CreatePage extends CreateRecord
+class CreateStoreCategory extends CreateRecord
 {
     use CreateRecord\Concerns\Translatable;
 
-    protected static string $resource = PageResource::class;
+    protected static string $resource = StoreCategoryResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -25,5 +25,10 @@ class CreatePage extends CreateRecord
         return __('filament-panels::resources/pages/create-record.title', [
             'label' => static::getResource()::getModelLabel(),
         ]);
+    }
+
+    public function getRecordTitle(): string|Htmlable
+    {
+        return $this->getRecord()->parent_id ? __('admin.Sub Category') : __('admin.Blog Category');
     }
 }

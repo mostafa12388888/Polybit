@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\FaqResource\Pages;
 use App\Models\Faq;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
@@ -24,14 +25,16 @@ class FaqResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = -1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('question')->required()->columnSpanFull(),
-                TiptapEditor::make('answer')->columnSpanFull(),
+                Section::make()->schema([
+                    TextInput::make('question')->required()->columnSpanFull(),
+                    TiptapEditor::make('answer')->profile('minimal')->columnSpanFull(),
+                ])->columns(2),
             ]);
     }
 
@@ -53,7 +56,10 @@ class FaqResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc')
+            ->persistSortInSession()
+            ->filtersFormColumns(1);
     }
 
     public static function infolist(Infolist $infolist): Infolist
