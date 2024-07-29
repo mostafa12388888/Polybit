@@ -4,8 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StoreCategoryResource\Pages;
 use App\Filament\Resources\StoreCategoryResource\RelationManagers\SubCategoriesRelationManager;
+use App\Filament\SEO;
 use App\Models\StoreCategory;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -33,7 +33,7 @@ class StoreCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()->schema([
+                SEO::make()->schema([
                     TextInput::make('name')->required(),
                     TextInput::make('slug'),
                     TiptapEditor::make('description')->profile('minimal')->columnSpanFull(),
@@ -51,8 +51,8 @@ class StoreCategoryResource extends Resource
         return $table
             ->modifyQueryUsing(fn ($query) => $query->parents())
             ->columns([
-                TextColumn::make('id')->sortable()->width(0),
-                TextColumn::make('name')->sortable()->searchable()->width(0),
+                TextColumn::make('id')->sortable(),
+                TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('sub_categories_count')->counts('sub_categories')->toggleable()->sortable(),
             ])
             ->filters([

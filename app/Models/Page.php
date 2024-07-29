@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
-    use HasTranslations, Sluggable;
+    use HasTranslations, Seoable, Sluggable;
 
-    protected $translatable = ['title', 'body'];
+    public $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $casts = ['body' => 'json'];
 

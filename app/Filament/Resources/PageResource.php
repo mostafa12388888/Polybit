@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PageResource\Pages;
+use App\Filament\SEO;
 use App\Models\Page;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -14,6 +15,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 
 class PageResource extends Resource
@@ -30,8 +32,10 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title')->required()->columnSpanFull(),
-                TiptapEditor::make('body')->columnSpanFull(),
+                SEO::make()->schema([
+                    TextInput::make('title')->required()->columnSpanFull(),
+                    TiptapEditor::make('body')->columnSpanFull(),
+                ]),
             ]);
     }
 
@@ -81,6 +85,11 @@ class PageResource extends Resource
     }
 
     public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
     {
         return false;
     }

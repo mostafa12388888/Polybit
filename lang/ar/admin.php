@@ -32,6 +32,7 @@ return [
     'Files Manager' => 'مدير الملفات',
     'Images' => 'الصور',
     'Add Images' => 'إضافة صور',
+    'Add Image' => 'إضافة صورة',
     'Media' => '',
     'Attributes' => 'الخصائص',
     'Attribute' => 'خاصية',
@@ -69,4 +70,10 @@ return [
     'sub category' => 'قسم فرعي',
     'sub categories' => 'أقسام فرعية',
     'Main Category' => 'القسم الرئيسي',
+    'General' => 'عام',
+    'SEO' => 'سيو',
+    'Meta title' => 'العنوان',
+    'Meta description' => 'الوصف',
+    'Meta keywords' => 'الكلمات المفتاحية',
+    'Og image' => 'الصورة المصغرة للمشاركة',
 ];

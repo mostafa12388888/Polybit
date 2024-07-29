@@ -3,12 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
+use App\Filament\SEO;
 use App\Models\Project;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Awcodes\TableRepeater\Components\TableRepeater;
 use Awcodes\TableRepeater\Header;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -41,10 +41,10 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()->schema([
-                    TextInput::make('title')->required()->columnSpanFull(),
+                SEO::make()->schema([
+                    TextInput::make('title')->required(),
+                    TextInput::make('slug'),
                     Textarea::make('subtitle')->required()->columnSpanFull(),
-                    TextInput::make('slug')->columnSpanFull(),
 
                     TiptapEditor::make('description')->required()->columnSpanFull()
                         ->profile('minimal')
@@ -62,7 +62,6 @@ class ProjectResource extends Resource
                         ->buttonLabel('admin.Add Images')
                         ->acceptedFileTypes(['image/*'])
                         ->listDisplay(true)->size('sm')
-                        ->directory('projects')
                         ->relationship('media_items', 'id')
                         ->columnSpanFull(),
                 ])->columns(2),

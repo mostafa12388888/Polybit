@@ -3,7 +3,7 @@
         handleItemClick: function (mediaId = null, event) {
             if (! mediaId) return;
 
-            if ($wire.isMultiple && event && event.{{ config('curator.multi_select_key') }}) {
+            if ($wire.maxItems > 1 && $wire.isMultiple && event && event.{{ config('curator.multi_select_key') }}) {
                 if (this.isSelected(mediaId)) {
                     let toRemove = Object.values($wire.selected).find(obj => obj.id == mediaId)
                     $wire.removeFromSelection(toRemove.id);
@@ -189,19 +189,20 @@
                     </div>
 
                     <div class="flex items-center justify-start mt-auto gap-3 py-3 px-4 border-t border-gray-300 bg-gray-200 dark:border-gray-800 dark:bg-black/10">
-                        @if (! count($selected))
-                            <div>
+                        <div>
+                            @if (count($this->form->getRawState()['files_to_add'] ?? []))
                                 {{ $this->addFilesAction }}
-                                {{ $this->cancelEditAction }}
-                            </div>
-                        @endif
-                        @if (count($selected) > 0)
-                            <div class="ml-auto">
-                                {{ $this->addFilesAction }}
-                                {{ $this->cancelEditAction }}
+                            @endif
+                            
+                            @if (count($selected))
+                                @if (count($selected) == 1)
+                                    {{ $this->cancelEditAction }}
+                                @endif
+                                
                                 {{ $this->insertMediaAction }}
-                            </div>
-                        @endif
+                            @endif
+
+                        </div>
                     </div>
 
                 </div>

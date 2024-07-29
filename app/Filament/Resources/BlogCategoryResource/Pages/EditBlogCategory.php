@@ -24,6 +24,8 @@ class EditBlogCategory extends EditRecord
 
     public function getRelationManagers(): array
     {
+        return [];
+
         return $this->getRecord()->parent_id ? [] : parent::getRelationManagers();
     }
 
