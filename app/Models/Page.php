@@ -13,6 +13,8 @@ class Page extends Model
 
     public $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
+    protected $useFallbackLocale = false;
+
     protected $casts = ['body' => 'json'];
 
     protected $guarded = [];

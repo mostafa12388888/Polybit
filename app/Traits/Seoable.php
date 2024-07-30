@@ -33,30 +33,35 @@ trait Seoable
         return $this->morphMany(Metadatum::class, 'seoable');
     }
 
-    protected static function bootSeoable()
+    public function loadMetadata()
     {
-        static::retrieved(function (self $seoable) {
-            $seoable->loadMissing('metadata');
+        $this->loadMissing('metadata');
 
-            foreach (['title', 'description', 'keywords'] as $key) {
-                $datum = $seoable->metadata->where('key', $key)->first()?->value;
+        foreach (['title', 'description', 'keywords'] as $key) {
+            $datum = $this->metadata->where('key', $key)->first()?->value;
 
-                try {
-                    $datum = json_decode($datum, true);
-                } catch (\Throwable $th) {
-                    //
-                }
+            try {
+                $datum = json_decode($datum, true);
+            } catch (\Throwable $th) {
+                //
+            }
 
-                if (in_array($key, ['keywords'])) {
-                    if (! is_array($datum)) {
-                        $datum = ['ar' => [], 'en' => []];
+            if (in_array($key, ['keywords'])) {
+                if (! is_array($datum)) {
+                    $datum = ['ar' => [], 'en' => []];
+                } else {
+                    foreach (array_keys(locales()) as $locale) {
+                        $datum[$locale] = $datum[$locale] ?? [];
                     }
                 }
-
-                $seoable->{'meta_'.$key} = $datum;
             }
-        });
 
+            $this->{'meta_'.$key} = $datum;
+        }
+    }
+
+    protected static function bootSeoable()
+    {
         static::saving(function (self $seoable) {
             foreach (['title', 'description', 'keywords'] as $key) {
                 if (isset($seoable->attributes['meta_'.$key])) {

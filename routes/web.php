@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Route;
 // Users
 // Projects
 
-// TODO: BlogCategories
+// BlogCategories
 // TODO: Posts
 
-// TODO: StoreCategories
+// StoreCategories
 // TODO: Attributes
 // TODO: Options
 // TODO: OptionValues
@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // FAQ
 
-// TODO: Localization
+// Localization
 // TODO: Settings
 
 Route::view('/', 'home.index')->name('home');

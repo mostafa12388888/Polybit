@@ -11,6 +11,8 @@ class Faq extends Model
 
     protected $translatable = ['question', 'answer'];
 
+    protected $useFallbackLocale = false;
+
     protected $casts = ['answer' => 'json'];
 
     protected $guarded = [];

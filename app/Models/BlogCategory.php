@@ -13,6 +13,8 @@ class BlogCategory extends Model
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
+    protected $useFallbackLocale = false;
+
     protected $casts = ['description' => 'json'];
 
     protected $guarded = [];
@@ -27,6 +29,11 @@ class BlogCategory extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'category_id');
+    }
+
     public function is_parent_category()
     {
         return ! $this->parent_id;
@@ -35,6 +42,11 @@ class BlogCategory extends Model
     public function scopeParents($query)
     {
         return $query->where('parent_id', null);
+    }
+
+    public function scopeSubCategories($query)
+    {
+        return $query->where('parent_id', '!=', null);
     }
 
     public function getDefaultMetadata()

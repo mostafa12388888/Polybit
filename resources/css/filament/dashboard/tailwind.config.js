@@ -22,5 +22,6 @@ export default {
       'filament-tiptap-grid',
       'fi-in-table-repeatable',
       'filament-table-repeatable',
+      'treeselect-input__tags-count',
     ],
 }

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PageResource\Pages;
 use App\Filament\SEO;
+use App\Filament\Traits\Seoable;
 use App\Models\Page;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Blade;
 
 class PageResource extends Resource
 {
-    use Translatable;
+    use Seoable, Translatable;
 
     protected static ?string $model = Page::class;
 

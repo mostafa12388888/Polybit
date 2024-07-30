@@ -3,13 +3,14 @@
 namespace App\Filament\Resources\BlogCategoryResource\Pages;
 
 use App\Filament\Resources\BlogCategoryResource;
+use App\Filament\Traits\EditRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Contracts\Support\Htmlable;
 
 class EditBlogCategory extends EditRecord
 {
-    use EditRecord\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = BlogCategoryResource::class;
 

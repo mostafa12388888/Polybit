@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\FaqResource\Pages;
+namespace App\Filament\Resources\PostResource\Pages;
 
-use App\Filament\Resources\FaqResource;
+use App\Filament\Resources\PostResource;
 use App\Filament\Traits\EditRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditFaq extends EditRecord
+class EditPost extends EditRecord
 {
     use Translatable;
 
-    protected static string $resource = FaqResource::class;
+    protected static string $resource = PostResource::class;
 
     protected function getHeaderActions(): array
     {

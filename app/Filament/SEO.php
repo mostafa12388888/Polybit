@@ -9,6 +9,7 @@ use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class SEO
@@ -35,14 +36,28 @@ class SEO
     {
         $only = $this->only;
 
-        return Group::make()->schema(Arr::only([
-            'meta_title' => TextInput::make('meta_title')->columnSpanFull(),
-            'meta_description' => Textarea::make('meta_description')->columnSpanFull(),
-            'meta_keywords' => TagsInput::make('meta_keywords')->splitKeys([','])->reorderable()->columnSpanFull(),
-            'og_image' => CuratorPicker::make('og_image')->multiple()->typeValue('og-image')->maxItems(1)
-                ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')
-                ->relationship('media_items', 'id'),
-        ], $only))->columns(2)
-            ->columnSpanFull();
+        return Group::make()
+            ->schema(Arr::only([
+                'meta_title' => TextInput::make('meta_title')->columnSpanFull(),
+                'meta_description' => Textarea::make('meta_description')->columnSpanFull(),
+                'meta_keywords' => TagsInput::make('meta_keywords')->splitKeys([','])->reorderable()->columnSpanFull(),
+                'og_image' => CuratorPicker::make('og_image')->multiple()->typeValue('og-image')->maxItems(1)
+                    ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')
+                    ->relationship('media_items', 'id'),
+            ], $only))
+            ->columns(2)->columnSpanFull()
+            ->afterStateHydrated(function (Group $component, ?Model $record) {
+                // $livewire = $component->getChildComponentContainer()->getLivewire();
+
+                // foreach (array_keys(locales()) as $locale) {
+                //     if (config('app.locale') == $locale) {
+                //         $keywords = $livewire->data['meta_keywords'] ?? [];
+                //         $livewire->data['meta_keywords'] = is_array($keywords) ? $keywords : [];
+                //     } else {
+                //         $keywords = $livewire->otherLocaleData[$locale]['meta_keywords'] ?? [];
+                //         $livewire->otherLocaleData[$locale]['meta_keywords'] = is_array($keywords) ? $keywords : [];
+                //     }
+                // }
+            });
     }
 }

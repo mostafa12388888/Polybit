@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BlogCategoryResource\Pages;
 use App\Filament\Resources\BlogCategoryResource\RelationManagers\SubCategoriesRelationManager;
 use App\Filament\SEO;
+use App\Filament\Traits\Seoable;
 use App\Models\BlogCategory;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Blade;
 
 class BlogCategoryResource extends Resource
 {
-    use Translatable;
+    use Seoable, Translatable;
 
     protected static ?string $model = BlogCategory::class;
 

@@ -3,12 +3,13 @@
 namespace App\Filament\Resources\PageResource\Pages;
 
 use App\Filament\Resources\PageResource;
+use App\Filament\Traits\EditRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPage extends EditRecord
 {
-    use EditRecord\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = PageResource::class;
 

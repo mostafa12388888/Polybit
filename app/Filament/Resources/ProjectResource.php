@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\SEO;
+use App\Filament\Traits\Seoable;
 use App\Models\Project;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Blade;
 
 class ProjectResource extends Resource
 {
-    use Translatable;
+    use Seoable, Translatable;
 
     protected static ?string $model = Project::class;
 

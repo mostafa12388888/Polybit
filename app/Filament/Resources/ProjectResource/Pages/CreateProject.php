@@ -3,13 +3,14 @@
 namespace App\Filament\Resources\ProjectResource\Pages;
 
 use App\Filament\Resources\ProjectResource;
+use App\Filament\Traits\CreateRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Contracts\Support\Htmlable;
 
 class CreateProject extends CreateRecord
 {
-    use CreateRecord\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = ProjectResource::class;
 

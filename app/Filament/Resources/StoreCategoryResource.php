@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\StoreCategoryResource\Pages;
 use App\Filament\Resources\StoreCategoryResource\RelationManagers\SubCategoriesRelationManager;
 use App\Filament\SEO;
+use App\Filament\Traits\Seoable;
 use App\Models\StoreCategory;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Blade;
 
 class StoreCategoryResource extends Resource
 {
-    use Translatable;
+    use Seoable, Translatable;
 
     protected static ?string $model = StoreCategory::class;
 

@@ -39,4 +39,8 @@
     .fi-in-table-repeatable thead {
         @apply hidden !border-none !shadow-none
     }
+
+    .treeselect-input__tags-count {
+        @apply rtl:ml-0 mr-3;
+    }
 }

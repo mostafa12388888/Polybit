@@ -3,13 +3,14 @@
 namespace App\Filament\Resources\StoreCategoryResource\Pages;
 
 use App\Filament\Resources\StoreCategoryResource;
+use App\Filament\Traits\CreateRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Contracts\Support\Htmlable;
 
 class CreateStoreCategory extends CreateRecord
 {
-    use CreateRecord\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = StoreCategoryResource::class;
 
