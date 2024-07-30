@@ -49,6 +49,10 @@ return [
         'passwords',
         'validation',
         'admin',
+        'filament-actions::delete',
+        'filament-actions::detach',
+        'filament-logger::filament-logger',
+        'filament-tables::table',
     ],
 
     /*
