@@ -71,7 +71,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->width(0),
+                TextColumn::make('id')->sortable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
             ])
             ->actions([

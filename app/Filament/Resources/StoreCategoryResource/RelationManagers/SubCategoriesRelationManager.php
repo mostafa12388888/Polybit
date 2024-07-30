@@ -36,8 +36,8 @@ class SubCategoriesRelationManager extends RelationManager
             ->pluralModelLabel(__('admin.sub categories'))
             ->recordTitleAttribute('name')
             ->columns([
-                TextColumn::make('id')->sortable()->width(0),
-                TextColumn::make('name')->sortable()->searchable()->width(0),
+                TextColumn::make('id')->sortable(),
+                TextColumn::make('name')->sortable()->searchable(),
             ])
             ->filters([
                 //
