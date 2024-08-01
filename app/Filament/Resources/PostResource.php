@@ -19,7 +19,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 
 class PostResource extends Resource
@@ -85,7 +84,10 @@ class PostResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc')
+            ->persistSortInSession()
+            ->filtersFormColumns(1);
     }
 
     public static function infolist(Infolist $infolist): Infolist
@@ -123,11 +125,6 @@ class PostResource extends Resource
             'view' => Pages\ViewPost::route('/{record}'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()->with('metadata');
     }
 
     public static function getModelLabel(): string

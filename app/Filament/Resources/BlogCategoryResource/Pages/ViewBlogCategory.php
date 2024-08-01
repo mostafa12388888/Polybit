@@ -30,21 +30,4 @@ class ViewBlogCategory extends ViewRecord
     {
         return $this->getRecord()->parent_id ? __('admin.Sub Category') : __('admin.Blog Category');
     }
-
-    // public function getBreadcrumbs(): array
-    // {
-    //     $resource = static::getResource();
-
-    //     $breadcrumbs[$resource::getUrl()] = $resource::getBreadcrumb();
-
-    //     if($this->getRecord()->parent_id) {
-    //         $parent = $this->getRecord()->parent;
-
-    //         $breadcrumbs[$resource::getUrl('view', ['record' => $parent])] = str($parent->name)->limit(15, '');
-    //     }
-
-    //     $breadcrumbs[] = $this->getBreadcrumb();
-
-    //     return $breadcrumbs;
-    // }
 }

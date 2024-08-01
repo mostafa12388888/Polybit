@@ -52,7 +52,10 @@ class PageResource extends Resource
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc')
+            ->persistSortInSession()
+            ->filtersFormColumns(1);
     }
 
     public static function infolist(Infolist $infolist): Infolist

@@ -25,7 +25,7 @@ class SubCategoriesRelationManager extends RelationManager
                 TextInput::make('name')->required(),
                 TextInput::make('slug'),
                 TiptapEditor::make('description')->profile('minimal')->columnSpanFull(),
-            ]);
+            ])->translatable();
     }
 
     public function table(Table $table): Table
@@ -46,7 +46,6 @@ class SubCategoriesRelationManager extends RelationManager
                 Tables\Actions\LocaleSwitcher::make(),
                 Tables\Actions\CreateAction::make()
                     ->url(fn ($livewire) => BlogCategoryResource::getUrl('create', ['ownerRecord' => $livewire->ownerRecord->getKey()])),
-
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
