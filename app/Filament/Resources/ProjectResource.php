@@ -51,13 +51,14 @@ class ProjectResource extends Resource
                         ->profile('minimal')
                         ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
 
-                    TableRepeater::make('attributes')->headers([
-                        Header::make('key')->label(__('admin.Attribute')),
-                        Header::make('value')->label(__('admin.Value')),
-                    ])->schema([
-                        TextInput::make('key')->required(),
-                        TextInput::make('value')->required(),
-                    ])->columnSpanFull()->columns(2)->defaultItems(4),
+                    TableRepeater::make('attributes')->label('admin.Project attributes')
+                        ->headers([
+                            Header::make('key')->label(__('admin.Project attribute')),
+                            Header::make('value')->label(__('admin.Value')),
+                        ])->schema([
+                            TextInput::make('key')->required(),
+                            TextInput::make('value')->required(),
+                        ])->columnSpanFull()->columns(2)->defaultItems(4),
 
                     CuratorPicker::make('images')->multiple()->constrained()
                         ->buttonLabel('admin.Add Images')
@@ -106,12 +107,15 @@ class ProjectResource extends Resource
 
                 ViewEntry::make('media')->view('filament.infolists.entries.media')->label('admin.Images')->columnSpanFull(),
 
-                TableRepeatableEntry::make('attributes')->schema([
-                    TextEntry::make('key')->hiddenLabel()->label(__('admin.Attribute')),
-                    TextEntry::make('value')->hiddenLabel()->label(__('admin.Value')),
-                ])->columnSpanFull()->striped()->extraAttributes([
-                    'class' => '!border-gray-200 dark:!border-gray-600 overflow-hidden',
-                ]),
+                TableRepeatableEntry::make('attributes')
+                    ->label('admin.Project attributes')
+                    ->visible(fn ($record) => $record->attributes)
+                    ->schema([
+                        TextEntry::make('key')->hiddenLabel()->label(__('admin.Project attribute')),
+                        TextEntry::make('value')->hiddenLabel()->label(__('admin.Value')),
+                    ])->columnSpanFull()->striped()->extraAttributes([
+                        'class' => '!border-gray-200 dark:!border-gray-600 overflow-hidden no-head',
+                    ]),
 
                 TextEntry::make('description')->state(function (Project $project) {
                     $content = $project->description ? tiptap_converter()->asHTML($project->description) : '';

@@ -20,7 +20,11 @@ class ValuesRelationManager extends RelationManager
         return $form
             ->schema([
                 TextInput::make('value')->required()->maxLength(255)
-                    ->afterStateHydrated(fn ($record, $livewire) => $livewire->mountedTableActionsData[0]['value'] = json_decode($record->getAttributes()['value'], true))
+                    ->afterStateHydrated(function ($record, $livewire) {
+                        if ($record) {
+                            $livewire->mountedTableActionsData[0]['value'] = json_decode($record->getAttributes()['value'], true);
+                        }
+                    })
                     ->translatable()->columnSpanFull(),
             ]);
     }
