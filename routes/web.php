@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 // Localization
 // TODO: Settings
 
+// TODO: Home Slider
+
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');
 

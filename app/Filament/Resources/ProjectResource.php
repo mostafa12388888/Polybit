@@ -59,7 +59,7 @@ class ProjectResource extends Resource
                         TextInput::make('value')->required(),
                     ])->columnSpanFull()->columns(2)->defaultItems(4),
 
-                    CuratorPicker::make('images')->multiple()
+                    CuratorPicker::make('images')->multiple()->constrained()
                         ->buttonLabel('admin.Add Images')
                         ->acceptedFileTypes(['image/*'])
                         ->listDisplay(true)->size('sm')

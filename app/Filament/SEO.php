@@ -42,7 +42,7 @@ class SEO
                 'meta_description' => Textarea::make('meta_description')->columnSpanFull(),
                 'meta_keywords' => TagsInput::make('meta_keywords')->splitKeys([','])->reorderable()->columnSpanFull(),
                 'og_image' => CuratorPicker::make('og_image')->multiple()->typeValue('og-image')->maxItems(1)
-                    ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')
+                    ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->constrained()
                     ->relationship('media_items', 'id'),
             ], $only))
             ->columns(2)->columnSpanFull()
