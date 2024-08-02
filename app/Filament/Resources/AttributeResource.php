@@ -8,6 +8,7 @@ use App\Filament\Resources\AttributeResource\RelationManagers\ValuesRelationMana
 use App\Models\Attribute;
 use Awcodes\TableRepeater\Components\TableRepeater;
 use Awcodes\TableRepeater\Header;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
@@ -34,9 +35,10 @@ class AttributeResource extends Resource
             ->schema([
                 Section::make()->schema([
                     TextInput::make('name')->required(),
-                    TextInput::make('slug'),
 
                     ToggleButtons::make('type')->label('admin.Display Style')
+                        ->disabled(fn ($record) => $record)
+                        ->reactive()
                         ->default(AttributeType::SELECT_BOX->value)
                         ->options(fn (): array => AttributeType::options())->in(AttributeType::values())
                         ->gridDirection('row')->grouped(),
@@ -49,11 +51,12 @@ class AttributeResource extends Resource
                         ])
                         ->renderHeader(false)
                         ->relationship()
-                        ->schema([
+                        ->schema(fn ($get) => $get('type') == AttributeType::COLORS->value ? [
+                            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hiddenLabel(),
+                        ] : [
                             TextInput::make('value')->required()->hiddenLabel()->translatable(),
                         ])
                         ->columnSpanFull(),
-                    // ->afterStateHydrated(fn ($state) => dd($state))
                 ])->columns(2),
             ]);
     }
@@ -91,7 +94,6 @@ class AttributeResource extends Resource
             \Filament\Infolists\Components\Section::make()->schema([
                 TextEntry::make('id'),
                 TextEntry::make('name'),
-                TextEntry::make('slug'),
                 TextEntry::make('created_at')->dateTime(),
             ])->columns(2),
         ]);

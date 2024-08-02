@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('value');
             $table->string('slug');
             $table->foreignId('attribute_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }

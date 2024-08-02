@@ -8,7 +8,7 @@ class AttributeValue extends NonTranslatableAttributeValue
 {
     use HasTranslations;
 
-    protected $translatable = ['value'];
+    protected $translatable = ['value', 'title'];
 
     protected static function boot()
     {
