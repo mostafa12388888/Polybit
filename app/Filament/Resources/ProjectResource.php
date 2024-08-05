@@ -61,6 +61,7 @@ class ProjectResource extends Resource
                         ])->columnSpanFull()->columns(2)->defaultItems(4),
 
                     CuratorPicker::make('images')->multiple()->constrained()
+                        ->typeValue('project-image')
                         ->buttonLabel('admin.Add Images')
                         ->acceptedFileTypes(['image/*'])
                         ->listDisplay(true)->size('sm')
@@ -105,7 +106,7 @@ class ProjectResource extends Resource
                 TextEntry::make('title'),
                 TextEntry::make('subtitle')->columnSpanFull(),
 
-                ViewEntry::make('media')->view('filament.infolists.entries.media')->label('admin.Images')->columnSpanFull(),
+                ViewEntry::make('media')->view('filament.infolists.entries.media', ['type' => 'project-image'])->label('admin.Images')->columnSpanFull(),
 
                 TableRepeatableEntry::make('attributes')
                     ->label('admin.Project attributes')
@@ -137,7 +138,7 @@ class ProjectResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with('media');
+        return parent::getEloquentQuery()->with(['media' => fn ($query) => $query->where('media_items.type', 'project-image')]);
     }
 
     public static function getPages(): array

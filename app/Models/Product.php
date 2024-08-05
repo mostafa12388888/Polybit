@@ -35,6 +35,11 @@ class Product extends Model
         return $this->hasMany(ProductVariant::class);
     }
 
+    public function specs()
+    {
+        return $this->hasMany(ProductSpec::class);
+    }
+
     public function getDefaultMetadata()
     {
         return [

@@ -11,10 +11,10 @@
     };
 
     $overlap = match ($overlap) {
-        0 => 'space-x-0',
-        2 => '-space-x-2',
-        3 => '-space-x-3',
-        4 => '-space-x-4',
+        0 => '-me-0',
+        2 => '-me-2',
+        3 => '-me-3',
+        4 => '-me-4',
         default => '-space-x-1',
     };
 
@@ -24,10 +24,10 @@
     $width = $getWidth() ?? ($isRounded() ? $height : null);
 @endphp
 
-<div dir="ltr"
+<div 
     {{ $attributes->merge($getExtraAttributes())->class([
         'curator-column px-4 py-3',
-        $overlap . ' flex items-center' => $imageCount > 1,
+        ' flex items-center' => $imageCount > 1,
     ]) }}
 >
     @if ($items)
@@ -38,7 +38,7 @@
             "
             @class([
                 'rounded-full overflow-hidden' => $isRounded(),
-                $ring . ' ring-white dark:ring-gray-900' => $imageCount > 1,
+                $overlap . ' ' . $ring . ' ring-white dark:ring-gray-900' => $imageCount > 1,
             ])
         >
             @if (\Awcodes\Curator\is_media_resizable($item->ext))

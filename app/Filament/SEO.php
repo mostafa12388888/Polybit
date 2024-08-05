@@ -28,8 +28,12 @@ class SEO
     public function schema($other_fields)
     {
         return Tabs::make()->schema(function ($get) use ($other_fields) {
-            if (! $this->other_fields && is_callable($other_fields)) {
-                $this->other_fields = $other_fields($get);
+            if (! $this->other_fields) {
+                if (is_callable($other_fields)) {
+                    $this->other_fields = $other_fields($get);
+                } else {
+                    $this->other_fields = $other_fields;
+                }
             }
 
             $first_component = $this->other_fields[0];

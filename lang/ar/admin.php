@@ -119,4 +119,6 @@ return [
     'Attribute values product variant' => 'خيار المنتج',
     'Sku' => 'Sku',
     'Color' => 'اللون',
+    'Specefications' => 'المواصفات',
+    'English' => 'English',
 ];

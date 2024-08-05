@@ -14,6 +14,7 @@ use Filament\Forms\Components\Actions\Action as FormAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -27,6 +28,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
 
 class ProductResource extends Resource
@@ -48,8 +50,7 @@ class ProductResource extends Resource
                         TextInput::make('sku')->label('admin.SKU (Stock Keeping Unit)')->required(),
                         TextInput::make('price')->prefixIcon('heroicon-o-currency-euro'),
 
-                        TiptapEditor::make('description')->required()->columnSpanFull()
-                            ->profile('minimal')
+                        TiptapEditor::make('description')->required()->columnSpanFull()->profile('minimal')
                             ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
 
                         Split::make([
@@ -70,6 +71,7 @@ class ProductResource extends Resource
                         ])->columnSpanFull(),
 
                         CuratorPicker::make('images')->multiple()->constrained()
+                            ->typeValue('product-image')
                             ->buttonLabel('admin.Add Images')
                             ->acceptedFileTypes(['image/*'])
                             ->listDisplay(true)->size('sm')
@@ -152,9 +154,42 @@ class ProductResource extends Resource
                             ->defaultItems(0)->columns(2)->columnSpanFull(),
                     ])->hidden(! $attributes->count());
 
-                    // $tabs[] = Tab::make('More')->schema([
+                    $tabs[] = Tab::make('Specefications')->schema([
+                        Repeater::make('specs')->label('admin.Specefications')->hiddenLabel()
+                            ->schema([
+                                TextInput::make('title')->required()->translatable(),
 
-                    // ]);
+                                TiptapEditor::make('description')->profile('minimal')->translatable(),
+
+                                Tabs::make()->schema(function () {
+                                    foreach (locales() as $key => $locale) {
+                                        $tabs[] = Tab::make($locale)->schema([
+                                            CuratorPicker::make('media_'.$key)->label('admin.Media')->multiple()->constrained()
+                                                ->typeValue($key)
+                                                ->listDisplay(true)->size('sm')
+                                                ->relationship('media_items', 'id'),
+                                        ]);
+                                    }
+
+                                    return $tabs ?? [];
+                                }),
+                            ])
+                            ->mutateStateForValidationUsing(function ($state) {
+                                return collect($state)
+                                    ->filter(fn ($spec) => collect($spec['title'])->filter(fn ($locale_title) => $locale_title)->count())
+                                    ->map(function ($spec) {
+                                        $spec_title = collect($spec['title'])->filter()->first();
+                                        $spec['title'] = collect($spec['title'])->map(fn ($title) => $title ?: $spec_title);
+
+                                        return $spec;
+                                    })
+                                    ->toArray();
+                            })
+                            ->relationship('specs')
+                            ->collapsible()->persistCollapsed()
+                            ->orderColumn('order')->reorderableWithButtons()
+                            ->defaultItems(0)->columnSpanFull(),
+                    ]);
 
                     return $tabs;
                 })->columns(2),
@@ -197,12 +232,12 @@ class ProductResource extends Resource
             \Filament\Infolists\Components\Tabs::make()->schema([
                 \Filament\Infolists\Components\Tabs\Tab::make('General')->schema([
                     TextEntry::make('id'),
-                    TextEntry::make('title'),
+                    TextEntry::make('name'),
                     TextEntry::make('slug'),
                     TextEntry::make('sku'),
                     TextEntry::make('created_at')->dateTime(),
 
-                    ViewEntry::make('media')->view('filament.infolists.entries.media')->label('admin.Images')->columnSpanFull(),
+                    ViewEntry::make('media')->view('filament.infolists.entries.media', ['type' => 'product-image'])->label('admin.Images')->columnSpanFull(),
 
                     TextEntry::make('description')->columnSpanFull()->html()->state(function (Product $product) {
                         $content = $product->description ? tiptap_converter()->asHTML($product->description) : __('admin.No Content');
@@ -228,6 +263,11 @@ class ProductResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with(['media' => fn ($query) => $query->where('media_items.type', 'product-image')]);
     }
 
     public static function getPages(): array

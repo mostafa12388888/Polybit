@@ -1,5 +1,11 @@
 @php
-    $files = $getRecord()->media;
+    $files = $getRecord()->media();
+    
+    if($type ?? null) {
+        $files = $files->where('media_items.type', $type);
+    }
+
+    $files = $files->get();
 @endphp
 
 <div class="grid gap-y-4">
