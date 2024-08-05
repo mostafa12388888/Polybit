@@ -1,0 +1,267 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\ProductResource\Pages;
+use App\Filament\SEO;
+use App\Filament\Traits\Seoable;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
+use App\Models\Product;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
+use Filament\Forms\Components\Actions\Action as FormAction;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Split;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Concerns\Translatable;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use FilamentTiptapEditor\TiptapEditor;
+use Illuminate\Support\Facades\Blade;
+
+class ProductResource extends Resource
+{
+    use Seoable, Translatable;
+
+    protected static ?string $model = Product::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                SEO::make()->schema(function ($get) {
+                    $tabs[] = Tab::make('General')->schema([
+                        TextInput::make('name')->required(),
+                        TextInput::make('slug'),
+                        TextInput::make('sku')->label('admin.SKU (Stock Keeping Unit)')->required(),
+                        TextInput::make('price')->prefixIcon('heroicon-o-currency-euro'),
+
+                        TiptapEditor::make('description')->required()->columnSpanFull()
+                            ->profile('minimal')
+                            ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
+
+                        Split::make([
+                            Select::make('main_category_id')->label(__('admin.Main Category'))->grow(true)
+                                ->searchable()->preload()->reactive()
+                                ->relationship('main_category', 'name', fn ($query) => $query->parents()),
+
+                            Select::make('category_id')->label(__('admin.Sub Category'))->required()
+                                ->searchable()->preload()
+                                ->default(request()->query('ownerRecord'))
+                                ->relationship('category', 'name', function ($query, $get) {
+                                    if ($get('main_category_id')) {
+                                        return $query->subCategories()->where('parent_id', $get('main_category_id'));
+                                    }
+
+                                    return $query->subCategories();
+                                }),
+                        ])->columnSpanFull(),
+
+                        CuratorPicker::make('images')->multiple()->constrained()
+                            ->buttonLabel('admin.Add Images')
+                            ->acceptedFileTypes(['image/*'])
+                            ->listDisplay(true)->size('sm')
+                            ->relationship('media_items', 'id')
+                            ->columnSpanFull(),
+                    ]);
+
+                    $tabs[] = Tab::make('Attributes')->schema([
+                        Repeater::make('attributes')->hiddenLabel()->maxItems(fn () => Attribute::count())->schema([
+                            Select::make('attribute')->searchable()->preload()->reactive()
+                                ->options(fn () => Attribute::limit(50)->pluck('name', 'id')->toArray())
+                                ->disableOptionsWhenSelectedInSiblingRepeaterItems()
+                                ->getSearchResultsUsing(fn (string $search): array => Attribute::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
+                                ->afterStateUpdated(fn ($set) => $set('values', [])),
+
+                            Select::make('values')->searchable()->preload()->multiple()->reactive()
+                                ->options(function (Select $component): array {
+                                    $attribute = $component->getContainer()->getComponents()[0]->getState();
+
+                                    return AttributeValue::where('attribute_id', $attribute)->get()
+                                        ->mapWithKeys(fn ($value, $key) => [$value->id => $value->title ? $value->title : $value->value])->toArray();
+                                }),
+                        ])
+                            ->live()->defaultItems(1)->columns(2)->columnSpanFull(),
+                    ]);
+
+                    $attributes = Attribute::whereIn('id', collect($get('attributes'))->filter(fn ($attribute) => count($attribute['values']))->pluck('attribute')->toArray())->orderBy('id')->get();
+
+                    $tabs[] = Tab::make('Variants')->schema([
+                        Repeater::make('variants')->label('admin.Available variants')
+                            ->schema(function ($get) use ($attributes) {
+                                $selected_attributes = collect($get('attributes'));
+                                $cloned_attributes = clone $attributes;
+
+                                return [
+                                    Repeater::make('attribute_values_product_variant')->hiddenLabel()
+                                        ->simple(function () use ($cloned_attributes, $selected_attributes) {
+                                            $attribute = $cloned_attributes->shift();
+                                            $values = optional($selected_attributes->where('attribute', optional($attribute)->id)->first())['values'];
+
+                                            return $attribute ? Select::make('attribute_value_id')->label($attribute->name)->hiddenLabel()
+                                                ->prefix($attribute->name)->searchable()->preload()
+                                                ->required()->in($values)
+                                                ->relationship('attribute_value', 'value', fn ($query) => $query->whereIn('id', $values ?? []))
+                                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->title ? $record->title : $record->value) : null;
+                                        })
+                                        ->relationship('attribute_values_product_variant')->columnSpanFull()->grid(3)->deletable(false)
+                                        ->saveRelationshipsUsing(function ($record, $state) {
+                                            $record->attribute_values()->sync(collect($state)->pluck('attribute_value_id')->toArray());
+                                        })
+                                        ->minItems($attributes->count())->maxItems($attributes->count())->defaultItems($attributes->count()),
+                                ];
+                            })
+                            ->hintAction(
+                                FormAction::make('generateAllPossibleVariants')->icon('heroicon-m-arrow-path')->requiresConfirmation()
+                                    ->action(function ($get, $set) {
+                                        $variants = [[]];
+
+                                        foreach (collect($get('attributes'))->sortBy('attribute')->toArray() ?: [] as $attribute) {
+                                            $temp = [];
+
+                                            foreach ($variants as $variant) {
+                                                foreach ($attribute['values'] as $value) {
+                                                    $temp[str()->uuid()->toString()]['attribute_values_product_variant'] =
+                                                        array_merge($variant['attribute_values_product_variant'] ?? [], [
+                                                            str()->uuid()->toString() => [
+                                                                'attribute_value_id' => $value,
+                                                            ],
+                                                        ]);
+                                                }
+                                            }
+
+                                            $variants = $temp;
+                                        }
+
+                                        $set('variants', $variants);
+                                    })
+                            )
+                            ->relationship('variants')
+                            ->defaultItems(0)->columns(2)->columnSpanFull(),
+                    ])->hidden(! $attributes->count());
+
+                    // $tabs[] = Tab::make('More')->schema([
+
+                    // ]);
+
+                    return $tabs;
+                })->columns(2),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('id')->sortable()->width(0),
+                CuratorColumn::make('media')->circular()->size(40)->overlap(3)->limit(3)->toggleable(),
+                TextColumn::make('name')->limit(50)->searchable()->sortable(),
+                TextColumn::make('sku')->toggleable(true, true)->searchable()->sortable(),
+                TextColumn::make('price')->toggleable(true, true)->sortable(),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ])
+            ->defaultSort('id', 'desc')
+            ->persistSortInSession()
+            ->filtersFormColumns(1);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist->schema([
+            \Filament\Infolists\Components\Tabs::make()->schema([
+                \Filament\Infolists\Components\Tabs\Tab::make('General')->schema([
+                    TextEntry::make('id'),
+                    TextEntry::make('title'),
+                    TextEntry::make('slug'),
+                    TextEntry::make('sku'),
+                    TextEntry::make('created_at')->dateTime(),
+
+                    ViewEntry::make('media')->view('filament.infolists.entries.media')->label('admin.Images')->columnSpanFull(),
+
+                    TextEntry::make('description')->columnSpanFull()->html()->state(function (Product $product) {
+                        $content = $product->description ? tiptap_converter()->asHTML($product->description) : __('admin.No Content');
+
+                        return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
+                    }),
+                ])->columns(2),
+
+                \Filament\Infolists\Components\Tabs\Tab::make('Variants')->schema([
+                    RepeatableEntry::make('variants')->hiddenLabel()->schema([
+                        RepeatableEntry::make('attribute_values_product_variant')->hiddenLabel()->schema([
+                            TextEntry::make('attribute_value')->hiddenLabel()
+                                ->formatStateUsing(fn ($state) => $state->title ? $state->title : $state->value),
+                        ])->grid(4),
+                    ]),
+                ]),
+            ])->columnSpanFull()->persistTabInQueryString(),
+        ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListProducts::route('/'),
+            'create' => Pages\CreateProduct::route('/create'),
+            'view' => Pages\ViewProduct::route('/{record}'),
+            'edit' => Pages\EditProduct::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('admin.product');
+    }
+
+    public static function getTitleCaseModelLabel(): string
+    {
+        return __('admin.Product');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('admin.products');
+    }
+
+    public static function getTitleCasePluralModelLabel(): string
+    {
+        return __('admin.Products');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('admin.Store');
+    }
+}

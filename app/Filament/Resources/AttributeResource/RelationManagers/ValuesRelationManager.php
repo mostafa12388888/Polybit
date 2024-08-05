@@ -19,17 +19,19 @@ class ValuesRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         $value_field = $this->ownerRecord->type->isColors() ?
-            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required() :
-            TextInput::make('value')->required()->maxLength(255)->translatable();
+            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->label('admin.Color') :
+            TextInput::make('value')->maxLength(255)->hiddenLabel()
+                ->translatable(true, null, [collect(array_keys(locales()))->first() => 'required']);
 
         return $form
             ->schema([
                 $value_field->afterStateHydrated(function ($record, $livewire) {
                     if ($record) {
                         $livewire->mountedTableActionsData[0]['value'] = json_decode($record->getAttributes()['value'], true);
+                        $livewire->mountedTableActionsData[0]['title'] = json_decode($record->getAttributes()['title'], true);
                     }
-                })->hiddenLabel()->columnSpanFull(),
-                TextInput::make('title')->translatable()->columnSpanFull(),
+                })->columnSpanFull(),
+                TextInput::make('title')->translatable()->columnSpanFull()->visible($this->ownerRecord->type->isColors()),
             ]);
     }
 
@@ -46,6 +48,8 @@ class ValuesRelationManager extends RelationManager
                 $this->ownerRecord->type->isColors() ?
                     Tables\Columns\ColorColumn::make('value') :
                     Tables\Columns\TextColumn::make('value'),
+
+                Tables\Columns\TextColumn::make('title'),
             ])
             ->filters([
                 //

@@ -30,4 +30,13 @@ class Attribute extends Model
     {
         return $this->hasMany(AttributeValue::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function (self $attribute) {
+            $attribute->values->each->delete();
+        });
+    }
 }

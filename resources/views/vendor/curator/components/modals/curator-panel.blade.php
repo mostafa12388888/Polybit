@@ -3,7 +3,7 @@
         handleItemClick: function (mediaId = null, event) {
             if (! mediaId) return;
 
-            if ($wire.maxItems > 1 && $wire.isMultiple && event && event.{{ config('curator.multi_select_key') }}) {
+            if ($wire.maxItems != 1 && $wire.isMultiple && event && event.{{ config('curator.multi_select_key') }}) {
                 if (this.isSelected(mediaId)) {
                     let toRemove = Object.values($wire.selected).find(obj => obj.id == mediaId)
                     $wire.removeFromSelection(toRemove.id);

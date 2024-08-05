@@ -6,9 +6,9 @@ use App\Enums\AttributeType;
 use App\Filament\Resources\AttributeResource\Pages;
 use App\Filament\Resources\AttributeResource\RelationManagers\ValuesRelationManager;
 use App\Models\Attribute;
-use Awcodes\TableRepeater\Components\TableRepeater;
-use Awcodes\TableRepeater\Header;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
@@ -45,17 +45,27 @@ class AttributeResource extends Resource
                 ])->columns(2),
 
                 Section::make()->schema([
-                    TableRepeater::make('attribute_values')
-                        ->headers([
-                            Header::make('value')->label(__('admin.Value')),
-                        ])
-                        ->renderHeader(false)
+                    Repeater::make('attribute_values')
                         ->relationship()
                         ->schema(fn ($get) => $get('type') == AttributeType::COLORS->value ? [
-                            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hiddenLabel(),
+                            Group::make([
+                                ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->label('admin.Color'),
+                                TextInput::make('title')->required(),
+                            ])->columns(2),
                         ] : [
                             TextInput::make('value')->required()->hiddenLabel()->translatable(),
                         ])
+                        ->mutateStateForValidationUsing(function ($state) {
+                            return collect($state)
+                                ->filter(fn ($value) => collect($value['value'])->filter(fn ($locale_value) => $locale_value)->count())
+                                ->map(function ($value) {
+                                    $value_value = collect($value['value'])->filter()->first();
+                                    $value['value'] = collect($value['value'])->map(fn ($v) => $v ?: $value_value);
+
+                                    return $value;
+                                })
+                                ->toArray();
+                        })
                         ->columnSpanFull(),
                 ])->columns(2),
             ]);
@@ -67,6 +77,7 @@ class AttributeResource extends Resource
             ->columns([
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('name')->limit(50)->searchable()->sortable(),
+                TextColumn::make('values_count')->counts('values')->toggleable()->sortable(),
             ])
             ->filters([
                 //

@@ -80,7 +80,7 @@ trait Sluggable
         $string = request()->slug ?: optional($this)->{self::slugFrom()};
         $string = ! $this->id && $this->slug ? $this->slug : $string;
 
-        if (! $string) {
+        if (! $string || ! is_string($string)) {
             return uniqid();
         }
 

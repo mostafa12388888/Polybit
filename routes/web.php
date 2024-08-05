@@ -3,16 +3,17 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// TODO: Dashboard Stats
+
 // Users
 // Projects
 
 // BlogCategories
-// TODO: Posts
+// Posts
 
 // StoreCategories
-// TODO: Attributes
-// TODO: Options
-// TODO: OptionValues
+// Attributes
+// AttributeValues
 // TODO: Products
 
 // TODO: Orders
@@ -24,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 // FAQ
 
 // Localization
-// TODO: Settings
+// Settings
 
-// TODO: Home Slider
+// Home Slider
 
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');

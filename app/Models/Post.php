@@ -29,6 +29,15 @@ class Post extends Model
         return $this->belongsTo(BlogCategory::class, 'category_id');
     }
 
+    public function getDefaultMetadata()
+    {
+        return [
+            'title' => str($this->title)->limit(100),
+            'description' => str(tiptap_converter()->asText($this->body))->limit(200),
+            'keywords' => explode(' ', $this->title),
+        ];
+    }
+
     protected static function boot()
     {
         parent::boot();

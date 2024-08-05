@@ -10,16 +10,30 @@ class AttributeValue extends NonTranslatableAttributeValue
 
     protected $translatable = ['value', 'title'];
 
+    public function product_variants()
+    {
+        return $this->belongsToMany(ProductVariant::class, 'attribute_value_product_variant');
+    }
+
     protected static function boot()
     {
         parent::boot();
 
         static::saving(function (self $attribute_value) {
             $value = $attribute_value->value;
+            $title = $attribute_value->title;
 
             if ($attribute_value->isDirty('value') && is_array($value)) {
                 $attribute_value->setAttribute('value', $value);
             }
+
+            if ($attribute_value->isDirty('title') && is_array($title)) {
+                $attribute_value->setAttribute('title', $title);
+            }
+        });
+
+        static::deleting(function (self $value) {
+            $value->product_variants->each->delete();
         });
     }
 }

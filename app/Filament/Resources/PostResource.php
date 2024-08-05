@@ -6,7 +6,6 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\SEO;
 use App\Filament\Traits\Seoable;
 use App\Models\Post;
-use CodeWithDennis\FilamentSelectTree\SelectTree;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
@@ -58,10 +57,6 @@ class PostResource extends Resource
                                 return $query->subCategories();
                             }),
                     ])->columnSpanFull(),
-
-                    // SelectTree::make('category_id')->columnSpanFull()->label(__('admin.Category'))
-                    //     ->searchable()
-                    //     ->relationship('category', 'name', 'parent_id')
                 ])->columns(2),
             ]);
     }

@@ -29,6 +29,11 @@ class StoreCategory extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'category_id');
+    }
+
     public function is_parent_category()
     {
         return ! $this->parent_id;
@@ -37,6 +42,11 @@ class StoreCategory extends Model
     public function scopeParents($query)
     {
         return $query->where('parent_id', null);
+    }
+
+    public function scopeSubCategories($query)
+    {
+        return $query->where('parent_id', '!=', null);
     }
 
     public function getDefaultMetadata()

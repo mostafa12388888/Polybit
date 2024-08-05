@@ -9,11 +9,12 @@ use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class SEO
 {
+    protected $other_fields = [];
+
     public function __construct($only)
     {
         $this->only = $only;
@@ -26,38 +27,34 @@ class SEO
 
     public function schema($other_fields)
     {
-        return Tabs::make()->schema([
-            Tab::make('General')->schema($other_fields),
-            Tab::make('SEO')->schema([$this->fields()]),
-        ])->columnSpanFull()->persistTabInQueryString();
+        return Tabs::make()->schema(function ($get) use ($other_fields) {
+            if (! $this->other_fields && is_callable($other_fields)) {
+                $this->other_fields = $other_fields($get);
+            }
+
+            $first_component = $this->other_fields[0];
+
+            $tabs = $first_component instanceof Tab ? $this->other_fields : [Tab::make('General')->schema($this->other_fields)];
+
+            $tabs[] = Tab::make('SEO')->schema($this->fields());
+
+            return $tabs;
+        })->columnSpanFull()->persistTabInQueryString();
     }
 
-    public function fields(): Group
+    public function fields(): array
     {
         $only = $this->only;
 
-        return Group::make()
-            ->schema(Arr::only([
+        return [
+            Group::make()->schema(Arr::only([
                 'meta_title' => TextInput::make('meta_title')->columnSpanFull(),
                 'meta_description' => Textarea::make('meta_description')->columnSpanFull(),
                 'meta_keywords' => TagsInput::make('meta_keywords')->splitKeys([','])->reorderable()->columnSpanFull(),
                 'og_image' => CuratorPicker::make('og_image')->multiple()->typeValue('og-image')->maxItems(1)
                     ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->constrained()
                     ->relationship('media_items', 'id'),
-            ], $only))
-            ->columns(2)->columnSpanFull()
-            ->afterStateHydrated(function (Group $component, ?Model $record) {
-                // $livewire = $component->getChildComponentContainer()->getLivewire();
-
-                // foreach (array_keys(locales()) as $locale) {
-                //     if (config('app.locale') == $locale) {
-                //         $keywords = $livewire->data['meta_keywords'] ?? [];
-                //         $livewire->data['meta_keywords'] = is_array($keywords) ? $keywords : [];
-                //     } else {
-                //         $keywords = $livewire->otherLocaleData[$locale]['meta_keywords'] ?? [];
-                //         $livewire->otherLocaleData[$locale]['meta_keywords'] = is_array($keywords) ? $keywords : [];
-                //     }
-                // }
-            });
+            ], $only))->columns(2)->columnSpanFull(),
+        ];
     }
 }
