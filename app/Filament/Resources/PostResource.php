@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\SEO;
 use App\Filament\Traits\Seoable;
+use App\Models\BlogCategory;
 use App\Models\Post;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
@@ -35,8 +36,8 @@ class PostResource extends Resource
         return $form
             ->schema([
                 SEO::make()->schema([
-                    TextInput::make('title')->required(),
-                    TextInput::make('slug'),
+                    TextInput::make('title')->required()->maxLength(250),
+                    TextInput::make('slug')->maxLength(250),
 
                     TiptapEditor::make('body')->required()->columnSpanFull()
                         ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
@@ -44,11 +45,13 @@ class PostResource extends Resource
                     Split::make([
                         Select::make('main_category_id')->label(__('admin.Main Category'))->grow(true)
                             ->searchable()->preload()->reactive()
+                            ->exists(BlogCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
                             ->relationship('main_category', 'name', fn ($query) => $query->parents()),
 
                         Select::make('category_id')->label(__('admin.Sub Category'))->required()
                             ->searchable()->preload()
                             ->default(request()->query('ownerRecord'))
+                            ->exists(BlogCategory::class, 'id', fn ($rule) => $rule->where('parent_id', '!=', null))
                             ->relationship('category', 'name', function ($query, $get) {
                                 if ($get('main_category_id')) {
                                     return $query->subCategories()->where('parent_id', $get('main_category_id'));

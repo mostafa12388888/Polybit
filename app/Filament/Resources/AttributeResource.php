@@ -34,14 +34,13 @@ class AttributeResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    TextInput::make('name')->required(),
+                    TextInput::make('name')->maxLength(250)->required(),
 
-                    ToggleButtons::make('type')->label('admin.Display Style')
+                    ToggleButtons::make('type')->label('admin.Display Style')->reactive()
                         ->disabled(fn ($record) => $record)
-                        ->reactive()
                         ->default(AttributeType::SELECT_BOX->value)
-                        ->options(fn (): array => AttributeType::options())->in(AttributeType::values())
-                        ->gridDirection('row')->grouped(),
+                        ->options(fn (): array => AttributeType::options())->in(AttributeType::values())->required()
+                        ->gridDirection('row')->grouped()->extraAttributes(['style' => 'width: 100%']),
                 ])->columns(2),
 
                 Section::make()->schema([
@@ -49,11 +48,11 @@ class AttributeResource extends Resource
                         ->relationship()
                         ->schema(fn ($get) => $get('type') == AttributeType::COLORS->value ? [
                             Group::make([
-                                ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->label('admin.Color'),
-                                TextInput::make('title')->required(),
+                                ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hexColor()->label('admin.Color'),
+                                TextInput::make('title')->required()->maxLength(250),
                             ])->columns(2),
                         ] : [
-                            TextInput::make('value')->required()->hiddenLabel()->translatable(),
+                            TextInput::make('value')->required()->maxLength(250)->hiddenLabel()->translatable(),
                         ])
                         ->mutateStateForValidationUsing(function ($state) {
                             return collect($state)

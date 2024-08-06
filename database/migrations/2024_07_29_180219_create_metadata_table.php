@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->morphs('seoable');
             $table->string('key')->index();
-            $table->string('value')->nullable();
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }

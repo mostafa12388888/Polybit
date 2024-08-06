@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('product_specs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
+            $table->text('title')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('order')->nullable();
             $table->timestamps();
         });

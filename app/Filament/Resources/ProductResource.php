@@ -8,6 +8,7 @@ use App\Filament\Traits\Seoable;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Product;
+use App\Models\StoreCategory;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Forms\Components\Actions\Action as FormAction;
@@ -45,10 +46,10 @@ class ProductResource extends Resource
             ->schema([
                 SEO::make()->schema(function ($get) {
                     $tabs[] = Tab::make('General')->schema([
-                        TextInput::make('name')->required(),
-                        TextInput::make('slug'),
-                        TextInput::make('sku')->label('admin.SKU (Stock Keeping Unit)')->required(),
-                        TextInput::make('price')->prefixIcon('heroicon-o-currency-euro'),
+                        TextInput::make('name')->required()->maxLength(250),
+                        TextInput::make('slug')->maxLength(250),
+                        TextInput::make('sku')->label('admin.SKU (Stock Keeping Unit)')->required()->maxLength(250),
+                        TextInput::make('price')->prefixIcon('heroicon-o-currency-euro')->numeric()->step(0.01)->rules(['decimal:0,2']),
 
                         TiptapEditor::make('description')->required()->columnSpanFull()->profile('minimal')
                             ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
@@ -56,11 +57,13 @@ class ProductResource extends Resource
                         Split::make([
                             Select::make('main_category_id')->label(__('admin.Main Category'))->grow(true)
                                 ->searchable()->preload()->reactive()
+                                ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
                                 ->relationship('main_category', 'name', fn ($query) => $query->parents()),
 
                             Select::make('category_id')->label(__('admin.Sub Category'))->required()
                                 ->searchable()->preload()
                                 ->default(request()->query('ownerRecord'))
+                                ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', '!=', null))
                                 ->relationship('category', 'name', function ($query, $get) {
                                     if ($get('main_category_id')) {
                                         return $query->subCategories()->where('parent_id', $get('main_category_id'));
@@ -82,20 +85,53 @@ class ProductResource extends Resource
                     $tabs[] = Tab::make('Attributes')->schema([
                         Repeater::make('attributes')->hiddenLabel()->maxItems(fn () => Attribute::count())->schema([
                             Select::make('attribute')->searchable()->preload()->reactive()
-                                ->options(fn () => Attribute::limit(50)->pluck('name', 'id')->toArray())
+                                ->options(fn () => Attribute::has('values')->limit(50)->pluck('name', 'id')->toArray())
+                                ->exists(Attribute::class, 'id')->required()
                                 ->disableOptionsWhenSelectedInSiblingRepeaterItems()
                                 ->getSearchResultsUsing(fn (string $search): array => Attribute::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
                                 ->afterStateUpdated(fn ($set) => $set('values', [])),
 
-                            Select::make('values')->searchable()->preload()->multiple()->reactive()
-                                ->options(function (Select $component): array {
-                                    $attribute = $component->getContainer()->getComponents()[0]->getState();
+                            Select::make('values')->searchable()->preload()->multiple()->reactive()->required()
+                                ->options(fn ($get) => AttributeValue::where('attribute_id', $get('attribute'))->get()
+                                    ->mapWithKeys(fn ($value, $key) => [$value->id => $value->title ? $value->title : $value->value])->toArray()),
+                        ])->live()->defaultItems(1)->columns(2)->columnSpanFull(),
+                    ]);
 
-                                    return AttributeValue::where('attribute_id', $attribute)->get()
-                                        ->mapWithKeys(fn ($value, $key) => [$value->id => $value->title ? $value->title : $value->value])->toArray();
+                    $tabs[] = Tab::make('Specefications')->schema([
+                        Repeater::make('specs')->label('admin.Specefications')->hiddenLabel()
+                            ->schema([
+                                TextInput::make('title')->required()->maxLength(250)->translatable(),
+
+                                TiptapEditor::make('description')->profile('minimal')->translatable(),
+
+                                Tabs::make()->schema(function () {
+                                    foreach (locales() as $key => $locale) {
+                                        $tabs[] = Tab::make($locale)->schema([
+                                            CuratorPicker::make('media_'.$key)->label('admin.Media')->multiple()->constrained()
+                                                ->typeValue($key)
+                                                ->listDisplay(true)->size('sm')
+                                                ->relationship('media_items', 'id'),
+                                        ]);
+                                    }
+
+                                    return $tabs ?? [];
                                 }),
-                        ])
-                            ->live()->defaultItems(1)->columns(2)->columnSpanFull(),
+                            ])
+                            ->mutateStateForValidationUsing(function ($state) {
+                                return collect($state)
+                                    ->filter(fn ($spec) => collect($spec['title'])->filter(fn ($locale_title) => $locale_title)->count())
+                                    ->map(function ($spec) {
+                                        $spec_title = collect($spec['title'])->filter()->first();
+                                        $spec['title'] = collect($spec['title'])->map(fn ($title) => $title ?: $spec_title);
+
+                                        return $spec;
+                                    })
+                                    ->toArray();
+                            })
+                            ->relationship('specs')
+                            ->collapsible()->persistCollapsed()
+                            ->orderColumn('order')->reorderableWithButtons()
+                            ->defaultItems(0)->columnSpanFull(),
                     ]);
 
                     $attributes = Attribute::whereIn('id', collect($get('attributes'))->filter(fn ($attribute) => count($attribute['values']))->pluck('attribute')->toArray())->orderBy('id')->get();
@@ -153,43 +189,6 @@ class ProductResource extends Resource
                             ->relationship('variants')
                             ->defaultItems(0)->columns(2)->columnSpanFull(),
                     ])->hidden(! $attributes->count());
-
-                    $tabs[] = Tab::make('Specefications')->schema([
-                        Repeater::make('specs')->label('admin.Specefications')->hiddenLabel()
-                            ->schema([
-                                TextInput::make('title')->required()->translatable(),
-
-                                TiptapEditor::make('description')->profile('minimal')->translatable(),
-
-                                Tabs::make()->schema(function () {
-                                    foreach (locales() as $key => $locale) {
-                                        $tabs[] = Tab::make($locale)->schema([
-                                            CuratorPicker::make('media_'.$key)->label('admin.Media')->multiple()->constrained()
-                                                ->typeValue($key)
-                                                ->listDisplay(true)->size('sm')
-                                                ->relationship('media_items', 'id'),
-                                        ]);
-                                    }
-
-                                    return $tabs ?? [];
-                                }),
-                            ])
-                            ->mutateStateForValidationUsing(function ($state) {
-                                return collect($state)
-                                    ->filter(fn ($spec) => collect($spec['title'])->filter(fn ($locale_title) => $locale_title)->count())
-                                    ->map(function ($spec) {
-                                        $spec_title = collect($spec['title'])->filter()->first();
-                                        $spec['title'] = collect($spec['title'])->map(fn ($title) => $title ?: $spec_title);
-
-                                        return $spec;
-                                    })
-                                    ->toArray();
-                            })
-                            ->relationship('specs')
-                            ->collapsible()->persistCollapsed()
-                            ->orderColumn('order')->reorderableWithButtons()
-                            ->defaultItems(0)->columnSpanFull(),
-                    ]);
 
                     return $tabs;
                 })->columns(2),

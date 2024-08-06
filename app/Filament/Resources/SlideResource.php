@@ -38,15 +38,15 @@ class SlideResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    TextInput::make('title')->columnSpanFull(),
-                    Textarea::make('description')->columnSpanFull(),
+                    TextInput::make('title')->maxLength(250)->columnSpanFull(),
+                    Textarea::make('description')->maxLength(5000)->columnSpanFull(),
 
                     TableRepeater::make('actions')->headers([
                         Header::make('text')->label(__('admin.Text')),
                         Header::make('url')->label(__('admin.Url')),
                     ])->schema([
-                        TextInput::make('text')->required(),
-                        TextInput::make('url')->required(),
+                        TextInput::make('text')->maxLength(50)->required(),
+                        TextInput::make('url')->maxLength(250)->required(),
                     ])->columnSpanFull(),
 
                     CuratorPicker::make('image')->required()->multiple()->maxItems(1)

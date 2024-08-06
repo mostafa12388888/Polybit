@@ -43,9 +43,9 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 SEO::make()->schema([
-                    TextInput::make('title')->required(),
-                    TextInput::make('slug'),
-                    Textarea::make('subtitle')->required()->columnSpanFull(),
+                    TextInput::make('title')->required()->maxLength(250),
+                    TextInput::make('slug')->maxLength(250),
+                    Textarea::make('subtitle')->required()->maxLength(5000)->columnSpanFull(),
 
                     TiptapEditor::make('description')->required()->columnSpanFull()
                         ->profile('minimal')
@@ -56,8 +56,8 @@ class ProjectResource extends Resource
                             Header::make('key')->label(__('admin.Project attribute')),
                             Header::make('value')->label(__('admin.Value')),
                         ])->schema([
-                            TextInput::make('key')->required(),
-                            TextInput::make('value')->required(),
+                            TextInput::make('key')->required()->maxLength(250),
+                            TextInput::make('value')->required()->maxLength(250),
                         ])->columnSpanFull()->columns(2)->defaultItems(4),
 
                     CuratorPicker::make('images')->multiple()->constrained()

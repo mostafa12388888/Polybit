@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
-            $table->string('value');
+            $table->text('value');
             $table->string('slug')->unique()->index();
             $table->foreignId('attribute_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('title')->nullable();
+            $table->text('title')->nullable();
             $table->timestamps();
         });
     }

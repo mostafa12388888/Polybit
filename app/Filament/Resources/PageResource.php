@@ -34,7 +34,7 @@ class PageResource extends Resource
         return $form
             ->schema([
                 SEO::make()->schema([
-                    TextInput::make('title')->required()->columnSpanFull(),
+                    TextInput::make('title')->required()->maxLength(250)->columnSpanFull(),
                     TiptapEditor::make('body')->columnSpanFull(),
                 ]),
             ]);

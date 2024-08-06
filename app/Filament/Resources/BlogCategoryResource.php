@@ -35,13 +35,14 @@ class BlogCategoryResource extends Resource
         return $form
             ->schema([
                 SEO::make()->schema([
-                    TextInput::make('name')->required(),
-                    TextInput::make('slug'),
+                    TextInput::make('name')->required()->maxLength(250),
+                    TextInput::make('slug')->maxLength(250),
                     TiptapEditor::make('description')->profile('minimal')->columnSpanFull(),
 
                     Select::make('parent_id')->columnSpanFull()->label(__('admin.Main Category'))
                         ->searchable()->preload()->default(request()->query('ownerRecord'))
                         ->relationship('parent', 'name', fn ($query) => $query->parents())
+                        ->exists(BlogCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
                         ->visible(fn ($get) => $get('parent_id') || request()->query('ownerRecord')),
                 ])->columns(2),
             ]);

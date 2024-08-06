@@ -52,8 +52,8 @@ class SEO
 
         return [
             Group::make()->schema(Arr::only([
-                'meta_title' => TextInput::make('meta_title')->columnSpanFull(),
-                'meta_description' => Textarea::make('meta_description')->columnSpanFull(),
+                'meta_title' => TextInput::make('meta_title')->maxLength(250)->columnSpanFull(),
+                'meta_description' => Textarea::make('meta_description')->maxLength(1000)->columnSpanFull(),
                 'meta_keywords' => TagsInput::make('meta_keywords')->splitKeys([','])->reorderable()->columnSpanFull(),
                 'og_image' => CuratorPicker::make('og_image')->multiple()->typeValue('og-image')->maxItems(1)
                     ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->constrained()

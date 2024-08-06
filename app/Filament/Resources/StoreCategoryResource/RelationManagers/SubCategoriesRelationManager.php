@@ -22,8 +22,8 @@ class SubCategoriesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                TextInput::make('name')->required(),
-                TextInput::make('slug'),
+                TextInput::make('name')->maxLength(250)->required(),
+                TextInput::make('slug')->maxLength(250),
                 TiptapEditor::make('description')->profile('minimal')->columnSpanFull(),
             ]);
     }

@@ -32,7 +32,7 @@ class FaqResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    TextInput::make('question')->required()->columnSpanFull(),
+                    TextInput::make('question')->required()->maxLength(250)->columnSpanFull(),
                     TiptapEditor::make('answer')->profile('minimal')->columnSpanFull(),
                 ])->columns(2),
             ]);

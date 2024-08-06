@@ -19,8 +19,8 @@ class ValuesRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         $value_field = $this->ownerRecord->type->isColors() ?
-            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->label('admin.Color') :
-            TextInput::make('value')->maxLength(255)->hiddenLabel()
+            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hexColor()->label('admin.Color') :
+            TextInput::make('value')->maxLength(250)->hiddenLabel()
                 ->translatable(true, null, [collect(array_keys(locales()))->first() => 'required']);
 
         return $form

@@ -5,29 +5,23 @@ use Illuminate\Support\Facades\Route;
 
 // TODO: Dashboard Stats
 
-// Users
-// Projects
+// TODO: validation
+// TODO: Missing relation managers
 
-// BlogCategories
-// Posts
+// TODO: Sitemap
 
-// StoreCategories
-// Attributes
-// AttributeValues
-// TODO: Products
-
-// TODO: Orders
-
+// TODO: dynamic
+// TODO: Localization
+// TODO: cart
+// TODO: checkout
+// TODO: search
 // TODO: Contact Messages
+// TODO: Orders
+// TODO: Schema
 
-// Pages
+// TODO: after attribute is deleted, delete the duplicated products variants
 
-// FAQ
-
-// Localization
-// Settings
-
-// Home Slider
+// TODO: Settings [phones, emails, address, social-links]
 
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');
