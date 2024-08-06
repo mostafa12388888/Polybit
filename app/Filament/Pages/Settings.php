@@ -6,7 +6,10 @@ use App\Models\CuratorMedia;
 use App\Models\Setting;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Actions\Action;
-use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
@@ -25,9 +28,19 @@ class Settings extends Page
 
     public $app_name = [];
 
+    public $app_description = [];
+
+    public $address = [];
+
     public $logo = [];
 
     public $darkmode_logo = [];
+
+    public $emails = [];
+
+    public $phones = [];
+
+    public $social_links = [];
 
     public function mount(): void
     {
@@ -48,15 +61,29 @@ class Settings extends Page
                 }
             }
         }
+
+        foreach (['phone', 'email', 'social_link'] as $repeatable) {
+            if (is_array($this->{$repeatable.'s'})) {
+                $this->{$repeatable.'s'} = collect($this->{$repeatable.'s'})
+                    ->mapWithKeys(fn ($value) => [str()->uuid()->toString() => [$repeatable => $value]])->toArray();
+            }
+
+            // if(empty($this->{$repeatable.'s'})) {
+            //     $this->{$repeatable.'s'} = collect(range(1,3))
+            //         ->mapWithKeys(fn ($value) => [str()->uuid()->toString() => ''])->toArray();
+            // }
+        }
     }
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Section::make()
-                    ->schema([
-                        TextInput::make('app_name')->translatable()->reactive(),
+                Tabs::make()->schema([
+                    Tab::make('General')->schema([
+                        TextInput::make('app_name')->translatable(),
+
+                        Textarea::make('app_description')->translatable(),
 
                         CuratorPicker::make('logo')->constrained()
                             ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
@@ -64,6 +91,19 @@ class Settings extends Page
                         CuratorPicker::make('darkmode_logo')->constrained()
                             ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
                     ]),
+                    Tab::make('Contact details')->schema([
+                        Textarea::make('address')->translatable(),
+                        Repeater::make('emails')->label('admin.Email addresses')->simple(
+                            TextInput::make('email')->email(),
+                        )->defaultItems(3),
+                        Repeater::make('phones')->label('admin.Phone numbers')->simple(
+                            TextInput::make('phone'),
+                        )->defaultItems(3),
+                        Repeater::make('social_links')->simple(
+                            TextInput::make('social_link')->activeUrl(),
+                        )->defaultItems(3),
+                    ]),
+                ])->persistTabInQueryString(),
             ]);
     }
 
@@ -83,7 +123,7 @@ class Settings extends Page
 
             foreach ($data as $key => $value) {
                 if (property_exists($this, $key)) {
-                    setting([$key => $value]);
+                    setting([$key => is_array($value) ? array_filter($value) : $value]);
                 }
             }
 

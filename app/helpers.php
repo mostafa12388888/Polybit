@@ -24,7 +24,7 @@ if (! function_exists('setting')) {
     {
         if (is_array($key) && count($key) == 1) {
             foreach ($key as $key => $value) {
-                if ($key && $value) {
+                if ($key) {
                     Setting::updateOrInsert(['key' => $key], ['value' => is_array($value) ? json_encode($value) : $value]);
                 }
             }

@@ -21,6 +21,11 @@ class Setting extends Model
             'type' => 'string',
             'default' => null,
         ],
+        'app_description' => [
+            'translatable' => true,
+            'type' => 'string',
+            'default' => null,
+        ],
         'logo' => [
             'translatable' => true,
             'type' => 'media',
@@ -30,6 +35,26 @@ class Setting extends Model
             'translatable' => true,
             'type' => 'media',
             'default' => null,
+        ],
+        'address' => [
+            'translatable' => true,
+            'type' => 'string',
+            'default' => null,
+        ],
+        'emails' => [
+            'translatable' => false,
+            'type' => 'array',
+            'default' => [],
+        ],
+        'phones' => [
+            'translatable' => false,
+            'type' => 'array',
+            'default' => [],
+        ],
+        'social_links' => [
+            'translatable' => false,
+            'type' => 'array',
+            'default' => [],
         ],
     ];
 
@@ -47,9 +72,11 @@ class Setting extends Model
 
         $data = $setting->only('key', 'value');
 
-        if ($translatable && ! $wants_translation) {
+        if (($translatable && ! $wants_translation) || ! $translatable) {
             $data['value'] = $setting->getAttributes()['value'];
+        }
 
+        if ($translatable && ! $wants_translation) {
             try {
                 $data['value'] = is_null($data['value'] ?? null) ? [] : json_decode($data['value'], true);
             } catch (\Throwable $th) {
@@ -73,6 +100,7 @@ class Setting extends Model
         } elseif ($type == 'array') {
             try {
                 $value = is_null($value ?? null) ? [] : json_decode($value, true);
+                $value = array_filter($value);
             } catch (\Throwable $th) {
                 //
             }
