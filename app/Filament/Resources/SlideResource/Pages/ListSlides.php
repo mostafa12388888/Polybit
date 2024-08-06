@@ -3,12 +3,13 @@
 namespace App\Filament\Resources\SlideResource\Pages;
 
 use App\Filament\Resources\SlideResource;
+use App\Filament\Traits\ListRecords\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListSlides extends ListRecords
 {
-    use ListRecords\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = SlideResource::class;
 

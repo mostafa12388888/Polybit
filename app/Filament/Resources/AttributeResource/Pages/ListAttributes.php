@@ -3,12 +3,13 @@
 namespace App\Filament\Resources\AttributeResource\Pages;
 
 use App\Filament\Resources\AttributeResource;
+use App\Filament\Traits\ListRecords\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListAttributes extends ListRecords
 {
-    use ListRecords\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = AttributeResource::class;
 
