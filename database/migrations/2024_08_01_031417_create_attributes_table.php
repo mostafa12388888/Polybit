@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('name');
             $table->string('slug')->unique()->index();
             $table->tinyInteger('type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

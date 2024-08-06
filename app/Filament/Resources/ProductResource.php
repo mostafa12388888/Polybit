@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\StoreCategory;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
+use Closure;
 use Filament\Forms\Components\Actions\Action as FormAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -150,7 +151,7 @@ class ProductResource extends Resource
 
                                             return $attribute ? Select::make('attribute_value_id')->label($attribute->name)->hiddenLabel()
                                                 ->prefix($attribute->name)->searchable()->preload()
-                                                ->required()->in($values)
+                                                ->required()->in($values ?: [])
                                                 ->relationship('attribute_value', 'value', fn ($query) => $query->whereIn('id', $values ?? []))
                                                 ->getOptionLabelFromRecordUsing(fn ($record) => $record->title ? $record->title : $record->value) : null;
                                         })
@@ -158,7 +159,26 @@ class ProductResource extends Resource
                                         ->saveRelationshipsUsing(function ($record, $state) {
                                             $record->attribute_values()->sync(collect($state)->pluck('attribute_value_id')->toArray());
                                         })
-                                        ->minItems($attributes->count())->maxItems($attributes->count())->defaultItems($attributes->count()),
+                                        ->minItems($attributes->count())->maxItems($attributes->count())->defaultItems($attributes->count())
+                                        ->rule(
+                                            fn ($component) => function (string $attribute, $value, Closure $fail) use ($component) {
+                                                $variants = $component->getContainer()->getParentComponent()->getState();
+                                                $variants_values = collect($variants)->pluck('attribute_values_product_variant')
+                                                    ->map(fn ($attribute) => collect($attribute ?: [])->map(fn ($a) => (int) $a['attribute_value_id'])->values())->toArray();
+
+                                                $values = collect($value)->map(fn ($a) => (int) $a['attribute_value_id'])->values()->toArray();
+
+                                                $occurances = 0;
+                                                foreach ($variants_values as $variant_values) {
+                                                    if ($values == $variant_values) {
+                                                        $occurances++;
+                                                    }
+                                                }
+                                                if ($occurances > 1) {
+                                                    $fail(__('admin.The variant is duplicated'));
+                                                }
+                                            },
+                                        ),
                                 ];
                             })
                             ->hintAction(

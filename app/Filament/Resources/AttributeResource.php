@@ -7,7 +7,6 @@ use App\Filament\Resources\AttributeResource\Pages;
 use App\Filament\Resources\AttributeResource\RelationManagers\ValuesRelationManager;
 use App\Models\Attribute;
 use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -47,10 +46,7 @@ class AttributeResource extends Resource
                     Repeater::make('attribute_values')
                         ->relationship()
                         ->schema(fn ($get) => $get('type') == AttributeType::COLORS->value ? [
-                            Group::make([
-                                ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hexColor()->label('admin.Color'),
-                                TextInput::make('title')->required()->maxLength(250),
-                            ])->columns(2),
+                            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hexColor()->label('admin.Color'),
                         ] : [
                             TextInput::make('value')->required()->maxLength(250)->hiddenLabel()->translatable(),
                         ])

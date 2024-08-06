@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // TODO: Dashboard Stats
 
+// TODO: after attribute is deleted, delete the duplicated products variants
 // TODO: Sitemap
 
 // TODO: dynamic
@@ -15,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 // TODO: Contact Messages
 // TODO: Orders
 // TODO: Schema
-
-// TODO: after attribute is deleted, delete the duplicated products variants
-
-// TODO: Settings [phones, emails, address, social-links]
 
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');

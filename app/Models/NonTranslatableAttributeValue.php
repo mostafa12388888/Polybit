@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NonTranslatableAttributeValue extends Model
 {
-    use Sluggable;
+    use Sluggable, SoftDeletes;
 
     protected $table = 'attribute_values';
 
