@@ -68,8 +68,9 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->searchable(),
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
+                TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
@@ -96,6 +97,9 @@ class PostResource extends Resource
                 TextEntry::make('title'),
                 TextEntry::make('slug'),
                 TextEntry::make('created_at')->dateTime(),
+
+                TextEntry::make('category.name')->label('admin.Category')
+                    ->url(fn (Post $post): string => BlogCategoryResource::getUrl('view', ['record' => $post->category])),
             ])->columns(2),
 
             \Filament\Infolists\Components\Section::make()->schema([

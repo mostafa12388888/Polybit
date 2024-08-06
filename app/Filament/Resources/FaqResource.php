@@ -42,8 +42,9 @@ class FaqResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('question')->sortable()->searchable(),
+                TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

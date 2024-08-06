@@ -8,6 +8,8 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\Concerns\Translatable;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Columns\ColorColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ValuesRelationManager extends RelationManager
@@ -43,13 +45,11 @@ class ValuesRelationManager extends RelationManager
             ->pluralModelLabel(__('admin.attribute values'))
             ->recordTitleAttribute('value')
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 $this->ownerRecord->type->isColors() ?
-                    Tables\Columns\ColorColumn::make('value') :
-                    Tables\Columns\TextColumn::make('value'),
-
-                Tables\Columns\TextColumn::make('title'),
+                    ColorColumn::make('value')->sortable()->searchable() :
+                    TextColumn::make('value')->sortable()->searchable(),
+                TextColumn::make('title')->sortable()->searchable()->toggleable(true, ! $this->ownerRecord->type->isColors()),
             ])
             ->filters([
                 //

@@ -74,9 +74,10 @@ class AttributeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('name')->limit(50)->searchable()->sortable(),
                 TextColumn::make('values_count')->counts('values')->toggleable()->sortable(),
+                TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])
             ->filters([
                 //

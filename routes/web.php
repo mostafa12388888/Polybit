@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 // TODO: Dashboard Stats
 
-// TODO: validation
-// TODO: Missing relation managers
-
 // TODO: Sitemap
 
 // TODO: dynamic

@@ -40,6 +40,7 @@ class UserResource extends Resource
                     ->dehydrated(fn ($state) => filled($state))
                     ->required(fn (string $context): bool => $context === 'create'),
                 Toggle::make('is_admin')->rules('boolean'),
+                TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])->columns(2)->columnSpan(2),
         ]);
     }
@@ -48,8 +49,8 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('name')->searchable(),
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('email')->toggleable()->searchable(),
                 ToggleColumn::make('is_admin')->toggleable()
                     ->disabled(fn ($record) => $record->is(auth()->user())),

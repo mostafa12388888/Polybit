@@ -23,13 +23,6 @@ class EditBlogCategory extends EditRecord
         ];
     }
 
-    public function getRelationManagers(): array
-    {
-        return [];
-
-        return $this->getRecord()->parent_id ? [] : parent::getRelationManagers();
-    }
-
     public function getRecordTitle(): string|Htmlable
     {
         return $this->getRecord()->parent_id ? __('admin.Sub Category') : __('admin.Blog Category');

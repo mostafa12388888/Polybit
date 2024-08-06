@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\StoreCategoryResource\RelationManagers;
 
 use App\Filament\Resources\StoreCategoryResource;
+use App\Filament\Traits\RelationManagers\Translatable;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\Concerns\Translatable;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -36,7 +36,7 @@ class SubCategoriesRelationManager extends RelationManager
             ->pluralModelLabel(__('admin.sub categories'))
             ->recordTitleAttribute('name')
             ->columns([
-                TextColumn::make('id')->sortable(),
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('name')->sortable()->searchable(),
             ])
             ->filters([

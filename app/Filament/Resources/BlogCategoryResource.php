@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlogCategoryResource\Pages;
-use App\Filament\Resources\BlogCategoryResource\RelationManagers\SubCategoriesRelationManager;
 use App\Filament\SEO;
 use App\Filament\Traits\Seoable;
 use App\Models\BlogCategory;
@@ -53,9 +52,10 @@ class BlogCategoryResource extends Resource
         return $table
             ->modifyQueryUsing(fn ($query) => $query->parents())
             ->columns([
-                TextColumn::make('id')->sortable(),
+                TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('sub_categories_count')->counts('sub_categories')->toggleable()->sortable(),
+                TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])
             ->filters([
                 //
@@ -102,7 +102,7 @@ class BlogCategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            SubCategoriesRelationManager::class,
+            //
         ];
     }
 
