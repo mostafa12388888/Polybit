@@ -5,17 +5,51 @@ use App\Models\Setting;
 if (! function_exists('direction')) {
     function direction()
     {
-        return request()->dir == 'rtl' ? 'rtl' : 'ltr';
+        return collect(locales(false))->where('code', app()->getLocale())->first()['direction'] ?? 'rtl';
     }
 }
 
 if (! function_exists('locales')) {
-    function locales()
+    function locales($key_value = true)
     {
-        return [
+        return $key_value ? [
             'ar' => 'العربية',
             'en' => 'English',
+        ] : [
+            [
+                'code' => 'ar',
+                'name' => 'العربية',
+                'flag' => 'eg',
+                'direction' => 'rtl',
+                'default' => true,
+            ],
+            [
+                'code' => 'en',
+                'name' => 'English',
+                'flag' => 'us',
+                'direction' => 'ltr',
+                'default' => false,
+            ],
         ];
+    }
+}
+
+if (! function_exists('localized_url')) {
+    function localized_url($locale)
+    {
+        $default = collect(locales(false))->where('code', $locale)->first()['default'] ?? false;
+
+        $url = request()->getRequestUri();
+
+        if (in_array(request()->segment(1), array_keys(locales()))) {
+            $url = substr($url, strlen(request()->segment(1)) + 1);
+        }
+
+        if (! $default) {
+            $url = $locale.$url;
+        }
+
+        return url($url);
     }
 }
 
@@ -33,8 +67,6 @@ if (! function_exists('setting')) {
         $settings = Cache::remember('settings', 60 * 60, function () {
             return Setting::whereNull('user_id')->with('media')->get();
         });
-
-        $settings = Setting::whereNull('user_id')->with('media')->get();
 
         foreach (explode('.', $key) as $key) {
             if (! isset($setting)) {
