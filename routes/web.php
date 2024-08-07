@@ -5,10 +5,22 @@ use Illuminate\Support\Facades\Route;
 
 // TODO: Dashboard Stats
 
-// TODO: after attribute is deleted, delete the duplicated products variants
 // TODO: Sitemap
 
-// TODO: dynamic
+// TODO: dynamicData
+// TODO: header
+// TODO: footer
+// TODO: home
+// TODO: products
+// TODO: product
+// TODO: posts
+// TODO: post
+// TODO: projects
+// TODO: project
+// TODO: faqs
+// TODO: pages
+// TODO: contact
+
 // TODO: Localization
 // TODO: cart
 // TODO: checkout
@@ -24,9 +36,11 @@ Route::view('/products', 'products.index')->name('products.index');
 Route::view('/products/{product}', 'products.show')->name('products.show');
 Route::view('/cart', 'products.cart')->name('cart');
 Route::view('/request-quote', 'products.request-quote')->name('request-quote');
+Route::view('/store-categories/{store_category}', 'products.index')->name('store-categories.show');
 
 Route::view('/posts', 'posts.index')->name('posts.index');
 Route::view('/posts/{post}', 'posts.show')->name('posts.show');
+Route::view('/blog-categories/{blog_catgeory}', 'posts.index')->name('blog-categories.show');
 
 Route::view('/projects', 'projects.index')->name('projects.index');
 Route::view('/projects/{post}', 'projects.show')->name('projects.show');

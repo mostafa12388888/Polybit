@@ -19,6 +19,11 @@ class Post extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function main_category()
     {
         return $this->belongsTo(BlogCategory::class, 'main_category_id');

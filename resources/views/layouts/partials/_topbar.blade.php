@@ -2,7 +2,7 @@
 <div class="md:bg-primary-200/50 md:dark:bg-dark-900 px-4 md:px-6 mt-2 md:mt-0 md:text-[.7rem]">
     <nav class="container mx-auto flex flex-col md:flex-row flex-wrap md:items-center justify-between gap-4">
         <div class="max-md:hidden dark:border-dark-700 p-4 md:p-0 flex flex-wrap items-center justify-center gap-4">
-            <x-link class="!py-1" :href="route('pages.show', str()->slug('About Us'))">{{ __('About us') }}</x-link>
+            <x-link class="!py-1" :href="route('pages.show', $pages->first())">{{ $pages->first()->title }}</x-link>
             <x-link class="!py-1" :href="route('contact-us')">{{ __('Contact') }}</x-link>
         </div>
         
@@ -30,7 +30,7 @@
                             <x-button styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
                                 <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
                                     <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
-                                    <span>{{ request()->dir == 'rtl' ? 'العربية' : 'English' }}</span>
+                                    <span>{{ locales()[app()->getLocale()] ?? '' }}</span>
                                 </div>
                                 
                                 <x-icons.chevron-down class="md:hidden !w-4 !h-4" />
@@ -39,27 +39,29 @@
                     </x-slot>
     
                     <x-slot:content>
-                        <x-dropdown.link :navigate="false" class="py-4" href="{{ request()->url() }}?dir=rtl">
-                            <x-img loading="lazy" class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/eg.webp" />
-                            <span>العربية</span>
-                        </x-link>
-                        <x-dropdown.link :navigate="false" class="py-4" href="{{ request()->url() }}">
-                            <x-img loading="lazy" class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/us.webp" />
-                            <span>English</span>
-                        </x-link>
+                        @foreach (locales(false) as $locale)
+                            <x-dropdown.link :navigate="false" class="py-4" href="{{ localized_url($locale['code']) }}">
+                                <x-img loading="lazy" class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" />
+                                <span>{{ $locale['name'] }}</span>
+                            </x-link>
+                        @endforeach
                     </x-slot>
                 </x-dropdown>
             </div>
 
-            <x-link class="!py-1 hidden md:flex items-center gap-1.5 md:flex-row-reverse max-md:order-2" href="tel:+201068977712">
-                <x-icons.phone class="!w-4 !h-4" stroke-width="1" />
-                <span dir="ltr">+201068977712</span>
-            </x-link>
+            @if ($phone = collect(setting('phones') ?: [])->first())
+                <x-link class="!py-1 hidden md:flex items-center gap-1.5 md:flex-row-reverse max-md:order-2" href="tel:{{ $phone }}">
+                    <x-icons.phone class="!w-4 !h-4" stroke-width="1" />
+                    <span dir="ltr">{{ $phone }}</span>
+                </x-link>
+            @endif
             
-            <x-link class="!py-1 hidden md:flex items-center gap-1.5 md:flex-row-reverse max-md:order-3" href="mail:info@ichemeg.com">
-                <x-icons.envelope class="!w-4 !h-4" stroke-width="1" />
-                <span dir="ltr">info@ichemeg.com</span>
-            </x-link>
+            @if ($email = collect(setting('emails') ?: [])->first())
+                <x-link class="!py-1 hidden md:flex items-center gap-1.5 md:flex-row-reverse max-md:order-3" href="mail:{{ $email }}">
+                    <x-icons.envelope class="!w-4 !h-4" stroke-width="1" />
+                    <span dir="ltr">{{ $email }}</span>
+                </x-link>
+            @endif
         </div>
     </nav>
 </div>

@@ -15,6 +15,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Facades\Cache;
 
 class Settings extends Page
 {
@@ -68,10 +69,10 @@ class Settings extends Page
                     ->mapWithKeys(fn ($value) => [str()->uuid()->toString() => [$repeatable => $value]])->toArray();
             }
 
-            // if(empty($this->{$repeatable.'s'})) {
-            //     $this->{$repeatable.'s'} = collect(range(1,3))
-            //         ->mapWithKeys(fn ($value) => [str()->uuid()->toString() => ''])->toArray();
-            // }
+            if (empty($this->{$repeatable.'s'})) {
+                $this->{$repeatable.'s'} = collect(range(1, 3))
+                    ->mapWithKeys(fn ($value) => [str()->uuid()->toString() => ['']])->toArray();
+            }
         }
     }
 
@@ -126,6 +127,8 @@ class Settings extends Page
                     setting([$key => is_array($value) ? array_filter($value) : $value]);
                 }
             }
+
+            Cache::forget('settings');
 
             Notification::make()->title(__('admin.Saved.'))->success()->send();
 

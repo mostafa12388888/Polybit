@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Translatable\HasTranslations;
 
 class StoreCategory extends Model
@@ -18,6 +19,11 @@ class StoreCategory extends Model
     protected $casts = ['description' => 'json'];
 
     protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function parent()
     {
@@ -56,5 +62,14 @@ class StoreCategory extends Model
             'description' => str($this->description)->limit(200),
             'keywords' => explode(' ', $this->name),
         ];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(fn () => Cache::forget('store_categories'));
+
+        static::deleted(fn () => Cache::forget('store_categories'));
     }
 }

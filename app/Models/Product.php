@@ -20,6 +20,11 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function main_category()
     {
         return $this->belongsTo(StoreCategory::class, 'main_category_id');

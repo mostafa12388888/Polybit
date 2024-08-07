@@ -117,9 +117,9 @@ class Setting extends Model
 
         static::saving(function (self $setting) {
             $setting->value = is_array($setting->value) ? json_encode($setting->value) : $setting->value;
-            Cache::clear('settings');
+            Cache::forget('settings');
         });
 
-        static::saved(fn () => Cache::clear('settings'));
+        static::saved(fn () => Cache::forget('settings'));
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
@@ -18,4 +19,18 @@ class Page extends Model
     protected $casts = ['body' => 'json'];
 
     protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(fn () => Cache::forget('pages'));
+
+        static::deleted(fn () => Cache::forget('pages'));
+    }
 }

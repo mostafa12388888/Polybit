@@ -10,30 +10,26 @@
                 </x-link>
                 <!-- End Logo -->
     
-                <x-link href="tel:+201022000050" class="flex gap-2">
-                    <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-                    <span>+20 1022000050</span>
-                </x-link>
-    
-                <x-link href="tel:+201080029701" class="flex gap-2">
-                    <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-                    <span>+20 1080029701</span>
-                </x-link>
-    
-                <x-link href="tel:+201068977712" class="flex gap-2">
-                    <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-                    <span>+20 1068977712</span>
-                </x-link>
-    
-                <x-link href="mail:info@ichemeg.com" class="flex gap-2">
-                    <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-                    <span>info@ichemeg.com</span>
-                </x-link>
+                @foreach (setting('phones') ?: [] as $phone)
+                    <x-link href="tel:{{ $phone }}" class="flex gap-2">
+                        <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                        <span dir="ltr">{{ $phone }}</span>
+                    </x-link>
+                @endforeach
+                
+                @foreach (setting('emails') ?: [] as $email)
+                    <x-link href="mail:{{ $email }}" class="flex gap-2">
+                        <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                        <span>{{ $email }}</span>
+                    </x-link>
+                @endforeach
 
-                <div class="flex gap-2 text-gray-700 dark:text-dark-100">
-                    <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose hidden sm:inline" width-stroke="1" />
-                    <p class="sm:max-w-64 text-balance">22 El-Shaheed Mohammed Abd El-Hady, Nasr City, Cairo</p>
-                </div>
+                @if ($address = setting('address'))
+                    <div class="flex gap-2 text-gray-700 dark:text-dark-100">
+                        <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose hidden sm:inline" width-stroke="1" />
+                        <p class="sm:max-w-64 text-balance">{{ $address }}</p>
+                    </div>
+                @endif
 
                 <div class="w-full flex-grow flex-wrap flex gap-2 mt-4 max-sm:items-center max-sm:justify-center max-sm:text-center max-w-96">
                     @include('layouts.partials._social-links')
@@ -44,16 +40,16 @@
                 <div class="flex flex-col gap-3 flex-grow min-w-64">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</h4>
 
-                    @foreach (range(1,5) as $item)
-                        <x-link :href="route('products.index')">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                    @foreach ($store_categories->take(5) as $store_category)
+                        <x-link :href="route('store-categories.show', $store_category)">{{ $store_category->name }}</x-link>
                     @endforeach
                 </div>
                 
                 <div class="flex flex-col gap-3 flex-grow min-w-64">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</h4>
                     
-                    @foreach (range(1,5) as $item)
-                        <x-link :href="route('posts.index')">{{ str()->limit(fake()->sentence(rand(3, 6)), 35) }}</x-link>
+                    @foreach ($blog_categories->take(5) as $blog_category)
+                        <x-link :href="route('blog-categories.show', $blog_category)">{{ $blog_category->name }}</x-link>
                     @endforeach
                 </div>
 
@@ -70,9 +66,9 @@
             <div class="w-full flex-grow flex flex-wrap gap-x-6 gap-y-3 items-center justify-center">
                 <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
                 <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
-                <x-link :href="route('pages.show', str()->slug('About Us'))">{{ __('About Us') }}</x-link>
-                <x-link :href="route('pages.show', str()->slug('Privacy Policy'))">{{ __('Privacy Policy') }}</x-link>
-                <x-link :href="route('pages.show', str()->slug('Terms Of Service'))">{{ __('Terms Of Service') }}</x-link>
+                @foreach ($pages->take(3) as $page)
+                    <x-link :href="route('pages.show', $page)">{{ $page->title }}</x-link>
+                @endforeach
                 <x-link :href="route('contact-us')" class="lg:hidden">{{ __('Contact Us') }}</x-link>
                 <x-link :href="route('faq')" class="lg:hidden">{{ __('FAQ') }}</x-link>
             </div>
