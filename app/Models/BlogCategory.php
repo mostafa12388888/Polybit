@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\HasCuratorMedia;
+use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Translatable\HasTranslations;
 
 class BlogCategory extends Model
 {
-    use HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasTranslations, Seoable, Sluggable;
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
@@ -38,6 +39,16 @@ class BlogCategory extends Model
     public function posts()
     {
         return $this->hasMany(Post::class, 'category_id');
+    }
+
+    public function sub_categories_posts()
+    {
+        return $this->hasManyThrough(Post::class, self::class, 'parent_id', 'category_id');
+    }
+
+    public function image()
+    {
+        return $this->first_media()->where('media_items.type', 'post-image');
     }
 
     public function is_parent_category()

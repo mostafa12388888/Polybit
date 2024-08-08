@@ -4,12 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlogCategoryResource\Pages;
 use App\Filament\SEO;
-use App\Filament\Traits\Seoable;
 use App\Models\BlogCategory;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Blade;
 
 class BlogCategoryResource extends Resource
 {
-    use Seoable, Translatable;
+    use Translatable;
 
     protected static ?string $model = BlogCategory::class;
 
@@ -43,6 +45,11 @@ class BlogCategoryResource extends Resource
                         ->relationship('parent', 'name', fn ($query) => $query->parents())
                         ->exists(BlogCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
                         ->visible(fn ($get) => $get('parent_id') || request()->query('ownerRecord')),
+
+                    CuratorPicker::make('image')->multiple()->maxItems(1)
+                        ->typeValue('category-image')
+                        ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->constrained()
+                        ->relationship('media_items', 'id')->columnSpanFull(),
                 ])->columns(2),
             ]);
     }
@@ -53,6 +60,7 @@ class BlogCategoryResource extends Resource
             ->modifyQueryUsing(fn ($query) => $query->parents())
             ->columns([
                 TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                CuratorColumn::make('media')->label('admin.Image')->circular()->size(40)->limit(3)->toggleable(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('sub_categories_count')->counts('sub_categories')->toggleable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
@@ -89,6 +97,8 @@ class BlogCategoryResource extends Resource
 
                     return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
                 })->html()->columnSpanFull(),
+
+                ViewEntry::make('media')->view('filament.infolists.entries.media', ['type' => 'category-image'])->label('admin.Image')->columnSpanFull(),
 
                 TextEntry::make('parent.name')->label('admin.Main Category')
                     ->visible(fn (BlogCategory $category) => $category->parent_id)

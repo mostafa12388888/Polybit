@@ -17,11 +17,11 @@
         }).on('mount.after', () => $el.classList.remove('opacity-0')).mount());">
             <div data-glide-el="track" class="glide__track">
                 <ul class="glide__slides">
-                    @foreach (range(1,6) as $slide)
+                    @foreach ($projects as $project)
                         <li class="glide__slide h-full relative">
-                            <x-link :href="route('projects.show', str()->slug(fake()->sentence(4)))" class="group flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none border dark:border-none !rounded-md overflow-hidden">
+                            <x-link :href="route('projects.show', $project)" class="group flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none border dark:border-none !rounded-md overflow-hidden">
                                 <div class="relative">
-                                    <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="w-full max-sm:aspect-video sm:h-44 md:h-56 lg:h-72 xl:h-56 2xl:h-72 object-cover" alt="" />
+                                    <x-curator-glider fallback="logo" :media="$project->images->first()" format="webp" width="480" height="280" fit="crop" quality="70" class="w-full max-sm:aspect-video sm:h-44 md:h-56 lg:h-72 xl:h-56 2xl:h-72 object-cover" />
     
                                     <div class="group-hover:opacity-100 opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-dark-900/60  flex items-center justify-center text-white">
                                         <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />
@@ -29,8 +29,8 @@
                                 </div>
                                 
                                 <div class="flex flex-col gap-3 px-6 py-8">
-                                    <h5 class="font-semibold truncate lg:text-lg">{{ str()->title(fake()->sentence(3)) }}</h5>
-                                    <p class="font-light truncate">{{ str()->title(fake()->sentence(3)) }}</p>
+                                    <h5 class="font-semibold truncate lg:text-lg">{{ $project->title }}</h5>
+                                    <p class="font-light truncate">{{ str()->limit($project->subtitle, 300) }}</p>
                                 </div>
                             </x-link>
                         </li>

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Seoable
 {
-    public static function resolveRecordRouteBinding(int|string $key): ?Model
+    protected function resolveRecord(int|string $key): Model
     {
-        $record = parent::resolveRecordRouteBinding($key);
+        $record = parent::resolveRecord($key);
 
         $record?->loadMetadata();
 

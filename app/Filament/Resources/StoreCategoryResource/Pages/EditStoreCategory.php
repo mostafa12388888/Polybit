@@ -4,13 +4,14 @@ namespace App\Filament\Resources\StoreCategoryResource\Pages;
 
 use App\Filament\Resources\StoreCategoryResource;
 use App\Filament\Traits\EditRecord\Translatable;
+use App\Filament\Traits\Seoable;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Contracts\Support\Htmlable;
 
 class EditStoreCategory extends EditRecord
 {
-    use Translatable;
+    use Seoable, Translatable;
 
     protected static string $resource = StoreCategoryResource::class;
 

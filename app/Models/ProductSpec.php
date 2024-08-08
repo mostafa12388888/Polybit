@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Traits\HasCuratorMedia;
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class ProductSpec extends Model
 {

@@ -16,6 +16,13 @@ trait HasCuratorMedia
             ->orderBy('order');
     }
 
+    public function first_media()
+    {
+        return $this->hasOneThrough(CuratorMedia::class, MediaItem::class, 'mediable_id', 'id', 'id', 'media_id')
+            ->where('mediable_type', $this->getMorphClass())
+            ->orderBy('order');
+    }
+
     public function media_items()
     {
         return $this->morphMany(MediaItem::class, 'mediable')->orderBy('order');

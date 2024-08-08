@@ -17,9 +17,9 @@
         }).on('mount.after', () => $el.classList.remove('opacity-0')).mount());">
             <div data-glide-el="track" class="glide__track">
                 <ul class="glide__slides">
-                    @foreach (range(1,6) as $slide)
+                    @foreach ($posts as $post)
                         <li class="glide__slide h-full relative">
-                            @include('posts.partials._post-card-vertical')
+                            @include('posts.partials._post-card-vertical', compact('post'))
                         </li>
                     @endforeach
                 </ul>

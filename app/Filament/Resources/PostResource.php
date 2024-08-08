@@ -4,14 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\SEO;
-use App\Filament\Traits\Seoable;
 use App\Models\BlogCategory;
 use App\Models\Post;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Blade;
 
 class PostResource extends Resource
 {
-    use Seoable, Translatable;
+    use Translatable;
 
     protected static ?string $model = Post::class;
 
@@ -60,6 +61,12 @@ class PostResource extends Resource
                                 return $query->subCategories();
                             }),
                     ])->columnSpanFull(),
+
+                    CuratorPicker::make('image')->multiple()->maxItems(1)
+                        ->typeValue('post-image')
+                        ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->constrained()
+                        ->relationship('media_items', 'id')->columnSpanFull(),
+
                 ])->columns(2),
             ]);
     }
@@ -71,6 +78,7 @@ class PostResource extends Resource
                 TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
+                TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
@@ -98,8 +106,12 @@ class PostResource extends Resource
                 TextEntry::make('slug'),
                 TextEntry::make('created_at')->dateTime(),
 
+                ViewEntry::make('media')->view('filament.infolists.entries.media', ['type' => 'post-image'])->label('admin.Image')->columnSpanFull(),
+
                 TextEntry::make('category.name')->label('admin.Category')
                     ->url(fn (Post $post): string => BlogCategoryResource::getUrl('view', ['record' => $post->category])),
+
+                ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
             ])->columns(2),
 
             \Filament\Infolists\Components\Section::make()->schema([

@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\SEO;
-use App\Filament\Traits\Seoable;
 use App\Models\Project;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
@@ -28,7 +27,7 @@ use Illuminate\Support\Facades\Blade;
 
 class ProjectResource extends Resource
 {
-    use Seoable, Translatable;
+    use Translatable;
 
     protected static ?string $model = Project::class;
 
@@ -81,6 +80,7 @@ class ProjectResource extends Resource
                 TextColumn::make('subtitle')->wrap()->limit(200)->lineClamp(2)
                     ->toggleable(true, true)->searchable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
+                TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
@@ -126,6 +126,8 @@ class ProjectResource extends Resource
                 })->html()->columnSpanFull(),
 
                 TextEntry::make('created_at')->dateTime(),
+
+                ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
             ])->columns(2)->columnSpan(2),
         ])->columns(2);
     }

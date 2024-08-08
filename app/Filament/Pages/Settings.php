@@ -53,7 +53,11 @@ class Settings extends Page
             $translatable = optional($allowed_settings[$setting->key] ?? [])['translatable'];
 
             if ($translatable) {
-                foreach ($this->{$setting->key} as $locale => $value) {
+                foreach (array_keys(locales()) as $locale) {
+                    $this->{$setting->key}[$locale] = $this->{$setting->key}[$locale] ?? null;
+                }
+
+                foreach ($this->{$setting->key} ?: [] as $locale => $value) {
                     if ($value instanceof CuratorMedia) {
                         $this->{$setting->key}[$locale] = [
                             (string) str()->uuid() => $value,
@@ -122,7 +126,7 @@ class Settings extends Page
         try {
             $data = $this->form->getState();
 
-            foreach ($data as $key => $value) {
+            foreach ($data ?: [] as $key => $value) {
                 if (property_exists($this, $key)) {
                     setting([$key => is_array($value) ? array_filter($value) : $value]);
                 }

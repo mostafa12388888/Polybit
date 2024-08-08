@@ -52,13 +52,13 @@
     
         <div class="glide__bullets max-md:hidden" data-glide-el="controls[nav]">
             <button class="glide__bullet dark:bg-dark-300" data-glide-dir="=0">
-                <span class="sr-only">{{ __('Slide 1') }}</span>
+                <span class="sr-only">{{ __('Slide :slide_index', ['slide_index' => 1]) }}</span>
             </button>
             <button class="glide__bullet dark:bg-dark-300" data-glide-dir="=1">
-                <span class="sr-only">{{ __('Slide 2') }}</span>
+                <span class="sr-only">{{ __('Slide :slide_index', ['slide_index' => 2]) }}</span>
             </button>
             <button class="glide__bullet dark:bg-dark-300" data-glide-dir="=2">
-                <span class="sr-only">{{ __('Slide 3') }}</span>
+                <span class="sr-only">{{ __('Slide :slide_index', ['slide_index' => 3]) }}</span>
             </button>
         </div>
     </div>

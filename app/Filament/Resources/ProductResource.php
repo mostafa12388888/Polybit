@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\SEO;
-use App\Filament\Traits\Seoable;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Product;
@@ -35,7 +34,7 @@ use Illuminate\Support\Facades\Blade;
 
 class ProductResource extends Resource
 {
-    use Seoable, Translatable;
+    use Translatable;
 
     protected static ?string $model = Product::class;
 
@@ -225,6 +224,7 @@ class ProductResource extends Resource
                 TextColumn::make('sku')->toggleable(true, true)->searchable()->sortable(),
                 TextColumn::make('price')->toggleable(true, true)->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
+                TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
             ->filters([
                 //
@@ -267,6 +267,8 @@ class ProductResource extends Resource
 
                         return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
                     }),
+
+                    ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
                 ])->columns(2),
 
                 \Filament\Infolists\Components\Tabs\Tab::make('Variants')->schema([

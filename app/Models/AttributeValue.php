@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Spatie\Translatable\HasTranslations;
+use App\Traits\HasTranslations;
 
 class AttributeValue extends NonTranslatableAttributeValue
 {

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Traits\HasCuratorMedia;
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Translatable\HasTranslations;
 
 class Setting extends Model
 {

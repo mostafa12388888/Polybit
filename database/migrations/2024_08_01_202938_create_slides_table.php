@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->json('actions')->nullable();
             $table->string('slider')->nullable();
+            $table->json('locales')->nullable();
             $table->timestamps();
         });
     }

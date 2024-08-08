@@ -28,7 +28,9 @@ return [
     'disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),
     'glide' => [
         'server' => \Awcodes\Curator\Glide\DefaultServerFactory::class,
-        'fallbacks' => [],
+        'fallbacks' => [
+            \App\Filament\Classes\LogoGliderFallback::class,
+        ],
         'route_path' => 'uploads',
     ],
     'image_crop_aspect_ratio' => null,

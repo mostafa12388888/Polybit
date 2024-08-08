@@ -20,16 +20,17 @@
         }).on('mount.after', () => $el.classList.remove('h-[287px]', 'opacity-0')).mount());">
             <div data-glide-el="track" class="glide__track">
                 <ul class="glide__slides">
-                    @foreach (range(1,6) as $slide)
+                    @foreach ($store_categories->take(6) as $store_category)
                         <li class="glide__slide h-full">
-                            <x-link href="#" class="group flex items-center text-start gap-3 !px-3 !py-10 aspect-video bg-white dark:bg-dark-900/40 shadow-md shadow-dark-200 dark:shadow-none !rounded-xl mx-2 my-10 overflow-hidden relative" :href="route('products.index')">
-                                <x-img loading="lazy" src="{{ asset('storage/slide'. rand(1,3) .'.webp') }}" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" alt="" />
+                            <x-link href="#" class="group flex items-center text-start gap-3 !px-3 !py-10 aspect-video bg-white dark:bg-dark-900/40 shadow-md shadow-dark-200 dark:shadow-none !rounded-xl mx-2 my-10 overflow-hidden relative" :href="route('store-categories.show', $store_category)">
+                                <x-curator-glider :media="$store_category->media->first()" format="webp" width="1280" height="480" fit="crop" quality="70" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" />
+
 
                                 <div class="group-hover:bg-primary-900/60 transition-colors absolute w-full h-full top-0 left-0 bg-dark-900/40"></div>
                                 
                                 <div class="flex-grow flex flex-col gap-3 py-2 h-28 relative z-10 text-white text-center items-center justify-center drop-shadow-[0_0_15px_rgba(0,0,0,.6)]">
-                                    <h5 class="font-semibold line-clamp-2 text-base lg:text-lg">{{ str()->title(fake()->sentence(3)) }}</h5>
-                                    <p>{{ __(':products_count Products', ['products_count' => rand(5, 40)]) }}</p>
+                                    <h5 class="font-semibold line-clamp-2 text-base lg:text-lg">{{ $store_category->name }}</h5>
+                                    <p>{{ __(':products_count Products', ['products_count' => $store_category->sub_categories_products_count]) }}</p>
                                 </div>
                             </x-link>
                         </li>

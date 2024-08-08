@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Enums\AttributeType;
+use App\Traits\HasTranslations;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Translatable\HasTranslations;
 
 class Attribute extends Model
 {

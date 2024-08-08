@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
+use App\Traits\HasCuratorMedia;
+use App\Traits\HasLocales;
+use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Facades\Cache;
 
 class Post extends Model
 {
-    use HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasLocales, HasTranslations, Seoable, Sluggable;
 
     protected $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $useFallbackLocale = false;
 
-    protected $casts = ['body' => 'json'];
+    protected $casts = ['body' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
 
@@ -34,6 +37,11 @@ class Post extends Model
         return $this->belongsTo(BlogCategory::class, 'category_id');
     }
 
+    public function image()
+    {
+        return $this->first_media()->where('media_items.type', 'post-image');
+    }
+
     public function getDefaultMetadata()
     {
         return [
@@ -46,6 +54,10 @@ class Post extends Model
     protected static function boot()
     {
         parent::boot();
+
+        static::saved(fn () => collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('posts_'.$locale)));
+
+        static::deleted(fn () => collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('posts_'.$locale)));
 
         static::saving(function (self $post) {
             try {

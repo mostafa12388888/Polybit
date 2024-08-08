@@ -1,13 +1,21 @@
 <x-app-layout>
-    @include('home.partials._top-slider')
+    @if ($slides->count())
+        @include('home.partials._top-slider')
+    @endif
 
     @include('home.partials._features')
 
-    @include('home.partials._store-categories')
+    @if ($store_categories->count())
+        @include('home.partials._store-categories')
+    @endif
     
-    @include('home.partials._projects')
-
+    @if ($projects->count())
+        @include('home.partials._projects')
+    @endif
+    
     @include('home.partials._contact')
-
-    @include('home.partials._posts')
+    
+    @if ($posts->count())
+        @include('home.partials._posts')
+    @endif
 </x-app-layout>

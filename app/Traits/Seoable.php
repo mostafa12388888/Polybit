@@ -48,11 +48,11 @@ trait Seoable
 
             if (in_array($key, ['keywords'])) {
                 if (! is_array($datum)) {
-                    $datum = ['ar' => [], 'en' => []];
-                } else {
-                    foreach (array_keys(locales()) as $locale) {
-                        $datum[$locale] = $datum[$locale] ?? [];
-                    }
+                    $datum = [];
+                }
+
+                foreach (array_keys(locales()) as $locale) {
+                    $datum[$locale] = $datum[$locale] ?? [];
                 }
             }
 
@@ -66,6 +66,7 @@ trait Seoable
             foreach (['title', 'description', 'keywords'] as $key) {
                 if (isset($seoable->attributes['meta_'.$key])) {
                     $metadata[$key] = $seoable->attributes['meta_'.$key];
+                    $metadata[$key] = is_array($metadata[$key]) ? array_filter($metadata[$key]) : $metadata[$key];
                     unset($seoable->attributes['meta_'.$key]);
                 }
             }

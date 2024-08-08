@@ -11,6 +11,7 @@ use Awcodes\TableRepeater\Header;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -38,6 +39,10 @@ class SlideResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
+                    ToggleButtons::make('locales')->multiple()->options(locales())
+                        ->default(array_keys(locales()))
+                        ->gridDirection('row')->grouped()->extraAttributes(['style' => 'width: 100%']),
+
                     TextInput::make('title')->maxLength(250)->columnSpanFull(),
                     Textarea::make('description')->maxLength(5000)->columnSpanFull(),
 
@@ -61,9 +66,10 @@ class SlideResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable()->searchable()->toggleable(),
-                CuratorColumn::make('media')->label('admin.Images')->circular()->size(40)->overlap(3)->limit(3)->toggleable(),
+                CuratorColumn::make('media')->label('admin.Image')->circular()->size(40)->limit(3)->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
+                TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
             ->filters([
                 //
@@ -103,6 +109,8 @@ class SlideResource extends Resource
                     ])->columnSpanFull(),
 
                 TextEntry::make('created_at')->dateTime(),
+
+                ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
             ])->columns(2)->columnSpan(2),
         ])->columns(2);
     }

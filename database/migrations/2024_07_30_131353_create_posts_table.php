@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique()->index();
             $table->longText('body')->nullable();
             $table->foreignId('category_id')->nullable()->constrained('blog_categories')->cascadeOnDelete();
+            $table->json('locales')->nullable();
             $table->timestamps();
         });
     }

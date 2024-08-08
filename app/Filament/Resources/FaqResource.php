@@ -8,6 +8,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\ViewEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
@@ -45,6 +46,7 @@ class FaqResource extends Resource
                 TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('question')->sortable()->searchable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
+                TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
@@ -77,6 +79,8 @@ class FaqResource extends Resource
                 })->html()->columnSpanFull(),
 
                 TextEntry::make('created_at')->dateTime(),
+
+                ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
             ])->columns(2)->columnSpan(2),
         ])->columns(2);
     }

@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Route;
 // TODO: Sitemap
 
 // TODO: dynamicData
-// TODO: header
-// TODO: footer
-// TODO: home
 // TODO: products
 // TODO: product
 // TODO: posts

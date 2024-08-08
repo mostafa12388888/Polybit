@@ -1,3 +1,5 @@
+@props(['slides_count' => 0])
+
 <div class="glide" {{ $attributes->merge(['class' => 'overflow-hidden  relative']) }} 
     x-init="$nextTick(() => new Glide($el, {type: 'carousel', direction: '{{ direction() }}', autoplay: 50000,}).mount());">
     <div data-glide-el="track" class="glide__track">
@@ -15,15 +17,13 @@
         </button>
     </div>
 
-    <div class="glide__bullets max-md:hidden" data-glide-el="controls[nav]">
-        <button class="glide__bullet dark:bg-dark-300" data-glide-dir="=0">
-            <span class="sr-only">{{ __('Slide 1') }}</span>
-        </button>
-        <button class="glide__bullet dark:bg-dark-300" data-glide-dir="=1">
-            <span class="sr-only">{{ __('Slide 2') }}</span>
-        </button>
-        <button class="glide__bullet dark:bg-dark-300" data-glide-dir="=2">
-            <span class="sr-only">{{ __('Slide 3') }}</span>
-        </button>
-    </div>
+    @if ($slides_count > 1)
+        <div class="glide__bullets max-md:hidden" data-glide-el="controls[nav]">
+            @foreach (range(0, $slides_count-1) as $slide_index)
+                <button class="glide__bullet dark:bg-dark-300" data-glide-dir="={{ $slide_index }}">
+                    <span class="sr-only">{{ __('Slide :slide_index', ['slide_index' => $slide_index]) }}</span>
+                </button>
+            @endforeach
+        </div>
+    @endif
 </div>

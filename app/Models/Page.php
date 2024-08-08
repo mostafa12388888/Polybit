@@ -2,21 +2,22 @@
 
 namespace App\Models;
 
+use App\Traits\HasLocales;
+use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Translatable\HasTranslations;
 
 class Page extends Model
 {
-    use HasTranslations, Seoable, Sluggable;
+    use HasLocales, HasTranslations, Seoable, Sluggable;
 
     public $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $useFallbackLocale = false;
 
-    protected $casts = ['body' => 'json'];
+    protected $casts = ['body' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
 

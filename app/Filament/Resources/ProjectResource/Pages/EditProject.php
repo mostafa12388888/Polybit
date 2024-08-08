@@ -4,12 +4,13 @@ namespace App\Filament\Resources\ProjectResource\Pages;
 
 use App\Filament\Resources\ProjectResource;
 use App\Filament\Traits\EditRecord\Translatable;
+use App\Filament\Traits\Seoable;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditProject extends EditRecord
 {
-    use Translatable;
+    use Seoable, Translatable;
 
     protected static string $resource = ProjectResource::class;
 

@@ -3,20 +3,21 @@
 namespace App\Models;
 
 use App\Traits\HasCuratorMedia;
+use App\Traits\HasLocales;
+use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use HasCuratorMedia, HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasLocales, HasTranslations, Seoable, Sluggable;
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $useFallbackLocale = false;
 
-    protected $casts = ['description' => 'array', 'attributes' => 'array'];
+    protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
 
@@ -43,6 +44,11 @@ class Product extends Model
     public function specs()
     {
         return $this->hasMany(ProductSpec::class);
+    }
+
+    public function images()
+    {
+        return $this->media()->where('media_items.type', 'product-image');
     }
 
     public function getDefaultMetadata()

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('price', 20, 2)->nullable();
             $table->foreignId('category_id')->nullable()->constrained('store_categories')->cascadeOnDelete();
             $table->json('attributes')->nullable();
+            $table->json('locales')->nullable();
             $table->timestamps();
         });
     }

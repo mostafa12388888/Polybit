@@ -44,6 +44,15 @@ class AppServiceProvider extends ServiceProvider
             'page' => \App\Models\Page::class,
             'project' => \App\Models\Project::class,
             'setting' => \App\Models\Setting::class,
+            'attribute' => \App\Models\Attribute::class,
+            'attribute-value' => \App\Models\AttributeValue::class,
+            'attribute-value-product-variant' => \App\Models\AttributeValueProductVariant::class,
+            'media-item' => \App\Models\MediaItem::class,
+            'metadatum' => \App\Models\Metadatum::class,
+            'product' => \App\Models\Product::class,
+            'product-spec' => \App\Models\ProductSpec::class,
+            'product-variant' => \App\Models\ProductVariant::class,
+            'slide' => \App\Models\Slide::class,
         ]);
     }
 }
