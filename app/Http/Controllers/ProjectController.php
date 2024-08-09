@@ -11,7 +11,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::latest()->whereJsonContains('locales', app()->getLocale())->with('images')->paginate(12);
+        $projects = Project::latest()->whereJsonContains('locales', app()->getLocale())->with('image')->paginate(12);
 
         return view('projects.index', compact('projects'));
     }

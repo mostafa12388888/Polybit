@@ -28,13 +28,4 @@ trait HasCuratorMedia
     {
         return $this->morphMany(MediaItem::class, 'mediable')->orderBy('order');
     }
-
-    public function getImagesAttribute()
-    {
-        if ($this->relationLoaded('media')) {
-            return $this->media->filter(fn ($media) => $media->pivot->type != 'og-image');
-        }
-
-        return $this->images()->get();
-    }
 }

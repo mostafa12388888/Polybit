@@ -62,7 +62,7 @@ class ViewServiceProvider extends ServiceProvider
             });
 
             $projects = Cache::remember('projects_'.app()->getLocale(), 60 * 60, function () {
-                return Project::latest()->whereJsonContains('locales', app()->getLocale())->with('images')->limit(4)->get();
+                return Project::latest()->whereJsonContains('locales', app()->getLocale())->with('image')->limit(4)->get();
             });
 
             $posts = Cache::remember('posts_'.app()->getLocale(), 60 * 60, function () {

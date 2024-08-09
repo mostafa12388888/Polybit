@@ -30,7 +30,7 @@
                 </div>
                 
                 @if ($project->attributes)
-                    <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 max-w-full pt-8">
+                    <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 max-w-full pt-12 pb-4">
                         <div class="w-full border-t border-b overflow-hidden dark:border-dark-700">
                             <table class="w-full divide-y bg-gray-50 dark:bg-dark-700/70 my-0 text-base">
                                 @foreach ($project->attributes as $attribute)
@@ -44,8 +44,8 @@
                     </div>
                 @endif
                 
-                <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 pt-4 py-8 md:px-6 xl:px-8 max-w-full">
-                    {!! $project->description ? tiptap_converter()->asHTML($project->description) : '' !!}
+                <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 py-8 md:px-6 xl:px-8 max-w-full">
+                    {!! html($project->description) !!}
                 </div>
             </div>
             
@@ -56,12 +56,14 @@
                     @include('layouts.partials._share-buttons')
                 </div>
                 
-                <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
-                    <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Our latest projects') }}</h3>
-                    @foreach ($latest_projects as $project)
-                        <x-link :href="route('projects.show', $project)">{{ $project->title }}</x-link>
-                    @endforeach
-                </div>
+                @if ($latest_projects->count())
+                    <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
+                        <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Our latest projects') }}</h3>
+                        @foreach ($latest_projects as $project)
+                            <x-link :href="route('projects.show', $project)">{{ $project->title }}</x-link>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
     </article>

@@ -39,8 +39,9 @@ class SlideResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    ToggleButtons::make('locales')->multiple()->options(locales())
+                    ToggleButtons::make('active_locales')->multiple()->options(locales())
                         ->default(array_keys(locales()))
+                        ->formatStateUsing(fn ($record) => $record->locales())
                         ->gridDirection('row')->grouped()->extraAttributes(['style' => 'width: 100%']),
 
                     TextInput::make('title')->maxLength(250)->columnSpanFull(),

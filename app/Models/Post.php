@@ -37,6 +37,11 @@ class Post extends Model
         return $this->belongsTo(BlogCategory::class, 'category_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function image()
     {
         return $this->first_media()->where('media_items.type', 'post-image');
@@ -60,6 +65,10 @@ class Post extends Model
         static::deleted(fn () => collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('posts_'.$locale)));
 
         static::saving(function (self $post) {
+            if (! $post->user_id) {
+                $post->user()->associate(auth()->user());
+            }
+
             try {
                 unset($post->attributes['main_category_id']);
             } catch (\Throwable $th) {

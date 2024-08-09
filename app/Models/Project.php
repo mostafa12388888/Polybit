@@ -33,6 +33,20 @@ class Project extends Model
         return $this->media()->where('media_items.type', 'project-image');
     }
 
+    public function getImagesAttribute()
+    {
+        if ($this->relationLoaded('media')) {
+            return $this->media->filter(fn ($media) => $media->pivot->type != 'og-image');
+        }
+
+        return $this->images()->get();
+    }
+
+    public function image()
+    {
+        return $this->first_media()->where('media_items.type', 'project-image');
+    }
+
     public function getDefaultMetadata()
     {
         return [

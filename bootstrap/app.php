@@ -16,9 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 }
             }
 
-            Route::middleware('web')
-                ->prefix($prefix ?? null)
-                ->group(base_path('routes/web.php'));
+            Route::middleware('web')->prefix($prefix ?? null)->group(base_path('routes/web.php'));
         },
         commands: __DIR__.'/../routes/console.php',
         health: '/up',

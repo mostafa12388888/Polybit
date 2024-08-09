@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 // TODO: Dashboard Stats
 
@@ -25,6 +27,16 @@ use Illuminate\Support\Facades\Route;
 // TODO: Orders
 // TODO: Schema
 
+Livewire::setUpdateRoute(function ($handle) {
+    if (in_array(request()->segment(1), array_keys(locales()))) {
+        if (! (collect(locales(false))->where('code', request()->segment(1))->first()['default'] ?? false)) {
+            $prefix = request()->segment(1);
+        }
+    }
+
+    return Route::post(($prefix ?? null).'/livewire/update', $handle);
+});
+
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');
 
@@ -34,8 +46,7 @@ Route::view('/cart', 'products.cart')->name('cart');
 Route::view('/request-quote', 'products.request-quote')->name('request-quote');
 Route::view('/store-categories/{store_category}', 'products.index')->name('store-categories.show');
 
-Route::view('/posts', 'posts.index')->name('posts.index');
-Route::view('/posts/{post}', 'posts.show')->name('posts.show');
+Route::resource('posts', PostController::class)->only('index', 'show');
 Route::view('/blog-categories/{blog_catgeory}', 'posts.index')->name('blog-categories.show');
 
 Route::resource('projects', ProjectController::class)->only('index', 'show');

@@ -131,4 +131,5 @@ return [
     'Social link' => 'حساب موقع التواصل الإجتماعي',
     'The variant is duplicated' => 'الخيار مكرر',
     'Locales' => 'اللغات',
+    'Active locales' => 'اللغات المفعلة',
 ];

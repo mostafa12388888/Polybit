@@ -80,3 +80,17 @@ if (! function_exists('setting')) {
         return $setting ?: $default;
     }
 }
+
+if (! function_exists('html')) {
+    function html($tiptap_content)
+    {
+        return $tiptap_content ? tiptap_converter()->asHTML($tiptap_content) : '';
+    }
+}
+
+if (! function_exists('text')) {
+    function text($tiptap_content)
+    {
+        return $tiptap_content ? tiptap_converter()->asText($tiptap_content) : '';
+    }
+}
