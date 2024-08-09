@@ -138,12 +138,5 @@
     "Email Address": "Email Address",
     "Send Us A Message": "Send Us A Message",
     "Your Message": "Your Message",
-    "filament-translation-manager::messages.missing_translation": "filament-translation-manager::messages.missing_translation",
-    "filament-translation-manager::messages.search_term_placeholder": "filament-translation-manager::messages.search_term_placeholder",
-    "filament-translation-manager::messages.previous_page": "filament-translation-manager::messages.previous_page",
-    "filament-translation-manager::messages.next_page": "filament-translation-manager::messages.next_page",
-    "filament-translation-manager::messages.filter_action": "filament-translation-manager::messages.filter_action",
-    "filament-translation-manager::messages.filter_results": "filament-translation-manager::messages.filter_results",
-    "filament-translation-manager::messages.filter_results_missing_translations": "filament-translation-manager::messages.filter_results_missing_translations",
-    "filament-translation-manager::messages.error_no_translations_for_filters": "filament-translation-manager::messages.error_no_translations_for_filters"
+    "No Records Found": "No Records Found"
 }

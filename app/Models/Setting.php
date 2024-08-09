@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\HasCuratorMedia;
 use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class Setting extends Model
 {
-    use HasCuratorMedia, HasTranslations;
+    use HasTranslations;
 
     protected $translatable = ['value'];
 
@@ -105,10 +104,15 @@ class Setting extends Model
                 //
             }
         } elseif ($type == 'media') {
-            $value = CuratorMedia::find($value);
+            $value = $this->media;
         }
 
         return $value;
+    }
+
+    public function media()
+    {
+        return $this->belongsTo(CuratorMedia::class, 'value');
     }
 
     protected static function boot()

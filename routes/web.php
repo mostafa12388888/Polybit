@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 // TODO: Dashboard Stats
@@ -12,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 // TODO: product
 // TODO: posts
 // TODO: post
-// TODO: projects
-// TODO: project
 // TODO: faqs
 // TODO: pages
 // TODO: contact
@@ -39,8 +38,7 @@ Route::view('/posts', 'posts.index')->name('posts.index');
 Route::view('/posts/{post}', 'posts.show')->name('posts.show');
 Route::view('/blog-categories/{blog_catgeory}', 'posts.index')->name('blog-categories.show');
 
-Route::view('/projects', 'projects.index')->name('projects.index');
-Route::view('/projects/{post}', 'projects.show')->name('projects.show');
+Route::resource('projects', ProjectController::class)->only('index', 'show');
 
 Route::view('/pages/{page}', 'pages.show')->name('pages.show');
 

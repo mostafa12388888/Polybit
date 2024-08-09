@@ -13,6 +13,7 @@ trait HasCuratorMedia
             ->belongsToMany(CuratorMedia::class, app(MediaItem::class)->getTable(), 'mediable_id', 'media_id')
             ->where('mediable_type', $this->getMorphClass())
             ->withPivot('order')
+            ->withPivot('type')
             ->orderBy('order');
     }
 
@@ -26,5 +27,14 @@ trait HasCuratorMedia
     public function media_items()
     {
         return $this->morphMany(MediaItem::class, 'mediable')->orderBy('order');
+    }
+
+    public function getImagesAttribute()
+    {
+        if ($this->relationLoaded('media')) {
+            return $this->media->filter(fn ($media) => $media->pivot->type != 'og-image');
+        }
+
+        return $this->images()->get();
     }
 }

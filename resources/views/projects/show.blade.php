@@ -1,55 +1,51 @@
 <x-app-layout>
-    <x-slot name="heading">{{ str()->title(fake()->sentence(6)) }}</x-slot>
+    <x-slot name="heading">{{ $project->title }}</x-slot>
 
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('projects.index')">{{ __('Projects') }}</x-breadcrumb>
-        <x-breadcrumb :last="true">{{ str()->limit(fake()->sentence(10), 17) }}</x-breadcrumb>
+        <x-breadcrumb :last="true">{{ str()->limit($project->title, 17) }}</x-breadcrumb>
     </x-slot>
 
     <article class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col lg:flex-row sm:gap-4 max-sm:divide-y">
             <div class="lg:rounded-md flex-grow w-full lg:w-8/12 2xl:w-9/12 overflow-hidden">
-                <div class="dark:bg-dark-800 min-[2561px]:py-8">
-                    <x-slider class="min-[2561px]:rounded-2xl min-[2561px]:container min-[2561px]:mx-auto">
-                        <ul class="glide__slides w-full">
-                            @foreach (collect(range(1,3))->shuffle() as $slide)
-                                <li class="glide__slide h-full relative">
-                                    <x-img loading="lazy" src="{{ asset('storage/slide' . $slide . '.webp') }}" class="w-full aspect-video object-cover" alt="" />
-                                </li>
-                            @endforeach
-                        </ul>
-                    </x-slider>
-                </div>
-
-                <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
-                    <h3>{{ str()->title(fake()->sentence(5)) }}</h3>
-                    
-                    <p>{!! fake()->paragraph(rand(2,10)) !!}</p>
-                </div>
-                
-                <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 max-w-full">
-                    <div class="w-full border-t border-b overflow-hidden dark:border-dark-700">
-                        <table class="w-full divide-y bg-gray-50 dark:bg-dark-700/70 my-0 text-base">
-                            <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
-                                <td class="p-4 md:p-6 xl:px-8 font-semibold align-middle">{{ __('Location') }}</td>
-                                <td class="p-4 md:p-6 xl:px-8 w-full">{{ fake()->sentence(rand(3,5)) }}</td>
-                            </tr>
-                            <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
-                                <td class="p-4 md:p-6 xl:px-8 font-semibold align-middle">{{ __('Consultant') }}</td>
-                                <td class="p-4 md:p-6 xl:px-8 w-full">{{ fake()->sentence(rand(3,5)) }}</td>
-                            </tr>
-                            <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
-                                <td class="p-4 md:p-6 xl:px-8 font-semibold align-middle">{{ __('Contractor') }}</td>
-                                <td class="p-4 md:p-6 xl:px-8 w-full">{{ fake()->sentence(rand(3,5)) }}</td>
-                            </tr>
-                        </table>
+                @if($project->images->count())
+                    <div class="dark:bg-dark-800">
+                        <x-slider class="min-[2561px]:rounded-2xl min-[2561px]:container min-[2561px]:mx-auto">
+                            <ul class="glide__slides w-full">
+                                @foreach ($project->images as $image)
+                                    <li class="glide__slide h-full relative">
+                                        <x-curator-glider :media="$image" format="webp" width="1920" height="1080" fit="crop" quality="70" class="w-full aspect-video object-cover" />
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </x-slider>
                     </div>
+                @endif
+
+                <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 pt-8 px-4 md:px-6 xl:px-8 max-w-full">
+                    <h3>{{ $project->title }}</h3>
+                    
+                    <p>{{ $project->subtitle }}</p>
                 </div>
                 
-                <div class="prose prose-zinc dark:prose-invert xl:prose-lg bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
-                    <p>{{ fake()->paragraph(rand(2,10)) }}</p>
-                    
-                    <p>{{ fake()->paragraph(rand(5,10)) }}</p>
+                @if ($project->attributes)
+                    <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 max-w-full pt-8">
+                        <div class="w-full border-t border-b overflow-hidden dark:border-dark-700">
+                            <table class="w-full divide-y bg-gray-50 dark:bg-dark-700/70 my-0 text-base">
+                                @foreach ($project->attributes as $attribute)
+                                    <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
+                                        <td class="p-4 md:p-6 xl:px-8 font-semibold align-middle">{{ optional($attribute)['key'] }}</td>
+                                        <td class="p-4 md:p-6 xl:px-8 w-full">{{ optional($attribute)['value'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
+                @endif
+                
+                <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 pt-4 py-8 md:px-6 xl:px-8 max-w-full">
+                    {!! $project->description ? tiptap_converter()->asHTML($project->description) : '' !!}
                 </div>
             </div>
             
@@ -57,33 +53,13 @@
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Share this project') }}</h3>
                     
-                    <div class="flex flex-wrap gap-2 items-center">
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.facebook class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on Facebook Link') }}</span>
-                        </x-link>
-                        
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.twitter class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on Twitter Link') }}</span>
-                        </x-link>
-                        
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.linkedin class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on Linkedin Link') }}</span>
-                        </x-link>
-                        
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.link class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on External Link') }}</span>
-                        </x-link>
-                    </div>
+                    @include('layouts.partials._share-buttons')
                 </div>
                 
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Our latest projects') }}</h3>
-                    @foreach (range(1,6) as $item)
-                        <x-link :href="route('projects.show', str()->slug(fake()->sentence(4)))">{{ fake()->sentence(4) }}</x-link>
+                    @foreach ($latest_projects as $project)
+                        <x-link :href="route('projects.show', $project)">{{ $project->title }}</x-link>
                     @endforeach
                 </div>
             </div>

@@ -4,5 +4,9 @@
     <span {{ $attributes->merge(['class' => 'opacity-80']) }}>{{ $slot }}</span>
 @else
     <x-link {{ $attributes }}>{{ $slot }}</x-link>
-    <x-icons.chevron-right class="!w-3 !h-3"/>
+    @if(direction() == 'rtl')
+        <x-icons.chevron-left class="!w-3 !h-3"/>
+    @else
+        <x-icons.chevron-right class="!w-3 !h-3"/>
+    @endif
 @endif

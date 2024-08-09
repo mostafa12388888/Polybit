@@ -30,7 +30,7 @@
                                 
                                 <div class="flex flex-col gap-3 px-6 py-8">
                                     <h5 class="font-semibold truncate lg:text-lg">{{ $project->title }}</h5>
-                                    <p class="font-light truncate">{{ str()->limit($project->subtitle, 300) }}</p>
+                                    <p class="font-light truncate">{{ str()->limit($project->subtitle, 150) }}</p>
                                 </div>
                             </x-link>
                         </li>

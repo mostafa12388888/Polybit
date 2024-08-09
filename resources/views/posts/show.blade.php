@@ -33,27 +33,7 @@
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
                     <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('share this post') }}</h3>
                     
-                    <div class="flex flex-wrap gap-2 items-center">
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.facebook class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on Facebook Link') }}</span>
-                        </x-link>
-                        
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.twitter class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on Twitter Link') }}</span>
-                        </x-link>
-                        
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.linkedin class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on Linkedin Link') }}</span>
-                        </x-link>
-                        
-                        <x-link styling="light" href="#" class="!p-0 flex items-center justify-center w-10 h-10">
-                            <x-icons.link class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
-                            <span class="sr-only">{{ __('Share on External Link') }}</span>
-                        </x-link>
-                    </div>
+                    @include('layouts.partials._share-buttons')
                 </div>
 
                 <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
