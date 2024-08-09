@@ -74,7 +74,7 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 CuratorColumn::make('media')->label('admin.Images')->circular()->size(40)->overlap(3)->limit(3)->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
                 TextColumn::make('subtitle')->wrap()->limit(200)->lineClamp(2)

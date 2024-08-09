@@ -15,8 +15,6 @@ class BlogCategory extends Model
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $useFallbackLocale = false;
-
     protected $casts = ['description' => 'json'];
 
     protected $guarded = [];

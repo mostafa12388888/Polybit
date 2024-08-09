@@ -59,7 +59,7 @@ class BlogCategoryResource extends Resource
         return $table
             ->modifyQueryUsing(fn ($query) => $query->parents())
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 CuratorColumn::make('media')->label('admin.Image')->circular()->size(40)->limit(3)->toggleable(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('sub_categories_count')->counts('sub_categories')->toggleable()->sortable(),

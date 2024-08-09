@@ -16,7 +16,7 @@
                 <div class="flex flex-col gap-6 mx-4 sm:mx-0">
                     <h2 class="font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ str()->title(fake()->sentence(5)) }}</h2>
                     
-                    <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,10)) }}</p>
+                    <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,10)) }}</p>
 
                     <div class="flex flex-col gap-6 sm:table w-fit">
                         @foreach (range(1,rand(1,3)) as $item)
@@ -133,32 +133,32 @@
                         <h2 class="lg:hidden font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ __('Additional Information') }}</h2>
                         
                         <div>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
                         </div>
                     </div>
                     <div class="max-lg:!flex flex flex-col gap-4" x-cloak x-show="tab == 3">
                         <h2 class="lg:hidden font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ __('Warranty + Return Policy') }}</h2>
 
                         <div>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
                         </div>
                     </div>
                     <div class="max-lg:!flex flex flex-col gap-4" x-cloak x-show="tab == 4">
                         <h2 class="lg:hidden font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ __('Installation + Cleaning') }}</h2>
     
                         <div>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
                         </div>
                     </div>
                     <div class="max-lg:!flex flex flex-col gap-4" x-cloak x-show="tab == 5">
                         <h2 class="lg:hidden font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ __('Sustainability Documentation') }}</h2>
     
                         <div>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
-                            <p class="prose prose-zinc dark:prose-invert xl:prose-lg max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
+                            <p class="prose prose-zinc dark:prose-invert max-w-full">{{ fake()->paragraph(rand(6,15)) }}</p>
                         </div>
                     </div>
                 </div>

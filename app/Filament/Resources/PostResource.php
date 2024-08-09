@@ -75,7 +75,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
                 TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),

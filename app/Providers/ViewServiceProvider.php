@@ -44,16 +44,20 @@ class ViewServiceProvider extends ServiceProvider
             return $view->with(compact('pages'));
         });
 
-        Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer', 'home.index'], function (View $view) {
+        Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer'], function (View $view) {
             $blog_categories = Cache::remember('blog_categories', 60 * 60, function () {
                 return BlogCategory::parents()->with('sub_categories')->get();
             });
 
+            return $view->with(compact('blog_categories'));
+        });
+
+        Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer', 'home.index', 'products.index'], function (View $view) {
             $store_categories = Cache::remember('store_categories', 60 * 60, function () {
                 return StoreCategory::parents()->with('sub_categories')->withCount('sub_categories_products')->get();
             });
 
-            return $view->with(compact('blog_categories', 'store_categories'));
+            return $view->with(compact('store_categories'));
         });
 
         Facades\View::composer(['home.index'], function (View $view) {

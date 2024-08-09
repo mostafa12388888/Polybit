@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('sku')->unique();
             $table->longText('description')->nullable();
             $table->decimal('price', 20, 2)->nullable();
+            $table->decimal('price_before_discount', 20, 2)->nullable();
+            $table->decimal('rate', 3, 1)->nullable();
             $table->foreignId('category_id')->nullable()->constrained('store_categories')->cascadeOnDelete();
             $table->json('attributes')->nullable();
             $table->json('locales')->nullable();

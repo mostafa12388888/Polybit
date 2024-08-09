@@ -66,7 +66,7 @@ class SlideResource extends Resource
         return $table
             ->reorderable('order')
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 CuratorColumn::make('media')->label('admin.Image')->circular()->size(40)->limit(3)->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),

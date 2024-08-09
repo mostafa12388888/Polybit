@@ -3,6 +3,7 @@
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
@@ -11,10 +12,6 @@ use Livewire\Livewire;
 // TODO: Dashboard Stats
 
 // TODO: Sitemap
-
-// TODO: dynamicData
-// TODO: products
-// TODO: product
 
 // TODO: Localization
 // TODO: cart
@@ -37,11 +34,10 @@ Livewire::setUpdateRoute(function ($handle) {
 Route::view('/', 'home.index')->name('home');
 Route::view('/search', 'home.index')->name('search');
 
-Route::view('/products', 'products.index')->name('products.index');
-Route::view('/products/{product}', 'products.show')->name('products.show');
+Route::resource('products', ProductController::class)->only('index', 'show');
+Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');
 Route::view('/cart', 'products.cart')->name('cart');
 Route::view('/request-quote', 'products.request-quote')->name('request-quote');
-Route::view('/store-categories/{store_category}', 'products.index')->name('store-categories.show');
 
 Route::resource('posts', PostController::class)->only('index', 'show');
 Route::get('/blog-categories/{category}', [PostController::class, 'category_posts'])->name('blog-categories.show');

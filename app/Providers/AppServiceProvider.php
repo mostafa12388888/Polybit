@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Translatable\Facades\Translatable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+        Translatable::fallback(fallbackAny: true);
 
         Gate::define('use-translation-manager', function (?User $user) {
             return optional($user)->is_admin;

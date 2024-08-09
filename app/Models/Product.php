@@ -15,8 +15,6 @@ class Product extends Model
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $useFallbackLocale = false;
-
     protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
@@ -65,6 +63,15 @@ class Product extends Model
         return $this->first_media()->where('media_items.type', 'product-image');
     }
 
+    public function getImageAttribute()
+    {
+        if ($this->relationLoaded('media')) {
+            return $this->images->first();
+        }
+
+        return $this->image()->first();
+    }
+
     public function getDefaultMetadata()
     {
         return [
@@ -95,6 +102,30 @@ class Product extends Model
 
             return $attribute;
         })->filter(fn ($attribute) => count($attribute['values'] ?? []))->values()->toArray();
+    }
+
+    public function getAttributesWithValuesAttribute()
+    {
+        $attributes_with_values = $this->getAttributes()['attributes'];
+        $attributes_with_values = json_decode($attributes_with_values, true) ?: [];
+
+        $attributes = Attribute::whereIn('id', collect($attributes_with_values)->pluck('attribute')->toArray())->get();
+        $values = AttributeValue::whereIn('id', collect($attributes_with_values)->pluck('values')->flatten()->toArray())->get();
+
+        return collect($attributes_with_values)->filter(function ($attribute_with_values) use ($attributes) {
+            return $attributes->where('id', $attribute_with_values['attribute'])->count();
+        })->map(function ($attribute_with_values) use ($attributes, $values) {
+            $attribute = $attributes->where('id', $attribute_with_values['attribute'])->first();
+            $values = $values->whereIn('id', $attribute_with_values['values'])->map(function ($value) use ($attribute_with_values) {
+                $value->order = array_search($value->id, $attribute_with_values['values']);
+
+                return $value;
+            })->sortBy('order');
+
+            $attribute->setRelation('values', $values);
+
+            return $attribute;
+        })->filter(fn ($attribute) => $attribute->values->count());
     }
 
     protected static function boot()

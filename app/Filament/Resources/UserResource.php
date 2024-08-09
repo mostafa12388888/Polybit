@@ -48,7 +48,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('email')->toggleable()->searchable(),
                 ToggleColumn::make('is_admin')->toggleable()

@@ -17,7 +17,7 @@
         }).on('mount.after', () => $el.classList.remove('opacity-0')).mount());">
             <div data-glide-el="track" class="glide__track">
                 <ul class="glide__slides">
-                    @foreach (range(1,6) as $slide)
+                    @foreach ($related_products as $product)
                         <li class="glide__slide h-full relative mb-1">
                             <div class="border rounded-md border-dark-100 dark:border-none">
                                 @include('products.partials._product')

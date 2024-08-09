@@ -17,8 +17,6 @@ class Project extends Model
 
     protected $translatable = ['title', 'subtitle', 'description', 'attributes', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $useFallbackLocale = false;
-
     protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];

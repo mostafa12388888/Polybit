@@ -40,7 +40,7 @@ return [
     'is_limited_to_directory' => false,
     'is_tenant_aware' => true,
     'tenant_ownership_relationship_name' => 'tenant',
-    'max_size' => 4096,
+    'max_size' => 20480,
     'model' => \App\Models\CuratorMedia::class,
     'min_size' => 0,
     'path_generator' => null,

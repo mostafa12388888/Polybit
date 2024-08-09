@@ -14,8 +14,6 @@ class Slide extends Model
 
     protected $translatable = ['title', 'description', 'actions'];
 
-    protected $useFallbackLocale = false;
-
     protected $guarded = [];
 
     protected $casts = ['actions' => 'array', 'locales' => 'array'];

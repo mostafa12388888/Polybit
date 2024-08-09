@@ -111,6 +111,7 @@ return [
     'Products' => 'المنتجات',
     'SKU (Stock Keeping Unit)' => 'رمز تعريف المنتج (SKU)',
     'Price' => 'السعر',
+    'Price before discount' => 'السعر قبل الخصم',
     'Values' => 'القيم',
     'Values count' => 'القيم',
     'Variants' => 'الخيارات',
@@ -133,4 +134,5 @@ return [
     'Locales' => 'اللغات',
     'Active locales' => 'اللغات المفعلة',
     'Order' => 'الترتيب',
+    'Rate' => 'التقييم',
 ];

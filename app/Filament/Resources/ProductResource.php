@@ -31,6 +31,10 @@ use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Blade;
+use Mokhosh\FilamentRating\Columns\RatingColumn;
+use Mokhosh\FilamentRating\Components\Rating;
+use Mokhosh\FilamentRating\Entries\RatingEntry;
+use Mokhosh\FilamentRating\RatingTheme;
 
 class ProductResource extends Resource
 {
@@ -48,8 +52,12 @@ class ProductResource extends Resource
                     $tabs[] = Tab::make('General')->schema([
                         TextInput::make('name')->required()->maxLength(250),
                         TextInput::make('slug')->maxLength(250),
-                        TextInput::make('sku')->label('admin.SKU (Stock Keeping Unit)')->required()->maxLength(250),
-                        TextInput::make('price')->prefixIcon('heroicon-o-currency-euro')->numeric()->step(0.01)->rules(['decimal:0,2']),
+                        TextInput::make('sku')->label('admin.SKU (Stock Keeping Unit)')
+                            ->required()->maxLength(250)->unique('products', 'sku', null, true),
+                        Rating::make('rate')->theme(RatingTheme::HalfStars)->stars(10)->default(8.5),
+                        TextInput::make('price')->prefixIcon('heroicon-o-currency-euro')->numeric()->step(0.01)->rules(['decimal:0,2'])->requiredWith('price_before_discount'),
+                        TextInput::make('price_before_discount')->prefixIcon('heroicon-o-currency-euro')->numeric()->step(0.01)
+                            ->rules(['decimal:0,2'])->gt('price'),
 
                         TiptapEditor::make('description')->required()->columnSpanFull()->profile('minimal')
                             ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
@@ -92,7 +100,12 @@ class ProductResource extends Resource
                                 ->afterStateUpdated(fn ($set) => $set('values', [])),
 
                             Select::make('values')->searchable()->preload()->multiple()->reactive()->required()
-                                ->options(fn ($get) => AttributeValue::where('attribute_id', $get('attribute'))->get()
+                                ->options(fn ($get, $state) => AttributeValue::where('attribute_id', $get('attribute'))->get()
+                                    ->map(function ($value) use ($state) {
+                                        $value->order = array_search($value->id, $state);
+
+                                        return $value;
+                                    })->sortBy('order')
                                     ->mapWithKeys(fn ($value, $key) => [$value->id => $value->title ? $value->title : $value->value])->toArray()),
                         ])->live()->defaultItems(1)->columns(2)->columnSpanFull(),
                     ]);
@@ -100,7 +113,12 @@ class ProductResource extends Resource
                     $tabs[] = Tab::make('Specefications')->schema([
                         Repeater::make('specs')->label('admin.Specefications')->hiddenLabel()
                             ->schema([
-                                TextInput::make('title')->required()->maxLength(250)->translatable(),
+                                TextInput::make('title')->required()->maxLength(250)->translatable()->formatStateUsing(function ($state, $record) {
+                                    $state['title'] = json_decode($record->getAttributes()['title'], true);
+                                    $state['description'] = json_decode($record->getAttributes()['description'], true);
+
+                                    return $state;
+                                }),
 
                                 TiptapEditor::make('description')->profile('minimal')->translatable(),
 
@@ -218,11 +236,12 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 CuratorColumn::make('media')->label('admin.Images')->circular()->size(40)->overlap(3)->limit(3)->toggleable(),
                 TextColumn::make('name')->limit(50)->searchable()->sortable(),
                 TextColumn::make('sku')->toggleable(true, true)->searchable()->sortable(),
                 TextColumn::make('price')->toggleable(true, true)->sortable(),
+                RatingColumn::make('rate')->stars(10)->theme(RatingTheme::HalfStars)->size('sm')->toggleable(true, true),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
                 TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
@@ -256,6 +275,7 @@ class ProductResource extends Resource
                     TextEntry::make('slug'),
                     TextEntry::make('sku'),
                     TextEntry::make('created_at')->dateTime(),
+                    RatingEntry::make('rate')->theme(RatingTheme::HalfStars)->stars(10)->hiddenLabel(false),
 
                     TextEntry::make('category.name')->label('admin.Category')
                         ->url(fn (Product $product): string => StoreCategoryResource::getUrl('view', ['record' => $product->category])),

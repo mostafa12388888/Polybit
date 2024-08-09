@@ -14,8 +14,6 @@ class NonTranslatableAttributeValue extends Model
 
     protected $casts = ['value' => 'array'];
 
-    protected $useFallbackLocale = false;
-
     protected $guarded = [];
 
     public function attribute()

@@ -45,7 +45,7 @@ class ValuesRelationManager extends RelationManager
             ->pluralModelLabel(__('admin.attribute values'))
             ->recordTitleAttribute('value')
             ->columns([
-                TextColumn::make('id')->sortable()->searchable()->toggleable(),
+                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 $this->ownerRecord->type->isColors() ?
                     ColorColumn::make('value')->sortable()->searchable() :
                     TextColumn::make('value')->sortable()->searchable(),

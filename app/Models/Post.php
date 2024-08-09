@@ -16,8 +16,6 @@ class Post extends Model
 
     protected $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $useFallbackLocale = false;
-
     protected $casts = ['body' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];

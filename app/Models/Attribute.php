@@ -14,8 +14,6 @@ class Attribute extends Model
 
     protected $translatable = ['name'];
 
-    protected $useFallbackLocale = false;
-
     protected $casts = [
         'type' => AttributeType::class,
     ];

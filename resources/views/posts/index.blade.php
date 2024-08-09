@@ -6,7 +6,7 @@
             <x-breadcrumb :href="route('posts.index')">{{ __('Posts') }}</x-breadcrumb>
             <x-breadcrumb :last="true">{{ str()->limit($category->name, 17) }}</x-breadcrumb>
         @else
-            <x-breadcrumb :last="true">Blog</x-breadcrumb>
+            <x-breadcrumb :last="true">{{ __('Posts') }}</x-breadcrumb>
         @endif
     </x-slot>
 
