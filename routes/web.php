@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -14,8 +15,6 @@ use Livewire\Livewire;
 // TODO: dynamicData
 // TODO: products
 // TODO: product
-// TODO: pages
-// TODO: contact
 
 // TODO: Localization
 // TODO: cart
@@ -49,17 +48,11 @@ Route::get('/blog-categories/{category}', [PostController::class, 'category_post
 
 Route::resource('projects', ProjectController::class)->only('index', 'show');
 
-Route::view('/pages/{page}', 'pages.show')->name('pages.show');
+Route::resource('/pages', PageController::class)->only('show');
 
 Route::view('/contact-us', 'pages.contact-us')->name('contact-us');
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
-
-Route::get('/user', function () {
-    \Illuminate\Support\Facades\Auth::loginUsingId(1);
-
-    return redirect()->route('profile.edit');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
