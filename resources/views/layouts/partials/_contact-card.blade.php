@@ -3,25 +3,20 @@
     
     <p>{{ $sub_title ?? __('We\'d love to hear from you') }}.</p>
 
-    <x-link href="tel:+201022000050" class="flex gap-2">
-        <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-        <span>+20 1022000050</span>
-    </x-link>
 
-    <x-link href="tel:+201080029701" class="flex gap-2">
-        <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-        <span>+20 1080029701</span>
-    </x-link>
-
-    <x-link href="tel:+201068977712" class="flex gap-2">
-        <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-        <span>+20 1068977712</span>
-    </x-link>
-
-    <x-link href="mail:info@ichemeg.com" class="flex gap-2">
-        <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-        <span>info@ichemeg.com</span>
-    </x-link>
+    @foreach (setting('phones') ?: [] as $phone)
+        <x-link href="tel:{{ $phone }}" class="flex gap-2">
+            <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+            <span dir="ltr">{{ $phone }}</span>
+        </x-link>
+    @endforeach
+                
+    @foreach (setting('emails') ?: [] as $email)
+        <x-link href="mail:{{ $email }}" class="flex gap-2">
+            <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+            <span>{{ $email }}</span>
+        </x-link>
+    @endforeach
 
     <x-link styling="{{ $button ?? 'primary' }}" :href="route('contact-us')" class="text-center">{{ __('Contact Us') }}</x-link>
 </div>

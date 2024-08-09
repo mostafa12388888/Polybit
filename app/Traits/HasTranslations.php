@@ -13,7 +13,7 @@ trait HasTranslations
 
     public function locales(): array
     {
-        return $this?->locales ?? $this->spatieLocales();
+        return $this->hasAttribute('locales') ? $this->locales : $this->spatieLocales();
     }
 
     public function getTranslatedLocales(string $key): array

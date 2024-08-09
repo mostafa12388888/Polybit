@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -13,7 +14,6 @@ use Livewire\Livewire;
 // TODO: dynamicData
 // TODO: products
 // TODO: product
-// TODO: faqs
 // TODO: pages
 // TODO: contact
 
@@ -53,7 +53,7 @@ Route::view('/pages/{page}', 'pages.show')->name('pages.show');
 
 Route::view('/contact-us', 'pages.contact-us')->name('contact-us');
 
-Route::view('/faq', 'faqs.index')->name('faq');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 Route::get('/user', function () {
     \Illuminate\Support\Facades\Auth::loginUsingId(1);

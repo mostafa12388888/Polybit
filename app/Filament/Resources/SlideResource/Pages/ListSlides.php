@@ -6,6 +6,7 @@ use App\Filament\Resources\SlideResource;
 use App\Filament\Traits\ListRecords\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Cache;
 
 class ListSlides extends ListRecords
 {
@@ -19,5 +20,12 @@ class ListSlides extends ListRecords
             Actions\LocaleSwitcher::make(),
             Actions\CreateAction::make(),
         ];
+    }
+
+    public function reorderTable(array $order): void
+    {
+        parent::reorderTable($order);
+
+        collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('slides_'.$locale));
     }
 }

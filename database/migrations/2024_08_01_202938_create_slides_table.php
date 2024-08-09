@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('actions')->nullable();
             $table->string('slider')->nullable();
             $table->json('locales')->nullable();
+            $table->integer('order')->nullable();
             $table->timestamps();
         });
     }

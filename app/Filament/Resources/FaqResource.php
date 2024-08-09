@@ -42,11 +42,13 @@ class FaqResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('order')
             ->columns([
                 TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 TextColumn::make('question')->sortable()->searchable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
                 TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
+                TextColumn::make('order')->sortable()->toggleable(true, true),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
@@ -60,7 +62,7 @@ class FaqResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('id', 'desc')
+            ->defaultSort('order', 'asc')
             ->persistSortInSession()
             ->filtersFormColumns(1);
     }

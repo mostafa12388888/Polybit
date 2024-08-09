@@ -40,8 +40,7 @@ class SlideResource extends Resource
             ->schema([
                 Section::make()->schema([
                     ToggleButtons::make('active_locales')->multiple()->options(locales())
-                        ->default(array_keys(locales()))
-                        ->formatStateUsing(fn ($record) => $record->locales())
+                        ->formatStateUsing(fn ($record) => $record ? $record->locales() : array_keys(locales()))
                         ->gridDirection('row')->grouped()->extraAttributes(['style' => 'width: 100%']),
 
                     TextInput::make('title')->maxLength(250)->columnSpanFull(),
@@ -53,7 +52,7 @@ class SlideResource extends Resource
                     ])->schema([
                         TextInput::make('text')->maxLength(50)->required(),
                         TextInput::make('url')->maxLength(250)->required(),
-                    ])->columnSpanFull(),
+                    ])->defaultItems(0)->columnSpanFull(),
 
                     CuratorPicker::make('image')->required()->multiple()->maxItems(1)
                         ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->constrained()
@@ -65,12 +64,14 @@ class SlideResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('order')
             ->columns([
                 TextColumn::make('id')->sortable()->searchable()->toggleable(),
                 CuratorColumn::make('media')->label('admin.Image')->circular()->size(40)->limit(3)->toggleable(),
                 TextColumn::make('title')->limit(50)->searchable()->sortable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
                 TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
+                TextColumn::make('order')->sortable()->toggleable(true, true),
             ])
             ->filters([
                 //

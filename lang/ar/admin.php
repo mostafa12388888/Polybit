@@ -132,4 +132,5 @@ return [
     'The variant is duplicated' => 'الخيار مكرر',
     'Locales' => 'اللغات',
     'Active locales' => 'اللغات المفعلة',
+    'Order' => 'الترتيب',
 ];

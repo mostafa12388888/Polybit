@@ -2,7 +2,7 @@
     <x-slot name="heading">{{ __('Frequently asked questions') }}</x-slot>
 
     <x-slot name="breadcrumbs">
-        <x-breadcrumb :last="true">{{ str()->limit(__('FAQ'), 17) }}</x-breadcrumb>
+        <x-breadcrumb :last="true">{{ __('FAQ') }}</x-breadcrumb>
     </x-slot>
 
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-4 md:px-4 md:py-8 lg:py-12 relative">
@@ -15,20 +15,21 @@
 
         <div class="container mx-auto flex flex-col lg:flex-row gap-4 lg:gap-6">
             <div class="flex-grow w-full lg:w-8/12 2xl:w-9/12 flex flex-col gap-4 max-sm:p-4">
-                @foreach (range(1,10) as $item)
-                    <div class="flex-grow bg-white dark:bg-dark-700/60 rounded-md  flex flex-col" x-data="{ expanded: false }">
+                @foreach ($faqs as $faq)
+                    <div class="bg-white dark:bg-dark-700/60 rounded-md  flex flex-col" x-data="{ expanded: false }">
                         <button class="text-start py-4 px-2 md:px-4 xl:px-6 flex items-center gap-2" @click="expanded = ! expanded">
                             @if (direction() == 'rtl')
                                 <x-icons.chevron-left x-show="! expanded" />
                             @else
                                 <x-icons.chevron-right x-show="! expanded" />
                             @endif
-                            <x-icons.chevron-down x-show="expanded" />
+
+                            <x-icons.chevron-down x-cloak x-show="expanded" />
     
-                            <h2 class="font-semibold text-gray-800 dark:text-dark-100">{{ str()->title(fake()->sentence(5)) }}</h2>
+                            <h2 class="font-semibold text-gray-800 dark:text-dark-100">{{ $faq->question }}</h2>
                         </button>
-                        <div x-show="expanded" x-collapse>
-                            <p class="pb-6 px-4 md:px-6 xl:px-8">{{ fake()->paragraph(rand(10,25)) }}</p>
+                        <div x-show="expanded" x-cloak x-collapse>
+                            <div class="pb-6 px-4 md:px-6 xl:px-8">{!! html($faq->answer) !!}</div>
                         </div>
                     </div>
                 @endforeach

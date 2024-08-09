@@ -13,43 +13,53 @@
 
             <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden text-center mb-4">{{ __('We\'re Ready to Assist with Your Inquiries and Support Needs') }}</p>
 
-            <div class="flex flex-wrap w-full flex-grow gap-4 lg:gap-6 xl:gap-8">
-                <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
-                    <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
-                        <x-icons.map-pin class="!w-8 !h-8" stroke-width="1" />
-                    </span>
-                    <div class="flex flex-col">
-                        <h4 class="font-bold text-lg">{{ __('Address') }}</h4>
-                        <p class="text-balance leading-loose dark:text-dark-200">22 El-Shaheed Mohammed Abd El-Hady, Nasr City, Cairo</p>
-                    </div>
+            @if (($address = setting('address')) || ($phones = setting('phones')) || ($emails = setting('emails')))
+                <div class="flex flex-wrap w-full flex-grow gap-4 lg:gap-6 xl:gap-8">
+                    @if ($address)
+                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
+                            <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
+                                <x-icons.map-pin class="!w-8 !h-8" stroke-width="1" />
+                            </span>
+                            <div class="flex flex-col">
+                                <h4 class="font-bold text-lg">{{ __('Address') }}</h4>
+                                <p class="text-balance leading-loose dark:text-dark-200">{{ $address }}</p>
+                            </div>
+                        </div>
+                    @endif
+        
+                    @if ($phones)
+                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
+                            <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
+                                <x-icons.phone class="!w-8 !h-8" stroke-width="1" />
+                            </span>
+                            <div class="flex flex-col">
+                                <h4 class="font-bold text-lg">{{ __('Phone Number') }}</h4>
+                                <p class="leading-loose dark:text-dark-200">
+                                    @foreach ($phones ?: [] as $phone)
+                                        <x-link class="w-full" href="tel:{{ $phone }}" dir="ltr">{{ $phone }}</x-link>
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+        
+                    @if ($emails)
+                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
+                            <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
+                                <x-icons.envelope class="!w-8 !h-8" stroke-width="1" />
+                            </span>
+                            <div class="flex flex-col">
+                                <h4 class="font-bold text-lg">{{ __('Email Address') }}</h4>
+                                <p class="leading-loose dark:text-dark-200">
+                                    @foreach ($emails ?: [] as $email)
+                                        <x-link class="w-full" href="mail:{{ $email }}">{{ $email }}</x-link>
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 </div>
-    
-                <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
-                    <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
-                        <x-icons.phone class="!w-8 !h-8" stroke-width="1" />
-                    </span>
-                    <div class="flex flex-col">
-                        <h4 class="font-bold text-lg">{{ __('Phone Number') }}</h4>
-                        <p class="leading-loose dark:text-dark-200">
-                            <x-link class="w-full" href="tel:+201022000050">+201022000050</x-link>
-                            <x-link class="w-full" href="tel:+201080029701">+201080029701</x-link>
-                            <x-link class="w-full" href="tel:+201068977712">+201068977712</x-link>
-                        </p>
-                    </div>
-                </div>
-    
-                <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
-                    <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
-                        <x-icons.envelope class="!w-8 !h-8" stroke-width="1" />
-                    </span>
-                    <div class="flex flex-col">
-                        <h4 class="font-bold text-lg">{{ __('Email Address') }}</h4>
-                        <p class="leading-loose dark:text-dark-200">
-                            <x-link class="w-full" href="mail:info@ichemeg.com">info@ichemeg.com</x-link>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 

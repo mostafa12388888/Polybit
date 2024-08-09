@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('question');
             $table->longText('answer')->nullable();
+            $table->json('locales')->nullable();
+            $table->integer('order')->nullable();
             $table->timestamps();
         });
     }

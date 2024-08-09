@@ -24,8 +24,8 @@ class Slide extends Model
     {
         parent::boot();
 
-        static::saved(fn () => Cache::forget('slides'));
+        static::saved(fn () => collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('slides_'.$locale)));
 
-        static::deleted(fn () => Cache::forget('slides'));
+        static::deleted(fn () => collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('slides_'.$locale)));
     }
 }
