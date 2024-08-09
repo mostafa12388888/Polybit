@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogCategory;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -32,5 +33,15 @@ class PostController extends Controller
             ->where('id', '!=', $post->id)->limit(6)->get();
 
         return view('posts.show', compact('post', 'latest_posts', 'related_posts'));
+    }
+
+    public function category_posts(BlogCategory $category)
+    {
+        $posts = $category->is_parent_category() ? $category->sub_categories_posts() : $category->posts();
+
+        $posts = $posts->latest()->whereJsonContains('locales', app()->getLocale())
+            ->with('image', 'category', 'user')->paginate(12);
+
+        return view('posts.index', compact('posts', 'category'));
     }
 }

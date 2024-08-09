@@ -83,7 +83,7 @@
                         <div class="container mx-auto py-3 text-sm flex items-center gap-2">
                             <x-breadcrumb class="flex items-center justify-center gap-1.5" :href="route('home')">
                                 <x-icons.home class="!w-5 !h-5" stroke-width="1" /> 
-                                <span>Home</span>
+                                <span>{{ __('Home') }}</span>
                             </x-breadcrumb>
 
                             {{ $breadcrumbs }}

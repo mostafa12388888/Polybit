@@ -13,8 +13,6 @@ use Livewire\Livewire;
 // TODO: dynamicData
 // TODO: products
 // TODO: product
-// TODO: posts
-// TODO: post
 // TODO: faqs
 // TODO: pages
 // TODO: contact
@@ -47,7 +45,7 @@ Route::view('/request-quote', 'products.request-quote')->name('request-quote');
 Route::view('/store-categories/{store_category}', 'products.index')->name('store-categories.show');
 
 Route::resource('posts', PostController::class)->only('index', 'show');
-Route::view('/blog-categories/{blog_catgeory}', 'posts.index')->name('blog-categories.show');
+Route::get('/blog-categories/{category}', [PostController::class, 'category_posts'])->name('blog-categories.show');
 
 Route::resource('projects', ProjectController::class)->only('index', 'show');
 

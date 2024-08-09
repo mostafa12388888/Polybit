@@ -1,8 +1,13 @@
 <x-app-layout>
-    <x-slot name="heading">{{ __('Blog Posts') }}</x-slot>
+    <x-slot name="heading">{{ $category ?? null ? $category->name : __('Blog Posts') }}</x-slot>
 
     <x-slot name="breadcrumbs">
-        <x-breadcrumb :last="true">Blog</x-breadcrumb>
+        @if($category ?? null)
+            <x-breadcrumb :href="route('posts.index')">{{ __('Posts') }}</x-breadcrumb>
+            <x-breadcrumb :last="true">{{ str()->limit($category->name, 17) }}</x-breadcrumb>
+        @else
+            <x-breadcrumb :last="true">Blog</x-breadcrumb>
+        @endif
     </x-slot>
 
     <div class="flex-grow bg-white dark:bg-dark-800/70 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
