@@ -141,5 +141,14 @@
     "Send Us A Message": "أرسل لنا رسالة",
     "Your Message": "رسالتك",
     "No Records Found": "لا توجد سجلات",
-    "E£": "ج م"
+    "E£": "ج م",
+    "Product": "المنتج",
+    "Select :attribute": "إختر :attribute",
+    "Currently unavailable.": "غير متوفر حاليا",
+    "The product is currently unavailable": "المنتج غير متوفر حاليا",
+    "You have to select :attribute to continue": "قم باختيار :attribute للإستمرار",
+    "Please ensure all item details and quantities are correct before placing order": "يرجى التأكد من صحة جميع تفاصيل المنتج والكميات قبل تقديم الطلب",
+    "Added To Cart": "تمت الإضافة",
+    "Go to cart": "عرض سلة التسوق",
+    "The shopping cart is empty": "سلة التسوق فارغة"
 }

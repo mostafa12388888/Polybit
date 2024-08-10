@@ -2,7 +2,7 @@
 
 namespace App\Filament\Traits\ListRecords;
 
-use App\Filament\Classes\LaravelTranslatableContentDriver;
+use App\Classes\LaravelTranslatableContentDriver;
 use Filament\Resources\Pages\ListRecords\Concerns\Translatable as ConcernsTranslatable;
 
 trait Translatable

@@ -135,4 +135,6 @@ return [
     'Active locales' => 'اللغات المفعلة',
     'Order' => 'الترتيب',
     'Rate' => 'التقييم',
+    'Is available' => 'متوفر',
+    'Available in stock' => 'متوفر في المخزن',
 ];

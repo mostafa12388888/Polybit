@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Classes;
+namespace App\Classes;
 
 use Awcodes\Curator\Glide\GliderFallback;
 

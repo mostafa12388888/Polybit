@@ -141,5 +141,13 @@
     "Send Us A Message": "Send Us A Message",
     "Your Message": "Your Message",
     "No Records Found": "No Records Found",
-    "E£": "E£"
+    "E£": "E£",
+    "Product": "Product",
+    "Select :attribute": "Select :attribute",
+    "Currently unavailable.": "Currently unavailable.",
+    "The product is currently unavailable": "The product is currently unavailable",
+    "Please ensure all item details and quantities are correct before placing order": "Please ensure all item details and quantities are correct before placing order",
+    "Added To Cart": "Added To Cart",
+    "Go to cart": "Go to cart",
+    "The shopping cart is empty": "Shopping cart is empty"
 }

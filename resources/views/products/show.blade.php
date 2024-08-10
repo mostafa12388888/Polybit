@@ -2,7 +2,7 @@
     <x-slot name="heading">{{ $product->name }}</x-slot>
 
     <x-slot name="breadcrumbs">
-        <x-breadcrumb :href="route('projects.index')">{{ __('Products') }}</x-breadcrumb>
+        <x-breadcrumb :href="route('products.index')">{{ __('Products') }}</x-breadcrumb>
         <x-breadcrumb :last="true">{{ str()->limit($product->name, 17) }}</x-breadcrumb>
     </x-slot>
 
@@ -20,36 +20,7 @@
                     
                     <p class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</p>
 
-                    <div class="flex flex-col gap-6 sm:table w-fit">
-                        @foreach ($product->attributes_with_values as $attribute)
-                            <div class="flex flex-col gap-2 sm:table-row">
-                                <x-label for="" class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</x-label>
-        
-                                @if ($attribute->type->isColors())
-                                    <div class="table-cell">
-                                        <div class="flex gap-0.5 flex-wrap -mx-1">
-                                            @foreach ($attribute->values as $value)
-                                                <button class="flex hover:ring-1 focus:ring-2 ring-primary-400 rounded p-1.5 items-center justify-center" title="{{ $value->title }}">
-                                                    <span class="block w-9 h-9 shadow rounded" style="background: {{ $value->value }};"></span>
-                                                </button>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                @else
-                                    <x-select class="table-cell">
-                                        @foreach ($attribute->values as $value)
-                                            <option value="{{ $value->slug }}">{{ $value->value }}</option>
-                                        @endforeach
-                                    </x-select>
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <x-button styling="primary" class="flex gap-2 dark:bg-dark-700 justify-center items-center max-w-sm w-full py-4">
-                        <x-icons.cart class="!w-5 !h-5" stroke-width="1.5" />
-                        <span>{{ __('Add to cart') }}</span>
-                    </x-button>
+                    <livewire:add-to-cart :product="$product" />
                 </div>
             </div>
 

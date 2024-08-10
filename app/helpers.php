@@ -1,5 +1,6 @@
 <?php
 
+use App\Classes\Cart;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
@@ -92,5 +93,12 @@ if (! function_exists('text')) {
     function text($tiptap_content)
     {
         return $tiptap_content ? tiptap_converter()->asText($tiptap_content) : '';
+    }
+}
+
+if (! function_exists('cart')) {
+    function cart()
+    {
+        return new Cart;
     }
 }

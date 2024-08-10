@@ -27,7 +27,7 @@
         }, 100);
     }
 }" x-init="activeImage = images[0]">
-    <div x-init="$watch('imageSource', () => initImageZoom()); $nextTick(() => initImageZoom())">
+    <div x-init="$watch('activeImage', () => initImageZoom()); $nextTick(() => initImageZoom())">
         <div class="overflow-hidden">
             <x-img class="w-full sm:rounded-md min-h-72" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" />
         </div>
@@ -35,9 +35,10 @@
 
     <div class="flex gap-3 overflow-x-auto mx-4 sm:mx-0">
         <template x-for="image in images">
-            <button class="shrink-0 w-20 bg-gray-100 dark:bg-dark-400 !h-auto aspect-4/3 rounded overflow-hidden border border-dark-100 dark:border-dark-700"
-                @click="activeImage = image">
-                <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover" x-bind:alt="image.alt" />
+            <button class="shrink-0 w-20 !h-auto aspect-4/3 rounded overflow-hidden border dark:border-2 border-dark-100 dark:border-dark-800 p-0.5"
+                @click="activeImage = image"
+                x-bind:class="{'!border-dark-200 dark:!border-dark-600': activeImage.full == image.full}">
+                <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" x-bind:alt="image.alt" />
             </button>
         </template>
     </div>

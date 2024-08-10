@@ -4,13 +4,12 @@ namespace App\Models;
 
 use App\Enums\AttributeType;
 use App\Traits\HasTranslations;
-use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Attribute extends Model
 {
-    use HasTranslations, Sluggable, SoftDeletes;
+    use HasTranslations, SoftDeletes;
 
     protected $translatable = ['name'];
 

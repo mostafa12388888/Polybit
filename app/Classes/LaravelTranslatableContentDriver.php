@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Classes;
+namespace App\Classes;
 
 use Filament\SpatieLaravelTranslatableContentDriver;
 use Illuminate\Database\Eloquent\Builder;

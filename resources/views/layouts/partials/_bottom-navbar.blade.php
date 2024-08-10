@@ -14,7 +14,7 @@
                 </x-link>
                 <x-link :href="route('cart')" class="inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none">
                     <div class="relative inline-flex">
-                        <span class="font-bold text-xs w-5 h-5 bg-dark-500 text-white rounded-full flex items-center justify-center absolute -top-3 ltr:left-3 rtl:right-3">{{ rand(1, 20) }}</span>
+                        <livewire:cart-items-count :bottom_navbar="true" />
                         <x-icons.cart class="!w-6 !h-6" />
                     </div>
                     <span class="text-sm">Cart</span>

@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
 // TODO: Dashboard Stats
+// TODO: External preview
+
+// TODO: Checkout
+// TODO: Orders
+
+// TODO: Search
+// TODO: Contact Messages
 
 // TODO: Sitemap
-
-// TODO: Localization
-// TODO: cart
-// TODO: checkout
-// TODO: search
-// TODO: Contact Messages
-// TODO: Orders
 // TODO: Schema
 
 Livewire::setUpdateRoute(function ($handle) {

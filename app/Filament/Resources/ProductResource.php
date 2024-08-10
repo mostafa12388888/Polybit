@@ -18,7 +18,9 @@ use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
@@ -27,6 +29,7 @@ use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Database\Eloquent\Builder;
@@ -58,6 +61,8 @@ class ProductResource extends Resource
                         TextInput::make('price')->prefixIcon('heroicon-o-currency-euro')->numeric()->step(0.01)->rules(['decimal:0,2'])->requiredWith('price_before_discount'),
                         TextInput::make('price_before_discount')->prefixIcon('heroicon-o-currency-euro')->numeric()->step(0.01)
                             ->rules(['decimal:0,2'])->gt('price'),
+
+                        Toggle::make('is_available')->label('admin.Available in stock')->default(true),
 
                         TiptapEditor::make('description')->required()->columnSpanFull()->profile('minimal')
                             ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
@@ -241,6 +246,7 @@ class ProductResource extends Resource
                 TextColumn::make('name')->limit(50)->searchable()->sortable(),
                 TextColumn::make('sku')->toggleable(true, true)->searchable()->sortable(),
                 TextColumn::make('price')->toggleable(true, true)->sortable(),
+                ToggleColumn::make('is_available')->toggleable(true, true),
                 RatingColumn::make('rate')->stars(10)->theme(RatingTheme::HalfStars)->size('sm')->toggleable(true, true),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
                 TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
@@ -273,12 +279,18 @@ class ProductResource extends Resource
                     TextEntry::make('id'),
                     TextEntry::make('name'),
                     TextEntry::make('slug'),
-                    TextEntry::make('sku'),
+                    TextEntry::make('sku')->label('admin.SKU (Stock Keeping Unit)'),
+                    TextEntry::make('price'),
+                    TextEntry::make('price_before_discount'),
+                    IconEntry::make('is_available')->boolean(),
                     TextEntry::make('created_at')->dateTime(),
-                    RatingEntry::make('rate')->theme(RatingTheme::HalfStars)->stars(10)->hiddenLabel(false),
 
                     TextEntry::make('category.name')->label('admin.Category')
                         ->url(fn (Product $product): string => StoreCategoryResource::getUrl('view', ['record' => $product->category])),
+
+                    ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
+
+                    RatingEntry::make('rate')->theme(RatingTheme::HalfStars)->stars(10)->hiddenLabel(false)->columnSpanFull()->size('sm'),
 
                     ViewEntry::make('media')->view('filament.infolists.entries.media', ['type' => 'product-image'])->label('admin.Images')->columnSpanFull(),
 
@@ -287,8 +299,6 @@ class ProductResource extends Resource
 
                         return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
                     }),
-
-                    ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
                 ])->columns(2),
 
                 \Filament\Infolists\Components\Tabs\Tab::make('Variants')->schema([

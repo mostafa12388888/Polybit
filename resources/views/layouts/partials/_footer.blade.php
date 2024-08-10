@@ -78,7 +78,7 @@
     <div class="p-4 bg-primary-100/10 dark:bg-dark-900/40">
         <div class="container mx-auto flex items-center justify-center sm:justify-between flex-col sm:flex-row gap-4">
             <p>{{ __("© :year :app, All rights reserved", ['year' => date('Y'), 'app' => config('app.name')]) }}.</p>
-            <a href="#">{{ __("Developed by brmjyat") }}.</a>
+            <a href="https://brmjyat.com" target="_blank">{{ __("Developed by brmjyat") }}.</a>
         </div>
     </div>
 </footer>

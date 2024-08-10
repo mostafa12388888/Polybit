@@ -29,7 +29,7 @@ return [
     'glide' => [
         'server' => \Awcodes\Curator\Glide\DefaultServerFactory::class,
         'fallbacks' => [
-            \App\Filament\Classes\LogoGliderFallback::class,
+            \App\Classes\LogoGliderFallback::class,
         ],
         'route_path' => 'uploads',
     ],
