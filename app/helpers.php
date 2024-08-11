@@ -97,8 +97,14 @@ if (! function_exists('text')) {
 }
 
 if (! function_exists('cart')) {
-    function cart()
+    function cart($items = null)
     {
-        return new Cart;
+        $cart = new Cart;
+
+        if ($items) {
+            $cart->items = $items;
+        }
+
+        return $cart;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class CartItems extends Component
+class Cart extends Component
 {
     public $cart_items;
 
@@ -35,6 +35,6 @@ class CartItems extends Component
 
     public function render()
     {
-        return view('products.components.cart-items');
+        return view('products.cart');
     }
 }

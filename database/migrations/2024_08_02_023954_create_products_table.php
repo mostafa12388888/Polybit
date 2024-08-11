@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('store_categories')->cascadeOnDelete();
             $table->json('attributes')->nullable();
             $table->json('locales')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

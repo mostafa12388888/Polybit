@@ -150,5 +150,9 @@
     "Please ensure all item details and quantities are correct before placing order": "يرجى التأكد من صحة جميع تفاصيل المنتج والكميات قبل تقديم الطلب",
     "Added To Cart": "تمت الإضافة",
     "Go to cart": "عرض سلة التسوق",
-    "The shopping cart is empty": "سلة التسوق فارغة"
+    "The shopping cart is empty": "سلة التسوق فارغة",
+    "Please provide the following details so we can offer you a comprehensive quote tailored to your needs": "يرجى تقديم التفاصيل التالية حتى نتمكن من تقديم عرض أسعار شامل يناسب احتياجاتك",
+    "Order Created": "تم انشاء الطلب",
+    "We will contact you as soon as possible": "سنقوم بالتواصل معك في أقرب وقت ممكن",
+    "Go Home": "العودة للرئيسية"
 }

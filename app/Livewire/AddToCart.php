@@ -51,6 +51,8 @@ class AddToCart extends Component
 
     public function updatedSelectedAttributeValues($value)
     {
+        $this->added_to_cart = null;
+
         $this->available_attribute_values = collect($this->attribute_values)->mapWithKeys(function ($values, $attribute) {
             $other_attributes_values = collect($this->selected_attribute_values)
                 ->filter(fn ($selected_values, $selected_attribute) => $attribute != $selected_attribute)

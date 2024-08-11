@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class Cart
 {
-    protected $items = [];
+    public $items = [];
 
     public function __construct()
     {
@@ -50,7 +50,8 @@ class Cart
     public function clear()
     {
         $this->items = [];
-        Cookie::make('cart', json_encode([]), 30 * 24 * 60);
+
+        Cookie::queue('cart', '[]', 30 * 24 * 60);
     }
 
     public function update_quantity($index, int $quantity)

@@ -8,10 +8,11 @@ use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasCuratorMedia, HasLocales, HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasLocales, HasTranslations, Seoable, Sluggable, SoftDeletes;
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
@@ -138,6 +139,11 @@ class Product extends Model
             } catch (\Throwable $th) {
                 //
             }
+        });
+
+        static::deleting(function (self $product) {
+            $product->slug = str()->uuid();
+            $product->save();
         });
     }
 }
