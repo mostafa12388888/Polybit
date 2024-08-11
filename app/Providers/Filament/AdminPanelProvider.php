@@ -4,7 +4,6 @@ namespace App\Providers\Filament;
 
 use Awcodes\Curator\CuratorPlugin;
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
-use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -14,7 +13,6 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -39,10 +37,6 @@ class AdminPanelProvider extends PanelProvider
             }
         }, null, false);
 
-        // LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-        //     $switch->locales(array_keys(locales()))->circular();
-        // });
-
         return $panel
             ->defaultThemeMode(ThemeMode::Light)
             ->default()
@@ -61,10 +55,7 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                // Widgets\AccountWidget::class,
-                // Widgets\FilamentInfoWidget::class,
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

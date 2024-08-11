@@ -147,4 +147,13 @@ return [
     'order items' => 'منتجات للطلب',
     'order item' => 'منتج للطلب',
     'Quantity' => 'الكمية',
+    'Checked' => 'تمت مراجعته',
+    'Set as checked' => 'تعيين كـ تمت مراجعته',
+    'Set as not checked' => 'تعيين كـ لم تتم مراجعته',
+    'Last Week' => 'الأسبوع الماضي',
+    'Day' => 'يوم',
+    'Week' => 'أسبوع',
+    'Month' => 'شهر',
+    'Year' => 'سنة',
+    'Latest Posts' => 'أحدث المقالات',
 ];

@@ -1,4 +1,4 @@
-<x-link href="{{ route('products.show', $product) }}" class="group flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none shadow !rounded-md overflow-hidden w-full">
+<x-link href="{{ route('products.show', $product) }}" class="flex-grow group flex flex-col text-start !p-0 bg-white dark:bg-dark-700/70 dark:shadow-none shadow !rounded-md overflow-hidden w-full">
     <div class="relative">
         <x-curator-glider fallback="logo" :media="$product->image" format="webp" width="480" height="280" fit="crop" quality="70" class="w-full aspect-video object-cover" />
 

@@ -5,11 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers\ItemsRelationManager;
 use App\Models\Order;
+use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +31,7 @@ class OrderResource extends Resource
                 TextColumn::make('name')->limit(50)->searchable()->sortable(),
                 TextColumn::make('email')->limit(50)->searchable()->sortable()->toggleable(),
                 TextColumn::make('phone')->limit(50)->searchable()->sortable()->toggleable(),
+                ToggleColumn::make('checked'),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])
             ->filters([
@@ -54,6 +57,7 @@ class OrderResource extends Resource
                 TextEntry::make('phone'),
                 TextEntry::make('message')->columnSpanFull(),
                 TextEntry::make('created_at')->dateTime(),
+                IconEntry::make('checked')->boolean(),
             ])->columns(2),
         ]);
     }
@@ -118,5 +122,12 @@ class OrderResource extends Resource
     public static function getNavigationGroup(): ?string
     {
         return __('admin.Store');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $unchecked_orders = Order::where('checked', false)->count();
+
+        return $unchecked_orders ?: null;
     }
 }
