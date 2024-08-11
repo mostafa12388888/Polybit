@@ -11,11 +11,11 @@ use App\Livewire\RequestQuote;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-// TODO: Category page card with image and description
-
-// TODO: Search
 // TODO: Contact Messages
 
+// TODO: Seo Metadata tags
+
+// TODO: Search
 // TODO: Sitemap
 // TODO: Schema
 

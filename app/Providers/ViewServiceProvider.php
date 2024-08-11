@@ -62,7 +62,7 @@ class ViewServiceProvider extends ServiceProvider
 
         Facades\View::composer(['home.index'], function (View $view) {
             $slides = Cache::remember('slides_'.app()->getLocale(), 60 * 60, function () {
-                return Slide::whereJsonContains('locales', app()->getLocale())->with('media')
+                return Slide::whereJsonContains('locales', app()->getLocale())->with('image')
                     ->orderBy('order')->limit(3)->get();
             });
 

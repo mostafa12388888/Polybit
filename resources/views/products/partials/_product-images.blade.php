@@ -6,7 +6,7 @@
             {
                 'thumb': '{{ $image->getSignedUrl(['w' => 80]) }}',
                 'full': '{{ $image->getSignedUrl(['w' => 1280]) }}',
-                'alt': '{{ $image->alt }}',
+                'alt': '{{ $image->alt ?? $product->name }}',
             },
         @endforeach
     ],

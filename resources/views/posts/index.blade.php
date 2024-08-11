@@ -10,9 +10,13 @@
         @endif
     </x-slot>
 
+    
     <div class="flex-grow bg-white dark:bg-dark-800/70 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
         <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
-
+            @if ($category ?? null)
+                @include('layouts.partials._category-card', compact('category'))
+            @endif
+            
             <div class="w-full flex gap-12 sm:gap-16 items-center flex-wrap">
                 @forelse ($posts as $post)
                     <div class="2xl:w-4/12 max-w-4xl flex-grow flex">

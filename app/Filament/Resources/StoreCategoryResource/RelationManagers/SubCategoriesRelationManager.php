@@ -53,6 +53,8 @@ class SubCategoriesRelationManager extends RelationManager
                     Tables\Actions\ViewAction::make()->url(fn ($record) => StoreCategoryResource::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make()->url(fn ($record) => StoreCategoryResource::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
+                        ->url(fn ($record) => route('store-categories.show', $record), true),
                 ]),
             ])
             ->bulkActions([

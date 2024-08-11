@@ -2,7 +2,7 @@
     <x-slot name="heading">{{ $post->title }}</x-slot>
 
     <x-slot name="breadcrumbs">
-        <x-breadcrumb :href="route('posts.index')">Blog</x-breadcrumb>
+        <x-breadcrumb :href="route('posts.index')">{{ __('Posts') }}</x-breadcrumb>
         <x-breadcrumb :last="true">{{ str()->limit($post->title, 17) }}</x-breadcrumb>
     </x-slot>
 

@@ -46,7 +46,7 @@ class StoreCategory extends Model
 
     public function image()
     {
-        return $this->first_media()->where('media_items.type', 'post-image');
+        return $this->first_media()->where('media_items.type', 'category-image');
     }
 
     public function is_parent_category()

@@ -31,6 +31,8 @@ class ProductController extends Controller
 
     public function category_products(StoreCategory $category)
     {
+        $category->loadMissing('image');
+
         $products = $category->is_parent_category() ? $category->sub_categories_products() : $category->products();
 
         $products = $products->latest()->with('image')->paginate(12);

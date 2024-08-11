@@ -18,6 +18,11 @@ class Slide extends Model
 
     protected $casts = ['actions' => 'array', 'locales' => 'array'];
 
+    public function image()
+    {
+        return $this->first_media();
+    }
+
     protected static function boot()
     {
         parent::boot();

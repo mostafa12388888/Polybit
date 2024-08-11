@@ -15,7 +15,7 @@
                             <ul class="glide__slides w-full">
                                 @foreach ($project->images as $image)
                                     <li class="glide__slide h-full relative">
-                                        <x-curator-glider :media="$image" format="webp" width="1920" height="1080" fit="crop" quality="70" class="w-full aspect-video object-cover" />
+                                        <x-curator-glider :media="$image" format="webp" width="1920" height="1080" fit="crop" quality="70" class="w-full aspect-video object-cover" :alt="$project->title" />
                                     </li>
                                 @endforeach
                             </ul>

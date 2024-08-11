@@ -13,6 +13,10 @@
 
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
         <div class="container mx-auto flex flex-col lg:flex-row items-start gap-3 md:gap-4 lg:gap-8 relative z-10">
+            @if ($category ?? null)
+                @include('layouts.partials._category-card', compact('category'))
+            @endif
+            
             <div class="w-full flex gap-4 lg:gap-6 items-stretch justify-center flex-wrap relative">
                 @forelse ($products as $product)
                     <div class="w-72 max-w-sm flex-grow flex">
