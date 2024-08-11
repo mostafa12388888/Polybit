@@ -7,17 +7,18 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Livewire\Cart;
+use App\Livewire\ContactUs;
 use App\Livewire\RequestQuote;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
-
-// TODO: Contact Messages
 
 // TODO: Seo Metadata tags
 
 // TODO: Search
 // TODO: Sitemap
-// TODO: Schema
+// TODO: Schema json/ltd
+
+// TODO: Loading states
 
 Livewire::setUpdateRoute(function ($handle) {
     if (in_array(request()->segment(1), array_keys(locales()))) {
@@ -44,7 +45,7 @@ Route::resource('projects', ProjectController::class)->only('index', 'show');
 
 Route::resource('/pages', PageController::class)->only('show');
 
-Route::view('/contact-us', 'pages.contact-us')->name('contact-us');
+Route::get('/contact-us', ContactUs::class)->name('contact-us');
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 

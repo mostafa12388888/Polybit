@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\OrderResource\Pages;
+namespace App\Filament\Resources\MessageResource\Pages;
 
-use App\Filament\Resources\OrderResource;
+use App\Filament\Resources\MessageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewOrder extends ViewRecord
+class ViewMessage extends ViewRecord
 {
-    protected static string $resource = OrderResource::class;
+    protected static string $resource = MessageResource::class;
 
     protected function getHeaderActions(): array
     {

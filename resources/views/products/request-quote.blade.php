@@ -6,7 +6,6 @@
 </x-slot>
 
 @if($order_created)
-
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
             <div class="lg:rounded-md bg-white dark:bg-dark-700/60 w-full flex flex-col px-4 py-20 items-center justify-center gap-4">
@@ -28,9 +27,7 @@
             </div>
         </div>
     </section>
-
 @else
-
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
             <div class="lg:rounded-md overflow-hidden bg-white dark:bg-dark-700/60 w-full lg:max-w-sm relative flex flex-col order-3 lg:order-1">
@@ -112,8 +109,7 @@
                 </div>
                 
                 <x-button class="sm:max-w-40">{{ __('Submit') }}</x-button>
-            </div>
+            </form>
         </div>
     </section>
-
 @endif
