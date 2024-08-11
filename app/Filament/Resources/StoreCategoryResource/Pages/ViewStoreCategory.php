@@ -19,6 +19,8 @@ class ViewStoreCategory extends ViewRecord
     {
         return [
             Actions\LocaleSwitcher::make(),
+            Actions\Action::make('preview')->hiddenLabel()->color('gray')->icon('heroicon-o-arrow-top-right-on-square')
+                ->url(fn ($record) => route('store-categories.show', $record), true),
             Actions\EditAction::make(),
         ];
     }

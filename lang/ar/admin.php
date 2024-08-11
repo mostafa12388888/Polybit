@@ -156,4 +156,5 @@ return [
     'Month' => 'شهر',
     'Year' => 'سنة',
     'Latest Posts' => 'أحدث المقالات',
+    'Preview' => 'إستعراض',
 ];

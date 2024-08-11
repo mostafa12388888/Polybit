@@ -73,6 +73,8 @@ class StoreCategoryResource extends Resource
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
+                        ->url(fn ($record) => route('store-categories.show', $record), true),
                 ]),
             ])
             ->bulkActions([

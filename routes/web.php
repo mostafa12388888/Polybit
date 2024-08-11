@@ -13,8 +13,6 @@ use Livewire\Livewire;
 
 // TODO: Category page card with image and description
 
-// TODO: External preview
-
 // TODO: Search
 // TODO: Contact Messages
 
