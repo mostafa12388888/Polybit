@@ -66,9 +66,11 @@
     @else
         @if ($product->is_available)
             <div class="flex flex-wrap items-center gap-4">
-                <x-button styling="primary" class="flex gap-2 dark:bg-dark-700 justify-center items-center max-w-sm w-full py-4" wire:click="add_to_cart">
+                <x-button styling="primary" class="flex gap-2 dark:bg-dark-700 justify-center items-center max-w-sm w-full py-4"
+                    wire:click="add_to_cart" wire:target="add_to_cart" wire:loading.attr="disabled">
                     <x-icons.cart class="!w-5 !h-5" stroke-width="1.5" />
                     <span>{{ __('Add to cart') }}</span>
+                    <x-spinner wire:target="add_to_cart" wire:loading class="!w-4 !h-4" />
                 </x-button>
                 
                 @error('availability')<div class="text-red-500">{{ $message }}</div>@enderror

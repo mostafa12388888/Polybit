@@ -101,7 +101,7 @@ class AddToCart extends Component
     public function get_variant()
     {
         $variants = collect($this->variants)->filter(function ($variant) {
-            return ! array_diff($this->selected_attribute_values, $variant);
+            return ! array_diff(array_filter($this->selected_attribute_values), $variant);
         });
 
         return array_keys($variants->toArray())[0] ?? null;

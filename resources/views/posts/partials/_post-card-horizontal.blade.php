@@ -24,7 +24,7 @@
             </div>
         </div>
         
-        <x-button styling="link" class="border dark:border-dark-700">{{ __('Continue Reading') }}</x-button>
+        <x-link styling="link" class="border dark:border-dark-700">{{ __('Continue Reading') }}</x-link>
     </div>
 </x-link>
 

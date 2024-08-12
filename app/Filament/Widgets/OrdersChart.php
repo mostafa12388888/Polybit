@@ -39,7 +39,7 @@ class OrdersChart extends ChartWidget
                 end: now()->endOfDay(),
             )->perHour()->count();
 
-            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->format('H:00'));
+            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->translatedFormat('H:00'));
             $data = $data->map(fn (TrendValue $value) => $value->aggregate);
         } elseif ($this->filter == 'week') {
             $data = $data->between(
@@ -47,7 +47,7 @@ class OrdersChart extends ChartWidget
                 end: now()->endOfDay(),
             )->perDay()->count();
 
-            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->format('D'));
+            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->translatedFormat('D'));
             $data = $data->map(fn (TrendValue $value) => $value->aggregate);
         } elseif ($this->filter == 'month') {
             $data = $data->between(
@@ -55,7 +55,7 @@ class OrdersChart extends ChartWidget
                 end: now()->endOfDay(),
             )->perDay()->count();
 
-            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->format('d'));
+            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->translatedFormat('d'));
             $data = $data->map(fn (TrendValue $value) => $value->aggregate);
         } else {
             $data = $data->between(
@@ -63,7 +63,7 @@ class OrdersChart extends ChartWidget
                 end: now()->endOfMonth(),
             )->perMonth()->count();
 
-            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->format('M'));
+            $labels = $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->translatedFormat('M'));
             $data = $data->map(fn (TrendValue $value) => $value->aggregate);
         }
 

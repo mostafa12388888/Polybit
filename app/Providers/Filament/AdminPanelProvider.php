@@ -87,6 +87,7 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationGroup(__('admin.Settings')),
             ])
             ->viteTheme('resources/css/filament/dashboard/theme.css')
+            ->homeUrl('/')
             ->font('Almarai');
     }
 }

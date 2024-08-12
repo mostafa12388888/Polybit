@@ -43,9 +43,11 @@
 
                         <div class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700">
                             <div class="flex justify-end">
-                                <x-button styling="light" class="flex items-center gap-2 !p-3" wire:click="remove_item({{ $product->index }})">
+                                <x-button styling="light" class="flex items-center gap-2 !p-3" wire:click="remove_item({{ $product->index }})" 
+                                    wire:target="remove_item({{ $product->index }})" wire:loading.attr="disabled">
                                     <x-icons.close class="!w-5 !h-5" />
                                     <span class="text-sm hidden sm:inline">{{ __('Remove') }}</span>
+                                    <x-spinner wire:target="remove_item({{ $product->index }})" wire:loading class="!w-4 !h-4" />
                                 </x-button>
                             </div>
                         </div>

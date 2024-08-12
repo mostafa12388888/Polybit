@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
@@ -34,6 +35,10 @@ class AppServiceProvider extends ServiceProvider
 
         try {
             config(['app.name' => setting('app_name', config('app.name'))]);
+
+            $logo = setting('logo') ?: setting('darkmode_logo');
+
+            Filament::getPanel()->brandLogo($logo?->getSignedUrl())->brandLogoHeight('35px');
         } catch (\Throwable $th) {
             //
         }

@@ -18,7 +18,7 @@ class ContactUs extends Component
     #[Validate('max:50')]
     public $phone;
 
-    #[Validate('max:5000')]
+    #[Validate('required|max:5000')]
     public $message;
 
     public $message_sent;

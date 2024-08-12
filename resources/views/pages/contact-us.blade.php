@@ -116,7 +116,10 @@
                             @error('message')<div class="text-red-500">{{ $message }}</div>@enderror
                         </div>
                         
-                        <x-button class="sm:max-w-40">{{ __('Submit') }}</x-button>
+                        <x-button class="sm:max-w-40 flex gap-2 items-center justify-center" wire:target="send_message" wire:loading.attr="disabled">
+                            <span>{{ __('Submit') }}</span>
+                            <x-spinner wire:target="send_message" wire:loading class="!w-4 !h-4" />
+                        </x-button>
                     </form>
                 @endif
             </div>
