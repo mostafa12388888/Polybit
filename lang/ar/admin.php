@@ -160,4 +160,5 @@ return [
     'Year' => 'سنة',
     'Latest Posts' => 'أحدث المقالات',
     'Preview' => 'إستعراض',
+    'Favicon' => 'أيقونة Favicon',
 ];

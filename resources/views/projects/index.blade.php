@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="title">{{ __('Projects') }}</x-slot>
+
     <x-slot name="heading">{{ __('Projects') }}</x-slot>
 
     <x-slot name="breadcrumbs">

@@ -1,4 +1,12 @@
 <x-app-layout>
+    <x-slot name="title">{{ $page->meta('title') }}</x-slot>
+
+    <x-slot name="description">{{ $page->meta('description') }}</x-slot>
+
+    <x-slot name="keywords">{{ $page->meta('keywords') }}</x-slot>
+
+    <x-slot name="image">{!! $page->meta('image') !!}</x-slot>
+
     <x-slot name="heading">{{ $page->title }}</x-slot>
 
     <x-slot name="breadcrumbs">

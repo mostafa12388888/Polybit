@@ -49,7 +49,7 @@ class Post extends Model
     {
         return [
             'title' => str($this->title)->limit(100),
-            'description' => str(tiptap_converter()->asText($this->body))->limit(200),
+            'description' => str(tiptap_converter()->asText($this->body ?: ['content' => '']))->limit(200),
             'keywords' => explode(' ', $this->title),
         ];
     }

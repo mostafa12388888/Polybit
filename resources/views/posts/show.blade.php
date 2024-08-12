@@ -1,4 +1,16 @@
 <x-app-layout>
+    <x-slot name="title">{{ $post->meta('title') }}</x-slot>
+
+    <x-slot name="description">{{ $post->meta('description') }}</x-slot>
+
+    <x-slot name="keywords">{{ $post->meta('keywords') }}</x-slot>
+
+    <x-slot name="image">{!! $post->meta('image') !!}</x-slot>
+
+    @if (! $post->translated())
+        <link rel="canonical" href="{{ localized_url($post->locales()[0] ?? app()->getLocale()) }}" />
+    @endif
+
     <x-slot name="heading">{{ $post->title }}</x-slot>
 
     <x-slot name="breadcrumbs">

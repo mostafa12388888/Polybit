@@ -22,6 +22,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if (! $product->translated()) {
+            return redirect()->route('products.index');
+        }
+
         $product->loadMissing('media', 'specs.media', 'variants.attribute_values');
 
         $related_products = $product->category->products()->where('id', '!=', $product->id)->limit(6)->get();

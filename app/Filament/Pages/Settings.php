@@ -33,6 +33,8 @@ class Settings extends Page
 
     public $address = [];
 
+    public $favicon;
+
     public $logo = [];
 
     public $darkmode_logo = [];
@@ -63,6 +65,12 @@ class Settings extends Page
                             (string) str()->uuid() => $value,
                         ];
                     }
+                }
+            } else {
+                if ($this->{$setting->key} instanceof CuratorMedia) {
+                    $this->{$setting->key} = [
+                        (string) str()->uuid() => $this->{$setting->key},
+                    ];
                 }
             }
         }
@@ -95,6 +103,9 @@ class Settings extends Page
 
                         CuratorPicker::make('darkmode_logo')->constrained()
                             ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
+
+                        CuratorPicker::make('favicon')->constrained()
+                            ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm'),
                     ]),
                     Tab::make('Contact details')->schema([
                         Textarea::make('address')->translatable(),

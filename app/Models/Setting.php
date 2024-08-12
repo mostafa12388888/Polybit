@@ -35,6 +35,11 @@ class Setting extends Model
             'type' => 'media',
             'default' => null,
         ],
+        'favicon' => [
+            'translatable' => false,
+            'type' => 'media',
+            'default' => null,
+        ],
         'address' => [
             'translatable' => true,
             'type' => 'string',

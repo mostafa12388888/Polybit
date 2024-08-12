@@ -28,12 +28,46 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        @if ($icon = setting('favicon') ?: setting('logo'))
+            <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max']) !!}">
+        @endif
 
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        <title>{{ $title }}</title>
+        <meta name="description" content="{{ $description ?? setting('app_description') }}" />
+
+        @if($keywords ?? null)
+            <meta name="keywords" content="{{ $keywords }}" />
+        @endif
+
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="{{ app()->getLocale() }}" />
+        <meta property="og:site_name" content="{{ config('app.name') }}" />
+        <meta property="og:title" content="{{ $title }}">
+        <meta property="og:description" content="{{ $description }}">
+        <meta property="og:url" content="{{ request()->url() }}" />
+        
+        @if ($image)
+            <meta property="og:image" content="{!! $image !!}" />
+            <meta property="og:image:height" content="1200" />
+            <meta property="og:image:width" content="630" />
+
+            <meta name="twitter:image" content="{!! $image !!}" />
+            <meta name="twitter:image:alt" content="{{ $image_alt }}" />
+        @endif
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{ $title }}" />
+        <meta name="twitter:description" content="{{ $description }}">
+        
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
         <style>
             @font-face {
                 font-family: 'Klavika';
@@ -50,16 +84,13 @@
                 src: url({{ asset('/fonts/klavika-regular.woff') }}) format('woff2');
             }
         </style>
-        
-        {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"> --}}
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+
         <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{ $head ?? null }}
     </head>
     <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-gray-100">
         @include('layouts.partials._header')

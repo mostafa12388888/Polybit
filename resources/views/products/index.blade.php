@@ -1,4 +1,14 @@
 <x-app-layout>
+    <x-slot name="title">{{ $category ?? null ? $category->meta('title') : __('Products') }}</x-slot>
+
+    @if ($category ?? null)
+        <x-slot name="description">{{ $category->meta('description') }}</x-slot>
+
+        <x-slot name="keywords">{{ $category->meta('keywords') }}</x-slot>
+
+        <x-slot name="image">{!! $category->meta('image') !!}</x-slot>
+    @endif
+
     <x-slot name="heading">{{ $category ?? null ? $category->name : __('Products') }}</x-slot>
 
     <x-slot name="breadcrumbs">

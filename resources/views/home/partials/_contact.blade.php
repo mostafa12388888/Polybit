@@ -9,7 +9,7 @@
     
             <p class="text-base xl:text-lg font-light">{{ __('Drop us a line and let\'s build something extraordinary together!') }}</p>
     
-            <x-link styling="white" :href="route('contact-us')" class="max-w-full min-w-80 text-center text-lg !px-4 !py-4 xl:!py-5 dark:!bg-dark-600">Contact Us</x-link>
+            <x-link styling="white" :href="route('contact-us')" class="max-w-full min-w-80 text-center text-lg !px-4 !py-4 xl:!py-5 dark:!bg-dark-600">{{ __('Contact Us') }}</x-link>
         </div>
     </div>
 </div>

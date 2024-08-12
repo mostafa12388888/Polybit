@@ -12,13 +12,9 @@ use App\Livewire\RequestQuote;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-// TODO: Seo Metadata tags
-
 // TODO: Search
 // TODO: Sitemap
-// TODO: Schema json/ltd
-
-// TODO: Loading states
+// TODO: Schema json/ld
 
 Livewire::setUpdateRoute(function ($handle) {
     if (in_array(request()->segment(1), array_keys(locales()))) {

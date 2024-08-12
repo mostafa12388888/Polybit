@@ -23,6 +23,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (! $post->translated()) {
+            return redirect()->route('posts.index');
+        }
+
         $post->loadMissing('category', 'user');
 
         $related_posts = $post->category->posts()->whereJsonContains('locales', app()->getLocale())

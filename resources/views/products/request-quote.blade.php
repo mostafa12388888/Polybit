@@ -1,3 +1,5 @@
+<x-slot name="title">{{ __('Request Quote') }}</x-slot>
+
 <x-slot name="heading">{{ __('Request Quote') }}</x-slot>
 
 <x-slot name="breadcrumbs">

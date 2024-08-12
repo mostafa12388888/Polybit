@@ -10,22 +10,40 @@ trait Seoable
 
     protected $_metadata;
 
+    public function meta($key)
+    {
+        return $this->metadatum($key);
+    }
+
     public function metadatum($key)
     {
         $default_metadata = method_exists($this, 'getDefaultMetadata') ? $this->getDefaultMetadata() : [];
 
-        if ($key == 'og-image') {
-            $image = $this->media()->where('media_items.type', 'og-image')->latest()->first();
+        if ($key == 'og-image' || $key == 'image') {
+            if ($this->relationLoaded('media')) {
+                return $this->media->filter(fn ($media) => $media->pivot->type == 'og-image')->first();
+            } else {
+                $image = $this->media()->where('media_items.type', 'og-image')->latest()->first();
+            }
 
-            // TODO: Add Default og image here
-            // $image = $image ?: $default;
+            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp']);
 
-            return $image ? asset($image->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'fm' => 'webp'])) : null;
+            if (! $image && $image = setting('logo')) {
+                $image = $image->getSignedUrl(['border' => '200,FFF,expand', 'w' => '800', 'h' => 230, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp']);
+            }
+
+            return $image ? asset($image) : null;
         }
 
         $this->loadMissing('metadata');
 
-        return $this->metadata->where('key', $key)->first()?->value ?: optional($default_metadata)['$key'];
+        $metadatum = $this->metadata->where('key', $key)->first()?->value ?: optional($default_metadata)[$key];
+
+        if ($key == 'keywords') {
+            $metadatum = is_array($metadatum) ? implode(',', $metadatum) : $metadatum;
+        }
+
+        return $metadatum;
     }
 
     public function metadata()
@@ -38,7 +56,9 @@ trait Seoable
         $this->loadMissing('metadata');
 
         foreach (['title', 'description', 'keywords'] as $key) {
-            $datum = $this->metadata->where('key', $key)->first()?->value;
+            $datum = $this->metadata->where('key', $key)->first();
+
+            $datum = optional($datum?->getAttributes())['value'];
 
             try {
                 $datum = json_decode($datum, true);
@@ -76,7 +96,7 @@ trait Seoable
 
         static::saved(function (self $seoable) {
             foreach ($seoable->_metadata as $key => $value) {
-                $seoable->metadata()->updateOrCreate(['key' => $key], ['value' => $value]);
+                $seoable->metadata()->updateOrCreate(['key' => $key], ['value' => json_decode($value, true)]);
             }
         });
     }

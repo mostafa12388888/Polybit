@@ -38,6 +38,28 @@ class ViewServiceProvider extends ServiceProvider
             return $view->with(compact('darkmode'));
         });
 
+        Facades\View::composer(['layouts.app'], function (View $view) use ($darkmode) {
+            $app_name = config('app.name');
+
+            $title = $view->title ?: ($app_name ?: 'App');
+
+            $title .= $view->title && $app_name ? ' - '.$app_name : '';
+
+            $description = $view->description ?: setting('app_description');
+
+            $image = $view->image;
+
+            $image_alt = $view->image_alt ?: $title;
+
+            if (! $image && $image = setting('logo')) {
+                $image = $image->getSignedUrl(['border' => '200,FFF,expand', 'w' => '800', 'h' => 230, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp']);
+            }
+
+            $image = $image ? asset($image) : null;
+
+            return $view->with(compact('title', 'description', 'image', 'image_alt'));
+        });
+
         Facades\View::composer(['layouts.partials._header', 'layouts.partials._footer'], function (View $view) use ($darkmode) {
             $pages = Cache::remember('pages', 60 * 60, fn () => Page::oldest('id')->get());
 

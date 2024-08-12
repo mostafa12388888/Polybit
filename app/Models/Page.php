@@ -24,6 +24,15 @@ class Page extends Model
         return 'slug';
     }
 
+    public function getDefaultMetadata()
+    {
+        return [
+            'title' => str($this->title)->limit(100),
+            'description' => str(tiptap_converter()->asText($this->body ?: ['content' => '']))->limit(200),
+            'keywords' => explode(' ', $this->title),
+        ];
+    }
+
     protected static function boot()
     {
         parent::boot();

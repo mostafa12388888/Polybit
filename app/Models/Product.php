@@ -77,7 +77,7 @@ class Product extends Model
     {
         return [
             'title' => str($this->name)->limit(100),
-            'description' => str(tiptap_converter()->asText($this->description))->limit(200),
+            'description' => str(tiptap_converter()->asText($this->description ?: ['content' => '']))->limit(200),
             'keywords' => explode(' ', $this->name),
         ];
     }

@@ -1,4 +1,6 @@
 
+<x-slot name="title">{{ __('Shopping Cart') }}</x-slot>
+
 <x-slot name="heading">{{ __('Shopping Cart') }}</x-slot>
 
 <x-slot name="breadcrumbs">

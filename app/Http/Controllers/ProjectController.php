@@ -21,6 +21,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        if (! $project->translated()) {
+            return redirect()->route('projects.index');
+        }
+
         $project->loadMissing('media');
 
         $latest_projects = Project::latest()->where('id', '!=', $project->id)->limit(6)->get();
