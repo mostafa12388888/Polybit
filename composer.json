@@ -25,6 +25,7 @@
         "mokhosh/filament-rating": "^1.1",
         "njxqlus/filament-lightbox": "^3.2",
         "outerweb/filament-translatable-fields": "^2.0",
+        "spatie/laravel-sitemap": "^7.2",
         "spatie/laravel-translatable": "^6.8",
         "statikbe/laravel-filament-chained-translation-manager": "^3.2",
         "z3d0x/filament-logger": "^0.7.2"

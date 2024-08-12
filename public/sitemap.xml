@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>https://ichemeg.test/storage/sitemaps/pages_sitemap.xml</loc>
+            <lastmod>2024-08-12T21:20:43+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://ichemeg.test/storage/sitemaps/blog_categories_sitemap.xml</loc>
+            <lastmod>2024-08-12T21:20:43+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://ichemeg.test/storage/sitemaps/posts_sitemap.xml</loc>
+            <lastmod>2024-08-12T21:20:43+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://ichemeg.test/storage/sitemaps/projects_sitemap.xml</loc>
+            <lastmod>2024-08-12T21:20:43+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://ichemeg.test/storage/sitemaps/store_categories_sitemap.xml</loc>
+            <lastmod>2024-08-12T21:20:43+00:00</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://ichemeg.test/storage/sitemaps/products_sitemap.xml</loc>
+            <lastmod>2024-08-12T21:20:43+00:00</lastmod>
+    </sitemap>
+</sitemapindex>

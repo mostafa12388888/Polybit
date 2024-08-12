@@ -49,14 +49,18 @@ trait HasTranslations
 
     public function useFallbackLocale(): bool
     {
-        $referer = trim(parse_url(request()->headers->get('referer'))['path'], '/');
+        try {
+            $referer = trim(parse_url(request()->headers->get('referer'))['path'], '/');
 
-        if (strpos($referer, Filament::getPanel()->getPath()) === 0) {
-            return false;
-        }
+            if (strpos($referer, Filament::getPanel()->getPath()) === 0) {
+                return false;
+            }
 
-        if (strpos(request()->route()->getName(), 'filament.') === 0) {
-            return false;
+            if (strpos(request()->route()->getName(), 'filament.') === 0) {
+                return false;
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
         }
 
         return true;

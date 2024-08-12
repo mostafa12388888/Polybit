@@ -16,6 +16,8 @@ use Livewire\Livewire;
 // TODO: Sitemap
 // TODO: Schema json/ld
 
+// dd(setting('logo'));
+
 Livewire::setUpdateRoute(function ($handle) {
     if (in_array(request()->segment(1), array_keys(locales()))) {
         if (! (collect(locales(false))->where('code', request()->segment(1))->first()['default'] ?? false)) {

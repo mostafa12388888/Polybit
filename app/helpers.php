@@ -37,11 +37,15 @@ if (! function_exists('locales')) {
 }
 
 if (! function_exists('localized_url')) {
-    function localized_url($locale)
+    function localized_url($locale, $url = null)
     {
         $default = collect(locales(false))->where('code', $locale)->first()['default'] ?? false;
 
-        $url = request()->getRequestUri();
+        if ($url) {
+            $url = optional(parse_url($url))['path'] ?: '/';
+        } else {
+            $url = request()->getRequestUri();
+        }
 
         if (in_array(request()->segment(1), array_keys(locales()))) {
             $url = substr($url, strlen(request()->segment(1)) + 1);
