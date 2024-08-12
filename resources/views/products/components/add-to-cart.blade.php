@@ -11,18 +11,18 @@
                 @else
 
                     @if ($attribute->type->isColors())
-                        <div class="table-cell align-middle">
+                        <div class="table-cell align-middle" x-data="{ activeColor: null }">
                             <div class="flex gap-0.5 flex-wrap -mx-1">
                                 @foreach ($attribute->values as $value)
                                     @php($available = in_array($value->id, $available_attribute_values))
 
                                     <div class="{{ ! $available ? 'cursor-not-allowed opacity-25 blur-[2px]' : '' }}" title="{{ $value->title }}">
-                                        <button class="flex hover:ring-1 rounded p-1.5 items-center justify-center {{ ! $available ? 'pointer-events-none' : '' }} {{ optional($selected_attribute_values)[$attribute->id] == $value->id ? 'ring-2 hover:ring-2 ring-primary-400' : 'ring-primary-200' }}"
-                                            @if (optional($selected_attribute_values)[$attribute->id] == $value->id)
-                                                wire:click="$set('selected_attribute_values.{{ $attribute->id }}', null)"
-                                            @else
-                                                wire:click="$set('selected_attribute_values.{{ $attribute->id }}', {{ $value->id }})"
-                                            @endif
+                                        <button class="flex hover:ring-1 rounded p-1.5 items-center justify-center {{ ! $available ? 'pointer-events-none' : '' }}"
+                                            x-bind:class="activeColor == {{ $value->id }} ? 'ring-2 hover:ring-2 ring-primary-400' : 'ring-primary-200'"
+                                            @click="
+                                                $wire.set('selected_attribute_values.{{ $attribute->id }}', activeColor == {{ $value->id }} ? null : {{ $value->id }})
+                                                activeColor = {{ $value->id }}
+                                            "
                                         >
                                             <span class="block w-9 h-9 shadow rounded" style="background: {{ $value->value }};"></span>
                                         </button>
