@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
 // TODO: Search
-// TODO: Sitemap
 // TODO: Schema json/ld
-
-// dd(setting('logo'));
 
 Livewire::setUpdateRoute(function ($handle) {
     if (in_array(request()->segment(1), array_keys(locales()))) {

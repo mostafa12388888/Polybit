@@ -2,6 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\BlogCategory;
+use App\Models\Post;
+use App\Models\Product;
+use App\Models\Project;
+use App\Models\StoreCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -24,7 +29,13 @@ class Search extends Component
             $this->resetValidation('query');
 
             if ($query = trim($this->query)) {
-                // search
+                $posts = Post::search($query)->with('image')->limit(10)->get();
+                $products = Product::search($query)->with('image')->limit(10)->get();
+                $projects = Project::search($query)->with('image')->limit(10)->get();
+                $blog_categories = BlogCategory::search($query)->with('image')->limit(10)->get();
+                $store_categories = StoreCategory::search($query)->with('image')->limit(10)->get();
+
+                $results = collect()->merge($posts)->merge($products)->merge($projects)->merge($blog_categories)->merge($store_categories)->sortByDesc('relevance')->take(20);
             }
         }
 

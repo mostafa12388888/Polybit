@@ -37,9 +37,49 @@
         <div class="search-results absolute bg-white dark:bg-dark-600 w-full shadow-xl rounded-b-md divide-y overflow-hidden max-h-[480px] overflow-y-auto"
             x-cloak x-bind:class="focused ? 'block' : 'hidden'">
             @forelse ($results ?? [] as $result)
-                <div class="border-b" wire:loading.remove>
-                    <p>Serach result</p>
-                </div>
+                @if ($result instanceof \App\Models\Product)
+                    <x-link href="{{ route('products.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                        <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->name" />
+
+                        <div>
+                            <p>{{ $result->name }}</p>
+                            
+                            @if ($result->price)
+                                <p>{{ Number::format($result->price) }} <span class="text-sm">{{ __('E£') }}</span></p>
+                            @endif
+                        </div>
+                    </x-link>
+                @elseif($result instanceof \App\Models\Post)
+                    <x-link href="{{ route('posts.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                        <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->title" />
+
+                        <p>{{ $result->title }}</p>
+                    </x-link>
+                @elseif($result instanceof \App\Models\Project)
+                    <x-link href="{{ route('projects.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                        <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->title" />
+
+                        <p>{{ $result->title }}</p>
+                    </x-link>
+                @elseif($result instanceof \App\Models\BlogCategory)
+                    <x-link href="{{ route('blog-categories.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                        <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->name" />
+
+                        <div class="flex-grow flex items-between gap-2">
+                            <p class="flex-grow">{{ $result->name }}</p>
+                            <x-icons.tag class="opacity-50" />
+                        </div>
+                    </x-link>
+                @elseif($result instanceof \App\Models\StoreCategory)
+                    <x-link href="{{ route('store-categories.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                        <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->name" />
+
+                        <div class="flex-grow flex items-between gap-2">
+                            <p class="flex-grow">{{ $result->name }}</p>
+                            <x-icons.tag class="opacity-50" />
+                        </div>
+                    </x-link>
+                @endif
             @empty
                 <div class="text-center px-6 py-6 dark:border-dark-700/70" wire:loading.remove.block>
                     @if(empty(trim($query)))
@@ -58,11 +98,11 @@
                 <x-spinner class="!w-6 !h-6" />
             </div>
 
-            @if (! empty(trim($query)))
+            {{-- @if (! empty(trim($query)))
                 <div class="w-full sticky bottom-0 p-4 flex gap-1 flex-wrap items-center justify-center bg-white dark:bg-dark-700 dark:border-dark-700/70">
                     <x-button styling="link" size="sm">{{ __('All Results') }}</x-button>
                 </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 

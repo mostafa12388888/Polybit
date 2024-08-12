@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasCuratorMedia;
 use App\Traits\HasLocales;
 use App\Traits\HasTranslations;
+use App\Traits\Searchable;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,13 +14,22 @@ use Illuminate\Support\Facades\Cache;
 
 class Project extends Model
 {
-    use HasCuratorMedia, HasFactory, HasLocales, HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasFactory, HasLocales, HasTranslations, Searchable, Seoable, Sluggable;
 
     protected $translatable = ['title', 'subtitle', 'description', 'attributes', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
+
+    public $searchable = [
+        'columns' => [
+            'projects.title' => 6,
+            'projects.slug' => 4,
+            'projects.subtitle' => 2,
+            'projects.description' => 1,
+        ],
+    ];
 
     public function getRouteKeyName()
     {

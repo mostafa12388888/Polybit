@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasCuratorMedia;
 use App\Traits\HasLocales;
 use App\Traits\HasTranslations;
+use App\Traits\Searchable;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -12,13 +13,21 @@ use Illuminate\Support\Facades\Cache;
 
 class Post extends Model
 {
-    use HasCuratorMedia, HasLocales, HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasLocales, HasTranslations, Searchable, Seoable, Sluggable;
 
     protected $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $casts = ['body' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
+
+    public $searchable = [
+        'columns' => [
+            'posts.title' => 8,
+            'posts.slug' => 6,
+            'posts.body' => 2,
+        ],
+    ];
 
     public function getRouteKeyName()
     {

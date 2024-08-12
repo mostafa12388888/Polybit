@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasCuratorMedia;
 use App\Traits\HasLocales;
 use App\Traits\HasTranslations;
+use App\Traits\Searchable;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -12,13 +13,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasCuratorMedia, HasLocales, HasTranslations, Seoable, Sluggable, SoftDeletes;
+    use HasCuratorMedia, HasLocales, HasTranslations, Searchable, Seoable, Sluggable, SoftDeletes;
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
+
+    public $searchable = [
+        'columns' => [
+            'products.name' => 10,
+            'products.slug' => 7,
+            'products.sku' => 7,
+            'products.description' => 3,
+        ],
+    ];
 
     public function getRouteKeyName()
     {

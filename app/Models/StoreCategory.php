@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasCuratorMedia;
 use App\Traits\HasTranslations;
+use App\Traits\Searchable;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -11,13 +12,21 @@ use Illuminate\Support\Facades\Cache;
 
 class StoreCategory extends Model
 {
-    use HasCuratorMedia, HasTranslations, Seoable, Sluggable;
+    use HasCuratorMedia, HasTranslations, Searchable, Seoable, Sluggable;
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
     protected $casts = ['description' => 'json'];
 
     protected $guarded = [];
+
+    public $searchable = [
+        'columns' => [
+            'store_categories.name' => 4,
+            'store_categories.slug' => 2,
+            'store_categories.description' => 1,
+        ],
+    ];
 
     public function getRouteKeyName()
     {
@@ -68,7 +77,7 @@ class StoreCategory extends Model
     {
         return [
             'title' => str($this->name)->limit(100),
-            'description' => str($this->description)->limit(200),
+            'description' => str(tiptap_converter()->asText($this->description ?: ['content' => '']))->limit(200),
             'keywords' => explode(' ', $this->name),
         ];
     }
