@@ -18,6 +18,6 @@ class UserSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        User::factory(5)->create();
+        // User::factory(5)->create();
     }
 }
