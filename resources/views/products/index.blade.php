@@ -36,23 +36,25 @@
                 @endforelse
             </div>
             
-            <div class="flex-grow max-w-full w-full lg:w-5/12 xl:w-4/12 flex flex-col overflow-hidden max-lg:divide-y lg:gap-4">
-                <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-800 max-lg:py-10 flex flex-col">
-                    <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Store Categories') }}</h3>
+            @if ($store_categories->count())
+                <div class="flex-grow max-w-full w-full lg:w-5/12 xl:w-4/12 flex flex-col overflow-hidden max-lg:divide-y lg:gap-4">
+                    <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-800 max-lg:py-10 flex flex-col">
+                        <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Store Categories') }}</h3>
 
-                    <div class="flex flex-col gap-6">
-                        @foreach ($store_categories as $category)
-                            <div class="flex flex-col gap-3">
-                                <x-link class="font-semibold" :href="route('store-categories.show', $category)">{{ $category->name }}</x-link>
-                                
-                                @foreach ($category->sub_categories as $sub_category)
-                                    <x-link class="ms-3" :href="route('store-categories.show', $sub_category)">{{ $sub_category->name }}</x-link>
-                                @endforeach
-                            </div>
-                        @endforeach
+                        <div class="flex flex-col gap-6">
+                            @foreach ($store_categories as $category)
+                                <div class="flex flex-col gap-3">
+                                    <x-link class="font-semibold" :href="route('store-categories.show', $category)">{{ $category->name }}</x-link>
+                                    
+                                    @foreach ($category->sub_categories as $sub_category)
+                                        <x-link class="ms-3" :href="route('store-categories.show', $sub_category)">{{ $sub_category->name }}</x-link>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 
