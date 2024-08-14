@@ -112,3 +112,27 @@ if (! function_exists('cart')) {
         return $cart;
     }
 }
+
+if (! function_exists('schema_text')) {
+    function schema_text($text, ?int $limit = null)
+    {
+        $text = trim(strip_tags($text));
+
+        $text = html_entity_decode($text);
+
+        $text = str_replace(["\u{A0}", "\r\n", "\n"], ' ', $text);
+
+        // Replace multiple spaces with single space
+        $text = preg_replace('!\s+!', ' ', $text);
+
+        if ($limit) {
+            $text = str()->limit($text, $limit);
+        }
+
+        $text = addslashes($text);
+
+        $text = str_replace("\'", "'", $text);
+
+        return $text;
+    }
+}

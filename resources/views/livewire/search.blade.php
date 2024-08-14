@@ -1,5 +1,4 @@
 <form class="relative flex-grow w-full lg:w-auto lg:max-w-2xl xl:max-w-4xl" 
-    action="{{ route('search') }}"
     x-data="{
         visible: false,
         focused: false,
@@ -20,6 +19,7 @@
     x-trap.inert.noscroll="focused || visible"
     @keydown.down="$focus.wrap().next()"
     @keydown.up="$focus.wrap().previous()"
+    @submit.prevent=""
 >
     <!-- Overlay -->
     <div wire:ignore class="bg-dark-800/40 fixed top-0 bottom-0 left-0 right-0"
@@ -38,7 +38,7 @@
             x-cloak x-bind:class="focused ? 'block' : 'hidden'">
             @forelse ($results ?? [] as $result)
                 @if ($result instanceof \App\Models\Product)
-                    <x-link href="{{ route('products.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                    <x-link href="{{ route('products.show', $result) }}" styling="white" class="flex gap-2 items-center rounded-none dark:border-dark-600/50">
                         <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->name" />
 
                         <div>
@@ -50,19 +50,19 @@
                         </div>
                     </x-link>
                 @elseif($result instanceof \App\Models\Post)
-                    <x-link href="{{ route('posts.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                    <x-link href="{{ route('posts.show', $result) }}" styling="white" class="flex gap-2 items-center rounded-none dark:border-dark-600/50">
                         <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->title" />
 
                         <p>{{ $result->title }}</p>
                     </x-link>
                 @elseif($result instanceof \App\Models\Project)
-                    <x-link href="{{ route('projects.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                    <x-link href="{{ route('projects.show', $result) }}" styling="white" class="flex gap-2 items-center rounded-none dark:border-dark-600/50">
                         <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->title" />
 
                         <p>{{ $result->title }}</p>
                     </x-link>
                 @elseif($result instanceof \App\Models\BlogCategory)
-                    <x-link href="{{ route('blog-categories.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                    <x-link href="{{ route('blog-categories.show', $result) }}" styling="white" class="flex gap-2 items-center rounded-none dark:border-dark-600/50">
                         <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->name" />
 
                         <div class="flex-grow flex items-between gap-2">
@@ -71,7 +71,7 @@
                         </div>
                     </x-link>
                 @elseif($result instanceof \App\Models\StoreCategory)
-                    <x-link href="{{ route('store-categories.show', $result) }}" styling="white" class="flex gap-2 items-center">
+                    <x-link href="{{ route('store-categories.show', $result) }}" styling="white" class="flex gap-2 items-center rounded-none dark:border-dark-600/50">
                         <x-curator-glider fallback="logo" :media="$result->image" format="webp" width="50" height="50" fit="crop" quality="70" class="rounded aspect-square object-cover" :alt="$result->name" />
 
                         <div class="flex-grow flex items-between gap-2">

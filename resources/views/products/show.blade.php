@@ -58,4 +58,8 @@
     @if($related_products->count())
         @include('products.partials._related-products')
     @endif
+
+    <x-slot name="scripts">
+        @minifyInclude('schema.product-schema')
+    </x-slot>
 </x-app-layout>

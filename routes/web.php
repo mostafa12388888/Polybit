@@ -12,9 +12,6 @@ use App\Livewire\RequestQuote;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-// TODO: Search
-// TODO: Schema json/ld
-
 Livewire::setUpdateRoute(function ($handle) {
     if (in_array(request()->segment(1), array_keys(locales()))) {
         if (! (collect(locales(false))->where('code', request()->segment(1))->first()['default'] ?? false)) {
@@ -26,7 +23,6 @@ Livewire::setUpdateRoute(function ($handle) {
 });
 
 Route::view('/', 'home.index')->name('home');
-Route::view('/search', 'home.index')->name('search');
 
 Route::resource('products', ProductController::class)->only('index', 'show');
 Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');
@@ -35,6 +31,7 @@ Route::get('/request-quote', RequestQuote::class)->name('request-quote');
 
 Route::resource('posts', PostController::class)->only('index', 'show');
 Route::get('/blog-categories/{category}', [PostController::class, 'category_posts'])->name('blog-categories.show');
+Route::redirect('/user/{user}', '/posts')->name('users.show');
 
 Route::resource('projects', ProjectController::class)->only('index', 'show');
 

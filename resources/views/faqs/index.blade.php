@@ -59,4 +59,8 @@
             </x-link>
         </div>
     </section>
+
+    <x-slot name="scripts">
+        @minifyInclude('schema.faq-schema')
+    </x-slot>
 </x-app-layout>

@@ -18,4 +18,8 @@
     @if ($posts->count())
         @include('home.partials._posts')
     @endif
+    
+    <x-slot name="scripts">
+        @minifyInclude('schema.home-schema')
+    </x-slot>
 </x-app-layout>

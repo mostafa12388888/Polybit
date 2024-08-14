@@ -30,6 +30,7 @@ class LogoGliderFallback extends GliderFallback
             'bg' => 'F5F5F5',
             'border' => '100,F5F5F5,expand',
             'fm' => 'webp',
+            'q' => 70,
         ]) ?: '/images/default.webp';
 
         return asset($logo);

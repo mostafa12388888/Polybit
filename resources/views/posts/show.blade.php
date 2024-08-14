@@ -57,4 +57,8 @@
             </div>
         </div>
     </article>
+
+    <x-slot name="scripts">
+        @minifyInclude('schema.post-schema')
+    </x-slot>
 </x-app-layout>

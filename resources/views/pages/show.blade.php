@@ -22,4 +22,11 @@
             </div>
         </div>
     </section>
+
+    <x-slot name="scripts">
+        @minifyInclude('schema.page-schema', [
+            'title' => $page->meta('title'),
+            'description' => $page->meta('description'),
+        ])
+    </x-slot>
 </x-app-layout>

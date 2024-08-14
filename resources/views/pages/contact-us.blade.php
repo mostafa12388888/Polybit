@@ -128,3 +128,9 @@
         </div>
     </section>
 </div>
+
+<x-slot name="scripts">
+    @minifyInclude('schema.contact-us-schema', [
+        'title' => __('Contact Us'),
+    ])
+</x-slot>

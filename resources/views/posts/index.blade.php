@@ -19,7 +19,6 @@
             <x-breadcrumb :last="true">{{ __('Posts') }}</x-breadcrumb>
         @endif
     </x-slot>
-
     
     <div class="flex-grow bg-white dark:bg-dark-800/70 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
         <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
@@ -38,4 +37,10 @@
             </div>
         </div>
     </div>
+
+    <x-slot name="scripts">
+        @minifyInclude('schema.posts-schema', [
+            'title' => $category ?? null ? $category->meta('title') : __('Blog Posts'),
+        ])
+    </x-slot>
 </x-app-layout>

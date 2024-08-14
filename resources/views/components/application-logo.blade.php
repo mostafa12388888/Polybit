@@ -3,7 +3,7 @@
     @php
         $logo = setting('logo') ?: setting('darkmode_logo');
         $darkmode_logo = setting('darkmode_logo') ?: setting('logo');
-        $logo_url = $logo?->getSignedUrl(['w' => 120, 'fm' => 'webp'], false);
+        $logo_url = $logo?->getSignedUrl(['w' => 120, 'fm' => 'webp', 'q' => 70], false);
         $darkmode_logo_url = $darkmode_logo->getSignedUrl(['w' => 120, 'fm' => 'webp'], false);
     @endphp
 

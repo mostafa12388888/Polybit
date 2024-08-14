@@ -21,18 +21,18 @@ trait Seoable
 
         if ($key == 'og-image' || $key == 'image') {
             if ($this->relationLoaded('media')) {
-                return $this->media->filter(fn ($media) => $media->pivot->type == 'og-image')->first();
+                $image = $this->media->filter(fn ($media) => $media->pivot->type == 'og-image')->first();
             } else {
                 $image = $this->media()->where('media_items.type', 'og-image')->latest()->first();
             }
 
-            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp']);
+            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
 
             if (! $image && $image = setting('logo')) {
-                $image = $image->getSignedUrl(['border' => '200,FFF,expand', 'w' => '800', 'h' => 230, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp']);
+                $image = $image->getSignedUrl(['border' => '200,FFF,expand', 'w' => '800', 'h' => 230, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
             }
 
-            return $image ? asset($image) : null;
+            return $image ? asset($image) : asset('images/default.webp');
         }
 
         $this->loadMissing('metadata');

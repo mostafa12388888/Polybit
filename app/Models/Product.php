@@ -139,6 +139,23 @@ class Product extends Model
         })->filter(fn ($attribute) => $attribute->values->count());
     }
 
+    public function ratings_count()
+    {
+        // Set a fixed seed for consistent results
+        mt_srand($this->id);
+
+        // Calculate base ratings count
+        $baseRatings = (int) ($this->rate * 53);
+
+        // Introduce variability
+        $variability = (int) ($baseRatings * 0.9);
+
+        // Generate fake ratings count
+        $fakeRatingsCount = max(0, mt_rand($baseRatings - $variability, $baseRatings + $variability));
+
+        return $fakeRatingsCount;
+    }
+
     protected static function boot()
     {
         parent::boot();

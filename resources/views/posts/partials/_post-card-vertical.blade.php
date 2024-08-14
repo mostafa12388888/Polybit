@@ -8,18 +8,18 @@
     </div>
 
     <div class="flex flex-col gap-3 px-6 pt-8 pb-6">
-        <h5 class="font-semibold truncate lg:text-lg">{{ str()->title(fake()->sentence(3)) }}</h5>
-        <p class="font-light line-clamp-2">{{ fake()->sentence(20) }}</p>
+        <h5 class="font-semibold truncate lg:text-lg">{{ $post->title }}</h5>
+        <p class="font-light line-clamp-2">{{ str()->limit(text($post->body), 250) }}</p>
     </div>
 
     <div class="flex gap-2 items-center border-t border-dark-100 dark:border-dark-600/80 px-6 py-6">
         <div class="flex gap-2">
             <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
-            <span class="text-sm font-light line-clamp-1">{{ str()->limit(str()->title(fake()->sentence(2)), 240) }}</span>
+            <span class="text-sm font-light line-clamp-1">{{ $post->user->name }}</span>
         </div>
         <div class="flex gap-2">
             <x-icons.tag class="flex-shrink-0 !w-4 !h-4" />
-            <span class="text-sm font-light line-clamp-1">{{ str()->limit(str()->title(fake()->sentence(3)), 240) }}</span>
+            <span class="text-sm font-light line-clamp-1">{{ $post->category->name }}</span>
         </div>
     </div>
 </x-link>

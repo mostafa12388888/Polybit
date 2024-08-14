@@ -12,7 +12,7 @@
                     <x-icons.arrow-trending-up class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
                 <h4 class="font-bold text-lg xl:text-xl mb-4">{{ __('Elevate Your Projects') }}</h4>
-                <p class="text-justify leading-loose dark:text-dark-200">Discover innovative construction solutions with iChemEG! From cutting-edge chemicals to precision-engineered compression seals, we redefine excellence in construction, ensuring durability, resilience, and aesthetic integration.</p>
+                <p class="text-justify leading-loose dark:text-dark-200">{{ __('elevate-your-projects') }}</p>
             </div>
 
             <div class="group w-min min-w-full sm:min-w-80 flex flex-col items-center px-8 py-12 flex-grow rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
@@ -20,7 +20,7 @@
                     <x-icons.globe class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
                 <h4 class="font-bold text-lg xl:text-xl mb-4 dark:text-dark-100">{{ __('Sustainability at the Core') }}</h4>
-                <p class="text-justify leading-loose">Join us in embracing sustainable practices! Our eco-friendly admixtures and joint sealants contribute to environmentally responsible building without compromising performance.</p>
+                <p class="text-justify leading-loose">{{ __('sustainability-at-the-core') }}</p>
             </div>
 
             <div class="group w-min min-w-full sm:min-w-80 flex flex-col items-center px-8 py-12 flex-grow rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
@@ -28,7 +28,7 @@
                     <x-icons.rocket class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
                 <h4 class="font-bold text-lg xl:text-xl mb-4">{{ __('Shaping the Future') }}</h4>
-                <p class="text-justify leading-loose dark:text-dark-200">iChemEG, a visionary in construction, consistently pushes boundaries, sets benchmarks, and introduces cutting-edge chemicals. Our journey is dedicated to exceeding industry standards and shaping the future of construction.</p>
+                <p class="text-justify leading-loose dark:text-dark-200">{{ __('shaping-the-future') }}</p>
             </div>
         </div>
     </div>

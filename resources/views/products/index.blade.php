@@ -20,7 +20,6 @@
         @endif
     </x-slot>
 
-
     <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
         <div class="container mx-auto flex flex-col lg:flex-row items-start gap-3 md:gap-4 lg:gap-8 relative z-10">
             @if ($category ?? null)
@@ -56,4 +55,10 @@
             </div>
         </div>
     </section>
+
+    <x-slot name="scripts">
+        @minifyInclude('schema.products-schema', [
+            'title' => $category ?? null ? $category->meta('title') : __('Products'),
+        ])
+    </x-slot>
 </x-app-layout>
