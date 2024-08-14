@@ -47,7 +47,6 @@
                     @endforeach
                 </nav>
 
-                
                 @if($product->specs->count())
                     @include('products.partials._specs')
                 @endif
