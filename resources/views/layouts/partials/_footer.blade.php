@@ -37,21 +37,25 @@
             </div>
         
             <div class="flex gap-x-4 gap-y-8 flex-wrap flex-grow self-center max-sm:hidden">
-                <div class="flex flex-col gap-3 flex-grow min-w-64">
-                    <h4 class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</h4>
+                @if ($store_categories->count())
+                    <div class="flex flex-col gap-3 flex-grow min-w-64">
+                        <h4 class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</h4>
 
-                    @foreach ($store_categories->take(5) as $store_category)
-                        <x-link :href="route('store-categories.show', $store_category)">{{ $store_category->name }}</x-link>
-                    @endforeach
-                </div>
+                        @foreach ($store_categories->take(5) as $store_category)
+                            <x-link :href="route('store-categories.show', $store_category)">{{ $store_category->name }}</x-link>
+                        @endforeach
+                    </div>
+                @endif
                 
-                <div class="flex flex-col gap-3 flex-grow min-w-64">
-                    <h4 class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</h4>
-                    
-                    @foreach ($blog_categories->take(5) as $blog_category)
-                        <x-link :href="route('blog-categories.show', $blog_category)">{{ $blog_category->name }}</x-link>
-                    @endforeach
-                </div>
+                @if ($blog_categories->count())
+                    <div class="flex flex-col gap-3 flex-grow min-w-64">
+                        <h4 class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</h4>
+                        
+                        @foreach ($blog_categories->take(5) as $blog_category)
+                            <x-link :href="route('blog-categories.show', $blog_category)">{{ $blog_category->name }}</x-link>
+                        @endforeach
+                    </div>
+                @endif
 
                 <div class="lg:flex flex-col gap-3 flex-grow min-w-64 hidden">
                     <h4 class="text-lg font-semibold mb-2">{{ __('Support') }}</h4>
