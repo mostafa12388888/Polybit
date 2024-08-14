@@ -23,14 +23,14 @@ if (! function_exists('locales')) {
                 'name' => 'العربية',
                 'flag' => 'eg',
                 'direction' => 'rtl',
-                'default' => true,
+                'default' => false,
             ],
             [
                 'code' => 'en',
                 'name' => 'English',
                 'flag' => 'us',
                 'direction' => 'ltr',
-                'default' => false,
+                'default' => true,
             ],
         ];
     }
