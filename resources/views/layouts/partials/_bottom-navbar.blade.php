@@ -30,11 +30,12 @@
                         <x-icons.user class="!w-6 !h-6" />
                         <span class="text-sm">{{ __('Profile') }}</span>
                     </x-link>
+                @else
+                    <x-link :href="route('login')" class="inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none">
+                        <x-icons.user class="!w-6 !h-6" />
+                        <span class="text-sm">{{ __('login') }}</span>
+                    </x-link>
                 @endif
-                <x-link :href="route('login')" class="inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none">
-                    <x-icons.user class="!w-6 !h-6" />
-                    <span class="text-sm">{{ __('login') }}</span>
-                </x-link>
             </div>
         </div>
     </div>
