@@ -121,8 +121,8 @@ class ProductResource extends Resource
                         Repeater::make('specs')->label('admin.Specefications')->hiddenLabel()
                             ->schema([
                                 TextInput::make('title')->required()->maxLength(250)->translatable()->formatStateUsing(function ($state, $record) {
-                                    $state['title'] = json_decode($record->getAttributes()['title'], true);
-                                    $state['description'] = json_decode($record->getAttributes()['description'], true);
+                                    $state['title'] = json_decode(optional($record?->getAttributes())['title'], true);
+                                    $state['description'] = json_decode(optional($record?->getAttributes())['description'], true);
 
                                     return $state;
                                 }),
