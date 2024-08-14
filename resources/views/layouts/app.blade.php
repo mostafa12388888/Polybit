@@ -13,7 +13,6 @@
         this.search = ! this.search;
     },
     toggleDarkMode(e, status = null){
-        console.log(status)
         if(status !== null) {
             this.darkMode = status;
         } else {
