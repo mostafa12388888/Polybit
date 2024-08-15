@@ -43,6 +43,7 @@ class StoreCategoryResource extends Resource
                     Select::make('parent_id')->columnSpanFull()->label(__('admin.Main Category'))
                         ->searchable()->preload()->default(request()->query('ownerRecord'))
                         ->relationship('parent', 'name', fn ($query) => $query->parents())
+                        ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true))
                         ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
                         ->visible(fn ($get) => $get('parent_id') || request()->query('ownerRecord')),
 

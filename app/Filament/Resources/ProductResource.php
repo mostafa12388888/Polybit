@@ -73,7 +73,8 @@ class ProductResource extends Resource
                             Select::make('main_category_id')->label(__('admin.Main Category'))->grow(true)
                                 ->searchable()->preload()->reactive()
                                 ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
-                                ->relationship('main_category', 'name', fn ($query) => $query->parents()),
+                                ->relationship('main_category', 'name', fn ($query) => $query->parents())
+                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true)),
 
                             Select::make('category_id')->label(__('admin.Sub Category'))->required()
                                 ->searchable()->preload()
@@ -85,7 +86,8 @@ class ProductResource extends Resource
                                     }
 
                                     return $query->subCategories();
-                                }),
+                                })
+                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true)),
                         ])->columnSpanFull(),
 
                         CuratorPicker::make('images')->multiple()->constrained()
@@ -177,7 +179,7 @@ class ProductResource extends Resource
                                                 ->prefix($attribute->name)->searchable()->preload()
                                                 ->required()->in($values ?: [])
                                                 ->relationship('attribute_value', 'value', fn ($query) => $query->whereIn('id', $values ?? []))
-                                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->title ? $record->title : $record->value) : null;
+                                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('title', app()->getLocale(), true) ?: $record->value) : null;
                                         })
                                         ->relationship('attribute_values_product_variant')->columnSpanFull()->grid(3)->deletable(false)
                                         ->saveRelationshipsUsing(function ($record, $state) {

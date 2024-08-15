@@ -47,7 +47,8 @@ class PostResource extends Resource
                         Select::make('main_category_id')->label(__('admin.Main Category'))->grow(true)
                             ->searchable()->preload()->reactive()
                             ->exists(BlogCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
-                            ->relationship('main_category', 'name', fn ($query) => $query->parents()),
+                            ->relationship('main_category', 'name', fn ($query) => $query->parents())
+                            ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true)),
 
                         Select::make('category_id')->label(__('admin.Sub Category'))->required()
                             ->searchable()->preload()
@@ -59,7 +60,8 @@ class PostResource extends Resource
                                 }
 
                                 return $query->subCategories();
-                            }),
+                            })
+                            ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true)),
                     ])->columnSpanFull(),
 
                     CuratorPicker::make('image')->multiple()->maxItems(1)
