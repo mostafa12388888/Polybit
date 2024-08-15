@@ -98,7 +98,7 @@ class ProductResource extends Resource
                     ]);
 
                     $tabs[] = Tab::make('Attributes')->schema([
-                        Repeater::make('attributes')->hiddenLabel()->maxItems(fn () => Attribute::count())->schema([
+                        Repeater::make('attributes')->hiddenLabel()->maxItems(fn () => Attribute::has('values')->count())->schema([
                             Select::make('attribute')->searchable()->preload()->reactive()
                                 ->options(fn () => Attribute::has('values')->limit(50)->pluck('name', 'id')->toArray())
                                 ->exists(Attribute::class, 'id')->required()

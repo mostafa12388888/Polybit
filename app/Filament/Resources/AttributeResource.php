@@ -48,7 +48,7 @@ class AttributeResource extends Resource
                     Repeater::make('attribute_values')
                         ->relationship()
                         ->schema(fn ($get) => $get('type') == AttributeType::COLORS->value ? [
-                            ColorPicker::make('value.'.collect(array_keys(locales()))->first())->required()->hexColor()->label('admin.Color'),
+                            ColorPicker::make('value.'.collect(locales(false))->where('default', true)->pluck('code')->first())->required()->hexColor()->label('admin.Color'),
                         ] : [
                             TextInput::make('value')->required()->maxLength(250)->hiddenLabel()->translatable(),
                         ])

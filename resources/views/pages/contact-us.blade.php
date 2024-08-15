@@ -14,8 +14,14 @@
             <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-4xl font-extrabold relative px-8 z-50">{{ __('Reach out to us') }}</h2>
     
             <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden text-center mb-4">{{ __('We\'re Ready to Assist with Your Inquiries and Support Needs') }}</p>
+
+            @php
+                $address = setting('address');
+                $phones = setting('phones');
+                $emails = setting('emails');
+            @endphp
     
-            @if (($address = setting('address')) || ($phones = setting('phones')) || ($emails = setting('emails')))
+            @if ($address || $phones || $emails)
                 <div class="flex flex-wrap w-full flex-grow gap-4 lg:gap-6 xl:gap-8">
                     @if ($address)
                         <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">

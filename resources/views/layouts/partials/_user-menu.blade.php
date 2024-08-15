@@ -8,6 +8,13 @@
         </x-slot>
 
         <x-slot:content>
+            @if(auth()->user()?->is_admin)
+                <x-dropdown.link class="flex gap-3 px-4" href="{{ route('filament.admin.pages.dashboard') }}">
+                    <x-icons.computer-desktop class="!w-5 !h-5" />
+                    <span>{{ __('Admin Panel') }}</span>
+                </x-dropdown.link>
+            @endif
+
             <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
                 <x-icons.cog class="!w-5 !h-5" />
                 <span>{{ __('Profile') }}</span>

@@ -14,23 +14,24 @@ if (! function_exists('direction')) {
 if (! function_exists('locales')) {
     function locales($key_value = true)
     {
+        // Note, Default locale has to be first
         return $key_value ? [
-            'ar' => 'العربية',
             'en' => 'English',
+            'ar' => 'العربية',
         ] : [
-            [
-                'code' => 'ar',
-                'name' => 'العربية',
-                'flag' => 'eg',
-                'direction' => 'rtl',
-                'default' => false,
-            ],
             [
                 'code' => 'en',
                 'name' => 'English',
                 'flag' => 'us',
                 'direction' => 'ltr',
                 'default' => true,
+            ],
+            [
+                'code' => 'ar',
+                'name' => 'العربية',
+                'flag' => 'eg',
+                'direction' => 'rtl',
+                'default' => false,
             ],
         ];
     }
