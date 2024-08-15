@@ -11,7 +11,7 @@ trait HasLocales
         return in_array($locale ?: app()->getLocale(), $locales);
     }
 
-    protected static function bootHasLocales()
+    protected static function initializeHasLocales()
     {
         static::saving(function (self $record) {
             $record->locales = $record?->active_locales ?? $record->spatieLocales();
