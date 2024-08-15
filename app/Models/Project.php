@@ -43,7 +43,7 @@ class Project extends Model
 
     public function getImagesAttribute()
     {
-        if ($this->relationLoaded('media')) {
+        if ($this->relationLoaded('media') || $this->relationLoaded('images')) {
             return $this->media->filter(fn ($media) => $media->pivot->type != 'og-image');
         }
 
@@ -61,6 +61,7 @@ class Project extends Model
             'title' => str($this->title)->limit(100),
             'description' => str($this->subtitle)->limit(200),
             'keywords' => explode(' ', $this->title),
+            'image' => $this->image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]),
         ];
     }
 

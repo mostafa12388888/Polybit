@@ -28,6 +28,10 @@ trait Seoable
 
             $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
 
+            if (! $image) {
+                $image = optional($default_metadata)['image'];
+            }
+
             if (! $image && $image = setting('logo')) {
                 $image = $image->getSignedUrl(['border' => '200,FFF,expand', 'w' => '800', 'h' => 230, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
             }
