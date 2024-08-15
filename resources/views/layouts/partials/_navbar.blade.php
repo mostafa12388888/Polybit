@@ -99,6 +99,10 @@
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('pages.show', str()->slug('About Us'))">{{ __('About Us') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('contact-us')">{{ __('Contact') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('faq')">{{ __('FAQ') }}</x-link>
+
+            @if(auth()->user()?->is_admin)
+                <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('filament.admin.pages.dashboard')">{{ __('Admin Panel') }}</x-link>
+            @endif
         </div>
 
         <div class="md:hidden">
