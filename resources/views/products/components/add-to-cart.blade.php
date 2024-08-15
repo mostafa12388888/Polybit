@@ -2,13 +2,13 @@
     <div class="flex flex-col gap-6 sm:table w-fit">
         @foreach ($this->available_attributes_with_values as $attribute)
             <div class="flex flex-col gap-2 sm:table-row">
-                <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</x-label>
-
+                
                 @if($attribute->values->count() == 1)
-                    <span for="" class="sm:pe-8 sm:py-5 table-cell max-w-fit">:</span>
+                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </x-label>
                     <span>{{ $attribute->values->first()->title ?: $attribute->values->first()->value }}</span>
-
+                    
                 @else
+                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </x-label>
 
                     @if ($attribute->type->isColors())
                         <div class="table-cell align-middle" x-data="{ activeColor: null }">
