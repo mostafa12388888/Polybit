@@ -1,5 +1,5 @@
 <div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col gap-10 rounded-b-md lg:border lg:border-t-0 border-dark-200 dark:border-dark-600/50">
-    @foreach ($product->specs->sortBy('order') as $spec)
+    @foreach ($specs as $spec)
         <div class="max-lg:!flex flex flex-col gap-4" x-show="tab == {{ $loop->index + 1 }}">
             <h2 class="lg:hidden font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ $spec->title }}</h2>
 
@@ -8,7 +8,7 @@
             </div>
 
             <div class="flex flex-col gap-4">
-                @foreach ($spec->media as $file)
+                @foreach ($spec->media->where('pivot.type', app()->getLocale()) as $file)
                     <div class="flex gap-4 flex-wrap items-center justify-between border lg:border-none rounded-md p-4 border-dark-100 dark:border-dark-700/50">
                         <p>{{ $file->title }}</p>
 

@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use App\Traits\HasCuratorMedia;
+use App\Traits\HasLocales;
 use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductSpec extends Model
 {
-    use HasCuratorMedia, HasTranslations;
+    use HasCuratorMedia, HasLocales, HasTranslations;
 
     protected $translatable = ['title', 'description'];
 
-    protected $casts = ['description' => 'array'];
+    protected $casts = ['description' => 'array', 'locales' => 'array'];
 
     protected $guarded = [];
 

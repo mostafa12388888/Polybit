@@ -196,6 +196,7 @@
                             
                             @if (count($selected))
                                 @if (count($selected) == 1)
+                                    {{ $this->updateFileAction }}
                                     {{ $this->cancelEditAction }}
                                 @endif
                                 

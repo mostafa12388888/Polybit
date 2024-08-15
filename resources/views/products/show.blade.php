@@ -36,21 +36,27 @@
                 </div>
             </div>
 
-            <div class="lg:rounded-md overflow-hidden mx-4 sm:mx-0" x-data="{tab: 1}">
-                <nav class="w-full flex max-lg:hidden bg-primary-50 dark:bg-dark-700/20">
-                    @foreach ($product->specs->sortBy('order') as $spec)
-                        <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
-                            x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == {{ $loop->index + 1 }}}"
-                            @click="tab = {{ $loop->index + 1 }}">
-                            <span>{{ $spec->title }}</span>
-                        </x-button>
-                    @endforeach
-                </nav>
+            @php
+                $specs = $product->specs->filter(function ($spec) {
+                    return in_array(app()->getLocale(), $spec->locales ?? []) || $spec->media->where('pivot.type', app()->getLocale())->count();
+                })->sortBy('order');
+            @endphp
 
-                @if($product->specs->count())
+            @if ($specs->count())
+                <div class="lg:rounded-md overflow-hidden mx-4 sm:mx-0" x-data="{tab: 1}">
+                    <nav class="w-full flex max-lg:hidden bg-primary-50 dark:bg-dark-700/20">
+                        @foreach ($specs as $spec)
+                            <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent"
+                                x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == {{ $loop->index + 1 }}}"
+                                @click="tab = {{ $loop->index + 1 }}">
+                                <span>{{ $spec->title }}</span>
+                            </x-button>
+                        @endforeach
+                    </nav>
+
                     @include('products.partials._specs')
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     </section>
 
