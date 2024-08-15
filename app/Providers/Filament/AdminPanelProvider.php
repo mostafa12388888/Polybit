@@ -76,7 +76,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentTranslatableFieldsPlugin::make()->supportedLocales(locales()),
 
                 SpatieLaravelTranslatablePlugin::make()
-                    ->defaultLocales(collect(array_keys(locales()))->sort(fn ($locale) => $locale == config('app.locale') ? 0 : 1)->values()->toArray()),
+                    ->defaultLocales(collect(array_keys(locales()))->sort(fn ($locale) => $locale == config('app.admin_panel_locale') ? 0 : 1)->values()->toArray()),
 
                 FilamentChainedTranslationManagerPlugin::make(),
 

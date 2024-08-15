@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\AttributeValue;
 use Filament\Facades\Filament;
 use Spatie\Translatable\HasTranslations as SpatieHasTranslations;
 
@@ -49,11 +50,17 @@ trait HasTranslations
 
     public function useFallbackLocale(): bool
     {
+        if ($this instanceof AttributeValue) {
+            return true;
+        }
+
         try {
             $referer = trim(parse_url(request()->headers->get('referer'))['path'], '/');
 
-            if (strpos($referer, Filament::getPanel()->getPath()) === 0) {
-                return false;
+            if (request()->route()->getName() == 'livewire.update') {
+                if (strpos($referer, Filament::getPanel()->getPath()) === 0) {
+                    return false;
+                }
             }
 
             if (strpos(request()->route()->getName(), 'filament.') === 0) {

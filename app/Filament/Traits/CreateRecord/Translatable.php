@@ -39,8 +39,6 @@ trait Translatable
 
         $originalData = $this->data;
 
-        // dd($this->otherLocaleData);
-
         foreach ($this->otherLocaleData as $locale => $localeData) {
             $filtered_locale_data = collect($localeData)
                 ->map(fn ($datum) => is_array($datum) ? array_filter($datum) : $datum)->filter()->toArray();

@@ -16,8 +16,8 @@ if (! function_exists('locales')) {
     {
         // Note, Default locale has to be first
         return $key_value ? [
-            'en' => 'English',
             'ar' => 'العربية',
+            'en' => 'English',
         ] : [
             [
                 'code' => 'en',

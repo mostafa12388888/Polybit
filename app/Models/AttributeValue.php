@@ -26,7 +26,7 @@ class AttributeValue extends NonTranslatableAttributeValue
             if ($attribute_value->isDirty('value') && is_array($value)) {
                 $attribute_value->setAttribute('value', $value);
             }
-            
+
             if ($attribute_value->isDirty('title') && is_array($title)) {
                 $attribute_value->setAttribute('title', $title);
             }
