@@ -25,7 +25,9 @@
             @if ($category ?? null)
                 @include('layouts.partials._category-card', compact('category'))
             @endif
-            
+        </div>
+        
+        <div class="container mx-auto flex flex-col lg:flex-row items-start gap-3 md:gap-4 lg:gap-8 relative z-10">
             <div class="w-full flex gap-4 lg:gap-6 items-stretch justify-center flex-wrap relative">
                 @forelse ($products as $product)
                     <div class="w-72 max-w-sm flex-grow flex">
