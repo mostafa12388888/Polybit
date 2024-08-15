@@ -8,7 +8,7 @@
                     <span>{{ $attribute->values->first()->title ?: $attribute->values->first()->value }}</span>
                     
                 @else
-                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </x-label>
+                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</x-label>
 
                     @if ($attribute->type->isColors())
                         <div class="table-cell align-middle" x-data="{ activeColor: null }">
