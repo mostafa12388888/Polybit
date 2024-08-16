@@ -23,8 +23,7 @@
                     @foreach ($store_categories->take(6) as $store_category)
                         <li class="glide__slide h-full">
                             <x-link href="#" class="group flex items-center text-start gap-3 !px-3 !py-10 aspect-video bg-white dark:bg-dark-900/40 shadow-md shadow-dark-200 dark:shadow-none !rounded-xl mx-2 my-10 overflow-hidden relative" :href="route('store-categories.show', $store_category)">
-                                <x-curator-glider fallback="logo" :media="$store_category->image" format="webp" width="1280" height="480" fit="crop" quality="70" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" :alt="$store_category->name" />
-
+                                <x-curator-glider fallback="logo" :media="$store_category->image" format="webp" width="480" height="270" fit="crop" quality="70" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" :alt="$store_category->name" />
 
                                 <div class="group-hover:bg-primary-900/60 transition-colors absolute w-full h-full top-0 left-0 bg-dark-900/40"></div>
                                 
