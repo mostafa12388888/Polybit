@@ -161,4 +161,8 @@ return [
     'Latest Posts' => 'أحدث المقالات',
     'Preview' => 'إستعراض',
     'Favicon' => 'أيقونة Favicon',
+    'Target' => 'الهدف',
+    'Rel' => 'Rel',
+    'Button theme' => 'لون الزر',
+    'Remove link' => 'إزالة الرابط',
 ];

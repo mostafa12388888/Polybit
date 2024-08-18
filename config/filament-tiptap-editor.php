@@ -4,7 +4,7 @@ return [
     'direction' => 'rtl',
     'max_content_width' => '5xl',
     'disable_stylesheet' => false,
-    'disable_link_as_button' => false,
+    'disable_link_as_button' => true,
 
     /*
     |--------------------------------------------------------------------------
