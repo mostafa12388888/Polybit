@@ -57,6 +57,16 @@
                     @include('products.partials._specs')
                 </div>
             @endif
+
+            <div class="bg-gray-50 dark:bg-dark-700/60 p-4 md:p-6 lg:rounded-md gap-2 dark:border-dark-700 flex flex-wrap justify-between items-center">
+                <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100">{{ __('share this post') }}</h3>
+                
+                @include('layouts.partials._share-buttons')
+            </div>
+
+            <div class="bg-white dark:bg-dark-50 dark:opacity-85 px-2 md:px-0">
+                <livewire:comments />
+            </div>
         </div>
     </section>
 

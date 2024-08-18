@@ -10,8 +10,8 @@ return [
         'video/mp4',
         'application/octet-stream',
         'image/vnd.dwg',
-        // the browser can't detect some files mimetypes like autocad dwg files 
-        // So adding empty type will make those files allowed on javascript validation 
+        // the browser can't detect some files mimetypes like autocad dwg files
+        // So adding empty type will make those files allowed on javascript validation
         // And these files will get validated again in the backend which will be more cabable of getting their real mimetype
         '',
     ],
