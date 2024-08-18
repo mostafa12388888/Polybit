@@ -2,7 +2,9 @@
 <div class="md:bg-primary-200/50 md:dark:bg-dark-900 px-4 md:px-6 mt-2 md:mt-0 md:text-[.75rem]">
     <nav class="container mx-auto flex flex-col md:flex-row flex-wrap md:items-center justify-between gap-4">
         <div class="max-md:hidden dark:border-dark-700 p-4 md:p-0 flex flex-wrap items-center justify-center gap-4">
-            <x-link class="!py-1" :href="route('pages.show', $pages->first())">{{ $pages->first()->title }}</x-link>
+            @if ($pages->count())
+                <x-link class="!py-1" :href="route('pages.show', $pages->first())">{{ $pages->first()->title }}</x-link>
+            @endif
             <x-link class="!py-1" :href="route('contact-us')">{{ __('Contact') }}</x-link>
         </div>
         

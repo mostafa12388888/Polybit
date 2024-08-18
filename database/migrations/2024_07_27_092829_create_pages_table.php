@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('title');
             $table->string('slug')->unique()->index();
             $table->longText('body')->nullable();
+            $table->integer('order')->nullable();
             $table->json('locales')->nullable();
             $table->timestamps();
         });

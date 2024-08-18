@@ -6,6 +6,7 @@ use App\Filament\Resources\PageResource;
 use App\Filament\Traits\ListRecords\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Cache;
 
 class ListPages extends ListRecords
 {
@@ -19,5 +20,12 @@ class ListPages extends ListRecords
             Actions\LocaleSwitcher::make(),
             Actions\CreateAction::make(),
         ];
+    }
+
+    public function reorderTable(array $order): void
+    {
+        parent::reorderTable($order);
+
+        Cache::forget('pages');
     }
 }

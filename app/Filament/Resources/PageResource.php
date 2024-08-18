@@ -16,7 +16,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 
 class PageResource extends Resource
@@ -43,6 +42,7 @@ class PageResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('order')
             ->columns([
                 TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 TextColumn::make('title')->sortable()->searchable(),
@@ -53,8 +53,14 @@ class PageResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
                     Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
                         ->url(fn ($record) => route('pages.show', $record), true),
+                ]),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('id', 'desc')
@@ -91,21 +97,6 @@ class PageResource extends Resource
             'view' => Pages\ViewPage::route('/{record}'),
             'edit' => Pages\EditPage::route('/{record}/edit'),
         ];
-    }
-
-    public static function canCreate(): bool
-    {
-        return false;
-    }
-
-    public static function canDelete(Model $record): bool
-    {
-        return false;
-    }
-
-    public static function canDeleteAny(): bool
-    {
-        return false;
     }
 
     public static function getModelLabel(): string

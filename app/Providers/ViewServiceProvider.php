@@ -39,7 +39,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         Facades\View::composer(['layouts.partials._header', 'layouts.partials._footer'], function (View $view) use ($darkmode) {
-            $pages = Cache::remember('pages', 60 * 60, fn () => Page::oldest('id')->get());
+            $pages = Cache::remember('pages', 60 * 60, fn () => Page::orderBy('order')->get());
 
             return $view->with(compact('pages'));
         });
