@@ -20,15 +20,15 @@
 
     <section class="flex-grow bg-white dark:bg-dark-800/70 pb-6 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col gap-20">
-            <div class="flex flex-col lg:flex-row gap-12">
+            <div class="flex flex-col lg:flex-row gap-8">
                 @if($product->images->count())
                     <div class="relative flex-grow shrink-0 w-full lg:max-w-md xl:max-w-xl">
                         @include('products.partials._product-images')
                     </div>
                 @endif
 
-                <div class="flex flex-col gap-6 mx-4 sm:mx-0">
-                    <h2 class="font-semibold text-xl lg:text-2xl text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
+                <div class="flex flex-col gap-6 mx-4 sm:mx-0 mt-4">
+                    <h2 class="font-semibold text-2xl lg:text-3xl text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
                     
                     <p class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</p>
 
