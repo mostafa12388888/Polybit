@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->whereJsonContains('locales', app()->getLocale())
-            ->with('image', 'category', 'user')->paginate(12);
+            ->with('image', 'category', 'user')->paginate(10);
 
         return view('posts.index', compact('posts'));
     }

@@ -118,6 +118,8 @@
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">
                         {{ $heading }}
                     </h1>
+
+                    {{ $subheading ?? '' }}
                 </div>
             </div>
         @endif

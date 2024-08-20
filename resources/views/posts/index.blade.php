@@ -26,9 +26,9 @@
                 @include('layouts.partials._category-card', compact('category'))
             @endif
             
-            <div class="w-full flex gap-12 sm:gap-16 items-center flex-wrap">
+            <div class="w-full flex gap-12 sm:gap-16 items-center flex-wrap justify-center">
                 @forelse ($posts as $post)
-                    <div class="2xl:w-4/12 max-w-4xl flex-grow flex">
+                    <div class="max-w-4xl flex-grow flex">
                         @include('posts.partials._post-card-horizontal', compact('post'))
                     </div>
                 @empty

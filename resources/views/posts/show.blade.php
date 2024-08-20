@@ -13,14 +13,37 @@
 
     <x-slot name="heading">{{ $post->title }}</x-slot>
 
+    <x-slot name="subheading">
+        <section class="bg-white dark:bg-dark-700/60 mt-6">
+            <div class="container flex gap-x-4 gap-y-3 flex-wrap mx-auto text-sm items-center gap-2">
+                <div class="flex gap-2 items-center">
+                    <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
+                    <span class="text-sm font-light line-clamp-1">{{ $post->user->name }}</span>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <x-icons.tag class="flex-shrink-0 !w-4 !h-4" />
+                    <a href="{{ route('blog-categories.show', $post->category) }}" class="text-sm font-light line-clamp-1">{{ $post->category->name }}</a>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <x-icons.clock class="flex-shrink-0 !w-4 !h-4" />
+                    <span class="text-sm font-light line-clamp-1">{{ $post->updated_at->translatedFormat('d M, Y') }}</span>
+                </div>
+            </div>
+        </section>
+    </x-slot>
+
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('posts.index')">{{ __('Posts') }}</x-breadcrumb>
         <x-breadcrumb :last="true">{{ str()->limit($post->title, 17) }}</x-breadcrumb>
     </x-slot>
+    
+
 
     <article class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col lg:flex-row sm:gap-4 max-sm:divide-y">
             <div class="lg:rounded-md flex-grow w-full lg:w-8/12 2xl:w-9/12 overflow-hidden">
+                <img src="{{ $post->meta('image') }}" class="w-full" alt="">
+
                 <div class="prose prose-zinc dark:prose-invert bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
                     {!! html($post->body) !!}
                 </div>
