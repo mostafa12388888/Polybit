@@ -29,9 +29,9 @@ class Search extends Component
             $this->resetValidation('query');
 
             if ($query = trim($this->query)) {
-                $posts = Post::search($query)->with('image')->limit(10)->get();
-                $products = Product::search($query)->with('image')->limit(10)->get();
-                $projects = Project::search($query)->with('image')->limit(10)->get();
+                $posts = Post::whereJsonContains('locales', app()->getLocale())->search($query)->with('image')->limit(10)->get();
+                $products = Product::whereJsonContains('locales', app()->getLocale())->search($query)->with('image')->limit(10)->get();
+                $projects = Project::whereJsonContains('locales', app()->getLocale())->search($query)->with('image')->limit(10)->get();
                 $blog_categories = BlogCategory::search($query)->with('image')->limit(10)->get();
                 $store_categories = StoreCategory::search($query)->with('image')->limit(10)->get();
 
