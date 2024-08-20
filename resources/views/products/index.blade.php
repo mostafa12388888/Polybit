@@ -36,6 +36,10 @@
                 @empty
                     @include('layouts.partials._empty')
                 @endforelse
+
+                <div class="w-full">
+                    {{ $products->links() }}
+                </div>
             </div>
             
             @if ($store_categories->count())

@@ -35,6 +35,10 @@
                     @include('layouts.partials._empty')
                 @endforelse
             </div>
+
+            <div class="w-full">
+                {{ $posts->links() }}
+            </div>
         </div>
     </div>
 
