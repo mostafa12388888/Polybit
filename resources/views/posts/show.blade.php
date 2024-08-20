@@ -14,22 +14,20 @@
     <x-slot name="heading">{{ $post->title }}</x-slot>
 
     <x-slot name="subheading">
-        <section class="bg-white dark:bg-dark-700/60 mt-6">
-            <div class="container flex gap-x-4 gap-y-3 flex-wrap mx-auto text-sm items-center gap-2">
-                <div class="flex gap-2 items-center">
-                    <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
-                    <span class="text-sm font-light line-clamp-1">{{ $post->user->name }}</span>
-                </div>
-                <div class="flex gap-2 items-center">
-                    <x-icons.tag class="flex-shrink-0 !w-4 !h-4" />
-                    <a href="{{ route('blog-categories.show', $post->category) }}" class="text-sm font-light line-clamp-1">{{ $post->category->name }}</a>
-                </div>
-                <div class="flex gap-2 items-center">
-                    <x-icons.clock class="flex-shrink-0 !w-4 !h-4" />
-                    <span class="text-sm font-light line-clamp-1">{{ $post->updated_at->translatedFormat('d M, Y') }}</span>
-                </div>
+        <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center mt-6">
+            <div class="flex gap-2 items-center">
+                <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
+                <span class="text-sm font-light line-clamp-1">{{ $post->user->name }}</span>
             </div>
-        </section>
+            <div class="flex gap-2 items-center">
+                <x-icons.tag class="flex-shrink-0 !w-4 !h-4" />
+                <a href="{{ route('blog-categories.show', $post->category) }}" class="text-sm font-light line-clamp-1">{{ $post->category->name }}</a>
+            </div>
+            <div class="flex gap-2 items-center">
+                <x-icons.clock class="flex-shrink-0 !w-4 !h-4" />
+                <span class="text-sm font-light line-clamp-1">{{ $post->updated_at->translatedFormat('d M, Y') }}</span>
+            </div>
+        </div>
     </x-slot>
 
     <x-slot name="breadcrumbs">
