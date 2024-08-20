@@ -88,7 +88,7 @@ class GenerateSitemap extends Command
         $sitemap = Sitemap::create();
 
         foreach (Post::all() as $post) {
-            $this->add($sitemap, route('posts.show', $post), $post->locales());
+            $this->add($sitemap, route('posts.show', $post), $post->locales(), $post->updated_at);
         }
 
         $sitemap->writeToFile(Storage::disk('public')->path('/sitemaps/posts_sitemap.xml'));
@@ -138,12 +138,18 @@ class GenerateSitemap extends Command
         $index->writeToFile(public_path('sitemap.xml'));
     }
 
-    public function add($sitemap, $url, $locales = [])
+    public function add($sitemap, $url, $locales = [], $last_mod = null)
     {
         $locales = $locales ?: array_keys(locales());
 
         foreach ($locales as $locale) {
-            $sitemap->add(Url::create(localized_url($locale, $url)));
+            $sitemap_url = Url::create(localized_url($locale, $url));
+
+            if ($last_mod) {
+                $sitemap_url = $sitemap_url->setLastModificationDate($last_mod);
+            }
+
+            $sitemap->add($sitemap_url);
         }
     }
 }
