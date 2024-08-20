@@ -34,7 +34,7 @@
                     @else
                         <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit" for="attr_{{ $attribute->id }}">{{ $attribute->name }}</x-label>
 
-                        <x-select class="table-cell text-sm px-8" for="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
+                        <x-select class="table-cell text-sm px-8" id="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
                             <option value="" selected>- {{ __('Select :attribute', ['attribute' => $attribute->name]) }}</option>
 
                             @foreach ($attribute->values as $value)
