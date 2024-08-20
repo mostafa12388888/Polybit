@@ -37,7 +37,7 @@
                     @include('layouts.partials._empty')
                 @endforelse
 
-                <div class="w-full">
+                <div class="w-full mt-6">
                     {{ $products->links() }}
                 </div>
             </div>

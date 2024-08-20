@@ -36,7 +36,7 @@
                 @endforelse
             </div>
 
-            <div class="w-full">
+            <div class="w-full mt-6">
                 {{ $posts->links() }}
             </div>
         </div>
