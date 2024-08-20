@@ -4,13 +4,14 @@
             <div class="flex flex-col gap-2 sm:table-row">
                 
                 @if($attribute->values->count() == 1)
-                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </x-label>
+                    <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </span>
                     <span>{{ $attribute->values->first()->title ?: $attribute->values->first()->value }}</span>
                     
                 @else
-                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</x-label>
-
+                
                     @if ($attribute->type->isColors())
+                        <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</span>
+
                         <div class="table-cell align-middle" x-data="{ activeColor: null }">
                             <div class="flex gap-0.5 flex-wrap -mx-1">
                                 @foreach ($attribute->values as $value)
@@ -31,7 +32,9 @@
                             </div>
                         </div>
                     @else
-                        <x-select class="table-cell text-sm px-8" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
+                        <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit" for="attr_{{ $attribute->id }}">{{ $attribute->name }}</x-label>
+
+                        <x-select class="table-cell text-sm px-8" for="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
                             <option value="" selected>- {{ __('Select :attribute', ['attribute' => $attribute->name]) }}</option>
 
                             @foreach ($attribute->values as $value)

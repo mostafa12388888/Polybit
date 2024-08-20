@@ -15,6 +15,9 @@
         @elseif (strpos(parse_url($social_link)['host'], 'linkedin.com') !== false)
             <x-icons.linkedin class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
             <span class="sr-only">{{ __('Linkedin Link') }}</span>
+        @elseif (strpos(parse_url($social_link)['host'], 'wa.me') !== false)
+            <x-icons.whatsapp class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
+            <span class="sr-only">{{ __('Whatsapp Link') }}</span>
         @else
             <x-icons.link class="!w-5 !h-5 text-dark-500 dark:text-dark-300" />
             <span class="sr-only">{{ __('External Link') }}</span>
