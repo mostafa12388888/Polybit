@@ -61,6 +61,7 @@ class Post extends Model
             'description' => str(tiptap_converter()->asText($this->body ?: ['content' => '']))->limit(200),
             'keywords' => explode(' ', $this->title),
             'image' => $this->image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]),
+            'image-alt' => $this->image?->alt ?: str($this->title)->limit(100),
         ];
     }
 

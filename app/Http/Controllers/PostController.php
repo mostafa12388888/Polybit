@@ -27,7 +27,7 @@ class PostController extends Controller
             return redirect()->route('posts.index');
         }
 
-        $post->loadMissing('category', 'user');
+        $post->loadMissing('media', 'category', 'user');
 
         $related_posts = $post->category->posts()->whereJsonContains('locales', app()->getLocale())
             ->where('id', '!=', $post->id)->limit(6)->get();

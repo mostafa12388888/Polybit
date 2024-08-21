@@ -19,11 +19,15 @@ trait Seoable
     {
         $default_metadata = method_exists($this, 'getDefaultMetadata') ? $this->getDefaultMetadata() : [];
 
-        if ($key == 'og-image' || $key == 'image') {
+        if ($key == 'og-image' || $key == 'image' || $key == 'image-alt') {
             if ($this->relationLoaded('media')) {
                 $image = $this->media->filter(fn ($media) => $media->pivot->type == 'og-image')->first();
             } else {
                 $image = $this->media()->where('media_items.type', 'og-image')->latest()->first();
+            }
+
+            if ($key == 'image-alt') {
+                return $image?->alt ?: optional($default_metadata)['image-alt'];
             }
 
             $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
