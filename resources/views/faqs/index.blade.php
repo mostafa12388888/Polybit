@@ -31,7 +31,9 @@
                             <h2 class="font-semibold text-gray-800 dark:text-dark-100">{{ $faq->question }}</h2>
                         </button>
                         <div x-show="expanded" x-cloak x-collapse>
-                            <div class="pb-6 px-4 md:px-6 xl:px-8">{!! html($faq->answer) !!}</div>
+                            <div class="pb-6 px-4 md:px-6 xl:px-8 prose prose-zinc dark:prose-invert max-w-full">
+                                {!! html($faq->answer) !!}
+                            </div>
                         </div>
                     </div>
                 @endforeach
