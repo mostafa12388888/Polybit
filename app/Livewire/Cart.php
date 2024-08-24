@@ -10,6 +10,11 @@ class Cart extends Component
 
     public function mount()
     {
+        // Update cart items to remove old items that is deleted from the database
+        cart()->update_items();
+
+        $this->dispatch('cart-updated');
+
         $this->cart_items = cart()->items();
     }
 

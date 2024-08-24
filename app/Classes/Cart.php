@@ -67,6 +67,19 @@ class Cart
         Cookie::queue('cart', json_encode($this->items), 30 * 24 * 60);
     }
 
+    public function update_items()
+    {
+        $this->items = $this->items()->map(function ($product) {
+            return [
+                'product' => $product->id,
+                'variant' => $product?->variant?->id,
+                'quantity' => $product->quantity,
+            ];
+        })->toArray();
+
+        Cookie::queue('cart', json_encode($this->items), 30 * 24 * 60);
+    }
+
     public function items()
     {
         $products = Product::with('image')->whereIn('id', collect($this->items)->pluck('product')->toArray())->get();
