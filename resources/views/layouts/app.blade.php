@@ -52,8 +52,8 @@
     
     @if ($image)
         <meta property="og:image" content="{!! $image !!}" />
-        <meta property="og:image:height" content="1200" />
-        <meta property="og:image:width" content="630" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         <meta name="twitter:image" content="{!! $image !!}" />
         <meta name="twitter:image:alt" content="{{ $image_alt }}" />
