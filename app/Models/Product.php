@@ -89,7 +89,7 @@ class Product extends Model
             'title' => str($this->name)->limit(100),
             'description' => str(tiptap_converter()->asText($this->description ?: ['content' => '']))->limit(200),
             'keywords' => explode(' ', $this->name),
-            'image' => $this->image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]),
+            'image' => $this->image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]),
         ];
     }
 

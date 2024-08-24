@@ -61,7 +61,7 @@ class Project extends Model
             'title' => str($this->title)->limit(100),
             'description' => str($this->subtitle)->limit(200),
             'keywords' => explode(' ', $this->title),
-            'image' => $this->image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]),
+            'image' => $this->image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]),
         ];
     }
 

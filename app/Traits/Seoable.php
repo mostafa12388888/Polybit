@@ -30,7 +30,7 @@ trait Seoable
                 return $image?->alt ?: optional($default_metadata)['image-alt'];
             }
 
-            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
+            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
 
             if (! $image) {
                 $image = optional($default_metadata)['image'];
