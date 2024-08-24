@@ -46,7 +46,7 @@
                     <div class="divide-y lg:absolute w-full">
                         @foreach (cart($cart_items)->items() as $product)
                             <x-link :href="route('products.show', $product)" class="flex gap-2 sm:gap-4 items-center border-dashed border-dark-200/70 dark:border-dark-700 !p-4">
-                                <x-curator-glider fallback="logo" :media="$product->image" format="webp" width="480" height="280" fit="fill-max" bg="FFFFFF" quality="70" class="shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover" :alt="$product->name" />
+                                <x-curator-glider fallback="logo" :media="$product->image" format="webp" width="480" height="280" fit="fill" bg="FFFFFF" quality="70" class="shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover" :alt="$product->name" />
                                 
                                 <div class="flex-grow flex flex-col gap-2">
                                     <h3 class="line-clamp-3">{{ $product->name }}</h3>
