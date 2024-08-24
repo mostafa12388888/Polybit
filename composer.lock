@@ -120,16 +120,16 @@
         },
         {
             "name": "awcodes/filament-curator",
-            "version": "v3.6.4",
+            "version": "v3.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/awcodes/filament-curator.git",
-                "reference": "41c6fe779f1dbc28e7188ee5846339d539a352aa"
+                "reference": "67c448a520ed93ca4fd5c6de9f1e8152d22a6c96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awcodes/filament-curator/zipball/41c6fe779f1dbc28e7188ee5846339d539a352aa",
-                "reference": "41c6fe779f1dbc28e7188ee5846339d539a352aa",
+                "url": "https://api.github.com/repos/awcodes/filament-curator/zipball/67c448a520ed93ca4fd5c6de9f1e8152d22a6c96",
+                "reference": "67c448a520ed93ca4fd5c6de9f1e8152d22a6c96",
                 "shasum": ""
             },
             "require": {
@@ -189,7 +189,7 @@
             ],
             "support": {
                 "issues": "https://github.com/awcodes/filament-curator/issues",
-                "source": "https://github.com/awcodes/filament-curator/tree/v3.6.4"
+                "source": "https://github.com/awcodes/filament-curator/tree/v3.6.9"
             },
             "funding": [
                 {
@@ -197,7 +197,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-29T13:06:32+00:00"
+            "time": "2024-08-24T16:59:10+00:00"
         },
         {
             "name": "awcodes/filament-quick-create",

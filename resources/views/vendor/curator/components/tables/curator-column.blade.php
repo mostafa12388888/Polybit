@@ -10,6 +10,18 @@
         default => 'ring',
     };
 
+    $ringClasses = \Illuminate\Support\Arr::toCssClasses([
+        'ring-white dark:ring-gray-900',
+        match ($ring) {
+            0 => null,
+            1 => 'ring-1',
+            2 => 'ring-2',
+            3 => 'ring',
+            4 => 'ring-4',
+            default => $ring,
+        },
+    ]);
+
     $overlap = match ($overlap) {
         0 => '-me-0',
         2 => '-me-2',
@@ -18,16 +30,18 @@
         default => '-space-x-1',
     };
 
+    $defaultImageUrl = $getDefaultImageUrl();
+
     $resolution = $getResolution();
 
     $height = $getHeight();
     $width = $getWidth() ?? ($isRounded() ? $height : null);
 @endphp
 
-<div 
+<div dir="ltr"
     {{ $attributes->merge($getExtraAttributes())->class([
         'curator-column px-4 py-3',
-        ' flex items-center' => $imageCount > 1,
+        ' flex rtl:flex-row-reverse items-center' => $imageCount > 1,
     ]) }}
 >
     @if ($items)
@@ -41,7 +55,7 @@
                 $overlap . ' ' . $ring . ' ring-white dark:ring-gray-900' => $imageCount > 1,
             ])
         >
-            @if (\Awcodes\Curator\is_media_resizable($item->ext))
+            @if (\Awcodes\Curator\is_media_resizable($item->type))
                 @php
                     $img_width = $width ? (int)$width : null;
                     $img_height = $height ? (int)$height : null;
@@ -64,10 +78,20 @@
                         {!! $width !== null ? "width: {$width};" : null !!}
                     "
                     @class([
-                        'h-full w-auto' => str($item->type)->contains('svg'),
                         'max-w-none' => $height && ! $width,
-                        'object-cover object-center' => ! str($item->type)->contains('svg') && ($isRounded() || $width || $height)
+                        'object-cover object-center' => ($isRounded() || $width || $height)
                     ])
+                    {{ $getExtraImgAttributeBag() }}
+                />
+            @elseif (str($item->type)->contains('svg'))
+                <img
+                    src="{{ Storage::url($item->path) }}"
+                    alt="{{ $item->alt }}"
+                    style="
+                        {!! $height !== null ? "height: {$height};" : "height: 2rem;" !!}
+                        {!! $width !== null ? "width: {$width};" : null !!}
+                    "
+                    class="h-full w-auto"
                     {{ $getExtraImgAttributeBag() }}
                 />
             @else
@@ -81,5 +105,21 @@
             @endif
         </div>
         @endforeach
+    @elseif($defaultImageUrl)
+        <img
+                src="{{ $defaultImageUrl }}"
+                {{
+					$getExtraImgAttributeBag()
+						->class([
+							'max-w-none object-cover object-center',
+							'rounded-full' => $isCircular,
+							$ringClasses,
+						])
+						->style([
+							"height: {$height}" => $height,
+							"width: {$width}" => $width,
+						])
+				}}
+        />
     @endif
 </div>
