@@ -9,25 +9,9 @@
                 'alt': '{{ $image->alt ?? $product->name }}',
             },
         @endforeach
-    ],
-    initImageZoom () {
-        if(typeof imageZoomObj != 'undefined') {
-            imageZoomObj.kill()
-        }
-        
-        setTimeout(() => {
-            imageZoomObj = new ImageZoom(this.$el, {
-                fillContainer: true,
-                scale: 1.3,
-                zoomStyle: 'border-radius: .375rem',
-                zoomLensStyle: 'border-radius: .375rem; background: black; opacity: .1',
-                offset: {vertical: 0, horizontal: 10},
-                zoomPosition: '{{ direction() == 'ltr' ? 'right' : 'left' }}'
-            })
-        }, 100);
-    }
+    ]
 }" x-init="activeImage = images[0]">
-    <div x-init="$watch('activeImage', () => initImageZoom()); $nextTick(() => initImageZoom())">
+    <div>
         <div class="overflow-hidden">
             <x-img class="w-full sm:rounded-md min-h-72" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" />
         </div>
