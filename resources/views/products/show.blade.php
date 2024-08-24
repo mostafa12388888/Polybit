@@ -28,9 +28,9 @@
                 @endif
 
                 <div class="flex flex-col gap-6 mx-4 sm:mx-0 mt-4">
-                    <h2 class="font-bold text-2xl lg:text-3xl text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
+                    <h2 class="font-bold text-4xl lg:text-4xl text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
                     
-                    <p class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</p>
+                    <div class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</div>
 
                     <livewire:add-to-cart :product="$product" />
                 </div>
