@@ -1,6 +1,6 @@
 <x-link href="#" class="flex-grow group flex max-sm:flex-col gap-6 text-start items-start !p-0 shadow-none overflow-hidden !rounded-none" :href="route('posts.show', $post)">
     <div class="relative flex-shrink-0 rounded-md overflow-hidden">
-        <x-curator-glider fallback="logo" :media="$post->image" format="webp" width="480" height="280" fit="fill-max" quality="70" class="w-full aspect-[8/5] sm:aspect-[8/7] md:aspect-[8/5] sm:w-64 md:w-96 lg:w-96 object-cover" :alt="$post->title" />
+        <x-curator-glider fallback="logo" :media="$post->image" format="webp" width="480" height="280" fit="fill-max" bg="FFFFFF" quality="70" class="w-full aspect-[8/5] sm:aspect-[8/7] md:aspect-[8/5] sm:w-64 md:w-96 lg:w-96 object-cover" :alt="$post->title" />
 
         <div class="group-hover:opacity-100 opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-dark-900/60 flex items-center justify-center text-white">
             <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />
