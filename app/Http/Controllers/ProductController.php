@@ -22,9 +22,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->loadMissing('media', 'specs.media', 'variants.attribute_values');
+        $product->loadMissing('media', 'specs.media', 'variants.attribute_values', 'category');
 
-        $related_products = $product->category->products()->where('id', '!=', $product->id)->limit(6)->get();
+        $category = $product->category?->parent ?: $product->category;
+        
+        $related_products = $category->products()->where('id', '!=', $product->id)->limit(6)->get();
 
         return view('products.show', compact('product', 'related_products'));
     }
