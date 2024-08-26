@@ -26,7 +26,8 @@ class ProductController extends Controller
 
         $categories = $product->category->parent->sub_categories()->pluck('id')->toArray();
 
-        $related_products = Product::whereIn('category_id', $categories)->where('products.id', '!=', $product->id)->limit(6)->get();
+        $related_products = Product::whereIn('category_id', $categories)
+            ->where('products.id', '!=', $product->id)->limit(6)->inRandomOrder()->get();
 
         return view('products.show', compact('product', 'related_products'));
     }
