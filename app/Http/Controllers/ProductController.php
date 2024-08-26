@@ -24,9 +24,9 @@ class ProductController extends Controller
     {
         $product->loadMissing('media', 'specs.media', 'variants.attribute_values', 'category');
 
-        $category = $product->category?->parent ?: $product->category;
+        $categories = $product->category->parent->sub_categories()->pluck('id')->toArray();
 
-        $related_products = $category->products()->where('id', '!=', $product->id)->limit(6)->get();
+        $related_products = Product::whereIn('category_id', $categories)->where('products.id', '!=', $product->id)->limit(6)->get();
 
         return view('products.show', compact('product', 'related_products'));
     }
