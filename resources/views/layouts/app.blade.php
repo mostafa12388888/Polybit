@@ -30,7 +30,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     @if ($icon = setting('favicon') ?: setting('logo'))
-        <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70]) !!}">
+        <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']) !!}">
     @endif
 
     <meta name="msapplication-TileColor" content="#da532c">
