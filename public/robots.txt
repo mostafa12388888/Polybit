@@ -56,3 +56,5 @@ Disallow: /
 
 User-agent: Bytespider
 Disallow: /
+
+Sitemap: https://ichemeg.com/sitemap.xml
