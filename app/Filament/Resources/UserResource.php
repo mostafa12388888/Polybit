@@ -30,8 +30,6 @@ class UserResource extends Resource
         return $form->schema([
             Section::make()->schema([
                 TextInput::make('name')->required()->minLength(2)->maxLength(150),
-                TextInput::make('slug')->label('admin.Username')
-                    ->minLength(3)->maxLength(50)->unique(ignoreRecord: true),
                 TextInput::make('email')
                     ->required()->email()->maxLength(150)->unique(ignoreRecord: true),
                 TextInput::make('password')->rules(['nullable', Password::defaults()])
@@ -81,7 +79,6 @@ class UserResource extends Resource
             \Filament\Infolists\Components\Section::make()->schema([
                 TextEntry::make('id'),
                 TextEntry::make('name'),
-                TextEntry::make('slug')->label('admin.Username'),
                 TextEntry::make('email'),
                 TextEntry::make('is_admin')->state(fn (User $user) => $user->is_admin ? 'True' : 'False'),
                 TextEntry::make('created_at')->dateTime(),
