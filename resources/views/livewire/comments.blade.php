@@ -1,6 +1,6 @@
 <div class="w-full block relative">
     <div id="fb-root w-full block relative"></div>
-    <div class="fb-comments" data-colorscheme="dark" data-href="{{ request()->url() }}" data-width="100%" data-numposts="5"></div>
+    <div class="fb-comments" data-colorscheme="dark" data-href="{{ $url }}" data-width="100%" data-numposts="5"></div>
 
     {{-- a Fix for width on safari browser --}}
     <style>

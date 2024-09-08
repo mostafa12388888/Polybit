@@ -69,7 +69,7 @@
             </div>
 
             <div class="bg-white dark:bg-dark-50 dark:opacity-85 px-2 md:px-0">
-                <livewire:comments />
+                <livewire:comments :url="request()->url()" />
             </div>
         </div>
     </section>

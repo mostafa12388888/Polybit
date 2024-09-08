@@ -45,7 +45,7 @@
                 </div>
                 
                 <div class="border-t border-dark-100 dark:border-dark-700 pt-4 bg-white dark:bg-dark-50 dark:opacity-85 py-8 px-2 md:px-4 xl:px-6">
-                    <livewire:comments />
+                    <livewire:comments :url="request()->url()" />
                 </div>
             </div>
             
