@@ -8,7 +8,7 @@
     </div>
 
     <div class="flex flex-col gap-3 px-6 pt-8 pb-6">
-        <h5 class="font-semibold truncate lg:text-lg">{{ $post->title }}</h5>
+        <h2 class="font-semibold truncate lg:text-lg">{{ $post->title }}</h2>
         <p class="font-light line-clamp-2">{{ str()->limit(text($post->body), 250) }}</p>
     </div>
 
