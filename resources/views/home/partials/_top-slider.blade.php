@@ -20,9 +20,9 @@
                             </div>
                         </div>
 
-                        <x-curator-glider :media="$slide->image" format="webp" width="720" height="240" fit="crop" quality="30" class="w-full h-full object-cover" :alt="$slide->title" />
+                        <x-curator-glider :media="$slide->image" format="webp" width="720" height="240" fit="crop" quality="30" class="w-full h-full object-cover" :alt="$slide->title" loading="{{ $loop->index ? 'lazy' : 'eager' }}" fetchpriority="{{ $loop->index ? 'auto' : 'high' }}" />
                     @else
-                        <x-curator-glider :media="$slide->image" format="webp" width="1280" height="480" fit="crop" quality="70" class="w-full h-full object-cover" :alt="config('app.name')" />
+                        <x-curator-glider :media="$slide->image" format="webp" width="1280" height="480" fit="crop" quality="70" class="w-full h-full object-cover" :alt="config('app.name')" loading="{{ $loop->index ? 'lazy' : 'eager' }}" fetchpriority="{{ $loop->index ? 'auto' : 'high' }}" />
                     @endif
 
                 </div>
