@@ -13,7 +13,7 @@
 }" x-init="activeImage = images[0]">
     <div>
         <div class="overflow-hidden">
-            <x-img class="w-full sm:rounded-md min-h-72" src="{!! $product->image?->getSignedUrl(['w' => 720, 'q' => 70]) !!}" fetchpriority="high" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" />
+            <x-img class="w-full sm:rounded-md min-h-72" src="{!! $product->image?->getSignedUrl(['w' => 720, 'q' => 70]) !!}" fetchpriority="high" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" width="720" height="480" />
         </div>
     </div>
 
