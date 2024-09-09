@@ -43,7 +43,7 @@
                     <x-slot:content>
                         @foreach (locales(false) as $locale)
                             <x-dropdown.link :navigate="false" class="py-4" href="{{ localized_url($locale['code']) }}">
-                                <x-img loading="lazy" class="w-6 h-4" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" />
+                                <x-img loading="lazy" class="w-6 h-4" width="24" height="16" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" />
                                 <span>{{ $locale['name'] }}</span>
                             </x-link>
                         @endforeach

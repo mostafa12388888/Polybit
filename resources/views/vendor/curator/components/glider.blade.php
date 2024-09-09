@@ -16,7 +16,7 @@
                 srcset="{{ $sourceSet }}"
                 sizes="{{ $sizes }}"
             @endif
-            {{ $attributes->filter(fn ($attr) => $attr !== '') }}
+            {{ $attributes->merge(['loading' => 'lazy'])->filter(fn ($attr) => $attr !== '') }}
         />
     @else
         <x-curator::document-image

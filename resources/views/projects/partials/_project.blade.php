@@ -8,7 +8,7 @@
     </div>
     
     <div class="flex flex-col gap-3 px-6 py-8">
-        <h5 class="font-semibold truncate lg:text-lg">{{ $project->title }}</h5>
+        <h2 class="font-semibold truncate lg:text-lg">{{ $project->title }}</h2>
         <p class="font-light truncate">{{ str()->limit($project->subtitle, 150) }}</p>
     </div>
 </x-link>

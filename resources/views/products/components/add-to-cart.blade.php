@@ -26,6 +26,7 @@
                                             "
                                         >
                                             <span class="block w-9 h-9 shadow rounded" style="background: {{ $value->value }};"></span>
+                                            <span class="sr-only">{{ $value->title }}</span>
                                         </button>
                                     </div>
                                 @endforeach

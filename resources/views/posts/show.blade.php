@@ -42,7 +42,7 @@
     <article class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col lg:flex-row sm:gap-4 max-sm:divide-y">
             <div class="lg:rounded-md flex-grow w-full lg:w-8/12 2xl:w-9/12 overflow-hidden">
-                <img src="{{ $post->meta('image') }}" class="w-full" alt="{{ $post->meta('image-alt') }}" fetchpriority="high">
+                <img src="{{ $post->meta('image') }}" class="w-full" alt="{{ $post->meta('image-alt') }}" fetchpriority="high" width="1920" height="1080">
 
                 <div class="prose prose-zinc dark:prose-invert bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full">
                     {!! html($post->body) !!}

@@ -22,7 +22,7 @@
             <button class="shrink-0 w-20 !h-auto aspect-4/3 rounded overflow-hidden border dark:border-2 border-dark-100 dark:border-dark-800 p-0.5"
                 @click="activeImage = image"
                 x-bind:class="{'!border-dark-200 dark:!border-dark-600': activeImage.full == image.full}">
-                <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" x-bind:alt="image.alt" />
+                <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" width="80" height="80" x-bind:alt="image.alt" />
             </button>
         </template>
     </div>

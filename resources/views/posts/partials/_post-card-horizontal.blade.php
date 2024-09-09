@@ -9,7 +9,7 @@
 
     <div class="flex-grow flex flex-col gap-5">
         <div class="flex flex-col gap-3">
-            <h5 class="font-semibold line-clamp-2 text-xl xl:text-xl">{{ $post->title }}</h5>
+            <h2 class="font-semibold line-clamp-2 text-xl xl:text-xl">{{ $post->title }}</h2>
             <p class="font-light line-clamp-3">{{ str()->limit(text($post->body), 250) }}</p>
         </div>
     

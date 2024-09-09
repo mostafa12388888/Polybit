@@ -11,7 +11,7 @@
                 <span class="group-hover:bg-primary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
                     <x-icons.arrow-trending-up class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
-                <h4 class="font-bold text-lg xl:text-xl mb-4">{{ __('Elevate Your Projects') }}</h4>
+                <h3 class="font-bold text-lg xl:text-xl mb-4">{{ __('Elevate Your Projects') }}</h3>
                 <p class="text-justify leading-loose dark:text-dark-200">{{ __('elevate-your-projects') }}</p>
             </div>
 
@@ -19,7 +19,7 @@
                 <span class="group-hover:bg-primary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
                     <x-icons.globe class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
-                <h4 class="font-bold text-lg xl:text-xl mb-4 dark:text-dark-100">{{ __('Sustainability at the Core') }}</h4>
+                <h3 class="font-bold text-lg xl:text-xl mb-4 dark:text-dark-100">{{ __('Sustainability at the Core') }}</h3>
                 <p class="text-justify leading-loose">{{ __('sustainability-at-the-core') }}</p>
             </div>
 
@@ -27,7 +27,7 @@
                 <span class="group-hover:bg-primary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
                     <x-icons.rocket class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
-                <h4 class="font-bold text-lg xl:text-xl mb-4">{{ __('Shaping the Future') }}</h4>
+                <h3 class="font-bold text-lg xl:text-xl mb-4">{{ __('Shaping the Future') }}</h3>
                 <p class="text-justify leading-loose dark:text-dark-200">{{ __('shaping-the-future') }}</p>
             </div>
         </div>

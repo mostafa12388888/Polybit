@@ -1,4 +1,8 @@
 <x-app-layout>
+    <x-slot name="head">
+        <link rel="preload" as="image" href="{!! asset('/images/map.png') !!}" fetchpriority="high" />
+    </x-slot>
+
     @if ($slides->count())
         @include('home.partials._top-slider')
     @endif
