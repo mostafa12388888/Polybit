@@ -39,7 +39,7 @@
             <div class="flex gap-x-4 gap-y-8 flex-wrap flex-grow self-center max-sm:hidden">
                 @if ($store_categories->count())
                     <div class="flex flex-col gap-3 flex-grow min-w-64">
-                        <h3 class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</h3>
+                        <p class="text-lg font-semibold mb-2">{{ __('Store Categories') }}</p>
 
                         @foreach ($store_categories->take(5) as $store_category)
                             <x-link :href="route('store-categories.show', $store_category)">{{ $store_category->name }}</x-link>
@@ -49,7 +49,7 @@
                 
                 @if ($blog_categories->count())
                     <div class="flex flex-col gap-3 flex-grow min-w-64">
-                        <h3 class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</h3>
+                        <p class="text-lg font-semibold mb-2">{{ __('Blog Categories') }}</p>
                         
                         @foreach ($blog_categories->take(5) as $blog_category)
                             <x-link :href="route('blog-categories.show', $blog_category)">{{ $blog_category->name }}</x-link>
@@ -58,7 +58,7 @@
                 @endif
 
                 <div class="lg:flex flex-col gap-3 flex-grow min-w-64 hidden">
-                    <h3 class="text-lg font-semibold mb-2">{{ __('Support') }}</h3>
+                    <p class="text-lg font-semibold mb-2">{{ __('Support') }}</p>
 
                     <x-link :href="route('contact-us')">{{ __('Contact Us') }}</x-link>
                     <x-link :href="route('faq')">{{ __('FAQ') }}</x-link>
