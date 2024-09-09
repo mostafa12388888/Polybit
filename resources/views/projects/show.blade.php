@@ -56,7 +56,7 @@
                     </div>
                 @endif
                 
-                <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 py-8 md:px-6 xl:px-8 max-w-full">
+                <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 max-w-full text-justify">
                     {!! html($project->description) !!}
                 </div>
             </div>
