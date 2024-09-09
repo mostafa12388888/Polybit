@@ -7,10 +7,6 @@
     <x-breadcrumb :last="true">{{ __('Contact Us') }}</x-breadcrumb>
 </x-slot>
 
-<x-slot name="head">
-    <link rel="preload" as="image" href="{!! asset('/images/map.png') !!}" fetchpriority="high" />
-</x-slot>
-
 <div>
     <section class="bg-white dark:bg-dark-600/40 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
         <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-15 z-0 bg-cover bg-no-repeat bg-center" style="background-image: url('/images/map.png');"></div>
