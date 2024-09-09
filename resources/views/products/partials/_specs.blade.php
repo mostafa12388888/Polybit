@@ -1,4 +1,4 @@
-<div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col lg:gap-10 rounded-t-md rounded-b-md border lg:border-t-0 border-dark-100 dark:border-dark-600/50">
+<div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col lg:gap-10 rounded-t-md rounded-b-md border lg:border-t-0 border-dark-100 lg:border-dark-200 dark:border-dark-600/50">
     @foreach ($specs as $spec)    
         <x-button styling="light-link" class="lg:hidden !shadow-none rounded-none flex-grow py-5 bg-gray-100 dark:bg-dark-700/40 dark:focus:!brightness-100 w-full border-white dark:border-dark-700 flex items-center gap-2"
             x-bind:class="{'border-b': tab != {{ $loop->index + 1 }} && {{ $loop->last ? 'false' : 'true' }}}"
