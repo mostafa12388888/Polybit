@@ -29,7 +29,7 @@
             <div class="w-full flex gap-12 sm:gap-16 items-center flex-wrap justify-center">
                 @forelse ($posts as $post)
                     <div class="max-w-4xl flex-grow flex">
-                        @include('posts.partials._post-card-horizontal', compact('post'))
+                        @include('posts.partials._post-card-horizontal', ['lazy' => $loop->index])
                     </div>
                 @empty
                     @include('layouts.partials._empty')

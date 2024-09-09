@@ -31,7 +31,7 @@
             <div class="w-full flex gap-4 lg:gap-6 items-stretch justify-center flex-wrap relative">
                 @forelse ($products as $product)
                     <div class="w-72 max-w-sm flex-grow flex">
-                        @include('products.partials._product')
+                        @include('products.partials._product', ['lazy' => $loop->index])
                     </div>
                 @empty
                     @include('layouts.partials._empty')
