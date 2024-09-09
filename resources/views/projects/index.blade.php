@@ -12,7 +12,7 @@
             <div class="w-full flex gap-4 lg:gap-6 items-center justify-center flex-wrap">
                 @forelse ($projects as $project)
                     <div class="w-96 max-w-lg flex-grow flex">
-                        @include('projects.partials._project')
+                        @include('projects.partials._project', ['lazy' => $loop->index > 1])
                     </div>
                 @empty
                     @include('layouts.partials._empty')
