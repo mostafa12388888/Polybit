@@ -9,7 +9,7 @@ use Livewire\Component;
 class Comments extends Component
 {
     public $url;
-    
+
     public function placeholder()
     {
         return <<<'HTML'
