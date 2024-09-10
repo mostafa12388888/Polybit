@@ -72,8 +72,8 @@
                 @if ($latest_posts->count())
                     <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
                         <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Our latest posts') }}</h3>
-                        @foreach ($latest_posts as $post)
-                            <x-link :href="route('posts.show', $post)">{{ $post->title }}</x-link>
+                        @foreach ($latest_posts as $latest_post)
+                            <x-link :href="route('posts.show', $latest_post)">{{ $latest_post->title }}</x-link>
                         @endforeach
                     </div>
                 @endif
