@@ -63,8 +63,8 @@
                 @if ($related_posts->count())
                     <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-700 max-lg:py-10 flex flex-col">
                         <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100 mb-2 lg:mb-3">{{ __('Related posts you might like') }}</h3>
-                        @foreach ($related_posts as $post)
-                            <x-link :href="route('posts.show', $post)">{{ $post->title }}</x-link>
+                        @foreach ($related_posts as $related_post)
+                            <x-link :href="route('posts.show', $related_post)">{{ $related_post->title }}</x-link>
                         @endforeach
                     </div>
                 @endif
