@@ -4,7 +4,7 @@
 
 <header class="sticky top-0 bg-white dark:bg-dark-700 z-30 border-b border-dark-200 dark:border-dark-800/20" x-ref="header">
     <div class="bg-white dark:bg-dark-800/70 shadow shadow-dark-100 dark:shadow-none mx-auto px-4 sm:px-6 py-3 relative">
-        <div class="container mx-auto flex gap-3 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
+        <div class="container mx-auto flex gap-2 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
             @include('layouts.partials._navbar')
 
             <div class="xl:hidden order-3 md:order-1">
@@ -22,7 +22,7 @@
                     @include('layouts.partials._user-menu')
                 </div>
                 
-                <x-button styling="light" class="!rounded-md aspect-square w-11 h-11 !p-0 hidden md:flex items-center justify-center" @click="toggleDarkMode">
+                <x-button styling="light" class="!rounded-md aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleDarkMode">
                     <x-icons.moon class="!w-5 !h-5" x-show="! darkMode"/>
                     <x-icons.sun class="!w-5 !h-5" x-cloak x-show="darkMode"/>
                     <span class="sr-only">{{ __('Toggle Dark Mode') }}</span>
@@ -33,6 +33,26 @@
                     <livewire:cart-items-count />
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </x-link>
+
+                <x-dropdown dropdownClasses="w-full md:w-40 pt-2" wrapperClasses="static" :openOnHover="true">
+                    <x-slot:trigger>                        
+                        <x-button styling="light" class="flex sm:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
+                            <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
+                                <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
+                                <span class="rtl:pb-2 ltr:pt-0.5 max-[385px]:hidden">{{ optional(collect(locales(false))?->where('code', app()->getLocale())?->first())['symbol'] ?? '' }}</span>
+                            </div>
+                        </x-button>
+                    </x-slot>
+    
+                    <x-slot:content>
+                        @foreach (locales(false) as $locale)
+                            <x-dropdown.link :navigate="false" class="py-4" href="{{ localized_url($locale['code']) }}">
+                                <x-img loading="lazy" class="w-6 h-4" width="24" height="16" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" />
+                                <span>{{ $locale['name'] }}</span>
+                            </x-link>
+                        @endforeach
+                    </x-slot>
+                </x-dropdown>
 
                 @if (config('app.env') == 'local')
                     <div class="text-center " style="direction:ltr;">

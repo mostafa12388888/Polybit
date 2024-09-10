@@ -21,6 +21,7 @@ if (! function_exists('locales')) {
         ] : [
             [
                 'code' => 'en',
+                'symbol' => 'En',
                 'name' => 'English',
                 'flag' => 'us',
                 'direction' => 'ltr',
@@ -28,6 +29,7 @@ if (! function_exists('locales')) {
             ],
             [
                 'code' => 'ar',
+                'symbol' => 'ع',
                 'name' => 'العربية',
                 'flag' => 'eg',
                 'direction' => 'rtl',

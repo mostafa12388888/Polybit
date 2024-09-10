@@ -31,12 +31,13 @@
         }" 
         @resize.window="setHeight" 
         x-init="$el.classList.remove('hidden'); $el.classList.add('flex'); setHeight()">
+        
         <div class="w-full md:container mx-auto md:flex md:items-center">
             @if ($blog_categories->count())
                 <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-primary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                     <x-slot:trigger>
                         <div class="max-sm:pb-1 flex flex-grow">
-                            <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent="" :href="route('posts.index')">
+                            <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-3" @click.prevent="" :href="route('posts.index')">
                                 <span>{{ __('Blog') }}</span>
                                 <x-icons.chevron-down class="!w-4 !h-4" />
                             </x-link>
@@ -60,14 +61,14 @@
                     </x-slot>
                 </x-dropdown>
             @else
-                <x-link styling="light-link" class="w-full max-md:py-4 md:hidden lg:inline" :href="route('posts.index')">{{ __('Blog') }}</x-link>
+                <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('posts.index')">{{ __('Blog') }}</x-link>
             @endif
 
             @if ($store_categories->count())
                 <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-gray-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-gray-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                     <x-slot:trigger>
                         <div class="max-sm:pb-1 flex flex-grow">
-                            <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-4" @click.prevent="" :href="route('products.index')">
+                            <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-3" @click.prevent="" :href="route('products.index')">
                                 <span>{{ __('Products') }}</span>
                                 <x-icons.chevron-down class="!w-4 !h-4" />
                             </x-link>
@@ -91,26 +92,22 @@
                     </x-slot>
                 </x-dropdown>
             @else
-                <x-link styling="light-link" class="w-full max-md:py-4 md:hidden lg:inline" :href="route('products.index')">{{ __('Products') }}</x-link>
+                <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('products.index')">{{ __('Products') }}</x-link>
             @endif
     
-            <x-link styling="light-link" class="w-full max-md:py-4 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
+            <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
 
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('pages.show', str()->slug('About Us'))">{{ __('About Us') }}</x-link>
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('contact-us')">{{ __('Contact') }}</x-link>
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('faq')">{{ __('FAQ') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('pages.show', str()->slug('About Us'))">{{ __('About Us') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
 
             @if(auth()->user()?->is_admin)
-                <x-link styling="light-link" class="md:hidden w-full max-md:py-4" :href="route('filament.admin.pages.dashboard')">{{ __('Admin Panel') }}</x-link>
+                <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('filament.admin.pages.dashboard')">{{ __('Admin Panel') }}</x-link>
             @endif
         </div>
-
-        <div class="md:hidden">
-        </div>
         
-        
-        <div class="md:hidden" x-cloak>
+        {{-- <div class="md:hidden" x-cloak>
             @include('layouts.partials._topbar')
-        </div>
+        </div> --}}
     </nav>
 </div>
