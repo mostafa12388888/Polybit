@@ -1,21 +1,16 @@
-<div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col lg:gap-10 rounded-t-md rounded-b-md border lg:border-t-0 border-dark-100 lg:border-dark-200 dark:border-dark-600/50">
+<div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col lg:gap-10 rounded-t-md rounded-b-md border lg:border-t-0 border-dark-200 lg:border-dark-200 dark:border-dark-600/50 overflow-hidden">
     @foreach ($specs as $spec)    
-        <x-button styling="light-link" class="lg:hidden !shadow-none rounded-none flex-grow py-5 bg-gray-100 dark:bg-dark-700/40 dark:focus:!brightness-100 w-full border-white dark:border-dark-700 flex items-center gap-2"
+        <x-button styling="primary" class="lg:hidden !shadow-none rounded-none flex-grow py-5 bg-gray-100 dark:bg-dark-700/40 dark:focus:!brightness-100 w-full border-dark-400 dark:border-dark-700 flex items-center gap-2 justify-between"
             x-bind:class="{'border-b': tab != {{ $loop->index + 1 }} && {{ $loop->last ? 'false' : 'true' }}}"
-            @click="tab = {{ $loop->index + 1 }}">
-            <div class="text-gray-400 transition-all"
-                x-bind:class="{'{{ direction() == 'rtl' ? 'rotate-90' : '-rotate-90' }}': tab != {{ $loop->index + 1 }}}"
-            >
-                <x-icons.chevron-down x-cloak class="!w-5 !h-5" stroke-width="1.2" />
-            </div>
-            
+            @click="tab = (tab == {{ $loop->index + 1 }}) ? null : {{ $loop->index + 1 }}">
             <span>{{ $spec->title }}</span>
+            <span class="text-xl opacity-70" x-text="tab == {{ $loop->index + 1 }} ? '-' : '+'"></span>
         </x-button>
         
         <div class="lg:!duration-0 lg:!transition-none" x-show="tab == {{ $loop->index + 1 }}" x-collapse>
             <div class="flex flex-col gap-4 max-lg:px-4 max-lg:py-6">
                 @if ($spec->description)
-                    <div class="prose prose-zinc dark:prose-invert max-w-full px-4">
+                    <div class="prose prose-zinc dark:prose-invert max-w-full lg:px-4">
                         {!! html($spec->description) !!}
                     </div>
                 @endif

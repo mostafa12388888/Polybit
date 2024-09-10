@@ -3,7 +3,7 @@
 </div>
 
 <header class="sticky top-0 bg-white dark:bg-dark-700 z-30 border-b border-dark-200 dark:border-dark-800/20" x-ref="header">
-    <div class="bg-white dark:bg-dark-800/70 shadow shadow-dark-100 dark:shadow-none mx-auto px-4 sm:px-6 py-3 relative">
+    <div class="bg-white dark:bg-dark-800/70 shadow shadow-dark-100 dark:shadow-none mx-auto ps-2 pe-4 sm:ps-3 sm:pe-6 py-3 relative">
         <div class="container mx-auto flex gap-2 md:gap-4 lg:gap-6 justify-between items-center flex-wrap">
             @include('layouts.partials._navbar')
 
