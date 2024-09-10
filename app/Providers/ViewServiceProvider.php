@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\BlogCategory;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\Project;
 use App\Models\Slide;
 use App\Models\StoreCategory;
@@ -74,7 +75,11 @@ class ViewServiceProvider extends ServiceProvider
                 return Post::latest()->whereJsonContains('locales', app()->getLocale())->with('image')->limit(4)->get();
             });
 
-            return $view->with(compact('slides', 'projects', 'posts'));
+            $products = Cache::remember('products', 60 * 60, function () {
+                return Product::latest()->with('image')->limit(4)->get();
+            });
+
+            return $view->with(compact('slides', 'projects', 'posts', 'products'));
         });
 
         Facades\View::composer(['layouts.app', 'schema.*'], function (View $view) use ($darkmode) {

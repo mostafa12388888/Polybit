@@ -5,8 +5,12 @@
 
     @include('home.partials._features')
 
-    @if ($store_categories->count())
+    {{-- @if ($store_categories->count())
         @include('home.partials._store-categories')
+    @endif --}}
+
+    @if ($products->count())
+        @include('home.partials._products')
     @endif
     
     @if ($projects->count())

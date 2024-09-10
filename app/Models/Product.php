@@ -10,6 +10,7 @@ use App\Traits\Seoable;
 use App\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 class Product extends Model
 {
@@ -160,6 +161,10 @@ class Product extends Model
     protected static function boot()
     {
         parent::boot();
+
+        static::saved(fn () => Cache::forget('products'));
+
+        static::deleted(fn () => Cache::forget('products'));
 
         static::saving(function (self $product) {
             try {
