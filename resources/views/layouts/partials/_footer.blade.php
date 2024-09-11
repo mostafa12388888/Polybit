@@ -11,7 +11,7 @@
                 <!-- End Logo -->
                 <div class="flex md:flex-col flex-wrap items-stretch justify-stretch gap-2 sm:gap-4 order-3 md:order-2">
                     @foreach (setting('phones') ?: [] as $phone)
-                        <x-link href="tel:{{ $phone }}" class="flex items-center md:gap-2 md:w-auto md:border-none md:bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
+                        <x-link href="tel:{{ $phone }}" class="flex items-center md:gap-2 md:w-auto md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
                             <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent">
                                 <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                             </div>
@@ -21,7 +21,7 @@
                     @endforeach
                     
                     @foreach (setting('emails') ?: [] as $email)
-                        <x-link href="mail:{{ $email }}" class="flex items-center md:gap-2 md:w-auto md:border-none md:bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
+                        <x-link href="mail:{{ $email }}" class="flex items-center md:gap-2 md:w-auto md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
                             <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent">
                                 <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                             </div>
@@ -31,7 +31,7 @@
                     @endforeach
                         
                     @if ($address = setting('address'))
-                        <div class="flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:w-auto md:border-none md:bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none rounded-md flex-grow">
+                        <div class="flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:w-auto md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none rounded-md flex-grow">
                             <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent flex items-center">
                                 <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                             </div>
