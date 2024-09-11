@@ -12,11 +12,11 @@
                             <div class="absolute w-full h-full top-0 left-0 bg-dark-900/70 dark:bg-dark-900/70"></div>
     
                             <div class="absolute w-full h-full p-8 md:p-24 flex flex-col gap-4 md:gap-6 xl:gap-8 items-center justify-center text-center">
-                                <h2 class="text-gray-50 dark:text-dark-50 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{{ str()->title(fake()->sentence(3)) }}</h2>
+                                <h2 class="text-secondary-50 dark:text-dark-50 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{{ str()->title(fake()->sentence(3)) }}</h2>
     
-                                <p class="text-gray-50 dark:text-dark-50 text-base md:text-lg xl:text-xl w-full max-w-6xl line-clamp-3 xl:line-clamp-3">{{ fake()->paragraph(10) }}</p>
+                                <p class="text-secondary-50 dark:text-dark-50 text-base md:text-lg xl:text-xl w-full max-w-6xl line-clamp-3 xl:line-clamp-3">{{ fake()->paragraph(10) }}</p>
 
-                                <div class="flex flex-wrap gap-2 md:gap-x-3 lg:gap-x-4 xl:gap-x-6 items-center justify-center text-gray-50 dark:text-dark-50">
+                                <div class="flex flex-wrap gap-2 md:gap-x-3 lg:gap-x-4 xl:gap-x-6 items-center justify-center text-secondary-50 dark:text-dark-50">
                                     <div class="flex gap-2">
                                         <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
                                         <span class="text-sm line-clamp-1">{{ str()->limit(str()->title(fake()->sentence(2)), 240) }}</span>
@@ -40,11 +40,11 @@
         </div>
     
         <div class="glide__arrows" dir="ltr" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left h-full shadow-none border-0 text-gray-50 dark:text-dark-100 left-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir="<">
+            <button class="glide__arrow glide__arrow--left h-full shadow-none border-0 text-secondary-50 dark:text-dark-100 left-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir="<">
                 <x-icons.chevron-left class="!w-8 lg:!w-12 !h-8 lg:!h-12" />
                 <span class="sr-only">{{ __('Next') }}</span>
             </button>
-            <button class="glide__arrow glide__arrow--right h-full shadow-none border-0 text-gray-50 dark:text-dark-100 right-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir=">">
+            <button class="glide__arrow glide__arrow--right h-full shadow-none border-0 text-secondary-50 dark:text-dark-100 right-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir=">">
                 <x-icons.chevron-right class="!w-8 lg:!w-12 !h-8 lg:!h-12" />
                 <span class="sr-only">{{ __('Previous') }}</span>
             </button>

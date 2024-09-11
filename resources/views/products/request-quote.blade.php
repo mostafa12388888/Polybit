@@ -8,7 +8,7 @@
 </x-slot>
 
 @if($order_created)
-    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8">
+    <section class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 lg:py-6 xl:py-8">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
             <div class="lg:rounded-md bg-white dark:bg-dark-700/60 w-full flex flex-col px-4 py-20 items-center justify-center gap-4">
                 <x-icons.check-circle class="!w-14 !h-14" stroke-width=".8" />
@@ -30,7 +30,7 @@
         </div>
     </section>
 @else
-    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8">
+    <section class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 lg:py-6 xl:py-8">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
             <div class="lg:rounded-md overflow-hidden bg-white dark:bg-dark-700/60 w-full lg:max-w-sm relative flex flex-col order-3 lg:order-1">
                 <div class="flex gap-2 flex-wrap justify-between items-center p-4 border-y lg:border-t-0 border-dark-200/70 dark:border-dark-700">

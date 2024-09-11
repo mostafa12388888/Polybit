@@ -1,4 +1,4 @@
-<div class="bg-gray-100/50 dark:bg-dark-700/50 px-4 sm:px-6 py-8 md:py-10 xl:py-12 relative">
+<div class="bg-secondary-100/50 dark:bg-dark-700/50 px-4 sm:px-6 py-8 md:py-10 xl:py-12 relative">
     <div class="container mx-auto flex flex-col gap-6 lg:gap-8 flex-wrap relative z-10">
         <h2 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">{{ __('Related Products') }}</h2>
 

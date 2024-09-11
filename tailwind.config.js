@@ -28,7 +28,7 @@ export default {
                 "sans-ar": ['Almarai', 'Klavika', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primarys: {
+                secondary: {
                     DEFAULT: '#B2D1DE',
                     50: '#F9FCFD',
                     100: '#EBF3F6',
@@ -43,7 +43,7 @@ export default {
                     950: '#0B1519'
                 },
                 primary: colors.zinc,
-                secondary: colors.teal,
+                // secondary: colors.teal,
                 dark: colors.zinc,
             },
         },

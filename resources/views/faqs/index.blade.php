@@ -7,7 +7,7 @@
         <x-breadcrumb :last="true">{{ __('FAQ') }}</x-breadcrumb>
     </x-slot>
 
-    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-4 md:px-4 md:py-8 lg:py-12 relative">
+    <section class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 sm:p-4 md:px-4 md:py-8 lg:py-12 relative">
         <div class="container mx-auto flex flex-col lg:flex-row gap-4 mb-6 max-md:mt-6">
             <div class="max-w-4xl flex-grow w-full lg:w-8/12 2xl:w-9/12 flex flex-col gap-4 max-sm:px-4">
                 <h2 class="font-semibold text-lg uppercase text-gray-800 dark:text-dark-100">{{ __('Find answers to frequently asked questions.') }}</h2>

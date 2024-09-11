@@ -28,7 +28,7 @@
                 @endif
 
                 <div class="flex flex-col gap-6 mx-4 sm:mx-0 mt-4">
-                    <h2 class="font-bold text-5xl lg:text-5xl rtl:text-4xl rtl:lg:text-4xl text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
+                    <h2 class="font-bold text-4xl xl:text-[2.5rem] text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
                     
                     <div class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</div>
 
@@ -44,7 +44,7 @@
 
             @if ($specs->count())
                 <div class="max-sm:px-4 lg:rounded-md overflow-hidden" x-data="{tab: 1}">
-                    <nav class="w-full flex max-lg:hidden bg-primary-50 dark:bg-dark-700/20">
+                    <nav class="w-full flex max-lg:hidden bg-secondary-50 dark:bg-dark-700/20">
                         @foreach ($specs as $spec)
                             <x-button styling="light-link" class="!shadow-none rounded-none flex-grow py-5 border-b border-dark-200 dark:border-dark-600/50 !rounded-t-md bg-transparent {{ count($specs) < 4 ? 'max-w-sm' : '' }}"
                                 x-bind:class="{'!bg-white border border-b-0 dark:!bg-dark-700/40 dark:focus:!brightness-100': tab == {{ $loop->index + 1 }}}"
@@ -62,7 +62,7 @@
                 </div>
             @endif
 
-            <div class="bg-gray-50 dark:bg-dark-700/60 p-4 md:p-6 lg:rounded-md gap-2 dark:border-dark-700 flex flex-wrap justify-between items-center">
+            <div class="bg-secondary-50 dark:bg-dark-700/60 p-4 md:p-6 lg:rounded-md gap-2 dark:border-dark-700 flex flex-wrap justify-between items-center">
                 <h3 class="uppercase font-semibold text-lg text-gray-800 dark:text-dark-100">{{ __('share this product') }}</h3>
                 
                 @include('layouts.partials._share-buttons')

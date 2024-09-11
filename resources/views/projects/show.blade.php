@@ -18,7 +18,7 @@
         <x-breadcrumb :last="true">{{ str()->limit($project->title, 17) }}</x-breadcrumb>
     </x-slot>
 
-    <article class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
+    <article class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 sm:p-2 md:p-4 lg:py-6 xl:py-8 relative">
         <div class="container mx-auto flex flex-col lg:flex-row sm:gap-4 max-sm:divide-y">
             <div class="lg:rounded-md flex-grow w-full lg:w-8/12 2xl:w-9/12 overflow-hidden">
                 @if($project->images->count())
@@ -44,7 +44,7 @@
                 @if ($project->attributes)
                     <div class="prose prose-zinc dark:prose-invert xl:ltr:prose-lg bg-white dark:bg-dark-700/60 max-w-full pt-12 pb-4">
                         <div class="w-full border-t border-b overflow-hidden dark:border-dark-700">
-                            <table class="w-full divide-y bg-gray-50 dark:bg-dark-700/70 my-0 text-base">
+                            <table class="w-full divide-y bg-secondary-50 dark:bg-dark-700/70 my-0 text-base">
                                 @foreach ($project->attributes as $attribute)
                                     <tr class="even:bg-white even:dark:bg-dark-800/40 dark:border-dark-700">
                                         <td class="p-4 md:p-6 xl:px-8 font-semibold align-middle">{{ optional($attribute)['key'] }}</td>

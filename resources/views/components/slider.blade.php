@@ -7,11 +7,11 @@
     </div>
 
     <div class="glide__arrows" dir="ltr" data-glide-el="controls">
-        <button class="glide__arrow glide__arrow--left h-full shadow-none border-0 text-gray-50 dark:text-dark-100 left-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir="<">
+        <button class="glide__arrow glide__arrow--left h-full shadow-none border-0 text-secondary-50 dark:text-dark-100 left-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir="<">
             <x-icons.chevron-left class="!w-8 lg:!w-12 !h-8 lg:!h-12" />
             <span class="sr-only">{{ __('Next') }}</span>
         </button>
-        <button class="glide__arrow glide__arrow--right h-full shadow-none border-0 text-gray-50 dark:text-dark-100 right-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir=">">
+        <button class="glide__arrow glide__arrow--right h-full shadow-none border-0 text-secondary-50 dark:text-dark-100 right-0 transition-opacity p-1 lg:p-8 opacity-50 hover:opacity-100" data-glide-dir=">">
             <x-icons.chevron-right class="!w-8 lg:!w-12 !h-8 lg:!h-12" />
             <span class="sr-only">{{ __('Previous') }}</span>
         </button>

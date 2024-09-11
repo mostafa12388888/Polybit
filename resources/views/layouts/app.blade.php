@@ -87,15 +87,18 @@
             @font-face {
                 font-family: 'Klavika';
                 font-style: normal;
-                font-weight: 400;
+                font-weight: 200;
                 font-display: swap;
                 src: url(/fonts/klavika-light.woff) format('woff2');
+                size-adjust: 105%;
             }
             @font-face {
                 font-family: 'Klavika';
                 font-style: normal;
                 font-weight: 600;
+                size-adjust: 110%;
                 font-display: swap;
+                font-style: bold;
                 src: url(/fonts/klavika-regular.woff) format('woff2');
             }
         </style>
@@ -106,15 +109,15 @@
 
     {{ $head ?? null }}
 </head>
-<body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-gray-100">
+<body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-secondary-100">
     @include('layouts.partials._header')
 
     <main class="flex-grow flex flex-col">
         @if ($heading ?? null)
-            <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm z-10 relative overflow-hidden">
-                <div class="absolute w-full h-full top-0 left-0 opacity-50 dark:opacity-100 z-20 bg-cover bg-no-repeat bg-center pointer-events-none" style="background-image: url('/images/header-background.webp');"></div>
+            <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm relative overflow-hidden">
+                <div class="absolute w-full h-full top-0 left-0 opacity-50 dark:opacity-100 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none" style="background-image: url('/images/header-background.webp');"></div>
 
-                <div class="container mx-auto py-10 lg:py-12">
+                <div class="container mx-auto py-10 lg:py-12 z-50">
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">
                         {{ $heading }}
                     </h1>

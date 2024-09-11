@@ -1,5 +1,5 @@
 <!-- TopBar -->
-<div class="md:bg-primary-200/50 md:dark:bg-dark-900 px-4 md:px-6 mt-2 md:mt-0 md:text-[.75rem]">
+<div class="md:bg-secondary-200/50 md:dark:bg-dark-900 px-4 md:px-6 mt-2 md:mt-0 md:text-[.75rem]">
     <nav class="container mx-auto flex flex-col md:flex-row flex-wrap md:items-center justify-between gap-4">
         <div class="max-md:hidden dark:border-dark-700 p-4 md:p-0 flex flex-wrap items-center justify-center gap-4">
             @if ($pages->count())
@@ -12,14 +12,14 @@
             <div class="max-md:order-1 max-md:-mx-4">
                 <div class="flex max-md:flex-grow gap-2 mb-4 md:hidden">
                     <x-button styling="light" class="flex flex-grow items-center justify-center gap-1.5 py-3 opacity-80"
-                        x-bind:class="{'!bg-primary-500 !text-white !opacity-100': ! darkMode}"
+                        x-bind:class="{'!bg-secondary-500 !text-white !opacity-100': ! darkMode}"
                         @click="toggleDarkMode(false)">
                         <x-icons.sun class="!w-5 !h-5" />
                         <span>Light Mode</span>
                     </x-button>
 
                     <x-button styling="light" class="flex flex-grow items-center justify-center gap-1.5 py-3 opacity-80"
-                        x-bind:class="{'dark:!bg-primary-500 dark:!text-white !opacity-100': darkMode}"
+                        x-bind:class="{'dark:!bg-secondary-500 dark:!text-white !opacity-100': darkMode}"
                         @click="toggleDarkMode(true)">
                         <x-icons.moon class="!w-5 !h-5"/>
                         <span>Dark Mode</span>

@@ -1,37 +1,53 @@
 <footer class="{{ optional(request()->route())->getName() == 'home' ? 'bg-white' : 'bg-dark-50' }} dark:bg-dark-800 dark:border-dark-500">
     <div class="py-8 sm:py-14 px-4 sm:px-6 relative">
-        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/images/footer-background.webp');"></div>
+        <div class="absolute w-full h-full top-0 left-0 opacity-15 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/images/footer-background.webp');"></div>
 
         <div class="container mx-auto flex flex-grow max-md:flex-wrap max-sm:items-center max-sm:justify-center max-sm:text-center gap-12 mb-8 sm:mb-12">
             <div class="flex flex-col gap-4 min-w-64 max-sm:items-center max-sm:justify-center max-sm:text-center">
                 <!-- Logo -->
                 <x-link href="{{ route('home') }}" class="mb-4 sm:mb-8">
-                    <x-application-logo class="h-10 sm:h-14" />
+                    <x-application-logo class="h-16 rounded-md" />
                 </x-link>
                 <!-- End Logo -->
-    
-                @foreach (setting('phones') ?: [] as $phone)
-                    <x-link href="tel:{{ $phone }}" class="flex gap-2">
-                        <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-                        <span dir="ltr">{{ $phone }}</span>
-                    </x-link>
-                @endforeach
-                
-                @foreach (setting('emails') ?: [] as $email)
-                    <x-link href="mail:{{ $email }}" class="flex gap-2">
-                        <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
-                        <span>{{ $email }}</span>
-                    </x-link>
-                @endforeach
+                <div class="flex md:flex-col flex-wrap items-stretch justify-stretch gap-2 sm:gap-4 order-3 md:order-2">
+                    @foreach (setting('phones') ?: [] as $phone)
+                        <x-link href="tel:{{ $phone }}" class="flex items-center md:gap-2 md:w-auto md:border-none md:bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
+                            <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent">
+                                <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                            </div>
+                            <span class="flex-grow px-4 py-2 text-start md:p-0" dir="ltr">{{ $phone }}</span>
+                        </x-link>
+                        @break
+                    @endforeach
+                    
+                    @foreach (setting('emails') ?: [] as $email)
+                        <x-link href="mail:{{ $email }}" class="flex items-center md:gap-2 md:w-auto md:border-none md:bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
+                            <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent">
+                                <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                            </div>
+                            <span class="flex-grow px-4 py-2 text-start md:p-0">{{ $email }}</span>
+                        </x-link>
+                        @break
+                    @endforeach
+                        
+                    @if ($address = setting('address'))
+                        <div class="flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:w-auto md:border-none md:bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none rounded-md flex-grow">
+                            <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent flex items-center">
+                                <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                            </div>
+                            <p class="flex-grow px-4 py-2 text-start md:p-0 md:max-w-64 text-balance">{{ $address }}</p>
+                        </div>
+                    @endif
+                </div>
 
-                @if ($address = setting('address'))
-                    <div class="flex gap-2 text-gray-700 dark:text-dark-100">
+                {{-- @if ($address = setting('address'))
+                    <div class="flex gap-2 text-gray-700 dark:text-dark-100 order-4">
                         <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5 leading-loose hidden sm:inline" width-stroke="1" />
                         <p class="sm:max-w-64 text-balance">{{ $address }}</p>
                     </div>
-                @endif
+                @endif --}}
 
-                <div class="w-full flex-grow flex-wrap flex gap-2 mt-4 max-sm:items-center max-sm:justify-center max-sm:text-center max-w-96">
+                <div class="w-full flex-grow flex-wrap flex gap-2 mb-3 max-sm:items-center max-sm:justify-center max-sm:text-center max-w-96 order-3">
                     @include('layouts.partials._social-links')
                 </div>
             </div>
@@ -79,7 +95,7 @@
         </div>
     </div>
 
-    <div class="p-4 bg-primary-100/10 dark:bg-dark-900/40">
+    <div class="p-4 bg-secondary-100/10 dark:bg-dark-900/40">
         <div class="container mx-auto flex items-center justify-center sm:justify-between flex-col sm:flex-row gap-4">
             <p>{{ __("© :year :app, All rights reserved", ['year' => date('Y'), 'app' => config('app.name')]) }}.</p>
             <a href="https://brmjyat.com" target="_blank">{{ __("Developed by brmjyat") }}.</a>

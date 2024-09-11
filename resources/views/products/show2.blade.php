@@ -69,7 +69,7 @@
             </div>
 
             <div class="lg:rounded-md overflow-hidden mx-4 sm:mx-0 shadow" x-data="{tab: 1}">
-                <nav class="w-full flex max-lg:hidden bg-primary-50 dark:bg-dark-700/40 divide-x">
+                <nav class="w-full flex max-lg:hidden bg-secondary-50 dark:bg-dark-700/40 divide-x">
                     <div class="flex-grow border-dark-200/50 dark:border-dark-700/30">
                         <x-button styling="link" class="w-full border-b-[6px] !shadow-none rounded-none py-5 border-dark-200/50 dark:border-dark-600/20"
                             x-bind:class="{'border-b-dark-500 dark:border-b-dark-400': tab == 1}"

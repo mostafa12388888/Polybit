@@ -8,7 +8,7 @@
     <x-breadcrumb :last="true">{{ __('Shopping Cart') }}</x-breadcrumb>
 </x-slot>
 
-<section class="flex-grow bg-primary-100 dark:bg-dark-800/70 sm:p-4 md:px-4 md:py-8 lg:py-12 relative">
+<section class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 sm:p-4 md:px-4 md:py-8 lg:py-12 relative">
     <div class="container mx-auto flex flex-col xl:flex-row gap-4">
         @if ($cart_items->count())
             <div class="bg-white dark:bg-dark-700/60 px-4 py-8 md:px-6 lg:py-0 xl:px-8 sm:rounded-md dark:border-dark-700 flex flex-col gap-6 lg:table w-full xl:w-8/12 2xl:w-9/12">

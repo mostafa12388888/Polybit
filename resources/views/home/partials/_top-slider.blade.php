@@ -7,9 +7,9 @@
                         <div class="absolute w-full h-full top-0 left-0 bg-dark-900/60 dark:bg-dark-900/60"></div>
 
                         <div class="absolute w-full h-full p-8 md:p-24 flex flex-col gap-4 md:gap-6 xl:gap-8 items-center justify-center text-center" x-cloak>
-                            <h2 class="text-gray-50 dark:text-dark-50 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{{ $slide->title }}</h2>
+                            <h2 class="text-secondary-50 dark:text-dark-50 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">{{ $slide->title }}</h2>
 
-                            <p class="text-gray-50 dark:text-dark-50 text-base md:text-lg xl:text-xl w-full max-w-6xl line-clamp-2 xl:line-clamp-3">{{ $slide->description }}</p>
+                            <p class="text-secondary-50 dark:text-dark-50 text-base md:text-lg xl:text-xl w-full max-w-6xl line-clamp-2 xl:line-clamp-3">{{ $slide->description }}</p>
 
                             <div class="flex gap-4 flex-wrap items-center justify-center">
                                 @foreach ($slide->actions as $action)

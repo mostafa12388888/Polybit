@@ -1,6 +1,6 @@
 <div class="bg-white/90 dark:bg-dark-600/40 px-4 sm:px-6 py-12 md:py-16 xl:py-24 relative">
     <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
-        <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-[2.5rem] font-extrabold relative px-8 z-50">{{ __('Featured Projects') }}</h2>
+        <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-4xl font-extrabold relative px-8 z-50">{{ __('Featured Projects') }}</h2>
 
         <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden">{{ __('Discover the Projects that Define Our Commitment to Quality') }}</p>
 

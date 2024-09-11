@@ -20,7 +20,7 @@
     <div class="relative">
         <input class="sr-only peer" {!! $attributes->merge(['type' => 'checkbox']) !!}  {{ $checked  ? 'checked' : '' }}>
     
-        <div class="bg-gray-200 peer-focus:outline-none peer-focus:ring-0 dark:peer-focus:ring-primary-50 rounded-full peer dark:bg-dark-600 peer-checked:after:border-primary-500 after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-dark-500 peer-checked:bg-primary-500 rtl:after:left-auto {{ $classes }}"></div>
+        <div class="bg-secondary-200 peer-focus:outline-none peer-focus:ring-0 dark:peer-focus:ring-primary-50 rounded-full peer dark:bg-dark-600 peer-checked:after:border-primary-500 after:content-[''] after:absolute after:bg-white after:border-secondary-300 after:border after:rounded-full after:transition-all dark:border-dark-500 peer-checked:bg-secondary-500 rtl:after:left-auto {{ $classes }}"></div>
     </div>
 
     <div class="inline">{{ $slot }}</div>

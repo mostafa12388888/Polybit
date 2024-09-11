@@ -18,5 +18,5 @@
         </x-link>
     @endforeach
 
-    <x-link styling="{{ $button ?? 'primary' }}" :href="route('contact-us')" class="text-center">{{ __('Contact Us') }}</x-link>
+    <x-link styling="{{ $button ?? 'secondary' }}" :href="route('contact-us')" class="text-center">{{ __('Contact Us') }}</x-link>
 </div>

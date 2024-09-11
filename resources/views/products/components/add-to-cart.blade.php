@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-6">
-    <div class="flex flex-col gap-6 sm:table w-fit">
+    <div class="flex flex-col gap-6 sm:table w-full sm:w-fit">
         @foreach ($this->available_attributes_with_values as $attribute)
-            <div class="flex flex-col gap-2 sm:table-row">
+            <div class="flex-grow flex flex-col gap-2 sm:table-row">
                 
                 @if($attribute->values->count() == 1)
                     <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </span>
@@ -35,7 +35,7 @@
                     @else
                         <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit" for="attr_{{ $attribute->id }}">{{ $attribute->name }}</x-label>
 
-                        <x-select class="table-cell text-sm px-8" id="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
+                        <x-select class="table-cell text-sm px-8 py-3 sm:py-2 max-w-sm" id="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
                             <option value="" selected>- {{ __('Select :attribute', ['attribute' => $attribute->name]) }}</option>
 
                             @foreach ($attribute->values as $value)
@@ -73,7 +73,7 @@
                 <x-button styling="primary" class="flex gap-2 dark:bg-dark-700 justify-center items-center max-w-sm w-full py-4"
                     wire:click="add_to_cart" wire:target="add_to_cart" wire:loading.attr="disabled">
                     <x-icons.cart class="!w-5 !h-5" stroke-width="1.5" />
-                    <span>{{ __('Add to cart') }}</span>
+                    <span class="font-bold">{{ __('Add to cart') }}</span>
                     <x-spinner wire:target="add_to_cart" wire:loading class="!w-4 !h-4" />
                 </x-button>
                 

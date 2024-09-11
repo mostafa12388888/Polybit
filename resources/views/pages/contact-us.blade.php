@@ -25,7 +25,7 @@
             @if ($address || $phones || $emails)
                 <div class="flex flex-wrap w-full flex-grow gap-4 lg:gap-6 xl:gap-8">
                     @if ($address)
-                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
+                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
                             <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
                                 <x-icons.map-pin class="!w-8 !h-8" stroke-width="1" />
                             </span>
@@ -37,7 +37,7 @@
                     @endif
         
                     @if ($phones)
-                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
+                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
                             <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
                                 <x-icons.phone class="!w-8 !h-8" stroke-width="1" />
                             </span>
@@ -53,7 +53,7 @@
                     @endif
         
                     @if ($emails)
-                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-primary-100/60 to-primary-200/80 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
+                        <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
                             <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full">
                                 <x-icons.envelope class="!w-8 !h-8" stroke-width="1" />
                             </span>
@@ -73,7 +73,7 @@
         </div>
     </section>
     
-    <section class="flex-grow bg-primary-100 dark:bg-dark-800/70 lg:py-6 xl:py-8 relative">
+    <section class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 lg:py-6 xl:py-8 relative">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
             <div class="lg:rounded-md overflow-hidden lg:shadow bg-white dark:bg-dark-700/60 flex-grow order-3 lg:order-1">
                 <livewire:map lazy />
