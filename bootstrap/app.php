@@ -27,7 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (Throwable $e) {
             if ($e->getStatusCode() == 404) {
-                return redirect()->route('home');
+                return redirect()->to(config('app.url'));
             }
         });
     })->create();
