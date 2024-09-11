@@ -126,6 +126,7 @@ return [
     'Contact details' => 'بيانات التواصل',
     'Email addresses' => 'البريد الالكتروني',
     'Email address' => 'البريد الالكتروني',
+    'Address' => 'العنوان',
     'Phone numbers' => 'أرقام الهاتف',
     'Phone number' => 'رقم الهاتف',
     'Social links' => 'حسابات مواقع التواصل الإجتماعي',
