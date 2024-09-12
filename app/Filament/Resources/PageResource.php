@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PageResource\Pages;
 use App\Filament\SEO;
 use App\Models\Page;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
@@ -35,6 +37,11 @@ class PageResource extends Resource
                 SEO::make()->schema([
                     TextInput::make('title')->required()->maxLength(250)->columnSpanFull(),
                     TiptapEditor::make('body')->columnSpanFull(),
+                    Group::make()->schema([
+                        Toggle::make('is_visible_in_top_navbar')->rules('boolean'),
+                        Toggle::make('is_visible_in_main_navbar')->rules('boolean'),
+                        Toggle::make('is_visible_in_footer_navbar')->rules('boolean'),
+                    ])->columns(3),
                 ]),
             ]);
     }
@@ -77,6 +84,9 @@ class PageResource extends Resource
                 TextEntry::make('slug'),
                 TextEntry::make('created_at')->dateTime(),
                 ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
+                TextEntry::make('is_visible_in_top_navbar')->state(fn (Page $page) => $page->is_visible_in_top_navbar ? 'True' : 'False'),
+                TextEntry::make('is_visible_in_main_navbar')->state(fn (Page $page) => $page->is_visible_in_main_navbar ? 'True' : 'False'),
+                TextEntry::make('is_visible_in_footer_navbar')->state(fn (Page $page) => $page->is_visible_in_footer_navbar ? 'True' : 'False'),
             ])->columns(2),
 
             \Filament\Infolists\Components\Section::make()->schema([

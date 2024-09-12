@@ -86,7 +86,7 @@
             <div class="w-full flex-grow flex flex-wrap gap-x-6 gap-y-3 items-center justify-center">
                 <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
                 <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
-                @foreach ($pages->take(4) as $page)
+                @foreach ($pages->where('is_visible_in_footer_navbar') as $page)
                     <x-link :href="route('pages.show', $page)">{{ $page->title }}</x-link>
                 @endforeach
                 <x-link :href="route('contact-us')" class="lg:hidden">{{ __('Contact Us') }}</x-link>

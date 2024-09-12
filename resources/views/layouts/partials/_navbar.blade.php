@@ -97,7 +97,10 @@
     
             <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
 
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('pages.show', str()->slug('About Us'))">{{ __('About Us') }}</x-link>
+            @foreach ($pages->where('is_visible_in_main_navbar') as $page)
+                <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline whitespace-nowrap" :href="route('pages.show', $page)">{{ $page->title }}</x-link>
+            @endforeach
+            
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
 
