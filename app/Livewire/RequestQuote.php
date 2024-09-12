@@ -29,6 +29,10 @@ class RequestQuote extends Component
     {
         $this->cart_items = cart()->items;
 
+        if (auth()->user()) {
+            $this->set_user_data();
+        }
+
         $this->set_guest_data();
 
         if (! count($this->cart_items)) {
@@ -73,6 +77,13 @@ class RequestQuote extends Component
         ]), 36 * 30 * 24 * 60);
     }
 
+    public function set_user_data()
+    {
+        $this->name = auth()->user()->name;
+        $this->email = auth()->user()->email;
+        $this->phone = auth()->user()->phone;
+    }
+
     public function set_guest_data()
     {
         $guest = request()->cookie('guest');
@@ -80,9 +91,9 @@ class RequestQuote extends Component
         $guest = json_decode($guest ?? '', true);
 
         if (is_array($guest)) {
-            $this->name = optional($guest)['name'];
-            $this->email = optional($guest)['email'];
-            $this->phone = optional($guest)['phone'];
+            $this->name = $this->name ?: optional($guest)['name'];
+            $this->email = $this->email ?: optional($guest)['email'];
+            $this->phone = $this->phone ?: optional($guest)['phone'];
         }
     }
 

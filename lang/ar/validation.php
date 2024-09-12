@@ -150,6 +150,7 @@ return [
     'uppercase' => 'يجب أن يحتوي الحقل :attribute على حروف كبيرة.',
     'url' => 'صيغة رابط حقل :attribute غير صحيحة.',
     'uuid' => 'حقل :attribute يجب أن يكون بصيغة UUID سليمة.',
+    'phone' => 'يجب على حقل :attribute أن يكون رقم هاتف صحيح.',
     'attributes' => [
         'address' => 'العنوان',
         'affiliate_url' => 'رابط الأفلييت',
