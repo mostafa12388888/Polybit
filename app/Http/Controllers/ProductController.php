@@ -26,7 +26,7 @@ class ProductController extends Controller
 
         $categories = $product->category->parent->sub_categories()->pluck('id')->toArray();
 
-        $related_products = Product::whereHas('categories', function($query) use ($categories) {
+        $related_products = Product::whereHas('categories', function ($query) use ($categories) {
             return $query->whereIn('store_categories.id', $categories);
         })->where('products.id', '!=', $product->id)->limit(6)->inRandomOrder()->get();
 

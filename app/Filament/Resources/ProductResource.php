@@ -81,7 +81,7 @@ class ProductResource extends Resource
                                     }
 
                                     return $options ?? [];
-                                })
+                                }),
                         ])->columnSpanFull(),
 
                         CuratorPicker::make('images')->multiple()->constrained()

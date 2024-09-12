@@ -20,7 +20,7 @@
         
         <h2 class="font-semibold truncate text-lg">{{ $product->name }}</h2>
 
-        <h3>{{ $product->category->name }}</h3>
+        <h3>{{ $product->category?->name }}</h3>
     </div>
         
     {{-- <x-button styling="light" class="flex gap-2 dark:bg-dark-700 justify-center rounded-none py-4">

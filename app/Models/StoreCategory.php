@@ -45,7 +45,7 @@ class StoreCategory extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'category_id');
+        return $this->belongsToMany(Product::class);
     }
 
     public function sub_categories_products()
