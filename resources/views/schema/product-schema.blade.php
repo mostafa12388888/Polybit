@@ -18,7 +18,11 @@
                 "sku": "{{ $product->slug }}",
                 "keywords": "{!! schema_text($product->meta('keywords')) !!}",
                 "description": "{!! schema_text($product->meta('description'), 150) !!}",
-                "category": "{{ schema_text($product->category->name) }}",
+                "category": [
+                    @foreach ($product->categories as $category)
+                        "{{ schema_text($category->name) }}"{{ $loop->last ? '' : ',' }}
+                    @endforeach
+                ],
                 "offers": {
                     "@type": "Offer",
                     "url": "{{ route('products.show', $product) }}",

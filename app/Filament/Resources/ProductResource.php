@@ -83,7 +83,9 @@ class ProductResource extends Resource
                                     return $options ?? [];
                                 }),
                         ])->columnSpanFull(),
+                    ]);
 
+                    $tabs[] = Tab::make('Images')->schema([
                         CuratorPicker::make('images')->multiple()->constrained()
                             ->typeValue('product-image')
                             ->buttonLabel('admin.Add Images')
@@ -91,6 +93,8 @@ class ProductResource extends Resource
                             ->listDisplay(true)->size('sm')
                             ->relationship('media_items', 'id')
                             ->columnSpanFull(),
+
+                        Repeater::make('embeded_urls')->simple(TextInput::make('url')->prefixIcon('heroicon-o-cube')->rules(['url']))->columnSpanFull(),
                     ]);
 
                     $tabs[] = Tab::make('Attributes')->schema([

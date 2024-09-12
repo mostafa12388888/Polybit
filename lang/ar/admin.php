@@ -170,4 +170,5 @@ return [
     'Is visible in main navbar' => 'إظهار في القائمة الرئيسية',
     'Is visible in footer navbar' => 'إظهار في الفوتر',
     'Categories' => 'الأقسام',
+    'Embeded urls' => 'نماذج 3d',
 ];

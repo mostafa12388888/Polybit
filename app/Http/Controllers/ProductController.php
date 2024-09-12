@@ -24,11 +24,15 @@ class ProductController extends Controller
     {
         $product->loadMissing('media', 'specs.media', 'variants.attribute_values', 'category');
 
-        $categories = $product->category->parent->sub_categories()->pluck('id')->toArray();
+        $related_products = collect();
 
-        $related_products = Product::whereHas('categories', function ($query) use ($categories) {
-            return $query->whereIn('store_categories.id', $categories);
-        })->where('products.id', '!=', $product->id)->limit(6)->inRandomOrder()->get();
+        if ($product->category) {
+            $categories = $product->category->parent->sub_categories()->pluck('id')->toArray();
+
+            $related_products = Product::whereHas('categories', function ($query) use ($categories) {
+                return $query->whereIn('store_categories.id', $categories);
+            })->where('products.id', '!=', $product->id)->limit(6)->inRandomOrder()->get();
+        }
 
         return view('products.show', compact('product', 'related_products'));
     }

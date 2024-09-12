@@ -18,7 +18,7 @@ class Product extends Model
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array'];
+    protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array', 'embeded_urls' => 'array'];
 
     protected $guarded = [];
 

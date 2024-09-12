@@ -2,9 +2,9 @@
     x-data="{open: null}"
     x-trap.inert.noautofocus="open"
 >
-    <x-button styling="light-link" class="md:hidden !p-1.5" @click="open = !open">
-        <x-icons.menu class="!w-8 !h-8" stroke-width="2.2" x-show="! open"/>
-        <x-icons.close class="!w-7 !h-7" x-cloak x-show="open"/>
+    <x-button styling="light-link" class="md:hidden !p-1" @click="open = !open">
+        <x-icons.menu class="!w-9 !h-9" stroke-width="1.8" x-show="! open"/>
+        <x-icons.close class="!w-9 !h-9" stroke-width="1" x-cloak x-show="open"/>
         <span class="sr-only">{{ __('Toggle Navbar') }}</span>
     </x-button>
 
