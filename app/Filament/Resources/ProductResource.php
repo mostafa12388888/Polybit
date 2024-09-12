@@ -70,24 +70,18 @@ class ProductResource extends Resource
                             ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
 
                         Split::make([
-                            Select::make('main_category_id')->label(__('admin.Main Category'))->grow(true)
-                                ->searchable()->preload()->reactive()
-                                ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
-                                ->relationship('main_category', 'name', fn ($query) => $query->parents())
-                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true)),
-
-                            Select::make('category_id')->label(__('admin.Sub Category'))->required()
-                                ->searchable()->preload()
-                                ->default(request()->query('ownerRecord'))
-                                ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', '!=', null))
-                                ->relationship('category', 'name', function ($query, $get) {
-                                    if ($get('main_category_id')) {
-                                        return $query->subCategories()->where('parent_id', $get('main_category_id'));
+                            Select::make('categories')->multiple()->searchable()
+                                ->relationship(titleAttribute: 'name')
+                                ->getSearchResultsUsing(function ($query) {
+                                    return StoreCategory::subCategories()->where('name', 'like', '%'.$query.'%')->pluck('name', 'id')->toArray();
+                                })
+                                ->options(function () {
+                                    foreach (StoreCategory::parents()->with('sub_categories')->get() as $key => $category) {
+                                        $options[$category->name] = $category->sub_categories->pluck('name', 'id')->toArray();
                                     }
 
-                                    return $query->subCategories();
+                                    return $options ?? [];
                                 })
-                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true)),
                         ])->columnSpanFull(),
 
                         CuratorPicker::make('images')->multiple()->constrained()
@@ -291,8 +285,7 @@ class ProductResource extends Resource
                     IconEntry::make('is_available')->boolean(),
                     TextEntry::make('created_at')->dateTime(),
 
-                    TextEntry::make('category.name')->label('admin.Category')
-                        ->url(fn (Product $product): string => StoreCategoryResource::getUrl('view', ['record' => $product->category])),
+                    TextEntry::make('categories.name'),
 
                     ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
 

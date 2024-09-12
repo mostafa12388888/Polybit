@@ -36,14 +36,19 @@ class Product extends Model
         return 'slug';
     }
 
-    public function main_category()
+    public function categories()
     {
-        return $this->belongsTo(StoreCategory::class, 'main_category_id');
+        return $this->belongsToMany(StoreCategory::class, 'product_store_category')->orderByPivot('product_store_category.created_at');
     }
 
     public function category()
     {
-        return $this->belongsTo(StoreCategory::class, 'category_id');
+        return $this->categories()->limit(1);
+    }
+
+    public function getCategoryAttribute()
+    {
+        return $this->category()->first();
     }
 
     public function variants()
@@ -165,14 +170,6 @@ class Product extends Model
         static::saved(fn () => Cache::forget('products'));
 
         static::deleted(fn () => Cache::forget('products'));
-
-        static::saving(function (self $product) {
-            try {
-                unset($product->attributes['main_category_id']);
-            } catch (\Throwable $th) {
-                //
-            }
-        });
 
         static::deleting(function (self $product) {
             $product->slug = str()->uuid();

@@ -169,4 +169,5 @@ return [
     'Is visible in top navbar' => 'إظهار في الشريط العلوي',
     'Is visible in main navbar' => 'إظهار في القائمة الرئيسية',
     'Is visible in footer navbar' => 'إظهار في الفوتر',
+    'Categories' => 'الأقسام',
 ];

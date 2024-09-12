@@ -50,7 +50,7 @@ class StoreCategory extends Model
 
     public function sub_categories_products()
     {
-        return $this->hasManyThrough(Product::class, self::class, 'parent_id', 'category_id');
+        return $this->belongsToMany(Product::class);
     }
 
     public function image()
