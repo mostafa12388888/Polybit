@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectController;
 use App\Livewire\Cart;
 use App\Livewire\ContactUs;
 use App\Livewire\RequestQuote;
+use App\Livewire\Wishlist;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -27,6 +28,7 @@ Route::view('/', 'home.index')->name('home');
 Route::resource('products', ProductController::class)->only('index', 'show');
 Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');
 Route::get('/cart', Cart::class)->name('cart');
+Route::get('/wishlist', Wishlist::class)->name('wishlist');
 Route::get('/request-quote', RequestQuote::class)->name('request-quote');
 
 Route::resource('posts', PostController::class)->only('index', 'show');

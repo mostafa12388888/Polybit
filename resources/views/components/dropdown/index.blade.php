@@ -1,4 +1,4 @@
-@props(['align' => 'end', 'width' => '48', 'contentClasses' => '', 'dropdownClasses' => '', 'wrapperClasses' => 'relative', 'openOnHover' => false])
+@props(['align' => 'end', 'width' => '48', 'contentClasses' => '', 'dropdownClasses' => '', 'wrapperClasses' => 'relative', 'triggerClasses' => 'flex-grow flex flex-wrap', 'openOnHover' => false])
 
 @php
 switch ($align) {
@@ -49,8 +49,8 @@ switch ($align) {
             this.open = false
         }
     }" 
-    @click.away="open = false" 
-    @close.stop="open = false"
+    @click.away="close" 
+    @close.stop="close"
     x-trap.inert.noautofocus="open || expanded"
     @keydown.down="$focus.wrap().next()"
     @keydown.up="$focus.wrap().previous()"
@@ -62,18 +62,20 @@ switch ($align) {
     @endif
     x-init="id = Math.random().toString(36).substr(2)"
 >
-    <div class="flex-grow flex flex-wrap" @click="toggleOpen">
+    <div class="{{ $triggerClasses }}" @click="toggleOpen">
         {{ $trigger }}
     </div>
 
     <div x-show="open || expanded"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="transform opacity-0 scale-95"
-            x-transition:enter-end="transform opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-75"
-            x-transition:leave-start="transform opacity-100 scale-100"
-            x-transition:leave-end="transform opacity-0 scale-95"
-            class="absolute z-50 rounded-md shadow {{ $alignmentClasses }} {{ $dropdownClasses }} max-h-[calc(100vh-80px)] overflow-y-auto"
+        {{ $attributes->only(['x-transition:enter', 'x-transition:enter-start', 'x-transition:enter-end', 'x-transition:leave', 'x-transition:leave-start', 'x-transition:leave-end'])->merge([
+            'x-transition:enter' => 'transition ease-out duration-200',
+            'x-transition:enter-start' => 'transform opacity-0 scale-95',
+            'x-transition:enter-end' => 'transform opacity-100 scale-100',
+            'x-transition:leave' => 'transition ease-in duration-75',
+            'x-transition:leave-start' => 'transform opacity-100 scale-100',
+            'x-transition:leave-end' => 'transform opacity-0 scale-95',
+        ]) }}
+        class="absolute z-50 rounded-md shadow {{ $alignmentClasses }} {{ $dropdownClasses }} max-h-[calc(100vh-80px)] overflow-y-auto"
             style="display: none;">
         <div class="rounded-md bg-white dark:bg-dark-700 {{ $contentClasses }}">
             {{ $content }}

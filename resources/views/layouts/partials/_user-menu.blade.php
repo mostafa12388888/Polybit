@@ -3,7 +3,7 @@
         <x-slot:trigger>
             <x-button styling="light" class="h-11 px-2 flex gap-1.5 items-center justify-center">
                 <x-icons.user class="!w-5 !h-5" />
-                <span>{{ str()->limit(auth()->user()->name, 10) }}</span>
+                <span>{{ str()->limit(auth()->user()->name, 7, '') }}</span>
             </x-button>
         </x-slot>
 
@@ -14,6 +14,11 @@
                     <span>{{ __('Admin Panel') }}</span>
                 </x-dropdown.link>
             @endif
+
+            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
+                <x-icons.heart class="!w-5 !h-5" />
+                <span>{{ __('My wishlist') }}</span>
+            </x-dropdown.link>
 
             <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
                 <x-icons.cog class="!w-5 !h-5" />
@@ -32,8 +37,24 @@
         </x-slot>
     </x-dropdown>
 @else
-    <x-link styling="primary" class="h-11 px-2 flex gap-1.5 items-center justify-center" href="{{ route('login') }}">
-        <x-icons.user class="!w-5 !h-5" />
-        <span class="hidden sm:inline">{{ __('Login') }}</span>
-    </x-link>
+    <x-dropdown align="end" dropdownClasses="w-full sm:w-48 pt-2" wrapperClasses="sm:relative">
+        <x-slot:trigger>
+            <x-button styling="primary" class="h-11 px-2 flex gap-1.5 items-center justify-center">
+                <x-icons.user class="!w-5 !h-5" />
+                <span>{{ __('account') }}</span>
+            </x-button>
+        </x-slot>
+
+        <x-slot:content>
+            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
+                <x-icons.heart class="!w-5 !h-5" />
+                <span>{{ __('My wishlist') }}</span>
+            </x-dropdown.link>
+
+            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('login') }}">
+                <x-icons.login class="!w-5 !h-5" />
+                <span>{{ __('Login') }}</span>
+            </x-dropdown.link>
+        </x-slot>
+    </x-dropdown>
 @endauth

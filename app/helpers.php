@@ -1,6 +1,7 @@
 <?php
 
 use App\Classes\Cart;
+use App\Classes\Wishlist;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
@@ -113,6 +114,19 @@ if (! function_exists('cart')) {
         }
 
         return $cart;
+    }
+}
+
+if (! function_exists('wishlist')) {
+    function wishlist($items = null)
+    {
+        $wishlist = new Wishlist;
+
+        if ($items) {
+            $wishlist->items = $items;
+        }
+
+        return $wishlist;
     }
 }
 

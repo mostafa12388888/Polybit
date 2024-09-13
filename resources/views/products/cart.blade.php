@@ -24,7 +24,7 @@
                 @foreach ($cart_items as $product)
                     <div class="flex lg:table-row gap-2 sm:gap-4 items-center justify-between" wire:key="item-{{ $product->index }}">
                         <x-link :href="route('products.show', $product)" class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 shrink-0">
-                            <x-curator-glider fallback="logo" :media="$product->image" format="webp" width="480" height="280" fit="contain" quality="70" class="w-14 h-14 sm:w-20 sm:h-20 rounded-md object-contain bg-white" :alt="$product->name" />
+                            <x-curator-glider fallback="logo" :media="$product->image" format="webp" width="480" height="280" fit="contain" quality="70" class="w-14 h-14 sm:w-20 sm:h-20 rounded-md object-cover bg-white" :alt="$product->name" />
                         </x-link>
                         
                         <x-link :href="route('products.show', $product)" class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 flex-grow">
@@ -57,7 +57,7 @@
                 @endforeach
             </div>
         @else
-            <div class="bg-white dark:bg-dark-700/60 px-4 py-8 md:px-6 lg:py-0 xl:px-8 sm:rounded-md dark:border-dark-700 flex flex-grow items-center justify-center flex-col w-full xl:w-8/12 2xl:w-9/12">
+            <div class="bg-white dark:bg-dark-700/60 px-4 py-16 md:px-6 xl:px-8 sm:rounded-md dark:border-dark-700 flex flex-grow items-center justify-center flex-col w-full xl:w-8/12 2xl:w-9/12">
                 <div class="w-full flex flex-col gap-4 lg:gap-6 items-center justify-center">
                     <x-icons.folder-open class="!w-16 !h-16" stroke-width="1" />
                     <p>{{ __('The shopping cart is empty') }}</p>

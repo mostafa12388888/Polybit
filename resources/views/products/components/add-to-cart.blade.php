@@ -56,34 +56,58 @@
         @endforeach
     </div>
 
-    @if($added_to_cart)
-        <div class="flex flex-wrap items-center gap-4 border p-4 rounded-lg justify-between">
-            <div class="flex gap-2 items-center">
-                <x-icons.check-circle class="!w-7 !h-7 text-green-600" />
-                <span>{{ __('Added To Cart') }}</span>
-            </div>
+    @if(! $product->is_available)
+    <div class="text-lg text-red-500 flex gap-2 items-center">
+        <x-icons.exclamation-triangle class="!w-7 !h-7" />
+        <span>{{ __('The product is currently unavailable') }}.</span>
+    </div>
+    @endif
 
-            <x-link styling="light" class="dark:bg-dark-700 justify-center items-center !px-6" :href="route('cart')">
-                <span>{{ __('Go to cart') }}</span>
-            </x-link>
-        </div>
-    @else
-        @if ($product->is_available)
-            <div class="flex flex-wrap items-center gap-4">
-                <x-button styling="primary" class="flex gap-2 dark:bg-dark-700 justify-center items-center max-w-sm w-full py-4"
+    <div class="flex flex-wrap gap-2">
+        @if($product->is_available && ! $added_to_cart)
+            <div class="flex-grow flex flex-wrap items-center gap-4 md:max-w-xs w-full sm:w-auto">
+                <x-button styling="primary" class="flex gap-2 dark:bg-dark-700 justify-center items-center w-full py-4 px-10"
                     wire:click="add_to_cart" wire:target="add_to_cart" wire:loading.attr="disabled">
-                    <x-icons.cart class="!w-5 !h-5" stroke-width="1.5" />
+                    <x-icons.cart wire:target="add_to_cart" wire:loading.remove stroke-width="1.5" />
+                    <x-spinner wire:target="add_to_cart" wire:loading class="!w-5 !h-5" />
                     <span class="font-bold">{{ __('Add to cart') }}</span>
-                    <x-spinner wire:target="add_to_cart" wire:loading class="!w-4 !h-4" />
                 </x-button>
-                
-                @error('availability')<div class="text-red-500">{{ $message }}</div>@enderror
-            </div>
-        @else
-            <div class="text-lg text-red-500 flex gap-2 items-center">
-                <x-icons.exclamation-triangle class="!w-7 !h-7" />
-                <span>{{ __('The product is currently unavailable') }}.</span>
             </div>
         @endif
-    @endif
+
+        @if($added_to_cart)
+            <div class="max-w-xl flex flex-wrap items-center gap-4 border border-secondary-200 dark:border-dark-600 p-2 rounded-lg justify-between">
+                <div class="flex gap-2 items-center">
+                    <x-icons.check-circle class="!w-7 !h-7 text-green-600" />
+                    <span>{{ __('Added To Cart') }}</span>
+                </div>
+
+                <x-link styling="light" class="dark:bg-dark-700 justify-center items-center !px-6" :href="route('cart')">
+                    <span>{{ __('Go to cart') }}</span>
+                </x-link>
+            </div>
+        @endif
+    
+        @if($added_to_wishlist)
+            <div class="flex-grow flex flex-wrap items-center gap-4 md:max-w-xs">
+                <x-button styling="light" class="flex gap-2 dark:bg-dark-600 justify-center items-center w-full py-4 px-10"
+                    wire:click="remove_from_wishlist" wire:target="remove_from_wishlist" wire:loading.attr="disabled">
+                    <x-icons.heart-solid wire:target="remove_from_wishlist" wire:loading.remove class="text-dark-500/90 dark:text-dark-300" />
+                    <x-spinner wire:target="remove_from_wishlist" wire:loading class="!w-5 !h-5" />
+                    <span>{{ __('Remove from wishlist') }}</span>
+                </x-button>
+            </div>
+        @else
+            <div class="flex-grow flex flex-wrap items-center gap-4 md:max-w-xs">
+                <x-button styling="light" class="flex gap-2 dark:bg-dark-700/60 justify-center items-center w-full py-4 px-10"
+                    wire:click="add_to_wishlist" wire:target="add_to_wishlist" wire:loading.attr="disabled">
+                    <x-icons.heart wire:target="add_to_wishlist" wire:loading.remove stroke-width="1.1" class="text-secondary-700 dark:text-dark-300" />
+                    <x-spinner wire:target="add_to_wishlist" wire:loading class="!w-5 !h-5" />
+                    <span>{{ __('Add to wishlist') }}</span>
+                </x-button>
+            </div>
+        @endif
+    </div>
+
+    @error('availability')<div class="text-red-500">{{ $message }}</div>@enderror
 </div>

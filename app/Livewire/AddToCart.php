@@ -37,6 +37,8 @@ class AddToCart extends Component
 
     public $added_to_cart;
 
+    public $added_to_wishlist;
+
     public function mount()
     {
         $variants = $this->product->variants;
@@ -47,6 +49,8 @@ class AddToCart extends Component
             ->map(fn ($attribute_values) => $attribute_values->pluck('id')->unique()->values()->toArray())->toArray();
 
         $this->available_attribute_values = collect($this->attribute_values)->flatten()->toArray();
+
+        $this->added_to_wishlist = in_array($this->product->id, collect(wishlist()->items)->pluck('product')->toArray());
     }
 
     public function updatedSelectedAttributeValues($value)
@@ -97,6 +101,26 @@ class AddToCart extends Component
         $this->added_to_cart = true;
 
         $this->dispatch('cart-updated');
+    }
+
+    public function add_to_wishlist()
+    {
+        wishlist()->add($this->product->id);
+
+        $this->added_to_wishlist = true;
+
+        $this->dispatch('wishlist-updated');
+    }
+
+    public function remove_from_wishlist()
+    {
+        $index = array_search($this->product->id, collect(wishlist()->items)->pluck('product')->toArray());
+
+        wishlist()->remove($index);
+
+        $this->added_to_wishlist = false;
+
+        $this->dispatch('wishlist-updated');
     }
 
     public function get_variant()

@@ -10,7 +10,7 @@
 
     <!-- Logo -->
     <x-link href="{{ route('home') }}" class="max-h-16 overflow-hidden">
-        <x-application-logo class="h-10" />
+        <x-application-logo class="h-11" />
     </x-link>
     <!-- End Logo -->
 
@@ -103,10 +103,6 @@
             
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
-
-            @if(auth()->user()?->is_admin)
-                <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('filament.admin.pages.dashboard')">{{ __('Admin Panel') }}</x-link>
-            @endif
         </div>
         
         {{-- <div class="md:hidden" x-cloak>

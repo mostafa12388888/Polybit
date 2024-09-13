@@ -31,7 +31,7 @@
                 <iframe x-bind:src="activeImage.full" frameborder="0" title="3d {{ $product->name }}" class="w-full aspect-[4/3]"></iframe>
             </template>
             <template x-if="activeImage.thumb != '3d'">
-                <x-img class="w-full sm:rounded-md min-h-72" src="{!! $product->image?->getSignedUrl(['w' => 720, 'q' => 70]) !!}" fetchpriority="high" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" width="720" height="480" />
+                <x-img class="w-full sm:rounded-md" src="{!! $product->image?->getSignedUrl(['w' => 720, 'q' => 70]) !!}" fetchpriority="high" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" width="720" height="480" />
             </template>
         </div>
     </div>

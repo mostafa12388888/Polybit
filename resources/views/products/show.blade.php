@@ -27,7 +27,7 @@
                     </div>
                 @endif
 
-                <div class="flex flex-col gap-6 mx-4 sm:mx-0 mt-4">
+                <div class="flex-grow flex flex-col gap-6 mx-4 sm:mx-0 mt-4">
                     <h2 class="font-bold text-4xl xl:text-[2.5rem] text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
                     
                     <div class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</div>
