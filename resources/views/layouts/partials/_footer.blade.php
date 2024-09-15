@@ -116,8 +116,6 @@
                 @foreach ($pages->where('is_visible_in_footer_navbar') as $page)
                     <x-link :href="route('pages.show', $page)">{{ $page->title }}</x-link>
                 @endforeach
-                <x-link :href="route('contact-us')" class="lg:hidden">{{ __('Contact Us') }}</x-link>
-                <x-link :href="route('faq')" class="lg:hidden">{{ __('FAQ') }}</x-link>
             </div>
         </div>
     </div>
