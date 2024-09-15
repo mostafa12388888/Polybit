@@ -51,7 +51,7 @@
             </div>
         @endif
 
-        <div class="flex-grow max-w-full w-full xl:w-4/12 2xl:w-3/12 flex flex-col overflow-hidden max-xl:divide-y gap-4">
+        <div class="flex-grow max-w-full w-full xl:w-4/12 2xl:min-w-max flex flex-col overflow-hidden max-xl:divide-y gap-4">
             @include('layouts.partials._contact-card', [
                 'title' => __('Have inquiry about our products ?'), 
                 'sub_title' => __('We are here to help'), 

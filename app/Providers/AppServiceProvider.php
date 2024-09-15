@@ -3,11 +3,17 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Policies\ActivityPolicy;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Translatable\Facades\Translatable;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,8 +36,12 @@ class AppServiceProvider extends ServiceProvider
         Translatable::fallback(fallbackAny: true);
 
         Gate::define('use-translation-manager', function (?User $user) {
-            return optional($user)->is_admin;
+            return optional($user)->checkPermissionTo('update-translations');
         });
+
+        Gate::policy(Role::class, RolePolicy::class);
+        Gate::policy(Permission::class, PermissionPolicy::class);
+        Gate::policy(Activity::class, ActivityPolicy::class);
 
         try {
             config(['app.name' => setting('app_name', config('app.name'))]);

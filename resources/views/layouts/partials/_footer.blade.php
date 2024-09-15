@@ -32,7 +32,7 @@
                         
                     @if ($address = setting('address'))
                         <div class="flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-secondary-200 dark:border-none rounded-md flex-grow">
-                            <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent flex items-center">
+                            <div class="px-4 py-3 bg-secondary-200/40 dark:bg-secondary-00/40 md:p-0 md:bg-transparent flex items-center md:items-start">
                                 <x-icons.map-pin class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
                             </div>
                             <p class="flex-grow px-4 py-2 text-start md:p-0 md:max-w-64 text-balance">{{ $address }}</p>

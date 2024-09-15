@@ -168,4 +168,14 @@ class Settings extends Page
     {
         return __('admin.Settings');
     }
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()->can('update-settings');
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return self::canAccess();
+    }
 }

@@ -5,16 +5,17 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserResource extends Resource
@@ -37,7 +38,8 @@ class UserResource extends Resource
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => filled($state))
                     ->required(fn (string $context): bool => $context === 'create'),
-                Toggle::make('is_admin')->rules('boolean'),
+                Select::make('roles')->multiple()->preload()->relationship('roles', 'name')
+                    ->disabled(fn ($record) => $record?->is(auth()->user())),
             ])->columns(2)->columnSpan(2),
         ]);
     }
@@ -49,8 +51,7 @@ class UserResource extends Resource
                 TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('email')->toggleable()->searchable(),
-                ToggleColumn::make('is_admin')->toggleable()
-                    ->disabled(fn ($record) => $record->is(auth()->user())),
+                TextColumn::make('roles.name')->toggleable()->searchable(),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
             ])
             ->filters([
@@ -80,7 +81,7 @@ class UserResource extends Resource
                 TextEntry::make('id'),
                 TextEntry::make('name'),
                 TextEntry::make('email'),
-                TextEntry::make('is_admin')->state(fn (User $user) => $user->is_admin ? 'True' : 'False'),
+                TextEntry::make('roles.name'),
                 TextEntry::make('created_at')->dateTime(),
             ])->columns(2)->columnSpan(2),
         ])->columns(2);
@@ -101,6 +102,11 @@ class UserResource extends Resource
             'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('roles');
     }
 
     public static function getModelLabel(): string

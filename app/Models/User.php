@@ -7,10 +7,12 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable;
+    use HasFactory, HasRoles, Notifiable;
 
     protected $fillable = ['name', 'email', 'phone', 'password'];
 
@@ -21,6 +23,13 @@ class User extends Authenticatable implements FilamentUser
         'password' => 'hashed',
     ];
 
+    public function getIsAdminAttribute()
+    {
+        $admins = Cache::remember('admins', 60 * 60, fn () => User::whereHas('roles')->get());
+
+        return in_array($this->id, $admins->pluck('id')->toArray());
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->is_admin;
@@ -30,13 +39,6 @@ class User extends Authenticatable implements FilamentUser
     {
         parent::boot();
 
-        static::updating(function (self $user) {
-            if ($user->isDirty('is_admin') && ! $user->is_admin) {
-                if (User::where('is_admin', true)->count() == 1) {
-                    \Filament\Notifications\Notification::make()->title('There must be at least one admin!')->danger()->send();
-                    $user->is_admin = true;
-                }
-            }
-        });
+        static::saved(fn () => Cache::forget('admins'));
     }
 }

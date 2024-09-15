@@ -29,7 +29,7 @@ return [
     | (visit: https://laravel.com/docs/10.x/authorization)
     |
     */
-    'gate' => null,
+    'gate' => 'update-translations',
 
     /*
      |--------------------------------------------------------------------------
@@ -53,6 +53,9 @@ return [
         'filament-actions::detach',
         'filament-logger::filament-logger',
         'filament-tables::table',
+        'filament-spatie-roles-permissions::filament-spatie',
+        'filament-tiptap-editor::editor',
+        'filament-tiptap-editor::media-modal',
     ],
 
     /*

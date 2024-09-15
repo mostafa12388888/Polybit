@@ -37,4 +37,9 @@ class LatestPosts extends BaseWidget
                 CreateAction::make()->url(PostResource::getUrl('create')),
             ]);
     }
+
+    public static function canView(): bool
+    {
+        return auth()->user()->can('view-any-post');
+    }
 }

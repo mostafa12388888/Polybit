@@ -46,7 +46,7 @@
         
                     <x-slot:content>
                         <div class="md:overflow-auto">
-                            <div class="z-50 flex flex-wrap max-md:flex-col gap-y-8 container mx-auto md:py-6">
+                            <div class="z-50 flex flex-wrap max-md:flex-col gap-y-2 lg:gap-y-8 container mx-auto md:py-6">
                                 @foreach ($blog_categories as $blog_category)
                                     <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
                                         <x-dropdown.link :href="route('blog-categories.show', $blog_category)" class="text-base font-semibold">{{ $blog_category->name }}</x-dropdown.link>
@@ -77,7 +77,7 @@
         
                     <x-slot:content>
                         <div class="md:overflow-auto">
-                            <div class="z-50 flex flex-wrap max-md:flex-col gap-y-8 container mx-auto md:py-6">
+                            <div class="z-50 flex flex-wrap max-md:flex-col gap-y-2 lg:gap-y-8 container mx-auto md:py-6">
                                 @foreach ($store_categories as $store_category)
                                     <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
                                         <x-dropdown.link :href="route('store-categories.show', $store_category)" class="text-base font-semibold">{{ $store_category->name }}</x-dropdown.link>

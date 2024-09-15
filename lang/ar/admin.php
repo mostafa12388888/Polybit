@@ -15,7 +15,7 @@ return [
     'Users' => 'المستخدمين',
     'Is admin' => 'مشرف',
     'Email' => 'البريد الالكتروني',
-    'Created at' => 'تاريخ الانشاء',
+    'Created at' => 'تاريخ الإنشاء',
     'Password' => 'كلمة المرور',
     'project' => 'مشروع',
     'Project' => 'المشروع',
@@ -171,4 +171,5 @@ return [
     'Is visible in footer navbar' => 'إظهار في الفوتر',
     'Categories' => 'الأقسام',
     'Embeded urls' => 'نماذج 3d',
+    'Roles' => 'الصلاحيات',
 ];

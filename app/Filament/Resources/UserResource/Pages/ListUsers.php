@@ -22,8 +22,8 @@ class ListUsers extends ListRecords
     {
         return [
             __('admin.All') => Tab::make()->icon('heroicon-o-users'),
-            __('admin.Admins') => Tab::make()->modifyQueryUsing(fn ($query) => $query->where('is_admin', true))->icon('heroicon-o-shield-check'),
-            __('admin.Users') => Tab::make()->modifyQueryUsing(fn ($query) => $query->where('is_admin', '!=', true))->icon('heroicon-o-user'),
+            __('admin.Admins') => Tab::make()->modifyQueryUsing(fn ($query) => $query->whereHas('roles'))->icon('heroicon-o-shield-check'),
+            __('admin.Users') => Tab::make()->modifyQueryUsing(fn ($query) => $query->whereDoesntHave('roles'))->icon('heroicon-o-user'),
         ];
     }
 }

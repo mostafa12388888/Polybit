@@ -95,4 +95,9 @@ class OrdersChart extends ChartWidget
     {
         return __('admin.Orders');
     }
+
+    public static function canView(): bool
+    {
+        return auth()->user()->can('view-any-order');
+    }
 }

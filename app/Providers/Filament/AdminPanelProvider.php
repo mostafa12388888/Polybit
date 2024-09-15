@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Http\Middleware\SetAdminPanelLocale;
 use Awcodes\Curator\CuratorPlugin;
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
@@ -72,7 +73,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugins([
+            ->plugins(array_filter([
                 FilamentTranslatableFieldsPlugin::make()->supportedLocales(locales()),
 
                 SpatieLaravelTranslatablePlugin::make()
@@ -87,7 +88,9 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationLabel(__('admin.Files Manager'))
                     ->pluralLabel(__('admin.Files'))
                     ->navigationGroup(__('admin.Settings')),
-            ])
+
+                FilamentSpatieRolesPermissionsPlugin::make(),
+            ]))
             ->viteTheme('resources/css/filament/dashboard/theme.css')
             ->homeUrl('/')
             ->font('Almarai');

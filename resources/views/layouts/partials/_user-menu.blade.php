@@ -15,7 +15,7 @@
                 </x-dropdown.link>
             @endif
 
-            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
+            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('wishlist') }}">
                 <x-icons.heart class="!w-5 !h-5" />
                 <span>{{ __('My wishlist') }}</span>
             </x-dropdown.link>
@@ -46,7 +46,7 @@
         </x-slot>
 
         <x-slot:content>
-            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('profile.edit') }}">
+            <x-dropdown.link class="flex gap-3 px-4" href="{{ route('wishlist') }}">
                 <x-icons.heart class="!w-5 !h-5" />
                 <span>{{ __('My wishlist') }}</span>
             </x-dropdown.link>
