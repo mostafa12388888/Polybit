@@ -9,6 +9,20 @@
 
     <x-slot name="heading">{{ $product->name }}</x-slot>
 
+    <x-slot name="subheading">
+        @php
+            $category = $product->category;
+        @endphp
+
+        @if ($category)
+            <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center mt-4">
+                <div class="flex gap-2 items-center">
+                    <a href="{{ route('store-categories.show', $category) }}" class="text-sm font-light line-clamp-1">{{ $category->name }}</a>
+                </div>
+            </div>
+        @endif
+    </x-slot>
+
     @if (! $product->translated())
         <link rel="canonical" href="{{ localized_url($product->locales()[0] ?? app()->getLocale()) }}" />
     @endif

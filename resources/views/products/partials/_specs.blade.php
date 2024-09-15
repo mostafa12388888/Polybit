@@ -1,6 +1,6 @@
 <div class="lg:p-6 lg:bg-white lg:dark:bg-dark-700/40 flex flex-col rounded-b-md lg:border lg:border-t-0 border-dark-200 dark:border-dark-600/50 overflow-hidden">
     @foreach ($specs as $spec)
-        <div class="rounded-md overflow-hidden mb-2 lg:mb-0">
+        <div class="rounded-md overflow-hidden mb-1 lg:mb-0">
             <x-button styling="primary" class="bg-primary-600/85 lg:hidden !shadow-none rounded-none flex-grow py-4 dark:bg-dark-700/60 dark:focus:!brightness-100 w-full border-dark-400 dark:border-dark-700 flex items-center gap-2 justify-between"
                 {{-- x-bind:class="{'border-b': tab != {{ $loop->index + 1 }} && {{ $loop->last ? 'false' : 'true' }}}" --}}
                 @click="tab = (tab == {{ $loop->index + 1 }}) ? null : {{ $loop->index + 1 }}">

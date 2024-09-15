@@ -9,14 +9,14 @@
     <div class="flex flex-col gap-4">
         @foreach (setting('phones') ?: [] as $phone)
             <x-link href="tel:{{ $phone }}" class="flex gap-2">
-                <x-icons.phone class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                <x-icons.phone class="flex-shrink-0 !w-5 !h-5" />
                 <span dir="ltr">{{ $phone }}</span>
             </x-link>
         @endforeach
                     
         @foreach (setting('emails') ?: [] as $email)
             <x-link href="mail:{{ $email }}" class="flex gap-2">
-                <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" width-stroke="1" />
+                <x-icons.envelope class="flex-shrink-0 !w-5 !h-5" />
                 <span>{{ $email }}</span>
             </x-link>
         @endforeach
