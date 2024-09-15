@@ -270,7 +270,7 @@ class ProductResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort('id', 'desc')
+            ->defaultSort('products.id', 'desc')
             ->persistSortInSession()
             ->filtersFormColumns(1);
     }

@@ -16,7 +16,7 @@ class StoreCategory extends Model
 
     protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $casts = ['description' => 'json'];
+    protected $casts = ['description' => 'json', 'phones' => 'array'];
 
     protected $guarded = [];
 

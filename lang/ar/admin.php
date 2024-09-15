@@ -172,4 +172,5 @@ return [
     'Categories' => 'الأقسام',
     'Embeded urls' => 'نماذج 3d',
     'Roles' => 'الصلاحيات',
+    'Support Phone Numbers' => 'أرقام الهاتف للدعم',
 ];

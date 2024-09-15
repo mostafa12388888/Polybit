@@ -7,6 +7,7 @@ use App\Filament\SEO;
 use App\Models\StoreCategory;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -46,6 +47,11 @@ class StoreCategoryResource extends Resource
                         ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', app()->getLocale(), true))
                         ->exists(StoreCategory::class, 'id', fn ($rule) => $rule->where('parent_id', null))
                         ->visible(fn ($get) => $get('parent_id') || request()->query('ownerRecord')),
+
+                    Repeater::make('phones')->label(__('admin.Support Phone Numbers'))
+                        ->simple(TextInput::make('phone')->maxLength(250))
+                        ->visible(fn ($get) => ! $get('parent_id') && ! request()->query('ownerRecord'))
+                        ->columnSpanFull(),
 
                     CuratorPicker::make('image')->multiple()->maxItems(1)
                         ->typeValue('category-image')
