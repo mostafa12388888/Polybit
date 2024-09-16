@@ -55,7 +55,7 @@ class ViewServiceProvider extends ServiceProvider
 
         Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer', 'home.index', 'products.index'], function (View $view) {
             $store_categories = Cache::remember('store_categories', 60 * 60, function () {
-                return StoreCategory::parents()->with('sub_categories', 'image')->withCount('sub_categories_products')->get();
+                return StoreCategory::parents()->with('sub_categories', 'image')->get();
             });
 
             return $view->with(compact('store_categories'));

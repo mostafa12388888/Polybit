@@ -29,7 +29,7 @@
                                 
                                 <div class="flex-grow flex flex-col gap-3 py-2 h-28 relative z-10 text-white text-center items-center justify-center drop-shadow-[0_0_15px_rgba(0,0,0,.6)]">
                                     <h2 class="font-semibold line-clamp-2 text-base lg:text-lg">{{ $store_category->name }}</h2>
-                                    <p>{{ __(':products_count Products', ['products_count' => $store_category->sub_categories_products_count]) }}</p>
+                                    <p>{{ __(':products_count Products', ['products_count' => $store_category->sub_categories_products()->count()]) }}</p>
                                 </div>
                             </x-link>
                         </li>

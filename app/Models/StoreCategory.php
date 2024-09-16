@@ -50,7 +50,11 @@ class StoreCategory extends Model
 
     public function sub_categories_products()
     {
-        return $this->belongsToMany(Product::class);
+        $category = $this;
+
+        return Product::whereHas('categories', function ($query) use ($category) {
+            return $query->whereIn('store_categories.id', $category->sub_categories->pluck('id')->toArray());
+        });
     }
 
     public function image()
