@@ -9,7 +9,7 @@
 
             <div class="xl:hidden order-3 md:order-1">
                 <x-button styling="light" class="!rounded-md aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleSearch">
-                    <x-icons.search class="!w-5 !h-5" />
+                    <x-icons.search class="!w-5 !h-5" stroke-width="2" />
                     <span class="sr-only">{{ __('Show Search Bar') }}</span>
                 </x-button>
             </div>
@@ -33,8 +33,19 @@
                     <livewire:cart-items-count />
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </x-link>
+                
+                @php($locale = collect(locales(false))?->where('code', '!=', app()->getLocale())?->first())
 
-                <x-dropdown dropdownClasses="w-full md:w-40 pt-2" wrapperClasses="static" :openOnHover="true">
+                @if ($locale)
+                    <x-link href="{{ localized_url($locale['code']) }}" styling="light" class="flex sm:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
+                        <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
+                            <x-img loading="lazy" class="w-6 h-5 rounded object-cover" width="24" height="20" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" />
+                            <span class="ltr:pt-0.5 ltr:text-lg max-[385px]:hidden">{{ $locale['symbol'] ?? '' }}</span>
+                        </div>
+                    </x-link>
+                @endif
+                
+                {{-- <x-dropdown dropdownClasses="w-full max-md:rounded-t-none md:w-40 pt-2" contentClasses="max-md:rounded-t-none" wrapperClasses="static" :openOnHover="true">
                     <x-slot:trigger>                        
                         <x-button styling="light" class="flex sm:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
                             <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
@@ -52,7 +63,7 @@
                             </x-link>
                         @endforeach
                     </x-slot>
-                </x-dropdown>
+                </x-dropdown> --}}
 
                 @if (config('app.env') == 'local')
                     <div class="text-center " style="direction:ltr;">

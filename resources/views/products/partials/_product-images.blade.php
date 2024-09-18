@@ -1,4 +1,20 @@
-@php($images = $product->images)
+@php
+    $images = $product->images;
+    $embeded_urls = $product->embeded_urls ?? [];
+    $images_count = count($images) + count($embeded_urls);
+
+    if(! $images_count) {
+        return;
+    }
+
+    $first_image = $product->image ? [
+        'url' => $product->image?->getSignedUrl(['w' => 720, 'q' => 70]),
+        'type' => 'image',
+    ] : [
+        'url' => collect($embeded_urls)->first(),
+        'type' => '3d',
+    ];
+@endphp
 
 <div class="w-full flex flex-col gap-3" x-data="{
     activeImage: null,
@@ -10,10 +26,10 @@
                 'alt': '{{ $image->alt ?? $product->name }}',
             },
         @endforeach
-        @foreach($product->embeded_urls ?? [] as $url)
+        @foreach($embeded_urls as $i => $url)
             {
                 'thumb': '3d',
-                'full': '{{ $url }}',
+                'full': '{{ $url }}#{{ ++$i }}',
             },
         @endforeach
         @foreach($images as $image)
@@ -27,22 +43,23 @@
 }" x-init="activeImage = images[0]">
     <div>
         <div class="overflow-hidden">
-            <template x-if="activeImage.thumb == '3d'">
-                <iframe x-bind:src="activeImage.full" frameborder="0" title="3d {{ $product->name }}" class="w-full aspect-[4/3]"></iframe>
-            </template>
-            <template x-if="activeImage.thumb != '3d'">
-                <x-img class="w-full sm:rounded-md" src="{!! $product->image?->getSignedUrl(['w' => 720, 'q' => 70]) !!}" fetchpriority="high" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" width="720" height="480" />
-            </template>
+            <iframe {{ $first_image['type'] == '3d' ? '' : 'x-cloak' }} x-show="activeImage.thumb == '3d'" src="{!! $first_image['url'] !!}" x-bind:src="activeImage.full" frameborder="0" title="3d {{ $product->name }}" class="w-full aspect-[4/3]"></iframe>
+            <img {{ $first_image['type'] == '3d' ? 'x-cloak' : '' }} x-show="activeImage.thumb != '3d'" src="{!! $first_image['url'] !!}" fetchpriority="high" x-bind:src="activeImage.full" x-bind:alt="activeImage.alt" width="720" height="480" class="w-full sm:rounded-md" />
         </div>
     </div>
 
     <div class="flex gap-3 overflow-x-auto mx-4 sm:mx-0">
+        @for ($i = 0; $i < $images_count; $i++)
+            <div x-init="$el.remove()" class="shrink-0 w-20 aspect-square rounded overflow-hidden border border-secondary-100 bg-secondary-50 dark:bg-dark-700 dark:border-dark-700 p-0.5"></div>
+        @endfor
+
         <template x-for="image in images">
-            <button class="shrink-0 w-20 !h-auto aspect-4/3 rounded overflow-hidden border border-secondary-100 bg-secondary-50 dark:border-dark-700 p-0.5"
+            <button class="shrink-0 w-20 !h-auto aspect-square rounded overflow-hidden border border-secondary-100 bg-secondary-50 dark:bg-dark-700 dark:border-dark-700 p-0.5"
             @click="activeImage = image"
             x-bind:class="{'!border-secondary-400 dark:!border-secondary-400 dark:border-2': activeImage.full == image.full}">
                 <template x-if="image.thumb == '3d'">
                     <x-icons.cube class="!w-9 !h-9 text-secondary-600 dark:text-secondary-200" stroke-width="1" />
+                    <span class="sr-only">3d object</span>
                 </template>
                 <template x-if="image.thumb != '3d'">
                     <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" width="80" height="80" x-bind:alt="image.alt" />

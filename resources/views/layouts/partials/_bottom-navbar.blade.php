@@ -26,7 +26,7 @@
                     </span>
                 </x-link>
 
-                <x-dropdown align="top" dropdownClasses="shadow-none w-full pt-2 absolute left-0 bottom-[4.6rem]" wrapperClasses="items-center flex" triggerClasses="flex-grow flex flex-wrap h-full" contentClasses="py-2">
+                <x-dropdown align="top" dropdownClasses="rounded-b-none shadow-none w-full pt-2 absolute left-0 bottom-[4.6rem]" wrapperClasses="items-center flex" triggerClasses="flex-grow flex flex-wrap h-full" contentClasses="py-2 rounded-b-none shadow-[0_0_3px_rgba(0,0,0,0.1)]">
                     <x-slot:trigger>
                         <x-button styling="" class="flex-grow inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none">
                             <x-icons.user class="!w-6 !h-6" />
