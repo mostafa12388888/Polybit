@@ -58,8 +58,10 @@
             @click="activeImage = image"
             x-bind:class="{'!border-secondary-400 dark:!border-secondary-400 dark:border-2': activeImage.full == image.full}">
                 <template x-if="image.thumb == '3d'">
-                    <x-icons.cube class="!w-9 !h-9 text-secondary-600 dark:text-secondary-200" stroke-width="1" />
-                    <span class="sr-only">3d object</span>
+                    <div>
+                        <x-icons.cube class="!w-9 !h-9 text-secondary-600 dark:text-secondary-200" stroke-width="1" />
+                        <span class="sr-only">3d object</span>
+                    </div>
                 </template>
                 <template x-if="image.thumb != '3d'">
                     <x-img loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" width="80" height="80" x-bind:alt="image.alt" />
