@@ -39,7 +39,7 @@
                 @if ($locale)
                     <x-link href="{{ localized_url($locale['code']) }}" styling="light" class="flex sm:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
                         <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
-                            <x-img loading="lazy" class="w-6 h-5 rounded object-cover" width="24" height="20" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" alt="Switch to {{ $locale['name'] }}" />
+                            <x-img loading="lazy" class="w-6 h-5 rounded object-cover" width="24" height="20" src="{{ asset('images/flags/'.$locale['flag'].'.webp') }}" alt="Switch to {{ $locale['name'] }}" />
                             <span class="ltr:pt-0.5 ltr:text-lg max-[385px]:hidden">{{ $locale['symbol'] ?? '' }}</span>
                         </div>
                     </x-link>
@@ -58,7 +58,7 @@
                     <x-slot:content>
                         @foreach (locales(false) as $locale)
                             <x-dropdown.link :navigate="false" class="py-4" href="{{ localized_url($locale['code']) }}">
-                                <x-img loading="lazy" class="w-6 h-4" width="24" height="16" src="https://flagpedia.net/data/flags/h24/{{ $locale['flag'] }}.webp" />
+                                <x-img loading="lazy" class="w-6 h-4" width="24" height="16" src="{{ asset('images/flags/'.$locale['flag'].'.webp') }}" />
                                 <span>{{ $locale['name'] }}</span>
                             </x-link>
                         @endforeach
