@@ -29,15 +29,6 @@ class Wishlist extends Component
         $this->dispatch('wishlist-updated');
     }
 
-    public function update_quantity($index, $quantity)
-    {
-        $wishlist = wishlist();
-
-        $wishlist->update_quantity($index, (int) $quantity);
-
-        $this->wishlist_items = $wishlist->items();
-    }
-
     public function render()
     {
         return view('products.wishlist');

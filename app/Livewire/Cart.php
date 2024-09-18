@@ -29,6 +29,15 @@ class Cart extends Component
         $this->dispatch('cart-updated');
     }
 
+    public function update_quantity($index, $quantity)
+    {
+        $cart = cart();
+
+        $cart->update_quantity($index, (int) $quantity);
+
+        $this->cart_items = $cart->items();
+    }
+
     public function render()
     {
         return view('products.cart');
