@@ -21,7 +21,7 @@ class RedirectPublicPath
         $new_url = preg_replace('/^\/index.php/', '', $new_url);
 
         if ($url != $new_url) {
-            return redirect()->to(config('app.url').$new_url);
+            return redirect(config('app.url').$new_url, 301);
         }
 
         return $next($request);
