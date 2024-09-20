@@ -27,29 +27,18 @@
                     </x-button>
                 </div>
 
-                <x-dropdown dropdownClasses="w-full md:w-40 max-md:!relative pt-2" wrapperClasses="md:relative" :openOnHover="true">
-                    <x-slot:trigger>                        
-                        <div class="flex max-md:flex-grow">
-                            <x-button styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
-                                <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
-                                    <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
-                                    <span>{{ locales()[app()->getLocale()] ?? '' }}</span>
-                                </div>
-                                
-                                <x-icons.chevron-down class="md:hidden !w-4 !h-4" />
-                            </x-button>
-                        </div>
-                    </x-slot>
-    
-                    <x-slot:content>
-                        @foreach (locales(false) as $locale)
-                            <x-dropdown.link :navigate="false" class="py-4" href="{{ localized_url($locale['code']) }}">
-                                <x-img loading="lazy" class="w-6 h-4" width="24" height="16" src="{{ asset('images/flags/'.$locale['flag'].'.webp') }}" />
-                                <span>{{ $locale['name'] }}</span>
-                            </x-link>
-                        @endforeach
-                    </x-slot>
-                </x-dropdown>
+                @if ($locale)
+                    <div class="flex max-md:flex-grow">
+                        <x-link href="{{ localized_url($locale['code']) }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
+                            <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
+                                <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
+                                <span>{{ $locale['name'] ?? '' }}</span>
+                            </div>
+                            
+                            <x-icons.chevron-down class="md:hidden !w-4 !h-4" />
+                        </x-link>
+                    </div>
+                @endif
             </div>
 
             @if ($phone = collect(setting('phones') ?: [])->first())

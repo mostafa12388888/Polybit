@@ -1,3 +1,5 @@
+@php($locale = collect(locales(false))?->where('code', '!=', app()->getLocale())?->first())
+
 <div class="max-md:hidden">
     @include('layouts.partials._topbar')
 </div>
@@ -33,37 +35,15 @@
                     <livewire:cart-items-count />
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </x-link>
-                
-                @php($locale = collect(locales(false))?->where('code', '!=', app()->getLocale())?->first())
 
                 @if ($locale)
                     <x-link href="{{ localized_url($locale['code']) }}" styling="light" class="flex sm:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
                         <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
-                            <x-img loading="lazy" class="w-6 h-5 rounded object-cover" width="24" height="20" src="{{ asset('images/flags/'.$locale['flag'].'.webp') }}" alt="Switch to {{ $locale['name'] }}" />
+                            <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
                             <span class="ltr:pt-0.5 ltr:text-lg max-[385px]:hidden">{{ $locale['symbol'] ?? '' }}</span>
                         </div>
                     </x-link>
                 @endif
-                
-                {{-- <x-dropdown dropdownClasses="w-full max-md:rounded-t-none md:w-40 pt-2" contentClasses="max-md:rounded-t-none" wrapperClasses="static" :openOnHover="true">
-                    <x-slot:trigger>                        
-                        <x-button styling="light" class="flex sm:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
-                            <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
-                                <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
-                                <span class="rtl:pb-2 ltr:pt-0.5 max-[385px]:hidden">{{ optional(collect(locales(false))?->where('code', app()->getLocale())?->first())['symbol'] ?? '' }}</span>
-                            </div>
-                        </x-button>
-                    </x-slot>
-    
-                    <x-slot:content>
-                        @foreach (locales(false) as $locale)
-                            <x-dropdown.link :navigate="false" class="py-4" href="{{ localized_url($locale['code']) }}">
-                                <x-img loading="lazy" class="w-6 h-4" width="24" height="16" src="{{ asset('images/flags/'.$locale['flag'].'.webp') }}" />
-                                <span>{{ $locale['name'] }}</span>
-                            </x-link>
-                        @endforeach
-                    </x-slot>
-                </x-dropdown> --}}
 
                 @if (config('app.env') == 'local')
                     <div class="text-center " style="direction:ltr;">
