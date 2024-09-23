@@ -23,10 +23,13 @@
         @endif
     </x-slot>
 
-    @if (! $product->translated())
-        <link rel="canonical" href="{{ localized_url($product->locales()[0] ?? app()->getLocale()) }}" />
-    @endif
+    <x-slot name="head">
+        @if (! $product->translated())
+            <link rel="canonical" href="{{ localized_url($product->locales()[0] ?? app()->getLocale()) }}" />
+        @endif
+    </x-slot>
 
+    
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('products.index')">{{ __('Products') }}</x-breadcrumb>
         <x-breadcrumb :last="true">{{ str()->limit($product->name, 17) }}</x-breadcrumb>

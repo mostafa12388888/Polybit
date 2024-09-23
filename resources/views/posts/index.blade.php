@@ -9,6 +9,13 @@
         <x-slot name="image">{!! $category->meta('image') !!}</x-slot>
     @endif
 
+    <x-slot name="head">
+        {{-- This code to address issue with duplicated blog url and you can remove it later  --}}
+        @if(! request()->page)
+            <link rel="canonical" href="{{ route('posts.index') }}" />
+        @endif
+    </x-slot>
+
     <x-slot name="heading">{{ $category ?? null ? $category->name : __('Blog Posts') }}</x-slot>
 
     <x-slot name="breadcrumbs">
