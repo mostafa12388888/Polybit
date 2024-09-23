@@ -16,6 +16,6 @@
     "dateModified": "{{ $post->created_at?->toIso8601String() }}",
     "inLanguage": "{{ app()->getLocale() }}",
     "mainEntityOfPage": {
-        "@id": "{{ route('posts.index', $post) }}#webpage"
+        "@id": "{{ route('posts.show', $post) }}#webpage"
     }
 }
