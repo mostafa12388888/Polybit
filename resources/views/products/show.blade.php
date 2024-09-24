@@ -25,7 +25,7 @@
 
     <x-slot name="head">
         @if (! $product->translated())
-            <link rel="canonical" href="{{ localized_url($product->locales()[0] ?? app()->getLocale()) }}" />
+            <link rel="canonical" href="{{ localized_url($product->locales()[0] ?? app()->getLocale(), request()->url()) }}" />
         @endif
     </x-slot>
 
