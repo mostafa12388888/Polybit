@@ -8,7 +8,7 @@
     "image": "{!! $post->meta('image') !!}",
     "author": {
         "@type": "Person",
-        "name": "{{ $post->user->name }}",
+        "name": "{!! schema_text($post->user->name) !!}",
         "url": "{{ route('users.show', $post->user) }}"
     },
     "description": "{!! schema_text($post->meta('description'), 150) !!}",

@@ -12,10 +12,10 @@
                     @foreach ($faqs as $faq)
                         {
                             "@type": "Question",
-                            "name": "{{ schema_text($faq->question) }}",
+                            "name": "{!! schema_text($faq->question) !!}",
                             "acceptedAnswer": {
                                 "@type": "Answer",
-                                "text": "{{ schema_text(text($faq->answer)) }}"
+                                "text": "{!! schema_text(text($faq->answer)) !!}"
                             }
                         }{{ $loop->last ? '' : ',' }}
                     @endforeach

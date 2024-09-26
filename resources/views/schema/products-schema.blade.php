@@ -7,7 +7,7 @@
             @minifyInclude('schema.partials._website'),
             {
                 "@type": "CollectionPage",
-                "name": "{{ $title }}",
+                "name": "{!! schema_text($title) !!}",
                 "mainEntity": {
                     "@type": "ItemList",
                     "itemListElement": [

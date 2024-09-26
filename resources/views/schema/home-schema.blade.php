@@ -7,7 +7,7 @@
             @minifyInclude('schema.partials._website'),
             {
                 "@type": "ItemList",
-                "name": "{{ config('app.name') }}",
+                "name": "{!! schema_text(config('app.name')) !!}",
                 "itemListElement": [
                     @if ($slides->count())
                         {

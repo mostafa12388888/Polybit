@@ -20,7 +20,7 @@
                 "description": "{!! schema_text($product->meta('description'), 150) !!}",
                 "category": [
                     @foreach ($product->categories as $category)
-                        "{{ schema_text($category->name) }}"{{ $loop->last ? '' : ',' }}
+                        "{!! schema_text($category->name) !!}"{{ $loop->last ? '' : ',' }}
                     @endforeach
                 ],
                 "offers": {

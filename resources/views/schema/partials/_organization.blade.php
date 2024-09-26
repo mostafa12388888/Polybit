@@ -1,7 +1,7 @@
 {
     "@type": "Organization",
     "@id": "{{ config('app.url') }}/#organization",
-    "name": "{{ config('app.name') }}",
+    "name": "{!! schema_text(config('app.name')) !!}",
     "url": "{{ request()->url() }}",
 
     @if (setting('logo'))
@@ -10,7 +10,7 @@
             "@id": "{{ config('app.url') }}/#logo",
             "url": "{!! asset(setting('logo')->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'])) !!}",
             "contentUrl": "{!! asset(setting('logo')->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'])) !!}",
-            "caption": "{{ config('app.name') }}",
+            "caption": "{!! schema_text(config('app.name')) !!}",
             "inLanguage": "{{ app()->getLocale() }}"
         },
     @endif

@@ -8,8 +8,8 @@
             {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
-                "name": "{{ $title }}",
-                "description": "{{ $description }}",
+                "name": "{!! schema_text($title) !!}",
+                "description": "{!! schema_text($description) !!}",
             }
         ]
     }
