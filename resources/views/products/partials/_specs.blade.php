@@ -9,7 +9,7 @@
             </x-button>
             
             <div class="lg:!duration-0 lg:!transition-none border-2 border-t-0 lg:border-none border-primary-600/85 dark:border-dark-700/40 rounded-b-md"
-                x-bind:class="isActive({{ $loop->index + 1 }}) ? '!block' : ''"
+                x-bind:class="isActive({{ $loop->index + 1 }}) ? 'lg:!block lg:!h-auto' : ''"
                 x-cloak x-show="tab == {{ $loop->index + 1 }}" x-collapse>
                 <div class="flex flex-col gap-4 max-lg:px-4 max-lg:py-6">
                     @if ($spec->description)
