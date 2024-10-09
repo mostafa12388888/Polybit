@@ -65,6 +65,13 @@ return [
             'replace_placeholders' => true,
         ],
 
+        'sitemap' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/sitmap.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'replace_placeholders' => true,
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
