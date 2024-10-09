@@ -45,10 +45,22 @@ class AppServiceProvider extends ServiceProvider
 
         try {
             config(['app.name' => setting('app_name', config('app.name'))]);
+        } catch (\Throwable $th) {
+            //
+        }
 
+        try {
             $logo = setting('logo') ?: setting('darkmode_logo');
 
             Filament::getPanel()->brandLogo($logo?->getSignedUrl())->brandLogoHeight('35px');
+        } catch (\Throwable $th) {
+            //
+        }
+
+        try {
+            $icon = setting('favicon') ?: setting('logo');
+
+            Filament::getPanel()->favicon($icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']));
         } catch (\Throwable $th) {
             //
         }
