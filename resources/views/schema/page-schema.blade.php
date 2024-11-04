@@ -9,7 +9,7 @@
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "{!! schema_text($title) !!}",
-                "description": "{!! schema_text($description) !!}",
+                "description": "{!! schema_text($description) !!}"
             }
         ]
     }
