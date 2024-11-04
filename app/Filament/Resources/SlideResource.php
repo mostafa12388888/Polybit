@@ -39,7 +39,7 @@ class SlideResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    ToggleButtons::make('active_locales')->multiple()->options(locales())
+                    ToggleButtons::make('locales')->multiple()->options(locales())
                         ->formatStateUsing(fn ($record) => $record ? $record->locales() : array_keys(locales()))
                         ->gridDirection('row')->grouped()->extraAttributes(['style' => 'width: 100%']),
 
