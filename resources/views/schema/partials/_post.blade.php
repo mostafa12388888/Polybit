@@ -1,7 +1,12 @@
 {
-    "@type": "BlogPosting",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ route('posts.show', $post) }}"
+    },
     "url": "{{ route('posts.show', $post) }}",
     "headline": "{!! schema_text($post->meta('title')) !!}",
+    "description": "{!! schema_text($post->meta('description'), 150) !!}",
     "name": "{!! schema_text($post->meta('title')) !!}",
     "keywords": "{!! schema_text($post->meta('keywords')) !!}",
     "articleSection": "Blog",
@@ -11,11 +16,7 @@
         "name": "{!! schema_text($post->user->name) !!}",
         "url": "{{ route('users.show', $post->user) }}"
     },
-    "description": "{!! schema_text($post->meta('description'), 150) !!}",
-    "datePublished": "{{ $post->created_at?->toIso8601String() }}",
-    "dateModified": "{{ $post->created_at?->toIso8601String() }}",
     "inLanguage": "{{ app()->getLocale() }}",
-    "mainEntityOfPage": {
-        "@id": "{{ route('posts.show', $post) }}#webpage"
-    }
+    "datePublished": "{{ $post->created_at?->toIso8601String() }}",
+    "dateModified": "{{ $post->created_at?->toIso8601String() }}"
 }
