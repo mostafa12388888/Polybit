@@ -12,7 +12,7 @@
     "articleSection": "Blog",
     "image": {
         "@type": "ImageObject",
-        "url": "{!! $post->meta('image') !!}",
+        "url": "{!! $post->meta('image') !!}"
     },
     "author": {
         "@type": "Person",
