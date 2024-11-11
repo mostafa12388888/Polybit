@@ -10,7 +10,10 @@
     "name": "{!! schema_text($post->meta('title')) !!}",
     "keywords": "{!! schema_text($post->meta('keywords')) !!}",
     "articleSection": "Blog",
-    "image": "{!! $post->meta('image') !!}",
+    "image": {
+        "@type": "ImageObject",
+        "url": "{!! $post->meta('image') !!}",
+    },
     "author": {
         "@type": "Person",
         "name": "{!! schema_text($post->user->name) !!}",
