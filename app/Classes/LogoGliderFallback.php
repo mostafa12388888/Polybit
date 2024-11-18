@@ -8,7 +8,7 @@ class LogoGliderFallback extends GliderFallback
 {
     public function getAlt(): string
     {
-        return config('app.name');
+        return __(':app_name Logo', ['app_name' => config('app.name')]);
     }
 
     public function getHeight(): int
