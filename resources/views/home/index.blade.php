@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="title">{{ __('Home') }}</x-slot>
+
     @if ($slides->count())
         @include('home.partials._top-slider')
     @endif
