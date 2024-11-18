@@ -1,6 +1,6 @@
 @php
     $images = $product->images;
-    $embeded_urls = $product->embeded_urls ?? [];
+    $embeded_urls = array_filter($product->embeded_urls ?? []);
     $images_count = count($images) + count($embeded_urls);
 
     if(! $images_count) {
