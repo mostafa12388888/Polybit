@@ -9,11 +9,9 @@
     
     <x-slot name="heading">{{ $project->title }}</x-slot>
 
-    <x-slot name="head">
-        @if (! $project->translated())
-            <link rel="canonical" href="{{ localized_url($project->locales()[0] ?? app()->getLocale()) }}" />
-        @endif
-    </x-slot>
+    @if (! $project->translated())
+        <x-slot name="canonical">{{ localized_url($project->locales()[0] ?? app()->getLocale()) }}</x-slot>
+    @endif
 
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('projects.index')">{{ __('Projects') }}</x-breadcrumb>

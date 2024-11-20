@@ -64,6 +64,8 @@
     <meta name="twitter:title" content="{{ $title }}" />
     <meta name="twitter:description" content="{{ $description }}">
 
+    <link rel="canonical" href="{{ $canonical ?? request()->url() }}" />
+
     @if (app()->getLocale() == 'ar')
         <style>
             @font-face {

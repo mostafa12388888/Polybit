@@ -9,11 +9,10 @@
 
     <x-slot name="head">
         <link rel="preload" as="image" href="{!! $post->meta('image') !!}" fetchpriority="high" />
-        
-        <link rel="canonical" href="{{ localized_url($post->locales()[0] ?? app()->getLocale(), request()->url()) }}" />
     </x-slot>
     
-    
+    <x-slot name="canonical">{{ localized_url($post->locales()[0] ?? app()->getLocale(), request()->url()) }}</x-slot>
+
     <x-slot name="heading">{{ $post->title }}</x-slot>
 
     <x-slot name="subheading">

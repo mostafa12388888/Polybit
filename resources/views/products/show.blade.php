@@ -23,12 +23,9 @@
         @endif
     </x-slot>
 
-    <x-slot name="head">
-        @if (! $product->translated())
-            <link rel="canonical" href="{{ localized_url($product->locales()[0] ?? app()->getLocale(), request()->url()) }}" />
-        @endif
-    </x-slot>
-
+    @if (! $product->translated())
+        <x-slot name="canonical">{{ localized_url($product->locales()[0] ?? app()->getLocale(), request()->url()) }}</x-slot>
+    @endif
     
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('products.index')">{{ __('Products') }}</x-breadcrumb>
