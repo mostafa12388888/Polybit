@@ -116,7 +116,7 @@
     <main class="flex-grow flex flex-col">
         @if ($heading ?? null)
             <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm relative overflow-hidden">
-                <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none" style="background-image: url('/images/header-background.webp');"></div>
+                <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none bg-header"></div>
 
                 <div class="container mx-auto py-10 lg:py-12 z-50">
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">

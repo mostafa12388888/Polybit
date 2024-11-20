@@ -66,7 +66,7 @@ switch ($align) {
         {{ $trigger }}
     </div>
 
-    <div x-show="open || expanded"
+    <div x-bind:class="{'!block': open || expanded}"
         {{ $attributes->only(['x-transition:enter', 'x-transition:enter-start', 'x-transition:enter-end', 'x-transition:leave', 'x-transition:leave-start', 'x-transition:leave-end'])->merge([
             'x-transition:enter' => 'transition ease-out duration-200',
             'x-transition:enter-start' => 'transform opacity-0 scale-95',
@@ -75,8 +75,7 @@ switch ($align) {
             'x-transition:leave-start' => 'transform opacity-100 scale-100',
             'x-transition:leave-end' => 'transform opacity-0 scale-95',
         ]) }}
-        class="absolute z-50 rounded-md shadow {{ $alignmentClasses }} {{ $dropdownClasses }} max-h-[calc(100vh-80px)] overflow-y-auto"
-            style="display: none;">
+        class="hidden absolute z-50 rounded-md shadow {{ $alignmentClasses }} {{ $dropdownClasses }} max-h-[calc(100vh-80px)] overflow-y-auto">
         <div class="rounded-md bg-white dark:bg-dark-700 {{ $contentClasses }}">
             {{ $content }}
         </div>

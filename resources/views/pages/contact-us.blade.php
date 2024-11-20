@@ -9,7 +9,7 @@
 
 <div>
     <section class="bg-white dark:bg-dark-600/40 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
-        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-15 z-0 bg-cover bg-no-repeat bg-center" style="background-image: url('/images/map.png');"></div>
+        <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-15 z-0 bg-cover bg-no-repeat bg-center bg-map"></div>
     
         <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap relative z-10">
             <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-4xl font-extrabold relative px-8 z-50">{{ __('Reach out to us') }}</h2>

@@ -4,7 +4,7 @@
 
 <footer class="{{ optional(request()->route())->getName() == 'home' ? 'bg-white' : 'bg-dark-50' }} dark:bg-dark-800 dark:border-dark-500">
     <div class="py-8 sm:py-14 px-4 sm:px-6 relative flex flex-col gap-10">
-        <div class="absolute w-full h-full top-0 left-0 opacity-15 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none" style="background-image: url('/images/footer-background.webp');"></div>
+        <div class="absolute w-full h-full top-0 left-0 opacity-15 dark:opacity-10 z-0 bg-cover bg-no-repeat bg-center dark:hidden pointer-events-none bg-footer"></div>
 
         <div class="container mx-auto hidden xl:flex flex-grow max-md:flex-wrap">
             <x-link href="{{ route('home') }}" class="self-center sm:self-start">

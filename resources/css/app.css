@@ -47,4 +47,14 @@
     .js-image-zoom__zoomed-image, .js-image-zoom__zoomed-area {
         @apply max-lg:!hidden;
     }
+
+    .bg-map {
+        background-image: url('/images/map.png');
+    }
+    .bg-header {
+        background-image: url('/images/header-background.webp');
+    }
+    .bg-footer {
+        background-image: url('/images/footer-background.webp');
+    }
 }
