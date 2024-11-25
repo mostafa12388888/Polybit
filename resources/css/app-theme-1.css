@@ -51,12 +51,12 @@
     }
 
     .bg-map {
-        background-image: url('/images/map.png');
+        background-image: url('/images/theme-1/map.png');
     }
     .bg-header {
-        background-image: url('/images/header-background.webp');
+        background-image: url('/images/theme-1/header-background.webp');
     }
     .bg-footer {
-        background-image: url('/images/footer-background.webp');
+        background-image: url('/images/theme-1/footer-background.webp');
     }
 }
