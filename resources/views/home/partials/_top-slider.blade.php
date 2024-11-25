@@ -11,13 +11,15 @@
 
                             <p class="text-secondary-50 dark:text-dark-50 text-base md:text-lg xl:text-xl w-full max-w-6xl line-clamp-2 xl:line-clamp-3">{{ $slide->description }}</p>
 
-                            <div class="flex gap-4 flex-wrap items-center justify-center">
-                                @foreach ($slide->actions as $action)
-                                    @if ($action['text'] && $action['url'])
-                                        <x-link styling="white" class="lg:px-6 lg:py-2 lg:text-lg opacity-80 hover:opacity-100 transition-opacity dark:!bg-dark-100 dark:hover:!bg-dark-200 dark:!text-dark-700 dark:hover:!text-dark-800" href="{!! $action['url'] !!}">{{ $action['text'] }}</x-link>
-                                    @endif
-                                @endforeach
-                            </div>
+                            @if (is_array($slide->actions))
+                                <div class="flex gap-4 flex-wrap items-center justify-center">
+                                    @foreach ($slide->actions as $action)
+                                        @if ($action['text'] && $action['url'])
+                                            <x-link styling="white" class="lg:px-6 lg:py-2 lg:text-lg opacity-80 hover:opacity-100 transition-opacity dark:!bg-dark-100 dark:hover:!bg-dark-200 dark:!text-dark-700 dark:hover:!text-dark-800" href="{!! $action['url'] !!}">{{ $action['text'] }}</x-link>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
 
                         <x-curator-glider :media="$slide->image" format="webp" width="720" height="240" fit="crop" quality="30" class="w-full h-full object-cover" :alt="$slide->title" loading="{{ $loop->index ? 'lazy' : 'eager' }}" fetchpriority="{{ $loop->index ? 'auto' : 'high' }}" />
