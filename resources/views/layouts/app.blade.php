@@ -107,9 +107,8 @@
         </style>
     @endif
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @vite(['resources/css/app-' . config('app.theme') . '.css', 'resources/js/app.js'])
+    
     {{ $head ?? null }}
 </head>
 <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-secondary-100">
