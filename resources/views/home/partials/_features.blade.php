@@ -8,7 +8,7 @@
 
         <div class="flex flex-wrap w-full flex-grow mt-10 gap-4 lg:gap-6 xl:gap-8">
             <div class="group w-min min-w-full sm:min-w-80 flex flex-col items-center px-8 py-12 flex-grow rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
-                <span class="group-hover:bg-secondary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
+                <span class="group-hover:bg-primary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
                     <x-icons.arrow-trending-up class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
                 <h3 class="font-bold text-lg xl:text-xl mb-4">{{ __('Elevate Your Projects') }}</h3>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="group w-min min-w-full sm:min-w-80 flex flex-col items-center px-8 py-12 flex-grow rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
-                <span class="group-hover:bg-secondary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
+                <span class="group-hover:bg-primary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
                     <x-icons.globe class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
                 <h3 class="font-bold text-lg xl:text-xl mb-4 dark:text-dark-100">{{ __('Sustainability at the Core') }}</h3>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="group w-min min-w-full sm:min-w-80 flex flex-col items-center px-8 py-12 flex-grow rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
-                <span class="group-hover:bg-secondary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
+                <span class="group-hover:bg-primary-500 group-hover:text-white group-hover:dark:bg-dark-600 group-hover:dark:text-white transition-colors bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 xl:h-20 xl:w-20 rounded-full mb-4 xl:mb-8">
                     <x-icons.rocket class="!w-8 !h-8 xl:!w-10 xl:!h-10" stroke-width="1" />
                 </span>
                 <h3 class="font-bold text-lg xl:text-xl mb-4">{{ __('Shaping the Future') }}</h3>

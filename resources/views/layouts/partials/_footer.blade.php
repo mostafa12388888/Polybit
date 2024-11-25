@@ -21,8 +21,8 @@
                 <div class="flex md:flex-col flex-wrap items-stretch justify-stretch gap-2 sm:gap-4 order-3 md:order-2">
                     @foreach (setting('phones') ?: [] as $phone)
                         <x-link href="tel:{{ $phone }}" class="w-full flex items-center md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-primary-300/80 rounded-lg dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
-                            <div class="px-4 py-3 bg-secondary-200/30 dark:bg-primary-700/40 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center">
-                                <x-icons.phone class="flex-shrink-0 sm:!w-5 sm:!h-5 text-primary-600 dark:text-primary-300" />
+                            <div class="px-4 py-3 bg-secondary-200/30 dark:bg-dark-700/60 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center">
+                                <x-icons.phone class="flex-shrink-0 sm:!w-5 sm:!h-5 text-secondary-500 dark:text-primary-200" />
                             </div>
                             <span class="flex-grow px-4 py-2 ltr:text-start rtl:text-end md:p-0" dir="ltr">{{ $phone }}</span>
                         </x-link>
@@ -31,8 +31,8 @@
                     
                     @foreach (setting('emails') ?: [] as $email)
                         <x-link href="mail:{{ $email }}" class="w-full flex items-center md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-primary-300/80 rounded-lg dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
-                            <div class="px-4 py-3 bg-secondary-200/30 dark:bg-primary-700/40 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center">
-                                <x-icons.envelope class="flex-shrink-0 sm:!w-5 sm:!h-5 text-primary-600 dark:text-primary-300 rounded-full" />
+                            <div class="px-4 py-3 bg-secondary-200/30 dark:bg-dark-700/60 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center">
+                                <x-icons.envelope class="flex-shrink-0 sm:!w-5 sm:!h-5 text-secondary-500 dark:text-primary-200 rounded-full" />
                             </div>
                             <span class="flex-grow px-4 py-2 text-start md:p-0">{{ $email }}</span>
                         </x-link>
@@ -41,8 +41,8 @@
                         
                     @if ($address = setting('address'))
                         <div class="w-full flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-primary-300/80 rounded-lg dark:border-none flex-grow">
-                            <div class="px-4 py-3 bg-secondary-200/30 dark:bg-primary-700/40 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center flex items-center">
-                                <x-icons.map-pin class="flex-shrink-0 sm:!w-5 sm:!h-5 text-primary-600 dark:text-primary-300" />
+                            <div class="px-4 py-3 bg-secondary-200/30 dark:bg-dark-700/60 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center flex items-center">
+                                <x-icons.map-pin class="flex-shrink-0 sm:!w-5 sm:!h-5 text-secondary-500 dark:text-primary-200" />
                             </div>
                             <p class="flex-grow px-4 py-2 text-start md:p-0 md:max-w-80 text-balance">{{ $address }}</p>
                         </div>
