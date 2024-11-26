@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class RegisteredUserController extends Controller
 {
@@ -29,10 +30,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if ($request->phone) {
+            try {
+                $request->merge([
+                    'phone' => (new PhoneNumber($request->phone, ['EG']))->formatE164(),
+                ]);
+            } catch (\Throwable $th) {
+                $request->merge(['phone' => 'notvalid']);
+            }
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'phone' => ['nullable', 'phone', 'max:255', 'unique:'.User::class],
+            'phone' => ['nullable', 'phone:EG', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
