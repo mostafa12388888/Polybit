@@ -8,7 +8,7 @@
                             <div class="absolute w-full h-full top-0 left-0"></div>
 
                             <div class="absolute w-full h-full p-8 md:py-20 md:px-24 flex flex-col gap-4 md:gap-6 xl:gap-8 justify-end" x-cloak>
-                                <div class="bg-white/95 w-fit max-w-2xl min-w-sm shadow rounded p-8 space-y-4">
+                                <div class="bg-white/95 dark:bg-dark-700/95 w-fit max-w-2xl min-w-sm shadow rounded p-8 space-y-4">
                                     <h2 class="dark:text-dark-50 text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold">{{ $slide->title }}</h2>
 
                                     <p class="dark:text-dark-50 text-base xl:text-lg w-full max-w-6xl line-clamp-2 xl:line-clamp-3">{{ $slide->description }}</p>
@@ -17,7 +17,7 @@
                                         <div class="flex gap-4 flex-wrap items-center">
                                             @foreach ($slide->actions as $action)
                                                 @if ($action['text'] && $action['url'])
-                                                    <x-link :styling="$loop->first ? 'primary' : 'light'" class="lg:px-6 lg:py-2 lg:text-lg opacity-80 hover:opacity-100 transition-opacity dark:!bg-dark-100 dark:hover:!bg-dark-200 dark:!text-dark-700 dark:hover:!text-dark-800" href="{!! $action['url'] !!}">{{ $action['text'] }}</x-link>
+                                                    <x-link :styling="$loop->first ? 'primary' : 'white'" class="lg:px-6 lg:py-2 lg:text-lg opacity-80 hover:opacity-100 transition-opacity {{ ! $loop->first ? 'dark:!bg-dark-100 dark:hover:!bg-dark-200 dark:!text-dark-700 dark:hover:!text-dark-800' : '' }}" href="{!! $action['url'] !!}">{{ $action['text'] }}</x-link>
                                                 @endif
                                             @endforeach
                                         </div>
