@@ -1,0 +1,1 @@
+// This file is needed for tailwind css intellisense extension to work

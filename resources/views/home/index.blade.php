@@ -2,7 +2,11 @@
     <x-slot name="title">{{ __('Home') }}</x-slot>
 
     @if ($slides->count())
-        @include('home.partials._top-slider')
+        @if (config('app.theme') == 'theme-1')
+            @include('home.partials._top-slider')
+        @else
+            @include('home.partials._top-slider-2')
+        @endif
     @endif
 
     @include('home.partials._features')

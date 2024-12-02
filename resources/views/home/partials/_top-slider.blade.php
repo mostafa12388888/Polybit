@@ -1,4 +1,4 @@
-<x-slider class="min-[2561px]:rounded-2xl min-[2561px]:container min-[2561px]:mx-auto" slides_count="{{ $slides->count() }}">
+<x-slider slides_count="{{ $slides->count() }}">
     <ul class="glide__slides h-72 sm:h-80 md:h-96 lg:h-[30rem] xl:h-[34rem] 2xl:h-[42rem] min-[2561px]:h-[34rem]">
         @foreach ($slides as $slide)
             <li class="glide__slide h-full relative">
