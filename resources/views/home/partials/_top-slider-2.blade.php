@@ -17,7 +17,7 @@
                                         <div class="flex gap-4 flex-wrap items-center">
                                             @foreach ($slide->actions as $action)
                                                 @if ($action['text'] && $action['url'])
-                                                    <x-link :styling="$loop->first ? 'primary' : 'white'" class="lg:px-6 lg:py-2 lg:text-lg opacity-80 hover:opacity-100 transition-opacity {{ ! $loop->first ? 'dark:!bg-dark-100 dark:hover:!bg-dark-200 dark:!text-dark-700 dark:hover:!text-dark-800' : '' }}" href="{!! $action['url'] !!}">{{ $action['text'] }}</x-link>
+                                                    <x-link :styling="$loop->first ? 'primary' : 'white'" class="lg:px-6 lg:py-2 lg:text-lg opacity-80 hover:opacity-100 transition-opacity {{ $loop->first ? '!opacity-100' : 'dark:!bg-dark-100 dark:hover:!bg-dark-200 dark:!text-dark-700 dark:hover:!text-dark-800' }}" href="{!! $action['url'] !!}">{{ $action['text'] }}</x-link>
                                                 @endif
                                             @endforeach
                                         </div>
