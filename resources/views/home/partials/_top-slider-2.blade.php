@@ -1,5 +1,5 @@
 <div class="bg-white dark:bg-dark-600/40 md:p-6 relative">
-    <x-slider class="md:rounded-lg md:container md:mx-auto md:shadow">
+    <x-slider autoplay="4000" class="md:rounded-lg md:container md:mx-auto md:shadow">
         <ul class="glide__slides h-72 sm:h-80 md:h-[22rem] lg:h-[25rem] xl:h-[30rem] 2xl:h-[34rem] min-[2561px]:h-[30rem]">
             @foreach ($slides as $slide)
                 <li class="glide__slide h-full relative">

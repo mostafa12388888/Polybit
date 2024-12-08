@@ -1,7 +1,7 @@
-@props(['slides_count' => 0])
+@props(['slides_count' => 0, 'autoplay' => 0])
 
 <div {{ $attributes->merge(['class' => 'glide overflow-hidden  relative']) }} 
-    x-init="$nextTick(() => new Glide($el, {type: 'carousel', direction: '{{ direction() }}', autoplay: 50000,}).mount());">
+    x-init="$nextTick(() => new Glide($el, {type: 'carousel', direction: '{{ direction() }}', autoplay: {{ $autoplay }},}).mount());">
     <div data-glide-el="track" class="glide__track">
         {{ $slot }}
     </div>
