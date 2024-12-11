@@ -1,5 +1,9 @@
 <x-app-layout>
     <x-slot name="title">{{ __('Home') }}</x-slot>
+    
+    <x-slot name="head">
+        <meta name="google-site-verification" content="w3Y9ytIXFH-T5i0e-bOb9-PiDNW_YztASzRVDkb6SNc" />
+    </x-slot>
 
     @if ($slides->count())
         @if (config('app.theme') == 'theme-1')
