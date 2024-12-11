@@ -108,7 +108,11 @@
     @endif
 
     @vite(['resources/css/app-' . config('app.theme') . '.css', 'resources/js/app.js'])
-    
+
+    <!-- Google tag (gtag.js) --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPDR7X3RXV"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZPDR7X3RXV'); </script>
+
     {{ $head ?? null }}
 </head>
 <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-secondary-100">
