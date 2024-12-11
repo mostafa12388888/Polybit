@@ -29,6 +29,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
+    <!-- Google tag (gtag.js) --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPDR7X3RXV"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZPDR7X3RXV'); </script>
+
     @if ($icon = setting('favicon') ?: setting('logo'))
         <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']) !!}">
         <link rel="apple-touch-icon" sizes="180x180" href="{!! $icon->getSignedUrl(['w' => 180, 'h' => 180, 'fm' => 'png', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']) !!}">
@@ -108,10 +112,6 @@
     @endif
 
     @vite(['resources/css/app-' . config('app.theme') . '.css', 'resources/js/app.js'])
-
-    <!-- Google tag (gtag.js) --> 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPDR7X3RXV"></script>
-    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZPDR7X3RXV'); </script>
 
     {{ $head ?? null }}
 </head>
