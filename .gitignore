@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+/public/icons
 /public/sitemap.xml
 /storage/*.key
 /vendor
@@ -20,3 +21,4 @@ yarn-error.log
 /.idea
 /.vscode
 .DS_Store
+.htaccess
