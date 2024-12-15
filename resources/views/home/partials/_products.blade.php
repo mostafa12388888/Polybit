@@ -24,12 +24,7 @@
                         <li class="glide__slide h-full">
                             <x-link href="#" class="group flex items-center text-start gap-3 !px-3 !py-10 aspect-video bg-white dark:bg-dark-900/40 shadow-md shadow-dark-200 dark:shadow-none !rounded-xl mx-2 my-10 overflow-hidden relative" :href="route('products.show', $product)">
                                 <x-curator-glider fallback="logo" :media="$product->image" :alt="$product->name" format="webp" width="480" height="280" fit="crop" quality="70" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" />
-
-                                <div class="group-hover:bg-secondary-900/60 transition-colors absolute w-full h-full top-0 left-0 bg-dark-900/40"></div>
-                                
-                                <div class="flex-grow flex flex-col gap-3 py-2 h-28 relative z-10 text-white text-center items-center justify-center drop-shadow-[0_0_15px_rgba(0,0,0,.6)]">
-                                    <h2 class="font-semibold line-clamp-2 text-base lg:text-lg">{{ $product->name }}</h2>
-                                </div>
+                                <h2 class="sr-only">{{ $product->name }}</h2>
                             </x-link>
                         </li>
                     @endforeach
