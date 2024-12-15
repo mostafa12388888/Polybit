@@ -13,6 +13,7 @@ trait HasTranslations
         locales as spatieLocales;
         useFallbackLocale as spatieUseFallbackLocale;
         getTranslations as spatieGetTranslations;
+        setTranslations as spatieSetTranslations;
     }
 
     public function locales(): array
@@ -39,6 +40,22 @@ trait HasTranslations
 
             return $result;
         });
+    }
+
+    // This code will allow overwriting the unassigned locales translation
+    public function setTranslations(string $key, array $translations): self
+    {
+        $this->guardAgainstNonTranslatableAttribute($key);
+
+        $this->attributes[$key] = $this->asJson([]);
+
+        if (! empty($translations)) {
+            foreach ($translations as $locale => $translation) {
+                $this->setTranslation($key, $locale, $translation);
+            }
+        }
+
+        return $this;
     }
 
     public function getTranslatedLocales(string $key): array
