@@ -127,7 +127,7 @@ trait Sluggable
                 });
             }
 
-            if (request()->has('slug') || ! $sluggable->{self::slugTo()} || $sluggable->isDirty(self::slugFrom())) {
+            if (request()->has('slug') || $sluggable->isDirty(self::slugTo()) || $sluggable->isDirty(self::slugFrom())) {
                 $sluggable->assign_slug();
             }
         });
