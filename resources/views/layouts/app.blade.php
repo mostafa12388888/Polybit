@@ -29,12 +29,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    {{-- Temporary code, will be replaced later --}}
-    @if (config('app.url') == 'https://ichemeg.com')
-        <!-- Google tag (gtag.js) --> 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPDR7X3RXV"></script>
-        <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZPDR7X3RXV'); </script>
-    @endif
+    @includeIf('layouts.optional._head')
 
     @if ($icon = setting('favicon') ?: setting('logo'))
         <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']) !!}">
@@ -117,6 +112,8 @@
     @vite(['resources/css/app-' . config('app.theme') . '.css', 'resources/js/app.js'])
 
     {{ $head ?? null }}
+
+    @includeIf('layouts.optional._head-end')
 </head>
 <body class="font-sans rtl:font-sans-ar antialiased text-gray-800 dark:text-dark-100 flex flex-col bg-dark-50 dark:bg-dark-900 dark:border-dark-700 min-h-screen rtl:text-right rtl:dir text-base relative border-secondary-100">
     @include('layouts.partials._header')
@@ -158,6 +155,10 @@
 
     @include('layouts.partials._bottom-navbar')
 
+    @includeIf('layouts.optional._scripts')
+
     {{ $scripts ?? null }}
+
+    @includeIf('layouts.optional._scripts-end')
 </body>
 </html>
