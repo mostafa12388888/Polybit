@@ -11,10 +11,16 @@ trait HasLocales
         return in_array($locale ?: app()->getLocale(), $locales);
     }
 
-    protected static function initializeHasLocales()
+    protected static function bootHasLocales()
     {
         static::saving(function (self $record) {
-            $record->locales = $record?->locales ?? $record->spatieLocales();
+            $record->locales = $record?->active_locales ?? $record->spatieLocales();
+
+            try {
+                unset($record->attributes['active_locales']);
+            } catch (\Throwable $th) {
+                //
+            }
         });
     }
 }
