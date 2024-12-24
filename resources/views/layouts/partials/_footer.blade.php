@@ -8,14 +8,14 @@
 
         <div class="container mx-auto hidden xl:flex flex-grow max-md:flex-wrap">
             <x-link href="{{ route('home') }}" class="self-center sm:self-start">
-                <x-application-logo class="h-16 rounded-md" :width="180" />
+                <x-application-logo class="h-16 rounded-md" :width="240" />
             </x-link>
         </div>
         
         <div class="container mx-auto flex flex-grow max-md:flex-wrap gap-10">
             <div class="flex flex-col gap-6 min-w-72 lg:min-w-80 xl:min-w-96 max-w-full">
                 <x-link href="{{ route('home') }}" class="self-center sm:self-start block xl:hidden mb-4">
-                    <x-application-logo class="h-20 rounded-md" :width="180" />
+                    <x-application-logo class="h-20 rounded-md" :width="240" />
                 </x-link>
 
                 <div class="flex md:flex-col flex-wrap items-stretch justify-stretch gap-2 sm:gap-4 order-3 md:order-2">

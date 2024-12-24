@@ -8,11 +8,9 @@
         <span class="sr-only">{{ __('Toggle Navbar') }}</span>
     </x-button>
 
-    <!-- Logo -->
     <x-link href="{{ route('home') }}" class="max-h-16 overflow-hidden">
-        <x-application-logo class="h-11" />
+        <x-application-logo class="h-11" :width="160" />
     </x-link>
-    <!-- End Logo -->
 
     <nav class="px-4 sm:px-6 max-md:pb-6 max-md:bg-white max-md:dark:bg-dark-800 lg:ms-2 xl:ms-8 max-md:!absolute max-md:w-full top-full max-md:left-0 max-md:border-t dark:border-dark-700 max-md:pt-2 hidden md:!flex flex-col justify-between md:!h-auto overflow-auto gap-8"
         x-ref="nav"
