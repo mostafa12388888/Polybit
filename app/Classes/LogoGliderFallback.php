@@ -28,7 +28,7 @@ class LogoGliderFallback extends GliderFallback
             'h' => 200,
             'fit' => 'fill-max',
             'bg' => 'FFFFFF',
-            'border' => '140,FFFFFF,expand',
+            'border' => '100,FFFFFF,expand',
             'fm' => 'webp',
             'q' => 70,
         ], true) ?: '/images/default.webp';
