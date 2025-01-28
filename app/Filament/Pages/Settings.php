@@ -45,6 +45,8 @@ class Settings extends Page
 
     public $social_links = [];
 
+    public $location = null;
+
     public function mount(): void
     {
         $allowed_settings = Setting::$allowed_settings;
@@ -118,6 +120,7 @@ class Settings extends Page
                         Repeater::make('social_links')->simple(
                             TextInput::make('social_link')->activeUrl(),
                         )->defaultItems(3),
+                        Textarea::make('location')->label('admin.Map embed URL'),
                     ]),
                 ])->persistTabInQueryString(),
             ]);
@@ -139,6 +142,12 @@ class Settings extends Page
 
             foreach ($data ?: [] as $key => $value) {
                 if (property_exists($this, $key)) {
+                    if ($key == 'location') {
+                        preg_match('/src="([^"]+)"/i', $value, $match);
+
+                        $value = array_pop($match) ?: $value;
+                    }
+
                     setting([$key => is_array($value) ? array_filter($value) : $value]);
                 }
             }

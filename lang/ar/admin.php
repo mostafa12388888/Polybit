@@ -173,4 +173,5 @@ return [
     'Embeded urls' => 'نماذج 3d',
     'Roles' => 'الصلاحيات',
     'Support Phone Numbers' => 'أرقام الهاتف للدعم',
+    'Map embed URL' => 'رابط تضمين خريطة جوجل',
 ];

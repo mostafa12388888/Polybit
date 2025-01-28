@@ -60,6 +60,11 @@ class Setting extends Model
             'type' => 'array',
             'default' => [],
         ],
+        'location' => [
+            'translatable' => false,
+            'type' => 'string',
+            'default' => null,
+        ],
     ];
 
     public function user()

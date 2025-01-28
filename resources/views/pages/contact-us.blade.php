@@ -75,9 +75,11 @@
     
     <section class="flex-grow bg-secondary-100/50 dark:bg-dark-800/70 lg:py-6 xl:py-8 relative">
         <div class="lg:container mx-auto flex flex-col lg:flex-row lg:gap-4">
-            <div class="lg:rounded-md overflow-hidden lg:shadow bg-white dark:bg-dark-700/60 flex-grow order-3 lg:order-1">
-                <livewire:map />
-            </div>
+            @if (setting('location'))
+                <div class="lg:rounded-md overflow-hidden lg:shadow bg-white dark:bg-dark-700/60 flex-grow order-3 lg:order-1">
+                    <livewire:map />
+                </div>
+            @endif
     
             <div class="lg:rounded-md flex-grow w-full lg:w-6/12 2xl:w-6/12 overflow-hidden order-2 flex">
                 @if ($message_sent)
