@@ -32,8 +32,8 @@
     @includeIf('layouts.optional._head')
 
     @if ($icon = setting('favicon') ?: setting('logo'))
-        <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']) !!}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{!! $icon->getSignedUrl(['w' => 180, 'h' => 180, 'fm' => 'png', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white']) !!}">
+        <link rel="shortcut icon" type="image/png" href="{!! $icon->getSignedUrl(['w' => 32, 'h' => 32, 'fm' => 'ico', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white'], true) !!}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{!! $icon->getSignedUrl(['w' => 180, 'h' => 180, 'fm' => 'png', 'fit' => 'fill-max', 'q' => 70, 'bg' => 'white'], true) !!}">
     @endif
 
     <meta name="msapplication-TileColor" content="#da532c">

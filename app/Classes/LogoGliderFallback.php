@@ -28,10 +28,10 @@ class LogoGliderFallback extends GliderFallback
             'h' => 200,
             'fit' => 'fill-max',
             'bg' => 'FFFFFF',
-            'border' => '100,FFFFFF,expand',
+            'border' => '140,FFFFFF,expand',
             'fm' => 'webp',
             'q' => 70,
-        ]) ?: '/images/default.webp';
+        ], true) ?: '/images/default.webp';
 
         return asset($logo);
     }
@@ -43,6 +43,6 @@ class LogoGliderFallback extends GliderFallback
 
     public function getWidth(): int
     {
-        return 420;
+        return 400;
     }
 }

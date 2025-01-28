@@ -7,7 +7,7 @@
         {!! 
             collect([setting('logo'), setting('darkmode_logo')])
                 ->filter()
-                ->map(fn($image) => $image->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp']))
+                ->map(fn($image) => $image->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'], true))
                 ->map(fn($image_path) => asset($image_path))
                 ->map(fn($image_link) => '"'.$image_link.'"')
                 ->implode(', ')

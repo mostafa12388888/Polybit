@@ -8,8 +8,8 @@
         "logo": {
             "@type": "ImageObject",
             "@id": "{{ config('app.url') }}/#logo",
-            "url": "{!! asset(setting('logo')->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'])) !!}",
-            "contentUrl": "{!! asset(setting('logo')->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'])) !!}",
+            "url": "{!! asset(setting('logo')->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'], true)) !!}",
+            "contentUrl": "{!! asset(setting('logo')->getSignedUrl(['border' => '150,FFF,expand', 'w' => '212', 'h' => 212, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp'], true)) !!}",
             "caption": "{!! schema_text(config('app.name')) !!}",
             "inLanguage": "{{ app()->getLocale() }}"
         },
