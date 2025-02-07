@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\AttributeValue;
+use App\Models\Metadatum;
 use Filament\Facades\Filament;
 use Spatie\Translatable\HasTranslations as SpatieHasTranslations;
 
@@ -69,6 +70,8 @@ trait HasTranslations
     {
         if ($this instanceof AttributeValue) {
             return true;
+        } elseif ($this instanceof Metadatum) {
+            return false;
         }
 
         try {
