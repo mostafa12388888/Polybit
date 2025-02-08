@@ -176,4 +176,5 @@ return [
     'Map embed URL' => 'رابط تضمين خريطة جوجل',
     'Addresses' => 'العناوين',
     'Location name' => 'اسم الموقع',
+    'EG: Administrative headquarter' => 'مثال: المقر الإداري',
 ];

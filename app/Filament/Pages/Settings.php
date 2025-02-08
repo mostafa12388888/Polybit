@@ -111,7 +111,7 @@ class Settings extends Page
                     ]),
                     Tab::make('Contact details')->schema([
                         Repeater::make('addresses')->label('admin.Addresses')->schema([
-                            TextInput::make('location_name'),
+                            TextInput::make('location_name')->placeholder(__('admin.EG: Administrative headquarter')),
                             Textarea::make('address')->rows(1)->autosize()->columnSpan(2),
                         ])->columns(3)->reorderable(false)->defaultItems(3)->translatable(),
                         Repeater::make('emails')->label('admin.Email addresses')->simple(
