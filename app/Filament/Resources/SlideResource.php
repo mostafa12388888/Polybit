@@ -44,7 +44,7 @@ class SlideResource extends Resource
                         ->gridDirection('row')->grouped()->extraAttributes(['style' => 'width: 100%']),
 
                     TextInput::make('title')->maxLength(250)->columnSpanFull(),
-                    Textarea::make('description')->maxLength(5000)->columnSpanFull(),
+                    Textarea::make('description')->autosize()->maxLength(5000)->columnSpanFull(),
 
                     TableRepeater::make('actions')->headers([
                         Header::make('text')->label(__('admin.Text')),

@@ -17,21 +17,25 @@ class Setting extends Model
     public static $allowed_settings = [
         'app_name' => [
             'translatable' => true,
+            'use_fallback_locale_translation' => true,
             'type' => 'string',
             'default' => null,
         ],
         'app_description' => [
             'translatable' => true,
+            'use_fallback_locale_translation' => true,
             'type' => 'string',
             'default' => null,
         ],
         'logo' => [
             'translatable' => true,
+            'use_fallback_locale_translation' => true,
             'type' => 'media',
             'default' => null,
         ],
         'darkmode_logo' => [
             'translatable' => true,
+            'use_fallback_locale_translation' => true,
             'type' => 'media',
             'default' => null,
         ],
@@ -40,10 +44,11 @@ class Setting extends Model
             'type' => 'media',
             'default' => null,
         ],
-        'address' => [
+        'addresses' => [
             'translatable' => true,
-            'type' => 'string',
-            'default' => null,
+            'use_fallback_locale_translation' => false,
+            'type' => 'array',
+            'default' => [],
         ],
         'emails' => [
             'translatable' => false,
@@ -76,12 +81,13 @@ class Setting extends Model
     {
         $setting = $this;
         $allowed_settings = self::$allowed_settings;
-        $type = optional($allowed_settings[$setting->key])['type'];
-        $translatable = optional($allowed_settings[$setting->key])['translatable'];
+        $type = optional($allowed_settings[$setting->key] ?? [])['type'] ?? null;
+        $translatable = optional($allowed_settings[$setting->key] ?? [])['translatable'] ?? false;
+        $use_fallback_locale_translation = optional($allowed_settings[$setting->key] ?? [])['use_fallback_locale_translation'] ?? false;
 
         $data = $setting->only('key', 'value');
 
-        if (($translatable && ! $wants_translation) || ! $translatable) {
+        if (($translatable && ! $wants_translation) || ($translatable && ! $use_fallback_locale_translation) || ! $translatable) {
             $data['value'] = $setting->getAttributes()['value'];
         }
 
@@ -95,6 +101,9 @@ class Setting extends Model
             foreach ($data['value'] as $locale => $value) {
                 $data['value'][$locale] = $this->get_value_in_the_right_type($value, $type);
             }
+        } elseif ($translatable && ! $use_fallback_locale_translation) {
+            $data['value'] = $this->get_value_in_the_right_type($data['value'] ?? null, $type);
+            $data['value'] = $data['value'][app()->getLocale()] ?? null;
         } else {
             $data['value'] = $this->get_value_in_the_right_type($data['value'], $type);
         }

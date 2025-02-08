@@ -44,7 +44,7 @@ class ProjectResource extends Resource
                 SEO::make()->schema([
                     TextInput::make('title')->required()->maxLength(250),
                     TextInput::make('slug')->maxLength(250),
-                    Textarea::make('subtitle')->required()->maxLength(5000)->columnSpanFull(),
+                    Textarea::make('subtitle')->autosize()->required()->maxLength(5000)->columnSpanFull(),
 
                     TiptapEditor::make('description')->required()->columnSpanFull()
                         ->profile('minimal')

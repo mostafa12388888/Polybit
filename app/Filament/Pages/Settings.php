@@ -31,7 +31,7 @@ class Settings extends Page
 
     public $app_description = [];
 
-    public $address = [];
+    public $addresses = [];
 
     public $favicon;
 
@@ -98,7 +98,7 @@ class Settings extends Page
                     Tab::make('General')->schema([
                         TextInput::make('app_name')->translatable(),
 
-                        Textarea::make('app_description')->translatable(),
+                        Textarea::make('app_description')->autosize()->translatable(),
 
                         CuratorPicker::make('logo')->constrained()
                             ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
@@ -110,7 +110,10 @@ class Settings extends Page
                             ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm'),
                     ]),
                     Tab::make('Contact details')->schema([
-                        Textarea::make('address')->translatable(),
+                        Repeater::make('addresses')->label('admin.Addresses')->schema([
+                            TextInput::make('location_name'),
+                            Textarea::make('address')->rows(1)->autosize()->columnSpan(2),
+                        ])->columns(3)->reorderable(false)->defaultItems(3)->translatable(),
                         Repeater::make('emails')->label('admin.Email addresses')->simple(
                             TextInput::make('email')->email(),
                         )->defaultItems(3),

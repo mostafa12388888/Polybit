@@ -124,7 +124,7 @@ return [
     'Specefications' => 'المواصفات',
     'English' => 'English',
     'Contact details' => 'بيانات التواصل',
-    'Email addresses' => 'البريد الالكتروني',
+    'Email addresses' => 'عناوين البريد الالكتروني',
     'Email address' => 'البريد الالكتروني',
     'Address' => 'العنوان',
     'Phone numbers' => 'أرقام الهاتف',
@@ -174,4 +174,6 @@ return [
     'Roles' => 'الصلاحيات',
     'Support Phone Numbers' => 'أرقام الهاتف للدعم',
     'Map embed URL' => 'رابط تضمين خريطة جوجل',
+    'Addresses' => 'العناوين',
+    'Location name' => 'اسم الموقع',
 ];

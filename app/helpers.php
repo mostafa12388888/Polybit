@@ -75,7 +75,10 @@ if (! function_exists('setting')) {
         }
 
         $settings = Cache::remember('settings', 60 * 60, function () {
-            return Setting::whereNull('user_id')->with('media')->get();
+            $settings = Setting::whereNull('user_id')->get();
+            $settings->filter(fn ($setting) => is_int($setting->value))->load('media');
+
+            return $settings;
         });
 
         foreach (explode('.', $key) as $key) {

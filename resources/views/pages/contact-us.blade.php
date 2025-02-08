@@ -17,24 +17,24 @@
             <p class="text-base md:text-base xl:text-lg text-ellipsis w-full max-w-6xl overflow-hidden text-center mb-4">{{ __('We\'re Ready to Assist with Your Inquiries and Support Needs') }}</p>
 
             @php
-                $address = setting('address');
+                $addresses = setting('addresses') ?: [];
                 $phones = setting('phones');
                 $emails = setting('emails');
             @endphp
     
-            @if ($address || $phones || $emails)
+            @if ($addresses || $phones || $emails || true)
                 <div class="flex flex-wrap w-full flex-grow gap-4 lg:gap-6 xl:gap-8">
-                    @if ($address)
+                    @foreach (array_filter($addresses, fn($address) => $address['address'] ?? '') as $address)
                         <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">
                             <span class="bg-white/70 dark:bg-dark-700/70 flex items-center justify-center h-16 w-16 lg:w-20 lg:h-20 rounded-full flex-shrink-0">
                                 <x-icons.map-pin class="!w-8 !h-8" stroke-width="1" />
                             </span>
                             <div class="flex flex-col">
-                                <h2 class="font-bold text-lg">{{ __('Address') }}</h2>
-                                <p class="text-balance leading-loose dark:text-dark-200">{{ $address }}</p>
+                                <h2 class="font-bold text-lg">{{ $address['location_name'] ?: __('Address') }}</h2>
+                                <p class="text-balance leading-loose dark:text-dark-200">{{ $address['address'] }}</p>
                             </div>
                         </div>
-                    @endif
+                    @endforeach
         
                     @if ($phones)
                         <div class="w-min min-w-full sm:min-w-80 flex gap-4 px-4 py-6 flex-grow items-center rounded-xl ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative hover:-translate-y-1 hover:scale-105 transition-transform">

@@ -39,14 +39,15 @@
                         @break
                     @endforeach
                         
-                    @if ($address = setting('address'))
+                    @foreach (array_filter(setting('addresses') ?: [], fn($address) => $address['address'] ?: '') as $address)
                         <div class="w-full flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-primary-300/80 rounded-lg dark:border-none flex-grow">
                             <div class="px-4 py-3 bg-secondary-200/30 dark:bg-dark-700/60 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center flex items-center">
                                 <x-icons.map-pin class="flex-shrink-0 sm:!w-5 sm:!h-5 text-dark-500 dark:text-primary-200" />
                             </div>
-                            <p class="flex-grow px-4 py-2 text-start md:p-0 md:max-w-80 text-balance">{{ $address }}</p>
+                            <p class="flex-grow px-4 py-2 text-start md:p-0 md:max-w-80 text-balance">{{ $address['address'] }}</p>
                         </div>
-                    @endif
+                        @break
+                    @endforeach
                 </div>
 
                 <div class="w-full flex-grow flex flex-wrap gap-2 sm:max-w-96 order-3 justify-center sm:justify-start">
