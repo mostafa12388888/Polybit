@@ -23,7 +23,7 @@
                     @foreach ($products as $product)
                         <li class="glide__slide h-full">
                             <x-link href="#" class="group flex items-center text-start gap-3 !px-3 !py-10 aspect-video bg-white dark:bg-dark-900/40 shadow-md shadow-dark-200 dark:shadow-none !rounded-xl mx-2 my-10 overflow-hidden relative" :href="route('products.show', $product)">
-                                <x-curator-glider fallback="logo" :media="$product->image" :alt="$product->name" format="webp" width="480" height="280" fit="crop" quality="70" class="absolute top-0 left-0 w-full h-full flex-grow object-cover transition-transform group-hover:scale-125" />
+                                <x-curator-glider fallback="logo" :media="$product->image" :alt="$product->name" format="webp" width="480" height="280" fit="crop" quality="70" class="absolute top-0 left-0 w-full h-full flex-grow transition-transform group-hover:scale-125 object-contain bg-white" />
                                 <h2 class="sr-only">{{ $product->name }}</h2>
                             </x-link>
                         </li>
