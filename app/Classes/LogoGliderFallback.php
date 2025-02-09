@@ -24,11 +24,11 @@ class LogoGliderFallback extends GliderFallback
     public function getSource(): string
     {
         $logo = setting('logo')?->getSignedUrl([
-            'w' => 300,
-            'h' => 300,
+            'w' => 340,
+            // 'h' => 300,
             'fit' => 'fill-max',
             'bg' => 'FFFFFF',
-            'border' => '50,FFFFFF,expand',
+            'border' => '70,FFFFFF,expand',
             'fm' => 'webp',
             'q' => 70,
         ], true) ?: '/images/default.webp';
