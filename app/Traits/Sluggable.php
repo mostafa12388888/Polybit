@@ -77,8 +77,8 @@ trait Sluggable
 
     protected function generate_slug()
     {
-        $string = request()->slug ?: optional($this)->{self::slugFrom()};
-        $string = ! $this->id && $this->slug ? $this->slug : $string;
+        $string = request()->slug ?: (method_exists($this, 'getTranslation') ? optional($this)->getTranslation(self::slugFrom(), 'en') : optional($this)->{self::slugFrom()});
+        $string = $this->slug ?: $string;
 
         if (! $string || ! is_string($string)) {
             return uniqid();
@@ -127,7 +127,7 @@ trait Sluggable
                 });
             }
 
-            if (request()->has('slug') || $sluggable->isDirty(self::slugTo()) || $sluggable->isDirty(self::slugFrom())) {
+            if (! $sluggable->id || request()->has('slug') || $sluggable->isDirty(self::slugTo())) {
                 $sluggable->assign_slug();
             }
         });
