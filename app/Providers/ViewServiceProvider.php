@@ -96,7 +96,7 @@ class ViewServiceProvider extends ServiceProvider
             $image_alt = (string) $view->image_alt ?: $title;
 
             if (! $image && $image = setting('logo')) {
-                $image = $image->getSignedUrl(['border' => '100,FFF,expand', 'w' => '1080', 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70], true);
+                $image = $image->getSignedUrl(['border' => '75,FFF,expand', 'w' => '1050', 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70], true);
             }
 
             $image = $image ? asset($image) : null;
