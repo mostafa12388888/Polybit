@@ -24,7 +24,7 @@
     </x-slot>
 
     @if (! $product->translated())
-        <x-slot name="canonical">{{ localized_url($product->locales()[0] ?? app()->getLocale(), request()->url()) }}</x-slot>
+        <x-slot name="canonical">{{ request()->url() }}</x-slot>
     @endif
     
     <x-slot name="breadcrumbs">
