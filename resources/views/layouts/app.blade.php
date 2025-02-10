@@ -121,9 +121,13 @@
     <main class="flex-grow flex flex-col">
         @if ($heading ?? null)
             <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm relative overflow-hidden">
-                <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none bg-header"></div>
+                @if (setting('header_banner'))
+                    <x-header-banner />
+                @else
+                    <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none bg-header"></div>
+                @endif
 
-                <div class="container mx-auto py-10 lg:py-12 z-50">
+                <div class="container mx-auto py-16 lg:py-20 z-20 relative">
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">
                         {{ $heading }}
                     </h1>

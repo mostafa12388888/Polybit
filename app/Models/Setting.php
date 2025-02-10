@@ -44,6 +44,16 @@ class Setting extends Model
             'type' => 'media',
             'default' => null,
         ],
+        'header_banner' => [
+            'translatable' => false,
+            'type' => 'media',
+            'default' => null,
+        ],
+        'darkmode_header_banner' => [
+            'translatable' => false,
+            'type' => 'media',
+            'default' => null,
+        ],
         'addresses' => [
             'translatable' => true,
             'use_fallback_locale_translation' => false,

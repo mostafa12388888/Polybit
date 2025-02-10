@@ -6,6 +6,7 @@ use App\Models\CuratorMedia;
 use App\Models\Setting;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Actions\Action;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
@@ -33,11 +34,15 @@ class Settings extends Page
 
     public $addresses = [];
 
-    public $favicon;
-
     public $logo = [];
 
     public $darkmode_logo = [];
+
+    public $favicon;
+
+    public $header_banner;
+
+    public $darkmode_header_banner;
 
     public $emails = [];
 
@@ -100,14 +105,24 @@ class Settings extends Page
 
                         Textarea::make('app_description')->autosize()->translatable(),
 
-                        CuratorPicker::make('logo')->constrained()
-                            ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
+                        Group::make()->schema([
+                            CuratorPicker::make('logo')->constrained()
+                                ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
 
-                        CuratorPicker::make('darkmode_logo')->constrained()
-                            ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
+                            CuratorPicker::make('darkmode_logo')->constrained()
+                                ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm')->translatable(),
+                        ])->columns(2),
 
                         CuratorPicker::make('favicon')->constrained()
                             ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm'),
+
+                        Group::make()->schema([
+                            CuratorPicker::make('header_banner')->constrained()
+                                ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm'),
+
+                            CuratorPicker::make('darkmode_header_banner')->constrained()
+                                ->buttonLabel('admin.Add Image')->acceptedFileTypes(['image/*'])->size('sm'),
+                        ])->columns(2),
                     ]),
                     Tab::make('Contact details')->schema([
                         Repeater::make('addresses')->label('admin.Addresses')->schema([

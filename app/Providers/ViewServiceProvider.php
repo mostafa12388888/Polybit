@@ -35,7 +35,7 @@ class ViewServiceProvider extends ServiceProvider
         $darkmode = request()->cookie('darkMode');
         $darkmode = in_array($darkmode, ['true', 'false']) ? json_decode($darkmode) : null;
 
-        Facades\View::composer(['layouts.app', 'layouts.guest', 'components.application-logo'], function (View $view) use ($darkmode) {
+        Facades\View::composer(['layouts.app', 'layouts.guest', 'components.application-logo', 'components.header-banner'], function (View $view) use ($darkmode) {
             return $view->with(compact('darkmode'));
         });
 

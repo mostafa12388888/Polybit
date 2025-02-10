@@ -177,4 +177,6 @@ return [
     'Addresses' => 'العناوين',
     'Location name' => 'اسم الموقع',
     'EG: Administrative headquarter' => 'مثال: المقر الإداري',
+    'Header banner' => 'صورة البانر',
+    'Darkmode header banner' => 'صورة البانر للوضع المظلم',
 ];
