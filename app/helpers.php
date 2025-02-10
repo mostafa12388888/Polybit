@@ -96,7 +96,21 @@ if (! function_exists('setting')) {
 if (! function_exists('html')) {
     function html($tiptap_content)
     {
-        return $tiptap_content ? tiptap_converter()->asHTML($tiptap_content) : '';
+        $html = $tiptap_content ? tiptap_converter()->asHTML($tiptap_content) : '';
+
+        // Remove all inline styles
+        // $html = preg_replace('/\s*style="[^"]*"/i', '', $html);
+
+        // Remove all inline styles except text-align and font-style
+        $html = preg_replace_callback('/style="([^"]+)"/i', function ($matches) {
+            $filtered = implode('; ', array_filter(explode(';', $matches[1]), function ($style) {
+                return preg_match('/^\s*(text-align|font-style)\s*:/i', $style);
+            }));
+
+            return $filtered ? 'style="'.trim($filtered).'"' : '';
+        }, $html);
+
+        return $html;
     }
 }
 
