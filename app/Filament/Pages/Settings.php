@@ -115,16 +115,17 @@ class Settings extends Page
         try {
             $theme = file_get_contents(base_path('theme.json'));
             $theme = json_decode($theme, true);
-            $theme_colors = $theme['colors'];
-            $this->theme_colors = $theme_colors;
-
-            foreach (['primary', 'secondary', 'dark'] as $color) {
-                $this->{$color.'_color'} = optional($theme_colors[$color] ?: [])['DEFAULT'];
-                $this->{$color.'_color_shades'} = null;
-                $this->{$color.'_color_shades'} = $theme_colors[$color] ?: [];
-            }
         } catch (\Throwable $th) {
             //throw $th;
+        }
+
+        $theme_colors = optional($theme ?? [])['colors'] ?: [];
+        $this->theme_colors = $theme_colors;
+
+        foreach (['primary', 'secondary', 'dark'] as $color) {
+            $this->{$color.'_color'} = optional($theme_colors[$color] ?? [])['DEFAULT'];
+            $this->{$color.'_color_shades'} = $theme_colors[$color] ?? collect(['DEFAULT', 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950])
+                ->mapWithKeys(fn ($shade) => [$shade => null])->toArray();
         }
     }
 
