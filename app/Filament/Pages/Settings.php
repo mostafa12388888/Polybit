@@ -20,7 +20,6 @@ use Filament\Pages\Page;
 use Filament\Support\Colors\Color;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Cache;
-use Symfony\Component\Process\Process;
 
 class Settings extends Page
 {
@@ -250,23 +249,18 @@ class Settings extends Page
 
     public function update_theme_colors($data)
     {
-
         $theme_colors = collect($data)->only(['primary_color_shades', 'secondary_color_shades', 'dark_color_shades'])
             ->mapWithKeys(fn ($value, $key) => [str_replace('_color_shades', '', $key) => $value])
             ->toArray();
 
         $colors_updated = $theme_colors != $this->theme_colors;
 
-        if (! $colors_updated) {
-            return;
+        if ($colors_updated) {
+            file_put_contents(base_path('theme.json'), json_encode([
+                'applied' => false,
+                'colors' => $theme_colors,
+            ], JSON_PRETTY_PRINT));
         }
-
-        file_put_contents(base_path('theme.json'), json_encode(['colors' => $theme_colors], JSON_PRETTY_PRINT));
-
-        $process = Process::fromShellCommandline('export PATH=$PATH:./node_modules/.bin && npm run build')
-            ->setWorkingDirectory(base_path());
-        $process->run();
-        $process->wait();
     }
 
     public static function getNavigationLabel(): string
