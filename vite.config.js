@@ -5,8 +5,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app-theme-1.css',
-                'resources/css/app-theme-2.css',
+                'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/css/filament/dashboard/theme.css',
             ],

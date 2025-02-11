@@ -1,7 +1,7 @@
 @import "@glidejs/glide/dist/css/glide.core.min.css";
 @import "@glidejs/glide/dist/css/glide.theme.min.css";
 
-@config "../../tailwind-theme-1.config.js";
+@config "../../tailwind.config.js";
 
 @tailwind base;
 @tailwind components;

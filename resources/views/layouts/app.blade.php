@@ -109,7 +109,7 @@
         </style>
     @endif
 
-    @vite(['resources/css/app-' . config('app.theme') . '.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{ $head ?? null }}
 

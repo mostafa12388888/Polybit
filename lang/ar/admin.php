@@ -179,4 +179,11 @@ return [
     'EG: Administrative headquarter' => 'مثال: المقر الإداري',
     'Header banner' => 'صورة البانر',
     'Darkmode header banner' => 'صورة البانر للوضع المظلم',
+    'Primary color' => 'اللون الأساسي',
+    'Secondary color' => 'اللون الثانوي',
+    'Dark color' => 'اللون الداكن',
+    'Primary color shades' => 'درجات اللون الأساسي',
+    'Secondary color shades' => 'درجات اللون الثانوي',
+    'Dark color shades' => 'درجات اللون الداكن',
+    'Theme' => 'المظهر',
 ];
