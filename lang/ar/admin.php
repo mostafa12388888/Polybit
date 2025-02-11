@@ -186,4 +186,6 @@ return [
     'Secondary color shades' => 'درجات اللون الثانوي',
     'Dark color shades' => 'درجات اللون الداكن',
     'Theme' => 'المظهر',
+    'Theme Update in Progress.' => 'تحديث المظهر قيد التنفيذ',
+    'Theme settings can take up to 30 seconds to be applied.' => 'قد يستغرق تطبيق إعدادات المظهر ما يصل إلى 30 ثانية',
 ];

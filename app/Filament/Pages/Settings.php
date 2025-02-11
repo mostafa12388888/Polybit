@@ -260,6 +260,9 @@ class Settings extends Page
                 'applied' => false,
                 'colors' => $theme_colors,
             ], JSON_PRETTY_PRINT));
+
+            Notification::make()->title(__('admin.Theme Update in Progress.'))
+                ->body(__('admin.Theme settings can take up to 30 seconds to be applied.'))->duration(20000)->info()->send();
         }
     }
 
