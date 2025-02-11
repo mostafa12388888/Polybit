@@ -128,7 +128,7 @@
                 @endif
 
                 <div class="container mx-auto {{ setting('header_banner') ? 'py-14 lg:py-20' : '' }} z-20 relative">
-                    <div class="{{ setting('header_banner') ? (($subheading ?? null) ? 'px-3 py-2' : 'px-2.5 pt-1.5 pb-0.5') . ' rounded-3xl bg-secondary-500 inline-block text-dark-100' : '' }}">
+                    <div class="{{ setting('header_banner') ? (($subheading ?? null) ? 'px-3 py-2' : 'px-2 py-1') . ' rounded-3xl bg-secondary-500 inline-block text-dark-100' : '' }}">
                         <h1 class="uppercase font-semibold text-xl lg:text-2xl leading-tight {{ setting('header_banner') ? 'text-dark-100' : 'text-gray-800 dark:text-dark-100' }}">
                             {{ $heading }}
                         </h1>
