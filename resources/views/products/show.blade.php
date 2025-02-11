@@ -15,7 +15,7 @@
         @endphp
 
         @if ($category)
-            <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center mt-4">
+            <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center">
                 <div class="flex gap-2 items-center">
                     <a href="{{ route('store-categories.show', $category) }}" class="text-sm font-light line-clamp-1">{{ $category->name }}</a>
                 </div>

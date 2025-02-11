@@ -16,7 +16,7 @@
     <x-slot name="heading">{{ $post->title }}</x-slot>
 
     <x-slot name="subheading">
-        <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center mt-6">
+        <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center">
             <div class="flex gap-2 items-center">
                 <x-icons.user class="flex-shrink-0 !w-4 !h-4" />
                 <span class="text-sm font-light line-clamp-1">{{ $post->user->name }}</span>

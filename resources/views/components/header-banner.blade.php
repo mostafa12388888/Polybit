@@ -1,14 +1,11 @@
-@props(['width' => 1200])
+@props(['width' => 640, 'height' => 220])
 
 @if (setting('header_banner') || setting('darkmode_header_banner'))
     @php
         $header_banner = setting('header_banner') ?: setting('darkmode_header_banner');
         $darkmode_header_banner = setting('darkmode_header_banner') ?: setting('header_banner');
-        $header_banner_url = $header_banner?->getSignedUrl(['w' => $width, 'fm' => 'webp', 'q' => 70]);
-        $darkmode_header_banner_url = $darkmode_header_banner->getSignedUrl(['w' => $width, 'fm' => 'webp']);
-        $original_height = $darkmode ? $darkmode_header_banner->height : $header_banner->height;
-        $original_width = $darkmode ? $darkmode_header_banner->width : $header_banner->width;
-        $height = $original_width ? ceil($width * $original_height / $original_width) : null;
+        $header_banner_url = $header_banner?->getSignedUrl(['w' => $width, 'h' => $height, 'fit' => 'crop', 'fm' => 'webp', 'q' => 60]);
+        $darkmode_header_banner_url = $darkmode_header_banner->getSignedUrl(['w' => $width, 'h' => $height, 'fit' => 'crop', 'fm' => 'webp', 'q' => 60]);
     @endphp
 
     <x-img src="{!! $darkmode ? $darkmode_header_banner_url : $header_banner_url !!}" x-bind:src="darkMode ? '{!! $darkmode_header_banner_url !!}' : '{!! $header_banner_url !!}'" alt="{{ __(':app_name header_banner', ['app_name' => config('app.name')]) }}" {{ $attributes->merge(array_filter([

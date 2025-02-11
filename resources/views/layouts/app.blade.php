@@ -127,12 +127,18 @@
                     <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none bg-header"></div>
                 @endif
 
-                <div class="container mx-auto py-16 lg:py-20 z-20 relative">
-                    <h1 class="uppercase font-semibold text-xl lg:text-2xl text-gray-800 dark:text-dark-100 leading-tight">
-                        {{ $heading }}
-                    </h1>
-
-                    {{ $subheading ?? '' }}
+                <div class="container mx-auto py-24 lg:py-28 z-20 relative">
+                    <div class="{{ setting('header_banner') ? 'px-10 py-6 rounded-full bg-secondary-500 inline-block text-dark-100' : '' }}">
+                        <h1 class="uppercase font-semibold text-xl lg:text-2xl leading-tight {{ setting('header_banner') ? 'text-dark-100' : 'text-gray-800 dark:text-dark-100' }}">
+                            {{ $heading }}
+                        </h1>
+        
+                        @if ($subheading ?? null)
+                            <div class="{{ setting('header_banner') ? 'mt-1' : 'mt-5' }}">
+                                {{ $subheading }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         @endif
