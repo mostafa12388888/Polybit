@@ -26,7 +26,7 @@
                                 <span class="flex-grow border-t border-dashed border-dark-200 dark:border-dark-700 max-lg:hidden"></span>
         
                                 <div class="flex w-auto gap-2 flex-wrap">
-                                    <x-link href="{{ $file->getSignedUrl() }}" target="_blank" styling="light" class="flex items-center justify-center gap-2 flex-grow dark:lg:!bg-dark-600 max-lg:bg-primary-600/85 max-lg:rounded-full max-lg:aspect-square max-lg:text-white max-lg:p-1.5">
+                                    <x-link href="{{ $file->getSignedUrl() }}" target="_blank" rel="noopener" styling="light" class="flex items-center justify-center gap-2 flex-grow dark:lg:!bg-dark-600 max-lg:bg-primary-600/85 max-lg:rounded-full max-lg:aspect-square max-lg:text-white max-lg:p-1.5">
                                         <x-icons.download class="!w-5 !h-5" />
                                         <span class="max-lg:sr-only">{{ __('Download') }}</span>
                                         <span class="uppercase max-lg:sr-only">[{{ $file->ext }}]</span>

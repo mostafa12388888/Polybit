@@ -125,7 +125,7 @@
         <div class="container mx-auto flex items-center justify-center gap-4">
             <p>
                 <span>{{ __("© :year :app", ['year' => date('Y'), 'app' => config('app.name')]) }},</span>
-                <a href="https://brmjyat.com" target="_blank">{{ __('developed by brmjyat') }}.</a>
+                <a href="https://brmjyat.com" target="_blank" rel="noopener">{{ __('developed by brmjyat') }}.</a>
             </p>
         </div>
     </div>
