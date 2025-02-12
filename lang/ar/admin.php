@@ -188,4 +188,8 @@ return [
     'Theme' => 'المظهر',
     'Theme Update in Progress.' => 'تحديث المظهر قيد التنفيذ',
     'Theme settings can take up to 30 seconds to be applied.' => 'قد يستغرق تطبيق إعدادات المظهر ما يصل إلى 30 ثانية',
+    'Resetting theme settings in progress.' => 'جارٍ إعادة تعيين المظهر للإعدادات الافتراضية.',
+    'Reset to default' => 'إعادة تعيين للقيم الإفتراضية',
+    'Reset theme colors to default' => 'إعادة تعيين المظهر للإعدادات الافتراضية',
+    'Reset the theme colors to the default values. This action cannot be undone.' => 'إعادة تعيين إعدادت المظهر إلى القيم الافتراضية. لا يمكن التراجع عن هذا الإجراء.',
 ];

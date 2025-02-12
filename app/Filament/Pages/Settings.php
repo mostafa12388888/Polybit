@@ -5,7 +5,8 @@ namespace App\Filament\Pages;
 use App\Models\CuratorMedia;
 use App\Models\Setting;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Filament\Actions\Action;
+use Filament\Forms\Components\Actions;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Repeater;
@@ -111,6 +112,11 @@ class Settings extends Page
             }
         }
 
+        $this->set_theme_colors();
+    }
+
+    public function set_theme_colors()
+    {
         try {
             $theme = file_get_contents(base_path('theme.json'));
             $theme = json_decode($theme, true);
@@ -186,6 +192,20 @@ class Settings extends Page
                             ])->columnSpan(1);
                         }
 
+                        $fields[] = Section::make()->schema([
+                            \Filament\Forms\Components\Placeholder::make('info')->hiddenLabel()
+                                ->content(__('admin.Reset the theme colors to the default values. This action cannot be undone.')),
+
+                            Actions::make([
+                                Action::make('reset_theme_colors')
+                                    ->label(__('admin.Reset to default'))
+                                    ->color('danger')
+                                    ->requiresConfirmation()
+                                    ->modalHeading(__('admin.Reset theme colors to default'))
+                                    ->action(fn () => $this->reset_theme_colors()),
+                            ]),
+                        ]);
+
                         return $fields;
                     }),
                     Tab::make('Contact details')->schema([
@@ -211,7 +231,7 @@ class Settings extends Page
     public function getFormActions(): array
     {
         return [
-            Action::make('save')
+            \Filament\Actions\Action::make('save')
                 ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
                 ->submit('save'),
         ];
@@ -264,6 +284,27 @@ class Settings extends Page
             Notification::make()->title(__('admin.Theme Update in Progress.'))
                 ->body(__('admin.Theme settings can take up to 30 seconds to be applied.'))->duration(20000)->info()->send();
         }
+    }
+
+    public function reset_theme_colors()
+    {
+        $default_theme = ['applied' => false];
+
+        try {
+            if (file_exists(base_path('theme.json.bak'))) {
+                $default_theme = file_get_contents(base_path('theme.json.bak'));
+                $default_theme = json_decode($default_theme, true);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        file_put_contents(base_path('theme.json'), json_encode($default_theme, JSON_PRETTY_PRINT));
+
+        $this->set_theme_colors();
+
+        Notification::make()->title(__('admin.Resetting theme settings in progress.'))
+            ->body(__('admin.Theme settings can take up to 30 seconds to be applied.'))->duration(20000)->info()->send();
     }
 
     public static function getNavigationLabel(): string
