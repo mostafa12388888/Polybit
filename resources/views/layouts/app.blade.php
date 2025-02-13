@@ -39,7 +39,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <title>{!! $title !!}</title>
+    <title>{{ $title }}</title>
     <meta name="description" content="{{ $description ?? setting('app_description') }}" />
 
     @if($keywords ?? null)
