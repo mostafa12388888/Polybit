@@ -45,7 +45,14 @@
                                 <h2 class="font-bold text-lg">{{ __('Phone Number') }}</h2>
                                 <p class="leading-loose dark:text-dark-200">
                                     @foreach ($phones ?: [] as $phone)
-                                        <x-link class="w-full" href="tel:{{ $phone }}" dir="ltr">{{ $phone }}</x-link>
+                                        @php
+                                            try {
+                                                $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
+                                            } catch (\Throwable $th) {
+                                                continue;
+                                            }
+                                        @endphp
+                                        <x-link class="w-full" href="tel:{{ $phone }}" dir="ltr">{{ $phone->formatNational() }}</x-link>
                                     @endforeach
                                 </p>
                             </div>

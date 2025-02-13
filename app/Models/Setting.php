@@ -70,6 +70,11 @@ class Setting extends Model
             'type' => 'array',
             'default' => [],
         ],
+        'whatsapp' => [
+            'translatable' => false,
+            'type' => 'string',
+            'default' => null,
+        ],
         'social_links' => [
             'translatable' => false,
             'type' => 'array',

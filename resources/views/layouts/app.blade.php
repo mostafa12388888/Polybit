@@ -165,6 +165,8 @@
 
     @include('layouts.partials._bottom-navbar')
 
+    @includeWhen(setting('whatsapp'), 'layouts.partials._whatsapp-button')
+
     @includeIf('layouts.optional._scripts')
 
     {{ $scripts ?? null }}

@@ -128,6 +128,7 @@ return [
     'Email address' => 'البريد الالكتروني',
     'Address' => 'العنوان',
     'Phone numbers' => 'أرقام الهاتف',
+    'Whatsapp' => 'رقم الواتساب',
     'Phone number' => 'رقم الهاتف',
     'Social links' => 'حسابات مواقع التواصل الإجتماعي',
     'Social link' => 'حساب موقع التواصل الإجتماعي',

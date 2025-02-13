@@ -52,6 +52,8 @@ class Settings extends Page
 
     public $phones = [];
 
+    public $whatsapp = null;
+
     public $social_links = [];
 
     public $location = null;
@@ -217,8 +219,9 @@ class Settings extends Page
                             TextInput::make('email')->email(),
                         )->defaultItems(3),
                         Repeater::make('phones')->label('admin.Phone numbers')->simple(
-                            TextInput::make('phone'),
+                            TextInput::make('phone')->rules('phone'),
                         )->defaultItems(3),
+                        TextInput::make('whatsapp')->rules('phone'),
                         Repeater::make('social_links')->simple(
                             TextInput::make('social_link')->activeUrl(),
                         )->defaultItems(3),
