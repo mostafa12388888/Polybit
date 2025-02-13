@@ -1,7 +1,7 @@
 
-<x-slot name="title">{{ __('Wishlist') }}</x-slot>
+<x-slot name="title">{!! __('Wishlist') !!}</x-slot>
 
-<x-slot name="heading">{{ __('Wishlist') }}</x-slot>
+<x-slot name="heading">{!! __('Wishlist') !!}</x-slot>
 
 <x-slot name="breadcrumbs">
     <x-breadcrumb :href="route('products.index')">{{ __('Products') }}</x-breadcrumb>

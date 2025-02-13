@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="title">{{ $post->meta('title') }}</x-slot>
+    <x-slot name="title">{!! $post->meta('title') !!}</x-slot>
 
-    <x-slot name="description">{{ $post->meta('description') }}</x-slot>
+    <x-slot name="description">{!! $post->meta('description') !!}</x-slot>
 
-    <x-slot name="keywords">{{ $post->meta('keywords') }}</x-slot>
+    <x-slot name="keywords">{!! $post->meta('keywords') !!}</x-slot>
 
     <x-slot name="image">{!! $post->meta('image') !!}</x-slot>
 
@@ -13,7 +13,7 @@
     
     <x-slot name="canonical">{{ request()->url() }}</x-slot>
 
-    <x-slot name="heading">{{ $post->title }}</x-slot>
+    <x-slot name="heading">{!! $post->title !!}</x-slot>
 
     <x-slot name="subheading">
         <div class="flex gap-x-4 gap-y-3 flex-wrap text-sm items-center">

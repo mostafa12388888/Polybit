@@ -1,13 +1,13 @@
 <x-app-layout>
-    <x-slot name="title">{{ $project->meta('title') }}</x-slot>
+    <x-slot name="title">{!! $project->meta('title') !!}</x-slot>
 
-    <x-slot name="description">{{ $project->meta('description') }}</x-slot>
+    <x-slot name="description">{!! $project->meta('description') !!}</x-slot>
 
-    <x-slot name="keywords">{{ $project->meta('keywords') }}</x-slot>
+    <x-slot name="keywords">{!! $project->meta('keywords') !!}</x-slot>
 
     <x-slot name="image">{!! $project->meta('image') !!}</x-slot>
     
-    <x-slot name="heading">{{ $project->title }}</x-slot>
+    <x-slot name="heading">{!! $project->title !!}</x-slot>
 
     @if (! $project->translated())
         <x-slot name="canonical">{{ app()->getLocale() }}</x-slot>

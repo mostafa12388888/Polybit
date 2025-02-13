@@ -1,13 +1,13 @@
 <x-app-layout>
-    <x-slot name="title">{{ $product->meta('title') }}</x-slot>
+    <x-slot name="title">{!! $product->meta('title') !!}</x-slot>
 
-    <x-slot name="description">{{ $product->meta('description') }}</x-slot>
+    <x-slot name="description">{!! $product->meta('description') !!}</x-slot>
 
-    <x-slot name="keywords">{{ $product->meta('keywords') }}</x-slot>
+    <x-slot name="keywords">{!! $product->meta('keywords') !!}</x-slot>
 
     <x-slot name="image">{!! $product->meta('image') !!}</x-slot>
 
-    <x-slot name="heading">{{ $product->name }}</x-slot>
+    <x-slot name="heading">{!! $product->name !!}</x-slot>
 
     <x-slot name="subheading">
         @php

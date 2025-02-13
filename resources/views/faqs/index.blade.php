@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="title">{{ __('Frequently asked questions') }}</x-slot>
+    <x-slot name="title">{!! __('Frequently asked questions') !!}</x-slot>
     
-    <x-slot name="heading">{{ __('Frequently asked questions') }}</x-slot>
+    <x-slot name="heading">{!! __('Frequently asked questions') !!}</x-slot>
 
     <x-slot name="breadcrumbs">
         <x-breadcrumb :last="true">{{ __('FAQ') }}</x-breadcrumb>

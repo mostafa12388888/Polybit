@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="heading">{{ str()->title(fake()->sentence(6)) }}</x-slot>
+    <x-slot name="heading">{!! str()->title(fake()->sentence(6)) !!}</x-slot>
 
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('projects.index')">{{ __('Products') }}</x-breadcrumb>

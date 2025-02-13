@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="title">{{ __('Profile') }}</x-slot>
+    <x-slot name="title">{!! __('Profile') !!}</x-slot>
     
-    <x-slot name="heading">{{ __('Profile') }}</x-slot>
+    <x-slot name="heading">{!! __('Profile') !!}</x-slot>
 
     <x-slot name="breadcrumbs">
         <x-breadcrumb :last="true">{{ __('Profile') }}</x-breadcrumb>

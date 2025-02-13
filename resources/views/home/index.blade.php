@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">{{ __('Home') }}</x-slot>
+    <x-slot name="title">{!! __('Home') !!}</x-slot>
 
     @if ($slides->count())
         @if (config('app.theme') == 'theme-1')

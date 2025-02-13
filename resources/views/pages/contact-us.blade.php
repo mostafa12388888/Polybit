@@ -1,7 +1,7 @@
 
-<x-slot name="title">{{ __('Contact Us') }}</x-slot>
+<x-slot name="title">{!! __('Contact Us') !!}</x-slot>
 
-<x-slot name="heading">{{ __('Contact Us') }}</x-slot>
+<x-slot name="heading">{!! __('Contact Us') !!}</x-slot>
 
 <x-slot name="breadcrumbs">
     <x-breadcrumb :last="true">{{ __('Contact Us') }}</x-breadcrumb>
