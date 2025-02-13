@@ -87,7 +87,7 @@ class ViewServiceProvider extends ServiceProvider
 
             $title = (string) $view->title ?: ($app_name ?: 'App');
 
-            $title .= (string) $view->title && $app_name ? ' - '.$app_name : '';
+            $title .= (string) $view->title && $app_name && ($view->title != $app_name) ? ' - '.$app_name : '';
 
             $description = (string) $view->description ?: setting('app_description');
 
