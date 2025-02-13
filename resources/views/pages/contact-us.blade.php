@@ -46,9 +46,9 @@
                                 <p class="leading-loose dark:text-dark-200">
                                     @foreach ($phones ?: [] as $phone)
                                         @php
-                                            try {
-                                                $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
-                                            } catch (\Throwable $th) {
+                                            $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
+                                            
+                                            if(!$phone->getCountry()) {
                                                 continue;
                                             }
                                         @endphp

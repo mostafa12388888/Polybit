@@ -21,9 +21,9 @@
                 <div class="flex md:flex-col flex-wrap items-stretch justify-stretch gap-2 sm:gap-4 order-3 md:order-2">
                     @foreach (setting('phones') ?: [] as $phone)
                         @php
-                            try {
-                                $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
-                            } catch (\Throwable $th) {
+                            $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
+                            
+                            if(!$phone->getCountry()) {
                                 continue;
                             }
                         @endphp
