@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <h1 class="sr-only">{{ __('Register New Account') }}</h1>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
