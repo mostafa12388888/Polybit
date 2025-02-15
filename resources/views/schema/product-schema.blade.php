@@ -10,7 +10,7 @@
                 "name": "{!! schema_text($product->name) !!}",
                 "image": [{!! 
                     $product->images->count() ? collect($product->images)->filter()
-                        ->map(fn($image) => $image->getSignedUrl(['w' => 1280, 'q' => 70]))
+                        ->map(fn($image) => $image->getSignedUrl(['fm' => 'webp', 'w' => 1280, 'q' => 70]))
                         ->map(fn($image_path) => asset($image_path))
                         ->map(fn($image_link) => '"'.$image_link.'"')
                         ->implode(', ') : '"' . $product->meta('image') . '"'

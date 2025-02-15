@@ -8,7 +8,7 @@
     }
 
     $first_image = $product->image ? [
-        'url' => $product->image?->getSignedUrl(['w' => 720, 'q' => 70]),
+        'url' => $product->image?->getSignedUrl(['fm' => 'webp', 'w' => 720, 'q' => 70]),
         'type' => 'image',
     ] : [
         'url' => collect($embeded_urls)->first(),
@@ -21,8 +21,8 @@
     images: [
         @foreach([$images->shift()] as $image)
             {
-                'thumb': '{{ $image->getSignedUrl(['w' => 80, 'h' => 80, 'fit' => 'crop', 'q' => 70]) }}',
-                'full': '{{ $image->getSignedUrl(['w' => 720, 'q' => 70]) }}',
+                'thumb': '{{ $image->getSignedUrl(['fm' => 'webp', 'w' => 80, 'h' => 80, 'fit' => 'crop', 'q' => 70]) }}',
+                'full': '{{ $image->getSignedUrl(['fm' => 'webp', 'w' => 720, 'q' => 70]) }}',
                 'alt': '{{ $image->alt ?? $product->name }}',
             },
         @endforeach
@@ -34,8 +34,8 @@
         @endforeach
         @foreach($images as $image)
             {
-                'thumb': '{{ $image->getSignedUrl(['w' => 80, 'h' => 80, 'fit' => 'crop', 'q' => 70]) }}',
-                'full': '{{ $image->getSignedUrl(['w' => 720, 'q' => 70]) }}',
+                'thumb': '{{ $image->getSignedUrl(['fm' => 'webp', 'w' => 80, 'h' => 80, 'fit' => 'crop', 'q' => 70]) }}',
+                'full': '{{ $image->getSignedUrl(['fm' => 'webp', 'w' => 720, 'q' => 70]) }}',
                 'alt': '{{ $image->alt ?? $product->name }}',
             },
         @endforeach
