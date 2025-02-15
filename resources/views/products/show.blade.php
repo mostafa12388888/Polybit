@@ -22,10 +22,6 @@
             </div>
         @endif
     </x-slot>
-
-    @if (! $product->translated())
-        <x-slot name="canonical">{{ request()->url() }}</x-slot>
-    @endif
     
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('products.index')">{{ __('Products') }}</x-breadcrumb>

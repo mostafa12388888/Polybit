@@ -9,9 +9,13 @@
     
     <x-slot name="heading">{!! $project->title !!}</x-slot>
 
-    @if (! $project->translated())
-        <x-slot name="canonical">{{ app()->getLocale() }}</x-slot>
-    @endif
+    <x-slot name="alternates">
+        @foreach ($project->locales() as $locale)
+            @if ($locale != app()->getLocale())
+                <link rel="alternate" href="{{ localized_url($locale) }}" hreflang="{{ $locale }}"/>
+            @endif
+        @endforeach
+    </x-slot>
 
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('projects.index')">{{ __('Projects') }}</x-breadcrumb>

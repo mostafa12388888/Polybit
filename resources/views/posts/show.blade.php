@@ -10,8 +10,14 @@
     <x-slot name="head">
         <link rel="preload" as="image" href="{!! $post->meta('image') !!}" fetchpriority="high" />
     </x-slot>
-    
-    <x-slot name="canonical">{{ request()->url() }}</x-slot>
+
+    <x-slot name="alternates">
+        @foreach ($post->locales() as $locale)
+            @if ($locale != app()->getLocale())
+                <link rel="alternate" href="{{ localized_url($locale) }}" hreflang="{{ $locale }}"/>
+            @endif
+        @endforeach
+    </x-slot>
 
     <x-slot name="heading">{!! $post->title !!}</x-slot>
 

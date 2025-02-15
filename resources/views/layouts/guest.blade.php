@@ -13,6 +13,12 @@
         
         <link rel="canonical" href="{{ $canonical ?? request()->url() }}" />
 
+        @foreach (array_keys(locales(true)) as $locale)
+            @if ($locale != app()->getLocale())
+                <link rel="alternate" href="{{ localized_url($locale) }}" hreflang="{{ $locale }}"/>
+            @endif
+        @endforeach
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
