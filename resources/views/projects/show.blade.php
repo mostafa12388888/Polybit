@@ -9,14 +9,6 @@
     
     <x-slot name="heading">{!! $project->title !!}</x-slot>
 
-    <x-slot name="alternates">
-        @foreach ($project->locales() as $locale)
-            @if ($locale != app()->getLocale())
-                <link rel="alternate" href="{{ localized_url($locale) }}" hreflang="{{ $locale }}"/>
-            @endif
-        @endforeach
-    </x-slot>
-
     <x-slot name="breadcrumbs">
         <x-breadcrumb :href="route('projects.index')">{{ __('Projects') }}</x-breadcrumb>
         <x-breadcrumb :last="true">{{ str()->limit($project->title, 17) }}</x-breadcrumb>

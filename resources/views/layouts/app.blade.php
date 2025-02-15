@@ -68,15 +68,9 @@
 
     <link rel="canonical" href="{{ $canonical ?? request()->url() }}" />
 
-    @if (isset($alternates))
-        {!! $alternates !!}
-    @else
-        @foreach (array_keys(locales(true)) as $locale)
-            @if ($locale != app()->getLocale())
-                <link rel="alternate" href="{{ localized_url($locale) }}" hreflang="{{ $locale }}"/>
-            @endif
-        @endforeach
-    @endif
+    @foreach ($alternate_locales as $locale)
+        <link rel="alternate" href="{{ localized_url($locale) }}" hreflang="{{ $locale }}"/>
+    @endforeach
 
     @if (app()->getLocale() == 'ar')
         <style>

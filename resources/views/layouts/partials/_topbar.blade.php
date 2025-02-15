@@ -26,19 +26,32 @@
                         <span>Dark Mode</span>
                     </x-button>
                 </div>
+                    
+                <div class="flex max-md:flex-grow gap-4">
+                    @forelse ($alternate_locales as $alternate_locale)
+                        @php($alternate_locale = collect(locales(false))->where('code', $alternate_locale)->first())
 
-                @if ($locale)
-                    <div class="flex max-md:flex-grow">
-                        <x-link href="{{ localized_url($locale['code']) }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
+                        <x-link href="{{ localized_url($alternate_locale['code']) }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
                             <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
                                 <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
-                                <span>{{ $locale['name'] ?? '' }}</span>
+                                <span>{{ $alternate_locale['name'] ?? '' }}</span>
                             </div>
                             
                             <x-icons.chevron-down class="md:hidden !w-4 !h-4" />
                         </x-link>
-                    </div>
-                @endif
+                    @empty
+                        @if ($locale)
+                            <x-link href="{{ $fallback_alternate_url ?? url('/') }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
+                                <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
+                                    <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
+                                    <span>{{ $locale['name'] ?? '' }}</span>
+                                </div>
+                                
+                                <x-icons.chevron-down class="md:hidden !w-4 !h-4" />
+                            </x-link>
+                        @endif
+                    @endforelse
+                </div>
             </div>
 
             @if ($phone = collect(setting('phones') ?: [])->first())

@@ -39,6 +39,23 @@ class ViewServiceProvider extends ServiceProvider
             return $view->with(compact('darkmode'));
         });
 
+        Facades\View::composer(['layouts.app', 'layouts.guest', 'layouts.partials._topbar', 'layouts.partials._header'], function (View $view) use ($darkmode) {
+            $locales = array_keys(locales());
+            $fallback_alternate_url = url('/');
+
+            if (request()->post instanceof Post) {
+                $locales = request()->post->locales();
+                $fallback_alternate_url = route('posts.index');
+            } elseif (request()->project instanceof Project) {
+                $locales = request()->project->locales();
+                $fallback_alternate_url = route('projects.index');
+            }
+
+            $alternate_locales = collect($locales)?->filter(fn ($locale) => $locale != app()->getLocale())?->toArray();
+
+            return $view->with(compact('alternate_locales', 'fallback_alternate_url'));
+        });
+
         Facades\View::composer(['layouts.partials._header', 'layouts.partials._footer'], function (View $view) use ($darkmode) {
             $pages = Cache::remember('pages', 60 * 60, fn () => Page::orderBy('order')->get());
 
