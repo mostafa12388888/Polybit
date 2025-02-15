@@ -17,7 +17,7 @@ class ViewProject extends ViewRecord
         return [
             Actions\LocaleSwitcher::make(),
             Actions\Action::make('preview')->hiddenLabel()->color('gray')->icon('heroicon-o-arrow-top-right-on-square')
-                ->url(fn ($record) => route('projects.show', $record), true),
+                ->url(fn ($record) => localized_url($record->locales()[0] ?? app()->getLocale(), route('projects.show', $record)), true),
             Actions\EditAction::make(),
         ];
     }

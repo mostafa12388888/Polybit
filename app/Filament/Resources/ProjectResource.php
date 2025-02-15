@@ -88,7 +88,7 @@ class ProjectResource extends Resource
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
-                        ->url(fn ($record) => route('projects.show', $record), true),
+                        ->url(fn ($record) => localized_url($record->locales()[0] ?? app()->getLocale(), route('projects.show', $record)), true),
                 ]),
             ])
             ->bulkActions([

@@ -88,7 +88,7 @@ class PostResource extends Resource
                     Tables\Actions\EditAction::make()->url(fn ($record) => self::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
-                        ->url(fn ($record) => route('posts.show', $record), true),
+                        ->url(fn ($record) => localized_url($record->locales()[0] ?? app()->getLocale(), route('posts.show', $record)), true),
                 ]),
             ])
             ->bulkActions([
