@@ -41,7 +41,7 @@
                         </x-link>
                     @empty
                         @if ($locale)
-                            <x-link href="{{ $fallback_alternate_url ?? url('/') }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
+                            <x-link href="{{ localized_url($locale['code'], $fallback_alternate_url ?? url('/')) }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
                                 <div class="!p-0 flex-grow flex md:flex-row-reverse gap-1 items-center">
                                     <x-icons.globe-africa stroke-width="1" class="!w-5 !h-5" />
                                     <span>{{ $locale['name'] ?? '' }}</span>

@@ -47,7 +47,7 @@
                     </x-link>
                 @empty
                     @if ($locale)
-                        <x-link href="{{ $fallback_alternate_url ?? url('/') }}" styling="light" class="flex md:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
+                        <x-link href="{{ localized_url($locale['code'], $fallback_alternate_url ?? url('/')) }}" styling="light" class="flex md:hidden !rounded-md !px-3 h-11 items-center justify-center relative">
                             <div class="!p-0 flex-grow flex flex-row-reverse gap-1 items-center">
                                 <x-icons.globe-africa stroke-width="1.3" class="!w-5 !h-5" />
                                 <span class="ltr:pt-0.5 ltr:text-lg max-[385px]:hidden">{{ $locale['symbol'] ?? '' }}</span>
