@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <x-slot name="title">{!! __('Reset Password') !!}</x-slot>
+
     <h1 class="sr-only">{{ __('Reset Password') }}</h1>
 
     <form method="POST" action="{{ route('password.store') }}">

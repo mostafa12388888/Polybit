@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <x-slot name="title">{!! __('Reset Password') !!}</x-slot>
+
     <h1 class="sr-only">{{ __('Forgot your password?') }}</h1>
 
     <div class="mb-4 text-sm text-gray-600 dark:text-dark-300">

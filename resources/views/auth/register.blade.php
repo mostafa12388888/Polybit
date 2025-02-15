@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <x-slot name="title">{!! __('Register New Account') !!}</x-slot>
+
     <h1 class="sr-only">{{ __('Register New Account') }}</h1>
 
     <form method="POST" action="{{ route('register') }}">
