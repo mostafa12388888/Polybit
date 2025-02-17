@@ -29,8 +29,6 @@ class Post extends Model
         ],
     ];
 
-    const SLUG_ARABIC_ALLOWED = true;
-
     public function getRouteKeyName()
     {
         return 'slug';
