@@ -117,7 +117,11 @@ if (! function_exists('html')) {
 if (! function_exists('text')) {
     function text($tiptap_content)
     {
-        return $tiptap_content ? tiptap_converter()->asText($tiptap_content) : '';
+        $text = $tiptap_content ? html_entity_decode(tiptap_converter()->asText($tiptap_content)) : '';
+
+        $text = str_replace("\u{A0}", '', $text);
+
+        return preg_replace('/\s+/', ' ', trim($text));
     }
 }
 
