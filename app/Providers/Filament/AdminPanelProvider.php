@@ -91,6 +91,7 @@ class AdminPanelProvider extends PanelProvider
 
                 FilamentSpatieRolesPermissionsPlugin::make(),
             ]))
+            ->renderHook('panels::body.end', fn () => view('curator::components.modals.modal'))
             ->viteTheme('resources/css/filament/dashboard/theme.css')
             ->homeUrl('/')
             ->font('Almarai');

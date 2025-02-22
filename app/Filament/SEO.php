@@ -28,17 +28,19 @@ class SEO
     public function schema($other_fields)
     {
         return Tabs::make()->schema(function ($get) use ($other_fields) {
-            if (! $this->other_fields) {
-                if (is_callable($other_fields)) {
-                    $this->other_fields = $other_fields($get);
-                } else {
-                    $this->other_fields = $other_fields;
+            if ($other_fields) {
+                if (! $this->other_fields) {
+                    if (is_callable($other_fields)) {
+                        $this->other_fields = $other_fields($get);
+                    } else {
+                        $this->other_fields = $other_fields;
+                    }
                 }
+
+                $first_component = $this->other_fields[0];
+
+                $tabs = $first_component instanceof Tab ? $this->other_fields : [Tab::make('General')->schema($this->other_fields)];
             }
-
-            $first_component = $this->other_fields[0];
-
-            $tabs = $first_component instanceof Tab ? $this->other_fields : [Tab::make('General')->schema($this->other_fields)];
 
             $tabs[] = Tab::make('SEO')->schema($this->fields());
 
