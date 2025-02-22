@@ -109,9 +109,9 @@ class ViewServiceProvider extends ServiceProvider
             if ($page = $view->page) {
                 $title = $page->meta('title', false) ?: $title;
                 $description = $page->meta('description', false) ?: $description;
+                $keywords = $page->meta('keywords', false) ?: $view->keywords;
                 $image = $page->meta('image', false) ?: $image;
                 $image_alt = $page->meta('image-alt', false) ?: $image_alt;
-                $keywords = $page->meta('keywords', false) ?: $title;
             }
 
             $title .= (string) $view->title && $app_name && ($view->title != $app_name) ? ' - '.$app_name : '';
@@ -122,7 +122,7 @@ class ViewServiceProvider extends ServiceProvider
 
             $image = $image ? asset($image) : null;
 
-            return $view->with(compact('title', 'description', 'image', 'image_alt'));
+            return $view->with(compact('title', 'description', 'keywords', 'image', 'image_alt'));
         });
     }
 }
