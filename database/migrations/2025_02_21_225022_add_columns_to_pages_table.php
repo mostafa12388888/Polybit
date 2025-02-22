@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->boolean('is_visible_in_top_navbar')->default(false);
-            $table->boolean('is_visible_in_main_navbar')->default(false);
-            $table->boolean('is_visible_in_footer_navbar')->default(false);
+            $table->string('route')->nullable();
+            $table->boolean('is_editable')->default(true);
         });
     }
 
@@ -24,9 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->dropColumn('is_visible_in_top_navbar');
-            $table->dropColumn('is_visible_in_main_navbar');
-            $table->dropColumn('is_visible_in_footer_navbar');
+            $table->dropColumn('route');
+            $table->dropColumn('is_editable');
         });
     }
 };

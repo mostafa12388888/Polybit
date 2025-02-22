@@ -58,7 +58,7 @@ class MessageResource extends Resource
                 TextEntry::make('name'),
                 TextEntry::make('email'),
                 TextEntry::make('phone'),
-                TextEntry::make('message')->columnSpanFull(),
+                TextEntry::make('message')->html()->formatStateUsing(fn ($state) => nl2br($state))->columnSpanFull(),
                 TextEntry::make('created_at')->dateTime(),
                 IconEntry::make('checked')->boolean(),
             ])->columns(2),

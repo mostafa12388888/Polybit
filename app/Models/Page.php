@@ -15,9 +15,24 @@ class Page extends Model
 
     public $translatable = ['title', 'body', 'meta_title', 'meta_description', 'meta_keywords'];
 
-    protected $casts = ['body' => 'array', 'locales' => 'array'];
+    protected $casts = ['body' => 'array', 'locales' => 'array', 'is_editable' => 'boolean'];
 
     protected $guarded = [];
+
+    public static $preset_pages = [
+        'home' => 'Home',
+        'products.index' => 'Products',
+        'cart' => 'Shopping Cart',
+        'wishlist' => 'Wishlist',
+        'request-quote' => 'Request Quote',
+        'posts.index' => 'Blog Posts',
+        'projects.index' => 'Projects',
+        'contact-us' => 'Contact Us',
+        'faq' => 'Frequently asked questions',
+        'register' => 'Register New Account',
+        'login' => 'Login',
+        'password.request' => 'Reset Password',
+    ];
 
     public function getRouteKeyName()
     {
@@ -38,6 +53,8 @@ class Page extends Model
         parent::boot();
 
         static::saved(fn () => Cache::forget('pages'));
+
+        static::deleting(fn (self $page) => $page->is_editable);
 
         static::deleted(fn () => Cache::forget('pages'));
     }

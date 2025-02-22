@@ -12,22 +12,26 @@ class PageSeeder extends Seeder
      */
     public function run(): void
     {
-        Page::create([
-            'title' => ['en' => 'About Us', 'ar' => 'من نحن'],
-            'slug' => 'about-us',
-            'body' => null,
-        ]);
+        $pages = [
+            'about-us' => ['en' => 'About Us', 'ar' => 'من نحن'],
+            'privacy-policy' => ['en' => 'Privacy Policy', 'ar' => 'سياسة الخصوصية'],
+            'terms-of-service' => ['en' => 'Terms Of Service', 'ar' => 'شروط الاستخدام'],
+        ];
 
-        Page::create([
-            'title' => ['en' => 'Privacy Policy', 'ar' => 'سياسة الخصوصية'],
-            'slug' => 'privacy-policy',
-            'body' => null,
-        ]);
+        foreach ($pages as $slug => $title) {
+            Page::updateOrCreate(['slug' => $slug], [
+                'title' => $title,
+                'body' => null,
+            ]);
+        }
 
-        Page::create([
-            'title' => ['en' => 'Terms Of Service', 'ar' => 'شروط الاستخدام'],
-            'slug' => 'terms-of-service',
-            'body' => null,
-        ]);
+        foreach (Page::$preset_pages as $route => $title) {
+            Page::updateOrCreate(['slug' => str($route)->replace('.', '-')->slug()], [
+                'title' => collect(array_keys(locales(true)))->mapWithKeys(fn ($locale, $key) => [$locale => __($title, locale: $locale)])->toArray(),
+                'body' => null,
+                'route' => $route,
+                'is_editable' => false,
+            ]);
+        }
     }
 }

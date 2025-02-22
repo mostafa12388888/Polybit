@@ -6,6 +6,7 @@ use App\Filament\Resources\PageResource\Pages;
 use App\Filament\SEO;
 use App\Models\Page;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -19,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 
 class PageResource extends Resource
 {
@@ -35,13 +37,16 @@ class PageResource extends Resource
         return $form
             ->schema([
                 SEO::make()->schema([
-                    TextInput::make('title')->required()->maxLength(250)->columnSpanFull(),
-                    TiptapEditor::make('body')->columnSpanFull(),
-                    Group::make()->schema([
-                        Toggle::make('is_visible_in_top_navbar')->rules('boolean'),
-                        Toggle::make('is_visible_in_main_navbar')->rules('boolean'),
-                        Toggle::make('is_visible_in_footer_navbar')->rules('boolean'),
-                    ])->columns(3),
+                    Tab::make('General')->schema([
+                        TextInput::make('title')->required()->maxLength(250),
+                        TextInput::make('slug')->maxLength(250),
+                        TiptapEditor::make('body')->columnSpanFull(),
+                        Group::make()->schema([
+                            Toggle::make('is_visible_in_top_navbar')->rules('boolean'),
+                            Toggle::make('is_visible_in_main_navbar')->rules('boolean'),
+                            Toggle::make('is_visible_in_footer_navbar')->rules('boolean'),
+                        ])->columns(3),
+                    ])->hidden(fn ($record) => ! $record->is_editable),
                 ]),
             ]);
     }
@@ -60,9 +65,9 @@ class PageResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\DeleteAction::make()->hidden(fn ($record) => ! $record->is_editable),
                     Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
-                        ->url(fn ($record) => route('pages.show', $record), true),
+                        ->url(fn ($record) => $record->route && Route::has($record->route) ? route($record->route) : route('pages.show', $record), true),
                 ]),
             ])
             ->bulkActions([
@@ -83,10 +88,12 @@ class PageResource extends Resource
                 TextEntry::make('title'),
                 TextEntry::make('slug'),
                 TextEntry::make('created_at')->dateTime(),
-                ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
-                TextEntry::make('is_visible_in_top_navbar')->state(fn (Page $page) => $page->is_visible_in_top_navbar ? 'True' : 'False'),
-                TextEntry::make('is_visible_in_main_navbar')->state(fn (Page $page) => $page->is_visible_in_main_navbar ? 'True' : 'False'),
-                TextEntry::make('is_visible_in_footer_navbar')->state(fn (Page $page) => $page->is_visible_in_footer_navbar ? 'True' : 'False'),
+                \Filament\Infolists\Components\Group::make([
+                    ViewEntry::make('locales')->view('filament.infolists.entries.locales'),
+                    TextEntry::make('is_visible_in_top_navbar')->state(fn (Page $page) => $page->is_visible_in_top_navbar ? 'True' : 'False'),
+                    TextEntry::make('is_visible_in_main_navbar')->state(fn (Page $page) => $page->is_visible_in_main_navbar ? 'True' : 'False'),
+                    TextEntry::make('is_visible_in_footer_navbar')->state(fn (Page $page) => $page->is_visible_in_footer_navbar ? 'True' : 'False'),
+                ])->hidden(fn ($record) => ! $record->is_editable),
             ])->columns(2),
 
             \Filament\Infolists\Components\Section::make()->schema([

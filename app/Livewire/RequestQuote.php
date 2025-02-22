@@ -99,6 +99,6 @@ class RequestQuote extends Component
 
     public function render()
     {
-        return view('products.request-quote');
+        return view('products.components.request-quote');
     }
 }

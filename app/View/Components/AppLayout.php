@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Page;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -12,6 +13,15 @@ class AppLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.app');
+        $page = null;
+
+        $route = request()->route()?->getName();
+
+        if (in_array($route, array_keys(Page::$preset_pages))) {
+            $page_slug = str($route)->replace('.', '-')->slug();
+            $page = Page::where('slug', $page_slug)->first();
+        }
+
+        return view('layouts.app', compact('page'));
     }
 }

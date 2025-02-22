@@ -40,6 +40,6 @@ class Cart extends Component
 
     public function render()
     {
-        return view('products.cart');
+        return view('products.components.cart');
     }
 }

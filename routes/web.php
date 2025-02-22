@@ -6,10 +6,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-use App\Livewire\Cart;
-use App\Livewire\ContactUs;
-use App\Livewire\RequestQuote;
-use App\Livewire\Wishlist;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -27,9 +23,9 @@ Route::view('/', 'home.index')->name('home');
 
 Route::resource('products', ProductController::class)->only('index', 'show');
 Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');
-Route::get('/cart', Cart::class)->name('cart');
-Route::get('/wishlist', Wishlist::class)->name('wishlist');
-Route::get('/request-quote', RequestQuote::class)->name('request-quote');
+Route::view('/cart', 'products.cart')->name('cart');
+Route::view('/wishlist', 'products.wishlist')->name('wishlist');
+Route::view('/request-quote', 'products.request-quote')->name('request-quote');
 
 Route::resource('posts', PostController::class)->only('index', 'show');
 Route::get('/blog-categories/{category}', [PostController::class, 'category_posts'])->name('blog-categories.show');
@@ -39,7 +35,7 @@ Route::resource('projects', ProjectController::class)->only('index', 'show');
 
 Route::resource('/pages', PageController::class)->only('show');
 
-Route::get('/contact-us', ContactUs::class)->name('contact-us');
+Route::view('/contact-us', 'pages.contact-us')->name('contact-us');
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 

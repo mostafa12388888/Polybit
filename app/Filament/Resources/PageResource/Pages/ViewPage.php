@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PageResource\Pages;
 use App\Filament\Resources\PageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
+use Illuminate\Support\Facades\Route;
 
 class ViewPage extends ViewRecord
 {
@@ -17,7 +18,7 @@ class ViewPage extends ViewRecord
         return [
             Actions\LocaleSwitcher::make(),
             Actions\Action::make('preview')->hiddenLabel()->color('gray')->icon('heroicon-o-arrow-top-right-on-square')
-                ->url(fn ($record) => route('pages.show', $record), true),
+                ->url(fn ($record) => $record->route && Route::has($record->route) ? route($record->route) : route('pages.show', $record), true),
             Actions\EditAction::make(),
         ];
     }

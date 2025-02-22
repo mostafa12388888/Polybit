@@ -31,6 +31,6 @@ class Wishlist extends Component
 
     public function render()
     {
-        return view('products.wishlist');
+        return view('products.components.wishlist');
     }
 }

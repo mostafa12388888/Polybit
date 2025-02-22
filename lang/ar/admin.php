@@ -193,4 +193,6 @@ return [
     'Reset to default' => 'إعادة تعيين للقيم الإفتراضية',
     'Reset theme colors to default' => 'إعادة تعيين المظهر للإعدادات الافتراضية',
     'Reset the theme colors to the default values. This action cannot be undone.' => 'إعادة تعيين إعدادت المظهر إلى القيم الافتراضية. لا يمكن التراجع عن هذا الإجراء.',
+    'Customizable Pages' => 'قابلة للتعديل',
+    'Preset Pages' => ' معدة مسبقًا',
 ];

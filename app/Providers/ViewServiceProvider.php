@@ -99,7 +99,31 @@ class ViewServiceProvider extends ServiceProvider
             return $view->with(compact('slides', 'projects', 'posts', 'products'));
         });
 
-        Facades\View::composer(['layouts.app', 'schema.*'], function (View $view) use ($darkmode) {
+        Facades\View::composer(['layouts.app'], function (View $view) use ($darkmode) {
+            $app_name = config('app.name');
+            $title = (string) $view->title ?: ($app_name ?: 'App');
+            $description = (string) $view->description ?: setting('app_description');
+            $image = (string) $view->image;
+            $image_alt = (string) $view->image_alt ?: $title;
+
+            if ($page = $view->page) {
+                $title = $page->meta('title', false) ?: $title;
+                $description = $page->meta('description', false) ?: $description;
+                $image = $page->meta('image', false) ?: $image;
+                $image_alt = $page->meta('image-alt', false) ?: $image_alt;
+            }
+
+            $title .= (string) $view->title && $app_name && ($view->title != $app_name) ? ' - '.$app_name : '';
+
+            if (! $image && $image = setting('logo')) {
+                $image = $image->getSignedUrl(['border' => '60,FFF,expand', 'w' => '1080', 'h' => '500', 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70], true);
+            }
+
+            $image = $image ? asset($image) : null;
+
+            return $view->with(compact('title', 'description', 'image', 'image_alt'));
+        });
+        Facades\View::composer(['schema.*'], function (View $view) use ($darkmode) {
             $app_name = config('app.name');
 
             $title = (string) $view->title ?: ($app_name ?: 'App');

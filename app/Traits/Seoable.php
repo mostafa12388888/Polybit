@@ -10,14 +10,14 @@ trait Seoable
 
     protected $_metadata;
 
-    public function meta($key)
+    public function meta($key, $use_default = true)
     {
-        return $this->metadatum($key);
+        return $this->metadatum($key, $use_default);
     }
 
-    public function metadatum($key)
+    public function metadatum($key, $use_default = true)
     {
-        $default_metadata = method_exists($this, 'getDefaultMetadata') ? $this->getDefaultMetadata() : [];
+        $default_metadata = $use_default ? (method_exists($this, 'getDefaultMetadata') ? $this->getDefaultMetadata() : []) : [];
 
         if ($key == 'og-image' || $key == 'image' || $key == 'image-alt') {
             if ($this->relationLoaded('media')) {
@@ -30,7 +30,7 @@ trait Seoable
                 return $image?->alt ?: optional($default_metadata)['image-alt'];
             }
 
-            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'fill-max', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
+            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
 
             if (! $image) {
                 $image = optional($default_metadata)['image'];

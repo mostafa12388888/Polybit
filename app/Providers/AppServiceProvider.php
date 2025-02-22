@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Page;
 use App\Models\User;
 use App\Policies\ActivityPolicy;
 use App\Policies\PermissionPolicy;
@@ -9,6 +10,7 @@ use App\Policies\RolePolicy;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Activitylog\Models\Activity;
@@ -32,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+        Route::bind('page', function (string $value) {
+            return Page::where('slug', $value)->where('is_editable', true)->firstOrFail();
+        });
 
         Translatable::fallback(fallbackAny: true);
 
