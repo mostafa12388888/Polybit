@@ -103,13 +103,14 @@ class ViewServiceProvider extends ServiceProvider
             $app_name = config('app.name');
             $title = (string) $view->title ?: ($app_name ?: 'App');
             $description = (string) $view->description ?: setting('app_description');
+            $keywords = $view->keywords;
             $image = (string) $view->image;
             $image_alt = (string) $view->image_alt ?: $title;
 
             if ($page = $view->page) {
                 $title = $page->meta('title', false) ?: $title;
                 $description = $page->meta('description', false) ?: $description;
-                $keywords = $page->meta('keywords', false) ?: $view->keywords;
+                $keywords = $page->meta('keywords', false) ?: $keywords;
                 $image = $page->meta('image', false) ?: $image;
                 $image_alt = $page->meta('image-alt', false) ?: $image_alt;
             }
