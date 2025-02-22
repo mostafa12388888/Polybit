@@ -49,7 +49,7 @@ return [
     'max_size' => 20480,
     'model' => \App\Models\CuratorMedia::class,
     'min_size' => 0,
-    'path_generator' => null,
+    'path_generator' => \App\Classes\MediaPathGenerator::class,
     'resources' => [
         'label' => 'Media',
         'plural_label' => 'Media',
