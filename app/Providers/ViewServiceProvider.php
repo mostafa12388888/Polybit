@@ -111,6 +111,7 @@ class ViewServiceProvider extends ServiceProvider
                 $description = $page->meta('description', false) ?: $description;
                 $image = $page->meta('image', false) ?: $image;
                 $image_alt = $page->meta('image-alt', false) ?: $image_alt;
+                $keywords = $page->meta('keywords', false) ?: $title;
             }
 
             $title .= (string) $view->title && $app_name && ($view->title != $app_name) ? ' - '.$app_name : '';
