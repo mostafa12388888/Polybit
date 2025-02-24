@@ -18,8 +18,7 @@ class GuestLayout extends Component
         $route = request()->route()?->getName();
 
         if (in_array($route, array_keys(Page::$preset_pages))) {
-            $page_slug = str($route)->replace('.', '-')->slug();
-            $page = Page::where('slug', $page_slug)->first();
+            $page = Page::where('route', $route)->first();
         }
 
         return view('layouts.guest', compact('page'));

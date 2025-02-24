@@ -26,7 +26,12 @@ class PageSeeder extends Seeder
         }
 
         foreach (Page::$preset_pages as $route => $title) {
-            Page::updateOrCreate(['slug' => str($route)->replace('.', '-')->slug()], [
+            $slug = str($route)->replace('.', '-')->slug();
+
+            // Update the slug of auth pages because curator picker thinks that it's filament auth pages and doesn't work
+            $slug = in_array($slug, ['login', 'register']) ? 'auth-'.$slug : $slug;
+
+            Page::updateOrCreate(['slug' => $slug], [
                 'title' => collect(array_keys(locales(true)))->mapWithKeys(fn ($locale, $key) => [$locale => __($title, locale: $locale)])->toArray(),
                 'body' => null,
                 'route' => $route,
