@@ -138,15 +138,34 @@ class Setting extends Model
                 //
             }
         } elseif ($type == 'media') {
-            $value = $this->media;
+            $value = $this->media->where('id', $value)->first();
         }
 
         return $value;
     }
 
-    public function media()
+    public function getMediaAttribute()
     {
-        return $this->belongsTo(CuratorMedia::class, 'value');
+        if ($this->relationLoaded('media')) {
+            return $this->getRelation('media');
+        }
+
+        $translatable = optional(self::$allowed_settings[$this->key] ?? [])['translatable'] ?? false;
+
+        if ($translatable) {
+            $media_ids = $this->getAttributes()['value'] ?? [];
+
+            try {
+                $media_ids = is_null($media_ids ?? null) ? [] : json_decode($media_ids, true);
+                $media_ids = array_filter($media_ids);
+            } catch (\Throwable $th) {
+                //
+            }
+        } else {
+            $media_ids = [$this->value];
+        }
+
+        return CuratorMedia::whereIn('id', $media_ids)->get();
     }
 
     protected static function boot()
