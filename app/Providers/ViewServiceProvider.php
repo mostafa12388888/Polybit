@@ -51,7 +51,7 @@ class ViewServiceProvider extends ServiceProvider
                 $fallback_alternate_url = route('projects.index');
             }
 
-            $alternate_locales = collect($locales)?->filter(fn ($locale) => $locale != app()->getLocale())?->toArray();
+            $alternate_locales = collect($locales)?->toArray();
 
             return $view->with(compact('alternate_locales', 'fallback_alternate_url'));
         });
