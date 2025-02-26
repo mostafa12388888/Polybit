@@ -65,7 +65,7 @@ class GenerateSitemap extends Command
             $this->add($sitemap, route($page));
         }
 
-        foreach (Page::all() as $page) {
+        foreach (Page::where('is_editable', true)->get() as $page) {
             $this->add($sitemap, route('pages.show', $page));
         }
 
