@@ -9,6 +9,7 @@
 
     $first_image = $product->image ? [
         'url' => $product->image?->getSignedUrl(['fm' => 'webp', 'w' => 720, 'q' => 70]),
+        'alt' => '{{ $product->image->alt ?? $product->name }}',
         'type' => 'image',
     ] : [
         'url' => collect($embeded_urls)->first(),
@@ -45,7 +46,7 @@
         <div class="overflow-hidden">
             <iframe {{ $first_image['type'] == '3d' ? '' : 'x-cloak' }} x-show="activeImage.thumb == '3d'" src="{!! $first_image['type'] == '3d' ? $first_image['url'] : '' !!}" x-bind:src="activeImage.thumb == '3d' ? activeImage.full : ''" frameborder="0" title="3d {{ $product->name }}" class="w-full aspect-[4/3]"></iframe>
 
-            <img {{ $first_image['type'] == '3d' ? 'x-cloak' : '' }} x-show="activeImage.thumb != '3d'" src="{!! $first_image['type'] != '3d' ? $first_image['url'] : '' !!}" fetchpriority="high" x-bind:src="activeImage.thumb != '3d' ? activeImage.full : ''" x-bind:alt="activeImage.alt" width="720" height="480" class="w-full sm:rounded-md" />
+            <img {{ $first_image['type'] == '3d' ? 'x-cloak' : '' }} x-show="activeImage.thumb != '3d'" src="{!! $first_image['type'] != '3d' ? $first_image['url'] : '' !!}" alt="{{ optional($first_image)['alt'] }}" fetchpriority="high" x-bind:src="activeImage.thumb != '3d' ? activeImage.full : ''" x-bind:alt="activeImage.alt" width="720" height="480" class="w-full sm:rounded-md" />
         </div>
     </div>
 
