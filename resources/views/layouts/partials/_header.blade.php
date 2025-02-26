@@ -36,7 +36,7 @@
                     <span class="sr-only">{{ __('Shopping Cart') }}</span>
                 </x-link>
 
-                @forelse ($alternate_locales as $alternate_locale)
+                @forelse (collect($alternate_locales)->filter(fn($locale) => $locale != app()->getLocale())->toArray() as $alternate_locale)
                     @php($alternate_locale = collect(locales(false))->where('code', $alternate_locale)->first())
 
                     <x-link href="{{ localized_url($alternate_locale['code']) }}" styling="light" class="flex md:hidden !rounded-md !px-3 h-11 items-center justify-center relative">

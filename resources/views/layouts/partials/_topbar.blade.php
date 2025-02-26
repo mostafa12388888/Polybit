@@ -28,7 +28,7 @@
                 </div>
                     
                 <div class="flex max-md:flex-grow gap-4">
-                    @forelse ($alternate_locales as $alternate_locale)
+                    @forelse (collect($alternate_locales)->filter(fn($locale) => $locale != app()->getLocale())->toArray() as $alternate_locale)
                         @php($alternate_locale = collect(locales(false))->where('code', $alternate_locale)->first())
 
                         <x-link href="{{ localized_url($alternate_locale['code']) }}" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 py-4 md:!bg-transparent md:p-0">
