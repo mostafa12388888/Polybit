@@ -8,9 +8,11 @@ use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Awcodes\TableRepeater\Components\TableRepeater;
 use Awcodes\TableRepeater\Header;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\RepeatableEntry;
@@ -47,9 +49,23 @@ class SlideResource extends Resource
                     Textarea::make('description')->autosize()->maxLength(5000)->columnSpanFull(),
 
                     TableRepeater::make('actions')->headers([
+                        Header::make('primary')->label(__('admin.Primary')),
                         Header::make('text')->label(__('admin.Text')),
                         Header::make('url')->label(__('admin.Url')),
                     ])->schema([
+                        Toggle::make('primary')->live()->reactive()->afterStateUpdated(function (Component $component) {
+                            if ($component->getState()) {
+                                $table_state = $component->getContainer()->getParentComponent()->getState();
+
+                                $new_state = collect($table_state)->mapWithKeys(function ($action, $key) use ($component) {
+                                    $action['primary'] = stripos($component->getKey(), $key) ? true : false;
+
+                                    return [$key => $action];
+                                })->toArray();
+
+                                $component->getContainer()->getParentComponent()->state($new_state);
+                            }
+                        }),
                         TextInput::make('text')->maxLength(50)->required(),
                         TextInput::make('url')->maxLength(250)->required(),
                     ])->defaultItems(0)->columnSpanFull(),

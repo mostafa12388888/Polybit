@@ -23,6 +23,16 @@ class Slide extends Model
         return $this->first_media();
     }
 
+    public function getLinkAttribute()
+    {
+        return collect($this->actions ?? [])->where('primary', true)->first();
+    }
+
+    public function getButtonsAttribute()
+    {
+        return collect($this->actions ?? [])->where('primary', '!=', true)->toArray();
+    }
+
     protected static function boot()
     {
         parent::boot();
