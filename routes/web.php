@@ -45,4 +45,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/robots.txt', function () {
+    return response(implode(PHP_EOL, [
+        'User-agent: *',
+        'Allow: /',
+        '',
+        'Sitemap: '.url('sitemap.xml'),
+    ]), 200, ['Content-Type' => 'text/plain']);
+});
+
 require __DIR__.'/auth.php';
