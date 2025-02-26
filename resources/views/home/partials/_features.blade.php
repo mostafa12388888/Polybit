@@ -16,7 +16,7 @@
 
                 <p class="text-justify leading-loose dark:text-dark-200 line-clamp-5 mb-4" 
                     x-init="$nextTick(() => needsTruncate = $el.scrollHeight > $el.clientHeight)"
-                    :class="expanded ? 'line-clamp-none' : 'line-clamp-2'">{{ __('elevate-your-projects') }}</p>
+                    :class="expanded ? 'line-clamp-none' : 'line-clamp-5'">{{ __('elevate-your-projects') }}</p>
                 
                 <template x-if="needsTruncate">
                     <x-button styling="white" @click="expanded = !expanded" 
@@ -35,7 +35,7 @@
 
                 <p class="text-justify leading-loose dark:text-dark-200 line-clamp-5 mb-4" 
                     x-init="$nextTick(() => needsTruncate = $el.scrollHeight > $el.clientHeight)"
-                    :class="expanded ? 'line-clamp-none' : 'line-clamp-2'">{{ __('sustainability-at-the-core') }}</p>
+                    :class="expanded ? 'line-clamp-none' : 'line-clamp-5'">{{ __('sustainability-at-the-core') }}</p>
 
                 <template x-if="needsTruncate">
                     <x-button styling="white" @click="expanded = !expanded" 
@@ -54,7 +54,7 @@
 
                 <p class="text-justify leading-loose dark:text-dark-200 line-clamp-5 mb-4" 
                     x-init="$nextTick(() => needsTruncate = $el.scrollHeight > $el.clientHeight)"
-                    :class="expanded ? 'line-clamp-none' : 'line-clamp-2'">{{ __('shaping-the-future') }}</p>
+                    :class="expanded ? 'line-clamp-none' : 'line-clamp-5'">{{ __('shaping-the-future') }}</p>
 
                 <template x-if="needsTruncate">
                     <x-button styling="white" @click="expanded = !expanded" 
