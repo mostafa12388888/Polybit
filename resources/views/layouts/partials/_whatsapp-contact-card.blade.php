@@ -26,7 +26,14 @@
             <div x-show="open" x-cloak x-collapse>
                 <div class="pt-4 flex flex-col gap-2">
                     @foreach ($store_categories as $store_category)
-                        @foreach (array_filter($store_category->phones ?? []) as $phone)   
+                        @foreach (array_filter($store_category->phones ?? []) as $phone)
+                            @php
+                                $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
+
+                                if(! $phone->getCountry()) {
+                                    continue;
+                                }
+                            @endphp
                             <div class="px-4 py-2.5 rounded-lg flex gap-3 flex-wrap items-center justify-between bg-secondary-100/50 dark:bg-dark-700/30">
                                 <div class="flex gap-4 items-center">
                                     <x-icons.bookmark class="!w-5 !h-5"/>
@@ -34,8 +41,8 @@
                                     <p class="">{{ $store_category->name }}</p>
                                 </div>
 
-                                <x-link href="https://wa.me/{{ str_replace([' ', '+'], '', $phone) }}" styling="white" class="flex gap-2 items-stretch rtl:items-center justify-center px-8 py-3">
-                                    <span class="ltr:text-start rtl:text-end" dir="ltr">{{ $phone }}</span>
+                                <x-link href="https://wa.me/{{ str_replace('+', '', $phone) }}" styling="white" class="flex gap-2 items-stretch rtl:items-center justify-center px-8 py-3">
+                                    <span class="ltr:text-start rtl:text-end" dir="ltr">{{ $phone->formatNational() }}</span>
                                 </x-link>
                             </div>
                         @endforeach

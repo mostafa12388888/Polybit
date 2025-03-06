@@ -23,7 +23,7 @@
                         @php
                             $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
                             
-                            if(!$phone->getCountry()) {
+                            if(! $phone->getCountry()) {
                                 continue;
                             }
                         @endphp
