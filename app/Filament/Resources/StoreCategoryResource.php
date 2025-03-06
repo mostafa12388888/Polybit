@@ -49,7 +49,7 @@ class StoreCategoryResource extends Resource
                         ->visible(fn ($get) => $get('parent_id') || request()->query('ownerRecord')),
 
                     Repeater::make('phones')->label(__('admin.Support Phone Numbers'))
-                        ->simple(TextInput::make('phone')->maxLength(250))
+                        ->simple(TextInput::make('phone')->maxLength(250)->rules(['phone']))
                         ->visible(fn ($get) => ! $get('parent_id') && ! request()->query('ownerRecord'))
                         ->columnSpanFull(),
 
