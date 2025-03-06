@@ -26,7 +26,7 @@
             <div x-show="open" x-cloak x-collapse>
                 <div class="pt-4 flex flex-col gap-2">
                     @foreach ($store_categories as $store_category)
-                        @foreach ($store_category->phones ?? [] as $phone)   
+                        @foreach (array_filter($store_category->phones ?? []) as $phone)   
                             <div class="px-4 py-2.5 rounded-lg flex gap-3 flex-wrap items-center justify-between bg-secondary-100/50 dark:bg-dark-700/30">
                                 <div class="flex gap-4 items-center">
                                     <x-icons.bookmark class="!w-5 !h-5"/>
