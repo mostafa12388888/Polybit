@@ -64,6 +64,8 @@
         </div>
     </section>
 
+    <livewire:videos :subject="$category" lazy />
+
     <x-slot name="scripts">
         @minifyInclude('schema.products-schema', [
             'title' => $category ?? null ? $category->meta('title') : __('Products'),

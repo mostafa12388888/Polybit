@@ -97,6 +97,18 @@ class ProductResource extends Resource
                         Repeater::make('embeded_urls')->simple(TextInput::make('url')->prefixIcon('heroicon-o-cube')->rules(['url']))->columnSpanFull(),
                     ]);
 
+                    $tabs[] = Tab::make('Videos')->schema([
+                        Repeater::make('videos')->schema([
+                            TextInput::make('url')->label('admin.Embed Url')
+                                ->afterStateUpdated(function (callable $set, ?string $state) {
+                                    preg_match('/src="([^"]+)"/i', $state, $match);
+
+                                    $set('url', array_pop($match) ?: $state);
+                                })
+                                ->prefixIcon('heroicon-o-video-camera')->rules(['url']),
+                        ])->columnSpanFull(),
+                    ]);
+
                     $tabs[] = Tab::make('Attributes')->schema([
                         Repeater::make('attributes')->hiddenLabel()->maxItems(fn () => Attribute::has('values')->count())->schema([
                             Select::make('attribute')->searchable()->preload()->reactive()

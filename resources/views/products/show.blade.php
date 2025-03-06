@@ -88,6 +88,8 @@
             </div>
         </div>
     </section>
+    
+    <livewire:videos :subject="$product" lazy />
 
     @if($related_products->count())
         @include('products.partials._related-products')

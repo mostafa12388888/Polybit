@@ -24,6 +24,8 @@
     @if ($posts->count())
         @include('home.partials._posts')
     @endif
+
+    <livewire:videos lazy />
     
     <x-slot name="scripts">
         @minifyInclude('schema.home-schema')

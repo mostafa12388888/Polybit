@@ -16,9 +16,9 @@ class Product extends Model
 {
     use HasCuratorMedia, HasLocales, HasTranslations, Searchable, Seoable, Sluggable, SoftDeletes;
 
-    protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
+    protected $translatable = ['name', 'description', 'meta_title', 'meta_description', 'meta_keywords', 'videos'];
 
-    protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array', 'embeded_urls' => 'array'];
+    protected $casts = ['description' => 'array', 'attributes' => 'array', 'locales' => 'array', 'embeded_urls' => 'array', 'videos' => 'array'];
 
     protected $guarded = [];
 
