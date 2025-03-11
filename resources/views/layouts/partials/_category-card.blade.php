@@ -15,7 +15,7 @@
                 <template x-if="needsTruncate">
                     <div class="bg-white dark:bg-dark-700 w-full absolute bottom-0">
                         <x-button styling="light" @click="expanded = !expanded" 
-                            class="text-sm font-semibold w-full md:max-w-xs mt-2 dark:bg-dark-600/50">
+                            class="text-sm font-semibold w-full md:max-w-xs mt-2 dark:!bg-dark-600/50">
                             <span x-text="expanded ? '{{ __('Read Less') }}' : '{{ __('Read More') }}'"></span>
                         </x-button>
                     </div>
