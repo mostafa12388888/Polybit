@@ -35,7 +35,7 @@ class TestimonialResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                    TextInput::make('name')->required()->maxLength(250)->columnSpanFull(),
+                    TextInput::make('name')->maxLength(250)->columnSpanFull(),
                     TextInput::make('job_title')->maxLength(250)->columnSpanFull(),
 
                     CuratorPicker::make('image')->multiple()->maxItems(1)

@@ -6,17 +6,21 @@
         }, 30);
     })">
 
-    <div class="flex items-center gap-3 mb-4">
-        <x-curator-glider fallback="user" :media="$testimonial->image" format="webp" width="52" height="52" fit="crop" quality="70" class="w-14 h-14 flex-shrink-0 object-cover rounded-full" />
+    @if ($testimonial->name || $testimonial->job_title)
+        <div class="flex items-center gap-3 mb-4">
+            <x-curator-glider fallback="user" :media="$testimonial->image" format="webp" width="52" height="52" fit="crop" quality="70" class="w-14 h-14 flex-shrink-0 object-cover rounded-full" />
 
-        <div class="flex flex-col gap-1">
-            <p class="font-bold">{{ $testimonial->name }}</p>
-            
-            @if ($testimonial->job_title)
-                <p>{{ $testimonial->job_title }}</p>
-            @endif
+            <div class="flex flex-col gap-1">
+                @if ($testimonial->name)
+                    <p class="font-bold">{{ $testimonial->name }}</p>
+                @endif
+
+                @if ($testimonial->job_title)
+                    <p>{{ $testimonial->job_title }}</p>
+                @endif
+            </div>
         </div>
-    </div>
+    @endif
 
     <p class="leading-loose dark:text-dark-200 line-clamp-3" 
         x-init="$nextTick(() => needsTruncate = $el.scrollHeight > $el.clientHeight)"

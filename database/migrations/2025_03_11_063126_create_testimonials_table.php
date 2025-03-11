@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('job_title');
+            $table->string('name')->nullable();
+            $table->string('job_title')->nullable();
             $table->longText('body');
             $table->json('locales')->nullable();
             $table->integer('order')->nullable();
