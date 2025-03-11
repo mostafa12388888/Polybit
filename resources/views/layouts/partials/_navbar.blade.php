@@ -31,37 +31,6 @@
         x-init="$el.classList.remove('hidden'); $el.classList.add('flex'); setHeight()">
         
         <div class="w-full md:container mx-auto md:flex md:items-center">
-            @if ($blog_categories->count())
-                <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-secondary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
-                    <x-slot:trigger>
-                        <div class="max-sm:pb-1 flex flex-grow">
-                            <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-3" @click.prevent="" :href="route('posts.index')">
-                                <span>{{ __('Blog') }}</span>
-                                <x-icons.chevron-down class="!w-4 !h-4" />
-                            </x-link>
-                        </div>
-                    </x-slot>
-        
-                    <x-slot:content>
-                        <div class="md:overflow-auto">
-                            <div class="z-50 flex flex-wrap max-md:flex-col gap-y-2 lg:gap-y-8 container mx-auto md:py-6">
-                                @foreach ($blog_categories as $blog_category)
-                                    <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
-                                        <x-dropdown.link :href="route('blog-categories.show', $blog_category)" class="text-base font-semibold">{{ $blog_category->name }}</x-dropdown.link>
-
-                                        @foreach ($blog_category->sub_categories as $sub_category)
-                                            <x-dropdown.link :href="route('blog-categories.show', $sub_category)" class="pl-8 rtl:pl-8">{{ $sub_category->name }}</x-dropdown.link>
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </x-slot>
-                </x-dropdown>
-            @else
-                <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('posts.index')">{{ __('Blog') }}</x-link>
-            @endif
-
             @if ($store_categories->count())
                 <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-secondary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-secondary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                     <x-slot:trigger>
@@ -94,6 +63,37 @@
             @endif
     
             <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
+
+            @if ($blog_categories->count())
+                <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-secondary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
+                    <x-slot:trigger>
+                        <div class="max-sm:pb-1 flex flex-grow">
+                            <x-link :navigate="false" styling="light-link" class="flex flex-grow items-center justify-between gap-1.5 max-md:py-3" @click.prevent="" :href="route('posts.index')">
+                                <span>{{ __('Blog') }}</span>
+                                <x-icons.chevron-down class="!w-4 !h-4" />
+                            </x-link>
+                        </div>
+                    </x-slot>
+        
+                    <x-slot:content>
+                        <div class="md:overflow-auto">
+                            <div class="z-50 flex flex-wrap max-md:flex-col gap-y-2 lg:gap-y-8 container mx-auto md:py-6">
+                                @foreach ($blog_categories as $blog_category)
+                                    <div class="w-full md:w-6/12 lg:w-4/12 xl:w-3/12">
+                                        <x-dropdown.link :href="route('blog-categories.show', $blog_category)" class="text-base font-semibold">{{ $blog_category->name }}</x-dropdown.link>
+
+                                        @foreach ($blog_category->sub_categories as $sub_category)
+                                            <x-dropdown.link :href="route('blog-categories.show', $sub_category)" class="pl-8 rtl:pl-8">{{ $sub_category->name }}</x-dropdown.link>
+                                        @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </x-slot>
+                </x-dropdown>
+            @else
+                <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('posts.index')">{{ __('Blog') }}</x-link>
+            @endif
 
             @foreach ($pages->filter(fn ($page) => $page->is_visible_in_top_navbar || $page->is_visible_in_main_navbar) as $page)
                 @if ($page->is_visible_in_main_navbar)
