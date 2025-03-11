@@ -11,7 +11,10 @@
 
         <div class="flex flex-col gap-1">
             <p class="font-bold">{{ $testimonial->name }}</p>
-            <p class="">{{ $testimonial->job_title }}</p>
+            
+            @if ($testimonial->job_title)
+                <p>{{ $testimonial->job_title }}</p>
+            @endif
         </div>
     </div>
 
