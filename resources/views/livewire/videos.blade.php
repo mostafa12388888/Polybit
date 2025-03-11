@@ -1,5 +1,5 @@
 @if (count($videos))
-    <div class="bg-secondary-200/10 dark:bg-dark-600/40 px-4 sm:px-6 py-12 md:py-16 relative">
+    <div class="px-4 sm:px-6 py-12 md:py-16 relative">
         <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
             <div class="glide min-[2561px]:rounded-2xl min-[2561px]:my-8 min-[2561px]:container min-[2561px]:mx-auto relative opacity-0 overflow-hidden transition-all" x-init="new Glide($el, {
                 type: 'carousel',

@@ -19,6 +19,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Support\Colors\Color;
+use Guava\FilamentIconPicker\Forms\IconPicker;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Cache;
 
@@ -71,6 +72,8 @@ class Settings extends Page
     public $secondary_color_shades = null;
 
     public $dark_color_shades = null;
+
+    public $stats = [];
 
     public function mount(): void
     {
@@ -226,6 +229,13 @@ class Settings extends Page
                             TextInput::make('social_link')->activeUrl(),
                         )->defaultItems(3),
                         Textarea::make('location')->label('admin.Map embed URL'),
+                    ]),
+                    Tab::make('Stats')->schema([
+                        Repeater::make('stats')->hiddenLabel()->schema([
+                            IconPicker::make('icon')->columnSpanFull()->sets(['heroicons'])->columns(3),
+                            TextInput::make('count')->placeholder(__('admin.eg: 123'))->integer(),
+                            TextInput::make('title')->placeholder(__('admin.eg: Happy Clients'))->maxLength(120),
+                        ])->columns(2)->reorderable(false)->defaultItems(3)->translatable(),
                     ]),
                 ])->persistTabInQueryString(),
             ]);

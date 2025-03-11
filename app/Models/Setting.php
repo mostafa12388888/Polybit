@@ -85,6 +85,12 @@ class Setting extends Model
             'type' => 'string',
             'default' => null,
         ],
+        'stats' => [
+            'translatable' => true,
+            'use_fallback_locale_translation' => false,
+            'type' => 'array',
+            'default' => [],
+        ],
     ];
 
     public function user()

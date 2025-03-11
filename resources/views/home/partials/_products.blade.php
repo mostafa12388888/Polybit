@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-b from-secondary-50/50 to-secondary-100/50 dark:from-dark-700/40 dark:to-dark-700/40 sm:px-6 pt-12 pb-5 md:pt-16 xl:pt-24 relative">
+<div class="bg-gradient-to-b from-secondary-50/50 to-secondary-100/50 dark:from-dark-700/40 dark:to-dark-700/40 px-2 sm:px-6 pt-12 pb-5 md:pt-16 xl:pt-24 relative">
     <div class="sm:container flex flex-col gap-3 md:gap-4 lg:gap-8 mx-auto relative z-10">
         <div class="flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center text-center px-4 sm:px-0">
             <h2 class="uppercase text-dark-800 dark:text-dark-100 text-2xl lg:text-3xl xl:text-4xl font-extrabold relative px-8 z-50">{{ __('Check Out Our Products') }}</h2>

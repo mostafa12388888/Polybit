@@ -11,11 +11,6 @@ class LogoGliderFallback extends GliderFallback
         return __(':app_name Logo', ['app_name' => config('app.name')]);
     }
 
-    public function getHeight(): int
-    {
-        return 640;
-    }
-
     public function getKey(): string
     {
         return 'logo';
@@ -44,5 +39,10 @@ class LogoGliderFallback extends GliderFallback
     public function getWidth(): int
     {
         return 400;
+    }
+
+    public function getHeight(): int
+    {
+        return 640;
     }
 }

@@ -36,6 +36,7 @@ return [
         'server' => \Awcodes\Curator\Glide\DefaultServerFactory::class,
         'fallbacks' => [
             \App\Classes\LogoGliderFallback::class,
+            \App\Classes\UserGliderFallback::class,
         ],
         'route_path' => 'uploads',
     ],

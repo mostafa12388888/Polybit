@@ -30,7 +30,7 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?int $navigationSort = -2;
+    protected static ?int $navigationSort = -4;
 
     public static function form(Form $form): Form
     {
@@ -38,15 +38,15 @@ class PageResource extends Resource
             ->schema([
                 SEO::make()->schema([
                     Tab::make('General')->schema([
-                        TextInput::make('title')->required()->maxLength(250),
-                        TextInput::make('slug')->maxLength(250),
+                        TextInput::make('title')->required()->maxLength(250)->hidden(fn ($record) => ! $record->is_editable),
+                        TextInput::make('slug')->maxLength(250)->hidden(fn ($record) => ! $record->is_editable),
                         TiptapEditor::make('body')->columnSpanFull(),
                         Group::make()->schema([
                             Toggle::make('is_visible_in_top_navbar')->rules('boolean'),
                             Toggle::make('is_visible_in_main_navbar')->rules('boolean'),
                             Toggle::make('is_visible_in_footer_navbar')->rules('boolean'),
-                        ])->columns(3),
-                    ])->hidden(fn ($record) => ! $record->is_editable),
+                        ])->columns(3)->hidden(fn ($record) => ! $record->is_editable),
+                    ]),
                 ]),
             ]);
     }

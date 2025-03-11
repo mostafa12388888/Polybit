@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Project;
 use App\Models\Slide;
 use App\Models\StoreCategory;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Cache;
@@ -96,7 +97,12 @@ class ViewServiceProvider extends ServiceProvider
                 return Product::latest()->with('image')->limit(4)->get();
             });
 
-            return $view->with(compact('slides', 'projects', 'posts', 'products'));
+            $testimonials = Cache::remember('testimonials_'.app()->getLocale(), 60 * 60, function () {
+                return Testimonial::whereJsonContains('locales', app()->getLocale())->with('image')
+                    ->orderBy('order')->get();
+            });
+
+            return $view->with(compact('slides', 'projects', 'posts', 'products', 'testimonials'));
         });
 
         Facades\View::composer(['layouts.app', 'schema.*', 'layouts.guest'], function (View $view) use ($darkmode) {

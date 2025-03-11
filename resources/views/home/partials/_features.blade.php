@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-dark-600/40 px-4 sm:px-6 pt-16 pb-12 md:py-20 {{ config('app.theme') == 'theme-1' ? 'xl:py-36' : '' }} relative">
+<div class="bg-white dark:bg-dark-600/40 px-4 sm:px-6 py-16 md:py-20 {{ config('app.theme') == 'theme-1' ? 'xl:py-36' : '' }} relative">
     <div class="absolute w-full h-full top-0 left-0 opacity-25 dark:opacity-15 z-0 bg-cover bg-no-repeat bg-center bg-map"></div>
 
     <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">

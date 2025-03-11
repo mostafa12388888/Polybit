@@ -11,6 +11,10 @@
 
     @include('home.partials._features')
 
+    @if (count(array_filter(setting('stats') ?: [])))
+        @include('home.partials._counters')
+    @endif
+
     @if ($products->count())
         @include('home.partials._products')
     @endif
@@ -18,11 +22,15 @@
     @if ($projects->count())
         @include('home.partials._projects')
     @endif
-    
+
     @include('home.partials._contact')
     
     @if ($posts->count())
         @include('home.partials._posts')
+    @endif
+    
+    @if ($testimonials->count())
+        @include('home.partials._testemonials')
     @endif
 
     <livewire:videos lazy />
