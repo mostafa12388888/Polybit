@@ -33,7 +33,9 @@
         @include('home.partials._testemonials')
     @endif
 
-    <livewire:videos lazy />
+    <div class="dark:bg-dark-600/40">
+        <livewire:videos lazy />
+    </div>
     
     <x-slot name="scripts">
         @minifyInclude('schema.home-schema')
