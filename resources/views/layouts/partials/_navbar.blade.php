@@ -64,6 +64,17 @@
     
             <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
 
+            @foreach ($pages->filter(fn ($page) => $page->is_visible_in_top_navbar || $page->is_visible_in_main_navbar) as $page)
+                @if ($page->is_visible_in_main_navbar)
+                    <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline whitespace-nowrap" :href="route('pages.show', $page)">{{ $page->title }}</x-link>
+                @else
+                    <x-link styling="light-link" class="w-full max-md:py-3 md:hidden whitespace-nowrap" :href="route('pages.show', $page)">{{ $page->title }}</x-link>
+                @endif
+            @endforeach
+            
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
+            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
+
             @if ($blog_categories->count())
                 <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-primary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-secondary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
                     <x-slot:trigger>
@@ -94,17 +105,6 @@
             @else
                 <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('posts.index')">{{ __('Blog') }}</x-link>
             @endif
-
-            @foreach ($pages->filter(fn ($page) => $page->is_visible_in_top_navbar || $page->is_visible_in_main_navbar) as $page)
-                @if ($page->is_visible_in_main_navbar)
-                    <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline whitespace-nowrap" :href="route('pages.show', $page)">{{ $page->title }}</x-link>
-                @else
-                    <x-link styling="light-link" class="w-full max-md:py-3 md:hidden whitespace-nowrap" :href="route('pages.show', $page)">{{ $page->title }}</x-link>
-                @endif
-            @endforeach
-            
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
-            <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
         </div>
         
         {{-- <div class="md:hidden" x-cloak>
