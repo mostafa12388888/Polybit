@@ -35,7 +35,7 @@ class Videos extends Component
                 unset($video['product']);
 
                 return $video;
-            })->values();
+            })->values()->shuffle();
 
         if ($subject instanceof Product) {
             $videos = $videos->sort(fn ($video) => in_array($subject->id, $video['products']) ? 0 : 1);

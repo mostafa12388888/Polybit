@@ -102,8 +102,20 @@ class ProductResource extends Resource
                             TextInput::make('url')->label('admin.Embed Url')
                                 ->afterStateUpdated(function (callable $set, ?string $state) {
                                     preg_match('/src="([^"]+)"/i', $state, $match);
+                                    $url = array_pop($match) ?: $state;
 
-                                    $set('url', array_pop($match) ?: $state);
+                                    // convert youtube video url to embed url
+                                    if (preg_match('/youtube\.com\/watch\?v=([^&]+)/', $url, $matches) ||
+                                        preg_match('/youtu\.be\/([^?]+)/', $url, $matches)) {
+                                        $url = 'https://www.youtube.com/embed/'.$matches[1];
+                                    }
+
+                                    // clean embed url from any extra parameters
+                                    if (preg_match('/youtube\.com\/embed\/([^?]+)/', $url, $matches)) {
+                                        $url = 'https://www.youtube.com/embed/'.$matches[1];
+                                    }
+
+                                    $set('url', $url);
                                 })
                                 ->prefixIcon('heroicon-o-video-camera')->rules(['url']),
                         ])->columnSpanFull(),
