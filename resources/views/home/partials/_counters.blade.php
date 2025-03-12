@@ -22,7 +22,7 @@
                             @endif
 
                             <div class="flex flex-col gap-4 xl:gap-5 p-4 py-12">
-                                @if (ctype_digit($stat['count']))
+                                @if (ctype_digit($stat['count']) && intval($stat['count']) <= 1000000)
                                     <p class="font-bold text-3xl md:text-4xl min-w-32" x-data="{ count: 0 }" 
                                         x-intersect="
                                             let t = $el.dataset.target / 50; 
