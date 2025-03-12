@@ -233,8 +233,9 @@ class Settings extends Page
                     Tab::make('Stats')->schema([
                         Repeater::make('stats')->hiddenLabel()->schema([
                             IconPicker::make('icon')->columnSpanFull()->sets(['heroicons'])->columns(3),
-                            TextInput::make('count')->placeholder(__('admin.eg: 123'))->integer(),
-                            TextInput::make('title')->placeholder(__('admin.eg: Happy Clients'))->maxLength(120),
+                            TextInput::make('count')->required()->placeholder(__('admin.eg: 123')),
+                            TextInput::make('title')->required()->placeholder(__('admin.eg: Happy Clients'))->maxLength(120),
+                            TextInput::make('url')->columnSpanFull()->extraAttributes(['dir' => 'ltr'])->prefixIcon('heroicon-o-link'),
                         ])->columns(2)->reorderable(false)->defaultItems(3)->translatable(),
                     ]),
                 ])->persistTabInQueryString(),
