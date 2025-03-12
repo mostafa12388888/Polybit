@@ -25,12 +25,12 @@ class Slide extends Model
 
     public function getLinkAttribute()
     {
-        return collect($this->actions ?? [])->where('primary', true)->first();
+        return collect(optional($this)->actions ?: [])->where('primary', true)->first();
     }
 
     public function getButtonsAttribute()
     {
-        return collect($this->actions ?? [])->where('primary', '!=', true)->toArray();
+        return collect(optional($this)->actions ?: [])->where('primary', '!=', true)->toArray();
     }
 
     protected static function boot()
