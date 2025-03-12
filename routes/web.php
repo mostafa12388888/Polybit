@@ -9,15 +9,7 @@ use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
-Livewire::setUpdateRoute(function ($handle) {
-    if (in_array(request()->segment(1), array_keys(locales()))) {
-        if (! (collect(locales(false))->where('code', request()->segment(1))->first()['default'] ?? false)) {
-            $prefix = request()->segment(1);
-        }
-    }
-
-    return Route::post(($prefix ?? null).'/livewire/update', $handle);
-});
+Livewire::setUpdateRoute(fn ($handle) => Route::post('/livewire/update', $handle));
 
 Route::view('/', 'home.index')->name('home');
 
