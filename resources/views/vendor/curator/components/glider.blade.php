@@ -5,6 +5,9 @@
             @if ($media->alt)
                 alt="{{ $media->alt }}"
             @endif
+            @if ($media->title ?? null)
+                title="{{ $media->title }}"
+            @endif
             @if ($width && $height)
                 width="{{ $width }}"
                 height="{{ $height }}"

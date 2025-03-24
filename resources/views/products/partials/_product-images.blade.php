@@ -9,7 +9,8 @@
 
     $first_image = $product->image ? [
         'url' => $product->image?->getSignedUrl(['fm' => 'webp', 'w' => 720, 'q' => 70]),
-        'alt' => '{{ $product->image->alt ?? $product->name }}',
+        'alt' => '{{ $product->image?->alt ?: $product->name }}',
+        'title' => '{{ $product->image?->title }}',
         'type' => 'image',
     ] : [
         'url' => collect($embeded_urls)->first(),
@@ -25,6 +26,7 @@
                 'thumb': '{{ $image->getSignedUrl(['fm' => 'webp', 'w' => 80, 'h' => 80, 'fit' => 'crop', 'q' => 70]) }}',
                 'full': '{{ $image->getSignedUrl(['fm' => 'webp', 'w' => 720, 'q' => 70]) }}',
                 'alt': '{{ $image->alt ?? $product->name }}',
+                'title': '{{ $image->title }}',
             },
         @endforeach
         @foreach($embeded_urls as $i => $url)
@@ -46,7 +48,7 @@
         <div class="overflow-hidden">
             <iframe {{ $first_image['type'] == '3d' ? '' : 'x-cloak' }} x-show="activeImage.thumb == '3d'" src="{!! $first_image['type'] == '3d' ? $first_image['url'] : '' !!}" x-bind:src="activeImage.thumb == '3d' ? activeImage.full : ''" frameborder="0" title="3d {{ $product->name }}" class="w-full aspect-[4/3]"></iframe>
 
-            <img {{ $first_image['type'] == '3d' ? 'x-cloak' : '' }} x-show="activeImage.thumb != '3d'" src="{!! $first_image['type'] != '3d' ? $first_image['url'] : '' !!}" alt="{{ optional($first_image)['alt'] }}" fetchpriority="high" x-bind:src="activeImage.thumb != '3d' ? activeImage.full : ''" x-bind:alt="activeImage.alt" width="720" height="480" class="w-full sm:rounded-md" />
+            <img {{ $first_image['type'] == '3d' ? 'x-cloak' : '' }} x-show="activeImage.thumb != '3d'" src="{!! $first_image['type'] != '3d' ? $first_image['url'] : '' !!}" alt="{{ optional($first_image)['alt'] }}" title="{{ optional($first_image)['title'] }}" fetchpriority="high" x-bind:src="activeImage.thumb != '3d' ? activeImage.full : ''" x-bind:alt="activeImage.alt" width="720" height="480" class="w-full sm:rounded-md" />
         </div>
     </div>
 
@@ -66,7 +68,7 @@
                     </div>
                 </template>
                 <template x-if="image.thumb != '3d'">
-                    <x-img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII" alt="{{ $product->name }}" loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" width="80" height="80" x-bind:alt="image.alt" />
+                    <x-img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII" alt="{{ $product->name }}" title="{{ $product->name }}" loading="lazy" x-bind:src="image.thumb" class="w-full h-full object-cover rounded" width="80" height="80" x-bind:alt="image.alt" x-bind:title="image.title" />
                 </template>
             </button>
         </template>
