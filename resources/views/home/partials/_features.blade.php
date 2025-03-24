@@ -63,8 +63,12 @@
                     </x-button>
                 </template>
             </div>
-
-            
         </div>
+
+        @if (($page = request()->_page) && $page->body)
+            <div class="prose prose-zinc dark:prose-invert bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 min-w-full rounded-md -mb-10">
+                {!! html($page->body) !!}
+            </div>
+        @endif
     </div>
 </div>

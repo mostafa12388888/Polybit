@@ -23,5 +23,13 @@
                 {{ $projects->links() }}
             </div>
         </div>
+
+        @if (($page = request()->_page) && $page->body)
+            <div class="container mx-auto -mb-5">
+                <div class="prose prose-zinc dark:prose-invert bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 min-w-full rounded-md mt-10">
+                    {!! html($page->body) !!}
+                </div>
+            </div>
+        @endif
     </div>
 </x-app-layout>

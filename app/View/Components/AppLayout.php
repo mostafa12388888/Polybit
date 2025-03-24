@@ -19,6 +19,8 @@ class AppLayout extends Component
 
         if (in_array($route, array_keys(Page::$preset_pages))) {
             $page = Page::where('route', $route)->first();
+
+            request()->merge(['_page' => $page]);
         }
 
         return view('layouts.app', compact('page'));
