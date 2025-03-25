@@ -227,6 +227,11 @@ class ProductResource extends Resource
                                                 }
                                             },
                                         ),
+
+                                    TextInput::make('price')->hiddenLabel()->prefix(__('admin.Price'))->numeric()->step(0.01)->rules(['decimal:0,2'])->requiredWith('price_before_discount'),
+
+                                    TextInput::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount'))->numeric()->step(0.01)
+                                        ->rules(['decimal:0,2'])->gt('price'),
                                 ];
                             })
                             ->hintAction(
@@ -333,8 +338,11 @@ class ProductResource extends Resource
                         RepeatableEntry::make('attribute_values_product_variant')->hiddenLabel()->schema([
                             TextEntry::make('attribute_value')->hiddenLabel()
                                 ->formatStateUsing(fn ($state) => $state->title ? $state->title : $state->value),
-                        ])->grid(4),
-                    ]),
+                        ])->grid(4)->columnSpanFull(),
+
+                        TextEntry::make('price')->hiddenLabel()->prefix(__('admin.Price').': ')->hidden(fn ($state) => ! $state),
+                        TextEntry::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount').': ')->hidden(fn ($state) => ! $state),
+                    ])->columns(2),
                 ]),
             ])->columnSpanFull()->persistTabInQueryString(),
         ]);

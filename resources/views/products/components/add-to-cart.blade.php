@@ -60,6 +60,18 @@
         </div>
     @endif
 
+    @if ($price)
+        <div class="flex gap-3 items-baseline">
+            <p class="font-semibold truncate text-3xl">{{ Number::format($price) }} <span class="text-base">{{ __('E£') }}</span></p>
+
+            @if ($price_before_discount && $price_before_discount > $price)
+                <p class="line-through">{{ Number::format($price_before_discount) }} {{ __('E£') }}</p>
+            @endif
+
+            <x-spinner class="!w-5 !h-5" wire:target="selected_attribute_values" wire:loading />
+        </div>
+    @endif
+
     <div class="flex flex-wrap gap-2">
         @if($product->is_available && ! $added_to_cart)
             <div class="flex-grow flex flex-wrap items-center gap-4 md:max-w-xs w-full sm:w-auto">

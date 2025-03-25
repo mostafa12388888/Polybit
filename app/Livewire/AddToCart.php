@@ -11,6 +11,10 @@ class AddToCart extends Component
 {
     public Product $product;
 
+    public $price;
+
+    public $price_before_discount;
+
     /**
      * Product's variants with it's values
      */
@@ -43,6 +47,8 @@ class AddToCart extends Component
 
     public function mount()
     {
+        $this->product->loadMissing('variants');
+
         $variants = $this->product->variants;
 
         $this->variants = $variants->pluck('attribute_values', 'id')->map(fn ($variant_values) => $variant_values->pluck('id')->values()->toArray())->toArray();
@@ -53,6 +59,8 @@ class AddToCart extends Component
         $this->available_attribute_values = collect($this->attribute_values)->flatten()->toArray();
 
         $this->added_to_wishlist = in_array($this->product->id, collect(wishlist()->items)->pluck('product')->toArray());
+
+        $this->update_price();
     }
 
     public function updatedSelectedAttributeValues($value)
@@ -76,6 +84,8 @@ class AddToCart extends Component
                 $attribute => collect($values)->filter(fn ($value) => in_array($value, $variants_attribute_values))->toArray(),
             ];
         })->flatten()->toArray();
+
+        $this->update_price();
     }
 
     public function add_to_cart()
@@ -125,11 +135,33 @@ class AddToCart extends Component
         $this->dispatch('wishlist-updated');
     }
 
-    public function get_variant()
+    public function update_price()
     {
-        $variants = collect($this->variants)->filter(function ($variant) {
+        $this->price = $this->product->price;
+        $this->price_before_discount = $this->product->price_before_discount;
+
+        if ($this->get_variants()->count() != 1) {
+            return;
+        }
+
+        $variant = $this->product->variants->where('id', $this->get_variant())->first();
+
+        if ($variant->price) {
+            $this->price = $variant->price;
+            $this->price_before_discount = $variant->price_before_discount;
+        }
+    }
+
+    public function get_variants()
+    {
+        return collect($this->variants)->filter(function ($variant) {
             return ! array_diff(array_filter($this->selected_attribute_values), $variant);
         });
+    }
+
+    public function get_variant()
+    {
+        $variants = $this->get_variants();
 
         return array_keys($variants->toArray())[0] ?? null;
     }

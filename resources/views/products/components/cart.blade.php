@@ -19,9 +19,9 @@
                         
                         <x-link :href="route('products.show', $product)" class="table-cell align-middle lg:pt-6 lg:pb-6 lg:border-t border-dashed border-dark-200/70 dark:border-dark-700 flex-grow">
                             <h3 class="line-clamp-3">{{ $product->name }}</h3>
-                            @if ($product->variant)
+                            @if ($variant = $product->variant)
                                 <p class="text-sm font-thin">
-                                    @foreach ($product->variant->attribute_values as $attribute_value)
+                                    @foreach ($variant->attribute_values as $attribute_value)
                                         {{ $attribute_value->title ?: $attribute_value->value }}
                                         {{ $loop->last ? '' : ' - ' }}
                                     @endforeach
