@@ -34,7 +34,7 @@ trait Seoable
                 return $image?->title ?: optional($default_metadata)['image-title'];
             }
 
-            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70]);
+            $image = $image?->getSignedUrl(['w' => 1200, 'h' => 630, 'fit' => 'crop', 'bg' => 'FFFFFF', 'fm' => 'webp', 'q' => 70], true);
 
             if (! $image) {
                 $image = optional($default_metadata)['image'];
