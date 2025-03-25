@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class AddToCart extends Component
@@ -33,6 +34,7 @@ class AddToCart extends Component
     #[Locked]
     public array $available_attribute_values = [];
 
+    #[Url(as: 'attributes')]
     public array $selected_attribute_values = [];
 
     public $added_to_cart;

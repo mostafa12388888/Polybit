@@ -7,43 +7,40 @@
                     <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </span>
                     <span>{{ $attribute->values->first()->title ?: $attribute->values->first()->value }}</span>
                     
-                @else
-                
-                    @if ($attribute->type->isColors())
-                        <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</span>
+                @elseif ($attribute->type->isColors())
+                    <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</span>
 
-                        <div class="table-cell align-middle" x-data="{ activeColor: null }">
-                            <div class="flex gap-0.5 flex-wrap -mx-1">
-                                @foreach ($attribute->values as $value)
-                                    @php($available = in_array($value->id, $available_attribute_values))
-
-                                    <div class="{{ ! $available ? 'cursor-not-allowed opacity-25 blur-[2px]' : '' }}" title="{{ $value->title }}">
-                                        <button class="flex hover:ring-1 rounded p-1.5 items-center justify-center {{ ! $available ? 'pointer-events-none' : '' }}"
-                                            x-bind:class="activeColor == {{ $value->id }} ? 'ring-2 hover:ring-2 ring-primary-400' : 'ring-primary-200'"
-                                            @click="
-                                                $wire.set('selected_attribute_values.{{ $attribute->id }}', activeColor == {{ $value->id }} ? null : {{ $value->id }})
-                                                activeColor = {{ $value->id }}
-                                            "
-                                        >
-                                            <span class="block w-9 h-9 shadow rounded" style="background: {{ $value->value }};"></span>
-                                            <span class="sr-only">{{ $value->title }}</span>
-                                        </button>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @else
-                        <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit" for="attr_{{ $attribute->id }}">{{ $attribute->name }}</x-label>
-
-                        <x-select class="table-cell text-sm px-8 py-3 sm:py-2 max-w-sm" id="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
-                            <option value="" selected>- {{ __('Select :attribute', ['attribute' => $attribute->name]) }}</option>
-
+                    <div class="table-cell align-middle" x-data="{ activeColor: null }" x-init="activeColor = $wire.get('selected_attribute_values.{{ $attribute->id }}')">
+                        <div class="flex gap-0.5 flex-wrap -mx-1">
                             @foreach ($attribute->values as $value)
                                 @php($available = in_array($value->id, $available_attribute_values))
-                                <option value="{{ $value->id }}" {{ ! $available ? 'disabled' : '' }}>{{ $value->value }}</option>
+
+                                <div class="{{ ! $available ? 'cursor-not-allowed opacity-25 blur-[2px]' : '' }}" title="{{ $value->title }}">
+                                    <button class="flex hover:ring-1 rounded p-1.5 items-center justify-center {{ ! $available ? 'pointer-events-none' : '' }}"
+                                        x-bind:class="activeColor == {{ $value->id }} ? 'ring-2 hover:ring-2 ring-primary-400' : 'ring-primary-200'"
+                                        @click="
+                                            $wire.set('selected_attribute_values.{{ $attribute->id }}', activeColor == {{ $value->id }} ? null : {{ $value->id }})
+                                            activeColor = {{ $value->id }}
+                                        "
+                                    >
+                                        <span class="block w-9 h-9 shadow rounded" style="background: {{ $value->value }};"></span>
+                                        <span class="sr-only">{{ $value->title }}</span>
+                                    </button>
+                                </div>
                             @endforeach
-                        </x-select>
-                    @endif
+                        </div>
+                    </div>
+                @else
+                    <x-label class="sm:pe-8 sm:py-5 table-cell max-w-fit" for="attr_{{ $attribute->id }}">{{ $attribute->name }}</x-label>
+
+                    <x-select class="table-cell text-sm px-8 py-3 sm:py-2 max-w-sm" id="attr_{{ $attribute->id }}" wire:model.live="selected_attribute_values.{{ $attribute->id }}">
+                        <option value="" selected>- {{ __('Select :attribute', ['attribute' => $attribute->name]) }}</option>
+
+                        @foreach ($attribute->values as $value)
+                            @php($available = in_array($value->id, $available_attribute_values))
+                            <option value="{{ $value->id }}" {{ ! $available ? 'disabled' : '' }}>{{ $value->value }}</option>
+                        @endforeach
+                    </x-select>
                 @endif
             </div>
 
@@ -57,10 +54,10 @@
     </div>
 
     @if(! $product->is_available)
-    <div class="text-lg text-red-500 flex gap-2 items-center">
-        <x-icons.exclamation-triangle class="!w-7 !h-7" />
-        <span>{{ __('The product is currently unavailable') }}.</span>
-    </div>
+        <div class="text-lg text-red-500 flex gap-2 items-center">
+            <x-icons.exclamation-triangle class="!w-7 !h-7" />
+            <span>{{ __('The product is currently unavailable') }}.</span>
+        </div>
     @endif
 
     <div class="flex flex-wrap gap-2">
