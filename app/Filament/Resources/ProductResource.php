@@ -14,7 +14,6 @@ use Closure;
 use Filament\Forms\Components\Actions\Action as FormAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
@@ -69,20 +68,23 @@ class ProductResource extends Resource
                         TiptapEditor::make('description')->required()->columnSpanFull()->profile('minimal')
                             ->imageResizeMode('cover')->imageCropAspectRatio('16:9')->imageResizeTargetWidth(1920),
 
-                        Split::make([
-                            Select::make('categories')->multiple()->searchable()
-                                ->relationship(titleAttribute: 'name')
-                                ->getSearchResultsUsing(function ($query) {
-                                    return StoreCategory::subCategories()->where('name', 'like', '%'.$query.'%')->pluck('name', 'id')->toArray();
-                                })
-                                ->options(function () {
-                                    foreach (StoreCategory::parents()->with('sub_categories')->get() as $key => $category) {
-                                        $options[$category->name] = $category->sub_categories->pluck('name', 'id')->toArray();
-                                    }
+                        Select::make('categories')->multiple()->searchable()
+                            ->relationship(titleAttribute: 'name')
+                            ->getSearchResultsUsing(function ($query) {
+                                return StoreCategory::subCategories()->where('name', 'like', '%'.$query.'%')->pluck('name', 'id')->toArray();
+                            })
+                            ->options(function () {
+                                foreach (StoreCategory::parents()->with('sub_categories')->get() as $key => $category) {
+                                    $options[$category->name] = $category->sub_categories->pluck('name', 'id')->toArray();
+                                }
 
-                                    return $options ?? [];
-                                }),
-                        ])->columnSpanFull(),
+                                return $options ?? [];
+                            })->columnSpanFull(),
+
+                        Select::make('tags')->relationship(titleAttribute: 'name')->multiple()->preload()
+                            ->createOptionForm([
+                                TextInput::make('name')->label(__('admin.Tag'))->required()->translatable(),
+                            ])->searchable()->columnSpanFull(),
                     ]);
 
                     $tabs[] = Tab::make('Images')->schema([

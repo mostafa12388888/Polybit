@@ -208,4 +208,9 @@ return [
     'testimonials' => 'آراء مستخدمين',
     'Testimonials' => 'آراء المستخدمين',
     'Job title' => 'المسمى الوظيفي',
+    'tag' => 'وسم',
+    'Tag' => 'الوسم',
+    'tags' => 'وسوم',
+    'Tags' => 'الوسوم',
+    'Products count' => 'المنتجات',
 ];

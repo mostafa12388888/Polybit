@@ -2,6 +2,30 @@
     <div class="relative">
         <x-curator-glider fallback="logo" :media="$product->image" format="webp" width="480" height="280" fit="contain" quality="70" class="w-full aspect-video object-contain bg-white" :alt="$product->name" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
 
+        @if ($product->tags->count() == 1)
+            <span class="text-sm px-3 py-1 rounded text-white bg-secondary-500 dark:bg-secondary-600 absolute top-4 rtl:right-3 ltr:left-3">
+                {{ $product->tags->first()->name }}
+            </span>
+        @elseif($product->tags->count())
+            <span class="text-sm px-3 py-1 rounded text-white bg-secondary-500 dark:bg-secondary-600 absolute top-4 rtl:right-3 ltr:left-3"
+                x-data="{
+                    tags: {{ $product->tags->pluck('name')->toJson() }},
+                    currentIndex: 0,
+                    show: true
+                }"
+                x-init="setInterval(() => {
+                    show = false;
+                    setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % tags.length;
+                        show = true;
+                    }, 300);
+                }, 3000)"
+                x-text="tags[currentIndex]"
+                x-show="show"
+                x-transition.opacity.duration.300ms>
+            </span>
+        @endif
+
         <div class="group-hover:opacity-100 opacity-0 transition-opacity absolute w-full h-full top-0 left-0 bg-dark-900/60  flex items-center justify-center text-white">
             <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />
         </div>
@@ -22,9 +46,4 @@
 
         <h3>{{ $product->category?->name }}</h3>
     </div>
-        
-    {{-- <x-button styling="light" class="flex gap-2 dark:bg-dark-700 justify-center rounded-none py-4">
-        <x-icons.cart class="!w-5 !h-5" stroke-width="1.5" />
-        <span>{{ __('Add to cart') }}</span>
-    </x-button> --}}
 </x-link>

@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->with('image', 'category')->paginate(12);
+        $products = Product::latest()->with('image', 'category', 'tags')->paginate(12);
 
         return view('products.index', compact('products'));
     }
@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->loadMissing('media', 'specs.media', 'variants.attribute_values', 'category');
+        $product->loadMissing('media', 'specs.media', 'variants.attribute_values', 'category', 'tags');
 
         $related_products = collect();
 

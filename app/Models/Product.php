@@ -36,6 +36,11 @@ class Product extends Model
         return 'slug';
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->orderByPivot('product_tag.created_at');
+    }
+
     public function categories()
     {
         return $this->belongsToMany(StoreCategory::class, 'product_store_category')->orderByPivot('product_store_category.created_at');

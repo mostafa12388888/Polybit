@@ -39,6 +39,16 @@
 
                 <div class="flex-grow flex flex-col gap-6 mx-4 sm:mx-0 mt-4">
                     <h2 class="font-bold text-4xl xl:text-[2.5rem] text-dark-800 dark:text-dark-100 leading-tight">{{ $product->name }}</h2>
+
+                    @if ($product->tags)
+                        <div class="flex gap-2 rtl:-mt-1 ltr:-mt-3 mb-1">
+                            @foreach ($product->tags as $tag)
+                                <span class="text-sm px-3 py-1 rounded bg-secondary-200/70 dark:bg-dark-700">
+                                    {{ $tag->name }}
+                                </span>
+                            @endforeach
+                        </div>
+                    @endif
                     
                     <div class="prose prose-zinc dark:prose-invert max-w-full">{!! html($product->description) !!}</div>
 
