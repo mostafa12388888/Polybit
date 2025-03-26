@@ -1,4 +1,5 @@
 <form class="relative flex-grow w-full lg:w-auto lg:max-w-2xl xl:max-w-4xl" 
+    action="{{ route('search') }}"
     x-data="{
         visible: false,
         focused: false,
@@ -19,7 +20,6 @@
     x-trap.inert.noscroll="focused || visible"
     @keydown.down="$focus.wrap().next()"
     @keydown.up="$focus.wrap().previous()"
-    @submit.prevent=""
 >
     <!-- Overlay -->
     <div wire:ignore class="bg-dark-800/40 fixed top-0 bottom-0 left-0 right-0"

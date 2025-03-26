@@ -6,12 +6,15 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
 Livewire::setUpdateRoute(fn ($handle) => Route::post('/livewire/update', $handle));
 
 Route::view('/', 'home.index')->name('home');
+
+Route::get('/search', SearchController::class)->name('search');
 
 Route::resource('products', ProductController::class)->only('index', 'show');
 Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');

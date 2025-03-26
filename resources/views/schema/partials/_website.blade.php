@@ -15,5 +15,10 @@
     ],
     "sameAs": [
         {!! collect(setting('social_links') ?? [])->map(fn ($link) => '"'.$link.'"')->implode(', ') !!}
-    ]
+    ],
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ route('search') }}?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
 }

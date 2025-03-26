@@ -1,5 +1,5 @@
 {
-    "Search query can't be longer than :count words": "لا يمكن أن يكون استعلام البحث أطول من :count كلمات",
+    "Search query can't be longer than :count character": "لا يمكن أن يكون استعلام البحث أطول من :count حرف",
     "Featured Projects": "المشاريع المميزة",
     "Discover the Projects that Define Our Commitment to Quality": "اكتشف المشاريع التي تعكس التزامنا بالجودة",
     "Ready to connect": "مستعد للبدء",
@@ -181,5 +181,7 @@
     "Read Less": "عرض أقل",
     "What People Are Saying": "قصص نجاح يرويها عملاؤنا",
     "Genuine reviews from our valued customers": "تجارب فعلية تعكس مستوى الجودة والثقة",
-    "Default user image": "الصورة الافتراضية للمستخدم"
+    "Default user image": "الصورة الافتراضية للمستخدم",
+    ":query - Search results": ":query - نتائج البحث",
+    "Search results": "نتائج البحث"
 }
