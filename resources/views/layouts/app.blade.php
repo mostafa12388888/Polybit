@@ -131,7 +131,7 @@
                     <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none bg-header"></div>
                 @endif
 
-                <div class="container mx-auto {{ setting('header_banner') ? 'py-24 lg:py-28' : 'py-10 lg:py-14' }} z-20 relative text-gray-800 dark:text-dark-100">
+                <div class="container mx-auto {{ setting('header_banner') ? 'py-24 lg:py-28' : 'py-10 lg:py-14' }} z-20 relative text-dark-50">
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl leading-tight">
                         {{ $heading }}
                     </h1>
@@ -146,7 +146,7 @@
         @endif
         
         @if ($breadcrumbs ?? null)
-            <div class="px-4 sm:px-6 bg-white dark:bg-dark-800 shadow-sm z-20">
+            <div class="px-4 sm:px-6 bg-white dark:bg-dark-700/60 shadow-sm z-20">
                 <div class="border-t border-dark-100 dark:border-dark-700/50">
                     <div class="container mx-auto py-3 text-sm flex items-center gap-2">
                         <x-breadcrumb class="flex items-center justify-center gap-1.5" :href="route('home')">

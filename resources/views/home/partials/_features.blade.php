@@ -66,7 +66,7 @@
         </div>
 
         @if (($page = request()->_page) && $page->body)
-            <div class="prose prose-zinc dark:prose-invert bg-white dark:bg-dark-700/60 py-8 px-4 md:px-6 xl:px-8 min-w-full rounded-md -mb-10">
+            <div class="prose prose-zinc dark:prose-invert ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 py-8 px-4 md:px-6 xl:px-8 min-w-full mt-1 xl:mt-0 rounded-xl xl:-mb-10">
                 {!! html($page->body) !!}
             </div>
         @endif

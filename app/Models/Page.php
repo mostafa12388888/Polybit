@@ -32,6 +32,7 @@ class Page extends Model
         'register' => 'Register New Account',
         'login' => 'Login',
         'password.request' => 'Reset Password',
+        'catalogs.index' => 'Catalogs',
     ];
 
     public function getRouteKeyName()

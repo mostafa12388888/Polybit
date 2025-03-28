@@ -1,0 +1,14 @@
+<div class="flex-grow group flex max-sm:flex-col gap-6 text-start items-start !p-0 shadow-none overflow-hidden" >
+    <div class="relative max-sm:w-full flex-shrink-0 overflow-hidden">
+        <x-curator-glider fallback="logo" :media="$catalog->image" format="webp" width="320" fit="contain" quality="70" class="rounded-md max-w-sm w-full sm:w-56 md:w-64 lg:w-72 object-cover bg-white" :alt="$catalog->title" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
+    </div>
+
+    <div class="flex-grow flex flex-col gap-5">
+        <div class="flex flex-col gap-3">
+            <h2 class="font-semibold line-clamp-2 text-xl xl:text-xl">{{ $catalog->title }}</h2>
+            <p class="font-light line-clamp-4">{{ str()->limit(text($catalog->description), 350) }}</p>
+        </div>
+        
+        <x-link :href="route('catalogs.show', $catalog)" styling="link" class="text-center !px-4 !py-2 border dark:border-dark-700">{{ __('View catalog') }}</x-link>
+    </div>
+</div>

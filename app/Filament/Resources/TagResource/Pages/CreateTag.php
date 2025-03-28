@@ -6,6 +6,7 @@ use App\Filament\Resources\TagResource;
 use App\Filament\Traits\CreateRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Contracts\Support\Htmlable;
 
 class CreateTag extends CreateRecord
 {
@@ -18,5 +19,12 @@ class CreateTag extends CreateRecord
         return [
             Actions\LocaleSwitcher::make(),
         ];
+    }
+
+    public function getTitle(): string|Htmlable
+    {
+        return __('filament-panels::resources/pages/create-record.title', [
+            'label' => static::getResource()::getModelLabel(),
+        ]);
     }
 }

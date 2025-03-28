@@ -61,7 +61,7 @@
     @endif
 
     @if ($price)
-        <div class="flex gap-3 items-baseline">
+        <div class="flex gap-3 items-baseline mt-3 mb-6">
             <p class="font-semibold truncate text-3xl">{{ Number::format($price) }} <span class="text-base">{{ __('E£') }}</span></p>
 
             @if ($price_before_discount && $price_before_discount > $price)

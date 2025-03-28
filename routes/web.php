@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
@@ -21,6 +22,8 @@ Route::get('/store-categories/{category}', [ProductController::class, 'category_
 Route::view('/cart', 'products.cart')->name('cart');
 Route::view('/wishlist', 'products.wishlist')->name('wishlist');
 Route::view('/request-quote', 'products.request-quote')->name('request-quote');
+
+Route::resource('catalogs', CatalogController::class)->only('index', 'show');
 
 Route::resource('posts', PostController::class)->only('index', 'show');
 Route::get('/blog-categories/{category}', [PostController::class, 'category_posts'])->name('blog-categories.show');

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Filament\Resources\SlideResource\Pages;
+namespace App\Filament\Resources\CatalogResource\Pages;
 
-use App\Filament\Resources\SlideResource;
+use App\Filament\Resources\CatalogResource;
 use App\Filament\Traits\CreateRecord\Translatable;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Contracts\Support\Htmlable;
 
-class CreateSlide extends CreateRecord
+class CreateCatalog extends CreateRecord
 {
     use Translatable;
 
-    protected static string $resource = SlideResource::class;
+    protected static string $resource = CatalogResource::class;
 
     protected function getHeaderActions(): array
     {
