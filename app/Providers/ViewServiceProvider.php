@@ -64,20 +64,16 @@ class ViewServiceProvider extends ServiceProvider
             return $view->with(compact('pages'));
         });
 
-        Facades\View::composer(['layouts.partials._footer'], function (View $view) use ($darkmode) {
-            $catalogs_count = Cache::remember('catalogs_count_'.app()->getLocale(), 60 * 60, function () {
-                return Catalog::latest()->whereJsonContains('locales', app()->getLocale())->count();
-            });
-
-            return $view->with(compact('catalogs_count'));
-        });
-
         Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer'], function (View $view) {
             $blog_categories = Cache::remember('blog_categories', 60 * 60, function () {
                 return BlogCategory::parents()->with('sub_categories')->get();
             });
 
-            return $view->with(compact('blog_categories'));
+            $catalogs_count = Cache::remember('catalogs_count_'.app()->getLocale(), 60 * 60, function () {
+                return Catalog::latest()->whereJsonContains('locales', app()->getLocale())->count();
+            });
+
+            return $view->with(compact('blog_categories', 'catalogs_count'));
         });
 
         Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer', 'home.index', 'products.index'], function (View $view) {

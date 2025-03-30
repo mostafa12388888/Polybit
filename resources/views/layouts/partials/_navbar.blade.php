@@ -71,6 +71,10 @@
                     <x-link styling="light-link" class="w-full max-md:py-3 md:hidden whitespace-nowrap" :href="route('pages.show', $page)">{{ $page->title }}</x-link>
                 @endif
             @endforeach
+
+            @if ($catalogs_count)
+                <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('catalogs.index')">{{ __('Catalogs') }}</x-link>
+            @endif
             
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
