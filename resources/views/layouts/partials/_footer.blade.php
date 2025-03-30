@@ -110,7 +110,11 @@
                     <div class="md:!block md:!h-auto" x-show="open" x-collapse x-cloak>
                         <div class="pb-4 flex flex-col gap-4">
                             <x-link :href="route('contact-us')">{{ __('Contact Us') }}</x-link>
-                            <x-link :href="route('catalogs.index')">{{ __('Catalogs') }}</x-link>
+
+                            @if ($catalogs_count)
+                                <x-link :href="route('catalogs.index')">{{ __('Catalogs') }}</x-link>
+                            @endif
+
                             <x-link :href="route('faq')">{{ __('FAQ') }}</x-link>
                         </div>
                     </div>

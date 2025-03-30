@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\BlogCategory;
+use App\Models\Catalog;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Product;
@@ -61,6 +62,14 @@ class ViewServiceProvider extends ServiceProvider
             $pages = Cache::remember('pages', 60 * 60, fn () => Page::orderBy('order')->get());
 
             return $view->with(compact('pages'));
+        });
+
+        Facades\View::composer(['layouts.partials._footer'], function (View $view) use ($darkmode) {
+            $catalogs_count = Cache::remember('catalogs_count_'.app()->getLocale(), 60 * 60, function () {
+                return Catalog::latest()->whereJsonContains('locales', app()->getLocale())->count();
+            });
+
+            return $view->with(compact('catalogs_count'));
         });
 
         Facades\View::composer(['layouts.partials._navbar', 'layouts.partials._footer'], function (View $view) {

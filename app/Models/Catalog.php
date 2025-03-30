@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\HasCuratorMedia;
-use App\Traits\HasLocales;
-use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
+use App\Traits\HasLocales;
+use App\Traits\HasCuratorMedia;
+use App\Traits\HasTranslations;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Catalog extends Model
@@ -67,5 +68,12 @@ class Catalog extends Model
             'image-alt' => $this->image?->alt ?: str($this->title)->limit(100),
             'image-title' => $this->image?->title ?: str($this->title)->limit(100),
         ];
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(fn () => collect(array_keys(locales()))->map(fn ($locale) => Cache::forget('catalogs_count_'.$locale)));
     }
 }
