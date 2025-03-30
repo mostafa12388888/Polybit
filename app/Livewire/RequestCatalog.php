@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Catalog;
 use Illuminate\Support\Facades\Cookie;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -26,6 +27,7 @@ class RequestCatalog extends Component
     #[Validate('max:5000')]
     public $message;
 
+    #[Locked]
     public $request_submitted;
 
     public function mount(Catalog $catalog)

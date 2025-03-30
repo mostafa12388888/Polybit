@@ -91,6 +91,11 @@ class Setting extends Model
             'type' => 'array',
             'default' => [],
         ],
+        'catalogs_delivery_method' => [
+            'translatable' => false,
+            'type' => 'string',
+            'default' => 'manual',
+        ],
     ];
 
     public function user()

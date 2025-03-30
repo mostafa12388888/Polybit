@@ -191,5 +191,8 @@
     "Request access to the catalog": "طلب الوصول للكتالوج",
     "Please provide the following details in order to access the catalog": "يرجى تقديم التفاصيل التالية للوصول الى الكتالوج",
     "Your Company": "شركتك",
-    "Company Name": "اسم الشركة"
+    "Company Name": "اسم الشركة",
+    "Thank you for submitting the form": "شكرا لك لتقديم النموذج",
+    "You can download the catalog via the link below": "يمكنك تحميل الكتالوج عبر الرابط أدناه.",
+    "Download Catalog": "تحميل الكتالوج"
 }

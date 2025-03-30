@@ -226,4 +226,8 @@ return [
     'Catalog requests' => 'طلبات الكتالوجات',
     'Company' => 'الشركة',
     'Additional Details' => 'تفاصيل إضافية',
+    'Catalogs delivery method' => 'طريقة توفير الكتالوجات',
+    'Send it manually' => 'إرسال يدوي',
+    'Show it Automatically after form submission' => 'إظهار تلقائي بعد ملء نموذج "طلب كتالوج"',
+    'Show it Automatically without form submission' => 'إظهار تلقائي بدون نموذج "طلب كتالوج"',
 ];

@@ -11,6 +11,7 @@ use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
@@ -74,6 +75,8 @@ class Settings extends Page
     public $dark_color_shades = null;
 
     public $stats = [];
+
+    public $catalogs_delivery_method = 'manual';
 
     public function mount(): void
     {
@@ -237,6 +240,13 @@ class Settings extends Page
                             TextInput::make('title')->required()->placeholder(__('admin.eg: Happy Clients'))->maxLength(120),
                             TextInput::make('url')->columnSpanFull()->extraAttributes(['dir' => 'ltr'])->prefixIcon('heroicon-o-link'),
                         ])->columns(2)->reorderable(false)->defaultItems(3)->translatable(),
+                    ]),
+                    Tab::make('More')->schema([
+                        Select::make('catalogs_delivery_method')->options([
+                            'manual' => __('admin.Send it manually'),
+                            'automatic' => __('admin.Show it Automatically after form submission'),
+                            'without_form' => __('admin.Show it Automatically without form submission'),
+                        ])->required(),
                     ]),
                 ])->persistTabInQueryString(),
             ]);
