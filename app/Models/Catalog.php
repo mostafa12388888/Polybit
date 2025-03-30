@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasCuratorMedia;
+use App\Traits\HasLocales;
+use App\Traits\HasTranslations;
 use App\Traits\Seoable;
 use App\Traits\Sluggable;
-use App\Traits\HasLocales;
-use App\Traits\HasCuratorMedia;
-use App\Traits\HasTranslations;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Catalog extends Model
 {
