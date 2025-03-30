@@ -52,7 +52,7 @@ class Catalog extends Model
     public function getDocumentAttribute()
     {
         if ($this->relationLoaded('media')) {
-            return $this->media->where('type', 'catalog-document')->first();
+            return $this->media->where('pivot.type', 'catalog-document')->first();
         }
 
         return $this->document()->first();
