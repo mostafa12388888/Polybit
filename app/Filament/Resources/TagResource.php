@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TagResource\Pages;
+use App\Filament\Resources\TagResource\RelationManagers\ProductsRelationManager;
 use App\Models\Tag;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -51,7 +52,7 @@ class TagResource extends Resource
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
-                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\EditAction::make()->url(fn ($record) => self::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make(),
                 ]),
             ])
@@ -79,7 +80,7 @@ class TagResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ProductsRelationManager::class,
         ];
     }
 

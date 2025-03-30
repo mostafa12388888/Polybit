@@ -53,7 +53,7 @@ class FaqResource extends Resource
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
-                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\EditAction::make()->url(fn ($record) => self::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make(),
                 ]),
             ])

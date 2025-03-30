@@ -64,7 +64,7 @@ class PageResource extends Resource
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
-                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\EditAction::make()->url(fn ($record) => self::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make()->hidden(fn ($record) => ! $record->is_editable),
                     Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
                         ->url(fn ($record) => $record->route && Route::has($record->route) ? route($record->route) : route('pages.show', $record), true),
