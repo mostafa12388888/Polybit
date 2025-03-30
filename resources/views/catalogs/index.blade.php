@@ -9,9 +9,9 @@
     
     <div class="flex-grow bg-white dark:bg-dark-800 px-4 sm:px-6 py-12 md:py-16 xl:py-20 relative">
         <div class="container mx-auto flex flex-col gap-3 md:gap-4 lg:gap-8 justify-center items-center flex-wrap text-center relative z-10">
-            <div class="w-full flex gap-12 sm:gap-16 items-center flex-wrap justify-center">
+            <div class="w-full flex flex-col gap-12 sm:gap-16 items-center flex-wrap justify-center">
                 @forelse ($catalogs as $catalog)
-                    <div class="max-w-4xl flex-grow flex">
+                    <div class="w-full max-w-3xl flex-grow flex">
                         @include('catalogs.partials._catalog', ['lazy' => $loop->index > 1])
                     </div>
                 @empty
