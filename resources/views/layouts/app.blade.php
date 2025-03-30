@@ -131,7 +131,7 @@
                     <div class="absolute w-full h-full top-0 left-0 opacity-50 bg-secondary-400/5 bg-cover bg-no-repeat bg-center pointer-events-none bg-header"></div>
                 @endif
 
-                <div class="container mx-auto {{ setting('header_banner') ? 'py-24 lg:py-28' : 'py-10 lg:py-14' }} z-20 relative text-dark-50">
+                <div class="container mx-auto {{ setting('header_banner') ? 'py-24 lg:py-28' : 'py-10 lg:py-14' }} z-20 relative text-dark-700 dark:text-dark-50">
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl leading-tight">
                         {{ $heading }}
                     </h1>
