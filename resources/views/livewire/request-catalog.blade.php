@@ -26,9 +26,9 @@
             <div class="lg:rounded-md overflow-hidden bg-white dark:bg-dark-700/60 w-full lg:max-w-lg relative flex flex-col order-3 lg:order-1">
                 <div class="flex flex-col gap-6 bg-white dark:bg-dark-700/60 px-4 py-6">
                     <div class="max-sm:w-full flex-shrink-0 overflow-hidden">
-                        <x-curator-glider fallback="logo" :media="$catalog->image" format="webp" width="320" fit="contain" quality="70" class="rounded-md max-w-sm w-full sm:w-56 md:w-64 lg:w-72 object-cover bg-white" :alt="$catalog->title" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
+                        <x-curator-glider fallback="logo" :media="$catalog->image" format="webp" width="320" fit="contain" quality="70" class="rounded-md max-w-xs w-full sm:w-56 object-cover bg-white" :alt="$catalog->title" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
                     </div>
-                
+
                     <div class="flex-grow flex flex-col prose prose-zinc dark:prose-invert max-w-full">{!! html($catalog->description) !!}</div>
                 </div>
             </div>

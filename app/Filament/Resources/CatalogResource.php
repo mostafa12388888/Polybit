@@ -71,8 +71,8 @@ class CatalogResource extends Resource
                     Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
                     Tables\Actions\EditAction::make()->url(fn ($record) => self::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make(),
-                    // Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
-                    //     ->url(fn ($record) => localized_url($record->locales()[0] ?? app()->getLocale(), route('catalogs.show', $record)), true),
+                    Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
+                        ->url(fn ($record) => localized_url($record->locales()[0] ?? app()->getLocale(), route('catalogs.show', $record)), true),
                 ]),
             ])
             ->bulkActions([
@@ -102,8 +102,8 @@ class CatalogResource extends Resource
             ])->columns(2),
 
             \Filament\Infolists\Components\Section::make()->schema([
-                TextEntry::make('body')->columnSpanFull()->hiddenLabel()->html()->state(function (Catalog $catalog) {
-                    $content = $catalog->body ? tiptap_converter()->asHTML($catalog->body) : __('admin.No Description');
+                TextEntry::make('description')->columnSpanFull()->hiddenLabel()->html()->state(function (Catalog $catalog) {
+                    $content = $catalog->description ? tiptap_converter()->asHTML($catalog->description) : __('admin.No Description');
 
                     return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
                 }),

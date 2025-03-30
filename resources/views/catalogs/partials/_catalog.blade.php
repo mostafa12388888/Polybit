@@ -1,6 +1,6 @@
-<div class="flex-grow group flex max-sm:flex-col gap-6 text-start items-start !p-0 shadow-none overflow-hidden" >
+<div class="flex-grow group flex max-sm:flex-col gap-6 text-start items-center !p-0 shadow-none overflow-hidden" >
     <div class="relative max-sm:w-full flex-shrink-0 overflow-hidden">
-        <x-curator-glider fallback="logo" :media="$catalog->image" format="webp" width="320" fit="contain" quality="70" class="rounded-md max-w-sm w-full sm:w-56 md:w-64 lg:w-72 object-cover bg-white" :alt="$catalog->title" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
+        <x-curator-glider fallback="logo" :media="$catalog->image" format="webp" width="320" fit="contain" quality="70" class="rounded-md max-w-56 w-full sm:w-40 object-cover bg-white" :alt="$catalog->title" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
     </div>
 
     <div class="flex-grow flex flex-col gap-5">
