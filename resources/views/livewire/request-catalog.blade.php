@@ -7,7 +7,7 @@
                         <x-curator-glider fallback="logo" :media="$catalog->image" format="webp" width="160" fit="contain" quality="70" class="rounded-md max-w-[220px] w-full sm:w-40 object-cover bg-white" :alt="$catalog->title" loading="{{ ($lazy ?? null) ? 'lazy' : 'eager' }}" />
                     </div>
 
-                    <div class="flex-grow flex flex-col gap-6">
+                    <div class="w-full flex-grow flex flex-col gap-6">
                         <div class="prose prose-zinc dark:prose-invert">{!! html($catalog->description) !!}</div>
 
                         <x-link class="sm:max-w-sm text-center" styling="primary" :href="$catalog->document?->getSignedUrl()" target="_blank" rel="noopener">
