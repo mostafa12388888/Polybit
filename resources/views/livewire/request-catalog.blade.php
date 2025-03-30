@@ -27,7 +27,18 @@
             <div class="lg:rounded-md bg-white dark:bg-dark-700/60 w-full flex flex-col px-4 py-20 items-center justify-center gap-4">
                 <x-icons.check-circle class="!w-14 !h-14" stroke-width=".8" />
 
-                @if (setting('catalogs_delivery_method') == 'manual')
+                @if (setting('catalogs_delivery_method') == 'automatic')
+                    <h3 class="text-lg">{{ __('Thank you for submitting the form') }}</h3>
+
+                    <p class="text-lg">{{ __('You can download the catalog via the link below') }}</p>
+                    
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <x-link styling="primary" :href="$catalog->document?->getSignedUrl()" target="_blank" rel="noopener">
+                            <x-icons.download class="!w-5 !h-5" />
+                            <span>{{ __('Download Catalog') }}</span>
+                        </x-link>
+                    </div>
+                @else
                     <h3 class="text-lg">{{ __('Your request has been submitted') }}</h3>
                     <p class="text-lg">{{ __('We will contact you as soon as possible') }}</p>
 
@@ -40,17 +51,6 @@
                         <x-link styling="light" :href="route('catalogs.index')">
                             <x-icons.book class="!w-5 !h-5" />
                             <span>{{ __('Browse Our Catalogs') }}</span>
-                        </x-link>
-                    </div>
-                @else
-                    <h3 class="text-lg">{{ __('Thank you for submitting the form') }}</h3>
-
-                    <p class="text-lg">{{ __('You can download the catalog via the link below') }}</p>
-                    
-                    <div class="flex flex-wrap gap-3 pt-2">
-                        <x-link styling="primary" :href="$catalog->document?->getSignedUrl()" target="_blank" rel="noopener">
-                            <x-icons.download class="!w-5 !h-5" />
-                            <span>{{ __('Download Catalog') }}</span>
                         </x-link>
                     </div>
                 @endif
