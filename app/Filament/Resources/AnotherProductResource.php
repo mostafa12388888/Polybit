@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
+use Filament\Navigation\NavigationItem;
+
+use App\Filament\Resources\AnotherProductResource\Pages;
 use App\Filament\SEO;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
@@ -11,7 +13,8 @@ use App\Models\StoreCategory;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Closure;
-use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
+
 use Filament\Forms\Components\Actions\Action as FormAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -28,7 +31,7 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Grid;
 
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -41,15 +44,28 @@ use Mokhosh\FilamentRating\Components\Rating;
 use Mokhosh\FilamentRating\Entries\RatingEntry;
 use Mokhosh\FilamentRating\RatingTheme;
 
-class ProductResource extends Resource
+class AnotherProductResource extends Resource
 {
     use Translatable;
 
     protected static ?string $model = Product::class;
-
+    // public static function getEloquentQuery(): Builder
+    // {
+    //     return parent::getEloquentQuery()
+    //         ->whereHas('variantsStatusOn'); // شرط لعرض المنتجات التي تحتوي على variants نشطة فقط
+    // }
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
+    protected static ?string $navigationLabel = 'المنتجات 2';
 
-    protected static ?int $navigationSort = -3;
+    protected static ?int $navigationSort = -2;
+
+    protected static ?string $slug = 'another-products';
+    public static function getSlug(): string
+    {
+        return 'another-products';
+    }
+
+
 
     public static function form(Form $form): Form
     {
@@ -252,7 +268,6 @@ class ProductResource extends Resource
                                     ]),
                                 ];
                             })
-
                             ->hintAction(
                                 FormAction::make('generateAllPossibleVariants')->icon('heroicon-m-arrow-path')->requiresConfirmation()
                                     ->action(function ($get, $set) {
@@ -291,7 +306,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
+                // TextColumn::make('id')->width(0)->sortable()->searchable()->toggleable(),
                 CuratorColumn::make('media')->label('admin.Images')->circular()->size(40)->overlap(3)->limit(3)->toggleable(),
                 TextColumn::make('name')->limit(50)->searchable()->sortable(),
                 TextColumn::make('sku')->toggleable(true, true)->searchable()->sortable(),
@@ -352,8 +367,8 @@ class ProductResource extends Resource
                     }),
                 ])->columns(2),
 
-                \Filament\Infolists\Components\Tabs\Tab::make('Variants')->schema([
-                    RepeatableEntry::make('variants')->hiddenLabel()->schema([
+                \Filament\Infolists\Components\Tabs\Tab::make('variantsStatusOn')->schema([
+                    RepeatableEntry::make('variantsStatusOn')->hiddenLabel()->schema([
                         RepeatableEntry::make('attribute_values_product_variant')->hiddenLabel()->schema([
                             TextEntry::make('attribute_value')->hiddenLabel()
                                 ->formatStateUsing(fn($state) => $state->title ? $state->title : $state->value),
@@ -370,13 +385,21 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with(['media' => fn($query) => $query->where('media_items.type', 'product-image')]);
+        return parent::getEloquentQuery()
+        ->with([
+            'media' => fn($query) => $query->where('media_items.type', 'product-image'),
+            'variants' => fn($query) => $query->where('product_variants.status', 'on'),
+        ])
+        ->whereHas('variants', function ($query) {
+            $query->where('product_variants.status', 'on');
+        });
+
     }
 
     public static function getPages(): array

@@ -26,10 +26,10 @@
                 offset = $refs.header.getBoundingClientRect().height + $refs.bottomNavbar.getBoundingClientRect().height - 1;
                 $el.style.height = 'calc(100vh - ' + offset + 'px)';
             }
-        }" 
-        @resize.window="setHeight" 
+        }"
+        @resize.window="setHeight"
         x-init="$el.classList.remove('hidden'); $el.classList.add('flex'); setHeight()">
-        
+
         <div class="w-full md:container mx-auto md:flex md:items-center">
             @if ($store_categories->count())
                 <x-dropdown dropdownClasses="max-md:max-h-max max-md:!relative w-full top-full left-0 max-md:shadow-none md:!rounded-none md:border-t border-secondary-200 dark:border-dark-600" wrapperClasses="" contentClasses="max-md:bg-secondary-50 max-md:dark:bg-dark-700/50 md:!rounded-none" :openOnHover="true">
@@ -41,7 +41,7 @@
                             </x-link>
                         </div>
                     </x-slot>
-        
+
                     <x-slot:content>
                         <div class="md:overflow-auto">
                             <div class="z-50 flex flex-wrap max-md:flex-col gap-y-2 lg:gap-y-8 container mx-auto md:py-6">
@@ -61,7 +61,7 @@
             @else
                 <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('products.index')">{{ __('Products') }}</x-link>
             @endif
-    
+
             <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('projects.index')">{{ __('Projects') }}</x-link>
 
             @foreach ($pages->filter(fn ($page) => $page->is_visible_in_top_navbar || $page->is_visible_in_main_navbar) as $page)
@@ -75,7 +75,7 @@
             @if ($catalogs_count)
                 <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('catalogs.index')">{{ __('Catalogs') }}</x-link>
             @endif
-            
+
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('contact-us')">{{ __('Contact') }}</x-link>
             <x-link styling="light-link" class="md:hidden w-full max-md:py-3" :href="route('faq')">{{ __('FAQ') }}</x-link>
 
@@ -89,7 +89,7 @@
                             </x-link>
                         </div>
                     </x-slot>
-        
+
                     <x-slot:content>
                         <div class="md:overflow-auto">
                             <div class="z-50 flex flex-wrap max-md:flex-col gap-y-2 lg:gap-y-8 container mx-auto md:py-6">
@@ -110,7 +110,7 @@
                 <x-link styling="light-link" class="w-full max-md:py-3 md:hidden lg:inline" :href="route('posts.index')">{{ __('Blog') }}</x-link>
             @endif
         </div>
-        
+
         {{-- <div class="md:hidden" x-cloak>
             @include('layouts.partials._topbar')
         </div> --}}

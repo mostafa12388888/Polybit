@@ -37,7 +37,7 @@ class StatsOverview extends BaseWidget
             ->whereBetween('created_at', [now()->subDays(6)->startOfDay(), now()->endOfDay()]);
 
         return [
-            Stat::make(__('admin.Products'), Product::count())->icon('heroicon-o-squares-2x2')
+            Stat::make(__('admin.Products2'), Product::count())->icon('heroicon-o-squares-2x2')
                 ->url(ProductResource::getUrl('index'))
                 ->description(Number::forHumans($products->count(), abbreviate: true).' '.__('admin.Last Week'))
                 ->descriptionIcon($products->count() ? 'heroicon-m-arrow-trending-up' : null, IconPosition::Before)

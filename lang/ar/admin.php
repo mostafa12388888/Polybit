@@ -111,6 +111,8 @@ return [
     'Product' => 'المنتج',
     'products' => 'منتجات',
     'Products' => 'المنتجات',
+    'Products2' => '2المنتجات',
+    'status'=>'حاله المنتج',
     'SKU (Stock Keeping Unit)' => 'رمز تعريف المنتج (SKU)',
     'Price' => 'السعر',
     'Price before discount' => 'السعر قبل الخصم',

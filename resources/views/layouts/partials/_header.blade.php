@@ -15,7 +15,7 @@
                     <span class="sr-only">{{ __('Show Search Bar') }}</span>
                 </x-button>
             </div>
-            
+
             {{-- Separator --}}
             <div class="flex-grow xl:hidden"></div>
 
@@ -23,7 +23,7 @@
                 <div class="hidden sm:block">
                     @include('layouts.partials._user-menu')
                 </div>
-                
+
                 <x-button styling="light" class="!rounded-md aspect-square w-11 h-11 !p-0 flex items-center justify-center" @click="toggleDarkMode">
                     <x-icons.moon class="!w-5 !h-5" x-show="! darkMode"/>
                     <x-icons.sun class="!w-5 !h-5" x-cloak x-show="darkMode"/>
@@ -67,7 +67,7 @@
                     </div>
                 @endif
             </div>
-            
+
             <div class="hidden xl:!flex flex-grow justify-center order-3 xl:order-1 w-full xl:w-auto" x-ref="search" x-bind:class="search === true ? '!flex' : ''">
                 <livewire:search />
             </div>

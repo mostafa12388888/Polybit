@@ -52,7 +52,7 @@
     <meta property="og:title" content="{{ $title }}">
     <meta property="og:description" content="{{ $description }}">
     <meta property="og:url" content="{{ request()->url() }}" />
-    
+
     @if ($image)
         <meta property="og:image" content="{!! $image !!}" />
         <meta property="og:image:width" content="1200" />
@@ -135,7 +135,7 @@
                     <h1 class="uppercase font-semibold text-xl lg:text-2xl leading-tight">
                         {{ $heading }}
                     </h1>
-    
+
                     @if ($subheading ?? null)
                         <div class="{{ setting('header_banner') ? 'mt-1' : 'mt-5' }}">
                             {{ $subheading }}
@@ -144,13 +144,13 @@
                 </div>
             </div>
         @endif
-        
+
         @if ($breadcrumbs ?? null)
             <div class="px-4 sm:px-6 bg-white dark:bg-dark-700/60 shadow-sm z-20">
                 <div class="border-t border-dark-100 dark:border-dark-700/50">
                     <div class="container mx-auto py-3 text-sm flex items-center gap-2">
                         <x-breadcrumb class="flex items-center justify-center gap-1.5" :href="route('home')">
-                            <x-icons.home class="!w-5 !h-5" stroke-width="1" /> 
+                            <x-icons.home class="!w-5 !h-5" stroke-width="1" />
                             <span>{{ __('Home') }}</span>
                         </x-breadcrumb>
 
@@ -159,7 +159,7 @@
                 </div>
             </div>
         @endif
-        
+
         {{ $slot }}
     </main>
 

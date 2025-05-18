@@ -60,6 +60,11 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class);
     }
+    public function variantsStatusOn()
+    {
+        return $this->variants()->where('product_variants.status', "on");
+    }
+
 
     public function specs()
     {

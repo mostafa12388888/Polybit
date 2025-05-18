@@ -22,7 +22,7 @@
 
     <title>{{ $title ?: config('app.name', 'App') }}</title>
     <meta name="description" content="{{ $description ?? setting('app_description') }}" />
-    
+
     @if($keywords ?? null)
         <meta name="keywords" content="{{ $keywords }}" />
     @endif
@@ -129,7 +129,7 @@
             @endif
         </div>
     </div>
-    
+
     @includeIf('layouts.optional._scripts')
 
     {{ $scripts ?? null }}
