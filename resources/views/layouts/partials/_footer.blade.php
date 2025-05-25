@@ -11,7 +11,7 @@
                 <x-application-logo class="h-16 rounded-md" :width="240" />
             </x-link>
         </div>
-        
+
         <div class="container mx-auto flex flex-grow max-md:flex-wrap gap-10">
             <div class="flex flex-col gap-6 min-w-72 lg:min-w-80 xl:min-w-96 max-w-full">
                 <x-link href="{{ route('home') }}" class="self-center sm:self-start block xl:hidden mb-4">
@@ -22,7 +22,7 @@
                     @foreach (setting('phones') ?: [] as $phone)
                         @php
                             $phone = new \Propaganistas\LaravelPhone\PhoneNumber($phone);
-                            
+
                             if(! $phone->getCountry()) {
                                 continue;
                             }
@@ -35,7 +35,7 @@
                         </x-link>
                         @break
                     @endforeach
-                    
+
                     @foreach (setting('emails') ?: [] as $email)
                         <x-link href="mail:{{ $email }}" class="w-full flex items-center md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-primary-300/80 rounded-lg dark:border-none flex-grow {{ $loop->index ? 'max-md:hidden' : '' }}">
                             <div class="px-4 py-3 bg-secondary-200/30 dark:bg-dark-700/60 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center">
@@ -45,7 +45,7 @@
                         </x-link>
                         @break
                     @endforeach
-                        
+
                     @foreach (array_filter(setting('addresses') ?: [], fn($address) => $address['address'] ?: '') as $address)
                         <div class="w-full flex text-gray-700 dark:text-dark-100 items-stretch md:gap-2 md:border-none md:!bg-transparent border bg-white/50 dark:bg-dark-700 overflow-hidden border-primary-300/80 rounded-lg dark:border-none flex-grow">
                             <div class="px-4 py-3 bg-secondary-200/30 dark:bg-dark-700/60 rounded md:h-8 md:w-8 md:flex md:items-center md:justify-center flex items-center">
@@ -60,9 +60,9 @@
                 <div class="w-full flex-grow flex flex-wrap gap-2 sm:max-w-96 order-3 justify-center sm:justify-start">
                     @include('layouts.partials._social-links')
                 </div>
-                
+
             </div>
-        
+
             <div class="flex gap-x-4 md:gap-y-8 flex-wrap flex-grow text-start divide-y md:divide-y-0 border-y md:border-none border-primary-200 dark:border-dark-700">
                 @if ($store_categories->count())
                     <div class="flex flex-col flex-grow w-full md:w-auto border-primary-200 dark:border-dark-700 md:gap-4 min-w-40" x-data="{open: false}">
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 @endif
-                
+
                 @if ($blog_categories->count())
                     <div class="flex flex-col flex-grow w-full md:w-auto border-primary-200 dark:border-dark-700 md:gap-4 min-w-40" x-data="{open: false}">
                         <div class="max-md:cursor-pointer flex justify-between gap-2 py-5 md:py-0" x-on:click="open = !open">
@@ -89,7 +89,7 @@
                             <x-icons.chevron-down class="md:hidden" x-show="! open" />
                             <x-icons.chevron-up class="md:hidden" x-cloak x-show="open" />
                         </div>
-                        
+
                         <div class="md:!block md:!h-auto" x-show="open" x-collapse x-cloak>
                             <div class="pb-4 flex flex-col gap-4">
                                 @foreach ($blog_categories->take(5) as $blog_category)
@@ -124,7 +124,7 @@
 
         <div class="container mx-auto flex flex-col flex-grow lg:-mt-6 lg:-mb-4">
             <div class="w-full flex-grow flex flex-wrap gap-x-6 gap-y-3 items-center justify-center">
-                <x-link :href="route('products.index')">{{ __('Store') }}</x-link>
+                <x-link :href="route('product.store')">{{ __('Store') }}</x-link>
                 <x-link :href="route('posts.index')">{{ __('Blog') }}</x-link>
                 @foreach ($pages->where('is_visible_in_footer_navbar') as $page)
                     <x-link :href="route('pages.show', $page)">{{ $page->title }}</x-link>

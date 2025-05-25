@@ -18,6 +18,7 @@ Route::view('/', 'home.index')->name('home');
 Route::get('/search', SearchController::class)->name('search');
 
 Route::resource('products', ProductController::class)->only('index', 'show');
+Route::get('product-store', [ProductController::class,'productStore'])->name('product.store');
 Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');
 Route::view('/cart', 'products.cart')->name('cart');
 Route::view('/wishlist', 'products.wishlist')->name('wishlist');

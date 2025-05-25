@@ -16,6 +16,17 @@ class ProductController extends Controller
 
         return view('products.index', compact('products'));
     }
+    /**
+     * productStore
+     *
+     * @return void
+     */
+    public function productStore()
+    {
+        $products = Product::whereHas('variantsStatusOn')->latest()->with('image', 'category', 'tags')->paginate(12);
+
+        return view('products.index', compact('products'));
+    }
 
     /**
      * Display the specified resource.

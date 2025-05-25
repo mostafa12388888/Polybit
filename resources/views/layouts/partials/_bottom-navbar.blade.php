@@ -1,6 +1,6 @@
 <nav class="sm:hidden" x-ref="bottomNavbar">
     <div class="mt-[4.6rem]"></div>
-    
+
     <div class="fixed bottom-0 left-0 z-50 w-full h-[4.6rem] bg-white dark:bg-dark-700">
         <div class="dark:bg-dark-800/70 h-full border-t border-dark-200 dark:border-dark-700/40">
             <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
@@ -8,7 +8,7 @@
                     <x-icons.home class="!w-6 !h-6" />
                     <span class="text-sm max-[370px]:text-xs">{{ __('Home') }}</span>
                 </x-link>
-                <x-link :href="route('products.index')" class="inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none">
+                <x-link :href="route('product.store')" class="inline-flex gap-1 flex-col items-center justify-center hover:bg-dark-100 dark:hover:bg-dark-700/70 !rounded-none">
                     <x-icons.store class="!w-6 !h-6" />
                     <span class="text-sm max-[370px]:text-xs">{{ __('Store') }}</span>
                 </x-link>
@@ -41,7 +41,7 @@
                                 <span>{{ __('Admin Panel') }}</span>
                             </x-dropdown.link>
                         @endif
-                        
+
                         @if (auth()->user())
                             <x-dropdown.link class="flex gap-3 px-4 py-4" href="{{ route('profile.edit') }}">
                                 <x-icons.user class="!w-5 !h-5" />
@@ -58,7 +58,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-dropdown.link class="flex gap-3 px-4" :navigate="false" href="javascript:void(0)" 
+                                <x-dropdown.link class="flex gap-3 px-4" :navigate="false" href="javascript:void(0)"
                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                     <x-icons.logout class="!w-5 !h-5" />
                                     <span>{{ __('Log Out') }}</span>

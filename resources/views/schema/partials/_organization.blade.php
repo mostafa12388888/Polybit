@@ -14,7 +14,7 @@
             "inLanguage": "{{ app()->getLocale() }}"
         },
     @endif
-    
+
     "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Customer Service",
@@ -27,7 +27,7 @@
         "areaServed": "Worldwide",
         "availableLanguage": ["Arabic", "English"]
     },
-    
+
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Al-Khosos",
