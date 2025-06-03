@@ -26,7 +26,7 @@
                 @include('layouts.partials._category-card', compact('category'))
             @endif
         </div>
-        
+
         <div class="container mx-auto flex flex-col lg:flex-row items-start gap-3 md:gap-4 lg:gap-8 relative z-10">
             <div class="w-full flex gap-4 lg:gap-6 items-stretch justify-center flex-wrap relative">
                 @forelse ($products as $product)
@@ -41,7 +41,7 @@
                     {{ $products->links() }}
                 </div>
             </div>
-            
+
             @if ($store_categories->count())
                 <div class="flex-grow max-w-full w-full lg:w-5/12 xl:w-4/12 flex flex-col overflow-hidden max-lg:divide-y lg:gap-4">
                     <div class="bg-white dark:bg-dark-700/60 p-4 md:p-6 xl:p-8 lg:rounded-md gap-3 dark:border-dark-800 max-lg:py-10 flex flex-col">
@@ -51,7 +51,7 @@
                             @foreach ($store_categories as $category)
                                 <div class="flex flex-col gap-3">
                                     <x-link class="font-semibold" :href="route('store-categories.show', $category)">{{ $category->name }}</x-link>
-                                    
+
                                     @foreach ($category->sub_categories as $sub_category)
                                         <x-link class="ms-3" :href="route('store-categories.show', $sub_category)">{{ $sub_category->name }}</x-link>
                                     @endforeach

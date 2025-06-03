@@ -18,17 +18,17 @@
     @if ($products->count())
         @include('home.partials._products')
     @endif
-    
+
     @if ($projects->count())
         @include('home.partials._projects')
     @endif
 
     @include('home.partials._contact')
-    
+
     @if ($posts->count())
         @include('home.partials._posts')
     @endif
-    
+
     @if ($testimonials->count())
         @include('home.partials._testemonials')
     @endif
@@ -36,7 +36,7 @@
     <div class="dark:bg-dark-600/40">
         <livewire:videos lazy />
     </div>
-    
+
     <x-slot name="scripts">
         @minifyInclude('schema.home-schema')
     </x-slot>

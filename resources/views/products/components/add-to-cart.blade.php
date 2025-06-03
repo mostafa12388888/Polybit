@@ -1,12 +1,17 @@
+@php
+    // dd($product->variantsStatusOn)
+    // attribute_values
+@endphp
 <div class="flex flex-col gap-6">
     <div class="flex flex-col gap-6 sm:table w-full sm:w-fit">
+
         @foreach ($this->available_attributes_with_values as $attribute)
             <div class="flex-grow flex flex-col gap-2 sm:table-row">
-                
+
                 @if($attribute->values->count() == 1)
                     <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }} : </span>
                     <span>{{ $attribute->values->first()->title ?: $attribute->values->first()->value }}</span>
-                    
+
                 @elseif ($attribute->type->isColors())
                     <span class="sm:pe-8 sm:py-5 table-cell max-w-fit">{{ $attribute->name }}</span>
 
@@ -96,7 +101,7 @@
                 </x-link>
             </div>
         @endif
-    
+
         @if($added_to_wishlist)
             <div class="flex-grow flex flex-wrap items-center gap-4 md:max-w-xs">
                 <x-button styling="light" class="flex gap-2 dark:bg-dark-600 justify-center items-center w-full py-4 px-10"

@@ -47,6 +47,24 @@ class ProductController extends Controller
 
         return view('products.show', compact('product', 'related_products'));
     }
+    public function showStore(Product $product)
+    {
+       $product= Product::whereHas('variantsStatusOn')->with('media', 'specs.media', 'variantsStatusOn.attribute_values.attribute', 'category', 'tags')->find($product->id);
+        // $product->loadMissing('media', 'specs.media', 'variantsStatusOn.attribute_values.attribute', 'category', 'tags');
+
+        $related_products = collect();
+
+        if ($product->category) {
+            $categories = $product->category->parent->sub_categories()->pluck('id')->toArray();
+
+            $related_products = Product::whereHas('variantsStatusOn')->whereHas('categories', function ($query) use ($categories) {
+                return $query->whereIn('store_categories.id', $categories);
+            })->where('products.id', '!=', $product->id)->limit(6)->inRandomOrder()->get();
+        }
+        // return $product->variantsStatusOn[0]->attribute_values[0]->attribute;
+
+        return view('products.show', compact('product', 'related_products'));
+    }
 
     public function category_products(StoreCategory $category)
     {

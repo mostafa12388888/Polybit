@@ -18,6 +18,8 @@ return [
     'Created at' => 'تاريخ الإنشاء',
     'Password' => 'كلمة المرور',
     'project' => 'مشروع',
+    'Card' => 'بطاقه',
+    'Cards' => 'بطايق',
     'Project' => 'المشروع',
     'projects' => 'مشاريع',
     'Projects' => 'المشاريع',

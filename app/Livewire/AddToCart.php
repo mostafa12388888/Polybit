@@ -47,14 +47,18 @@ class AddToCart extends Component
 
     public function mount()
     {
-        $this->product->loadMissing('variants');
 
-        $variants = $this->product->variants;
-
-        $this->variants = $variants->pluck('attribute_values', 'id')->map(fn ($variant_values) => $variant_values->pluck('id')->values()->toArray())->toArray();
+        if (request()->is('product-store-show/*')) {
+            $this->product->loadMissing('variantsStatusOn');
+            $variants = $this->product->variantsStatusOn;
+        } else {
+            $this->product->loadMissing('variants');
+            $variants = $this->product->variants;
+        }
+        $this->variants = $variants->pluck('attribute_values', 'id')->map(fn($variant_values) => $variant_values->pluck('id')->values()->toArray())->toArray();
 
         $this->attribute_values = $variants->pluck('attribute_values')->flatten()->groupBy('attribute_id')
-            ->map(fn ($attribute_values) => $attribute_values->pluck('id')->unique()->values()->toArray())->toArray();
+            ->map(fn($attribute_values) => $attribute_values->pluck('id')->unique()->values()->toArray())->toArray();
 
         $this->available_attribute_values = collect($this->attribute_values)->flatten()->toArray();
 
@@ -70,8 +74,8 @@ class AddToCart extends Component
 
         $this->available_attribute_values = collect($this->attribute_values)->mapWithKeys(function ($values, $attribute) {
             $other_attributes_values = collect($this->selected_attribute_values)
-                ->filter(fn ($selected_values, $selected_attribute) => $attribute != $selected_attribute)
-                ->flatten()->map(fn ($value) => (int) $value)->filter()->toArray();
+                ->filter(fn($selected_values, $selected_attribute) => $attribute != $selected_attribute)
+                ->flatten()->map(fn($value) => (int) $value)->filter()->toArray();
 
             // The variants that has other attributes values
             $variants = collect($this->variants)->filter(function ($variant) use ($other_attributes_values) {
@@ -81,7 +85,7 @@ class AddToCart extends Component
             $variants_attribute_values = $variants->flatten()->toArray();
 
             return [
-                $attribute => collect($values)->filter(fn ($value) => in_array($value, $variants_attribute_values))->toArray(),
+                $attribute => collect($values)->filter(fn($value) => in_array($value, $variants_attribute_values))->toArray(),
             ];
         })->flatten()->toArray();
 
@@ -100,7 +104,7 @@ class AddToCart extends Component
 
         foreach ($this->available_attributes_with_values as $attribute) {
             if ($attribute->values->count() > 1 && ! isset($this->selected_attribute_values[$attribute->id])) {
-                $this->addError('attribute_'.$attribute->id, __('You have to select :attribute to continue', ['attribute' => $attribute->name]));
+                $this->addError('attribute_' . $attribute->id, __('You have to select :attribute to continue', ['attribute' => $attribute->name]));
             }
         }
 
@@ -171,7 +175,7 @@ class AddToCart extends Component
         return $this->product->attributes_with_values->filter(function ($attribute) {
             return in_array($attribute->id, array_keys($this->attribute_values));
         })->map(function ($attribute) {
-            $values = $attribute->values->filter(fn ($value) => in_array($value->id, optional($this->attribute_values)[$attribute->id] ?: []));
+            $values = $attribute->values->filter(fn($value) => in_array($value->id, optional($this->attribute_values)[$attribute->id] ?: []));
             $attribute->setRelation('values', $values);
 
             return $attribute;

@@ -55,7 +55,7 @@ class AnotherProductResource extends Resource
     //         ->whereHas('variantsStatusOn'); // شرط لعرض المنتجات التي تحتوي على variants نشطة فقط
     // }
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
-    protected static ?string $navigationLabel = 'المنتجات 2';
+    protected static ?string $navigationLabel = 'متجر المنتجات';
 
     protected static ?int $navigationSort = -2;
 
