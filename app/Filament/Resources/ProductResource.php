@@ -11,9 +11,10 @@ use App\Models\StoreCategory;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Awcodes\Curator\Components\Tables\CuratorColumn;
 use Closure;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Actions\Action as FormAction;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
@@ -28,8 +29,6 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Forms\Components\Section;
-
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
@@ -74,7 +73,7 @@ class ProductResource extends Resource
                         Select::make('categories')->multiple()->searchable()
                             ->relationship(titleAttribute: 'name')
                             ->getSearchResultsUsing(function ($query) {
-                                return StoreCategory::subCategories()->where('name', 'like', '%' . $query . '%')->pluck('name', 'id')->toArray();
+                                return StoreCategory::subCategories()->where('name', 'like', '%'.$query.'%')->pluck('name', 'id')->toArray();
                             })
                             ->options(function () {
                                 foreach (StoreCategory::parents()->with('sub_categories')->get() as $key => $category) {
@@ -114,12 +113,12 @@ class ProductResource extends Resource
                                         preg_match('/youtube\.com\/watch\?v=([^&]+)/', $url, $matches) ||
                                         preg_match('/youtu\.be\/([^?]+)/', $url, $matches)
                                     ) {
-                                        $url = 'https://www.youtube.com/embed/' . $matches[1];
+                                        $url = 'https://www.youtube.com/embed/'.$matches[1];
                                     }
 
                                     // clean embed url from any extra parameters
                                     if (preg_match('/youtube\.com\/embed\/([^?]+)/', $url, $matches)) {
-                                        $url = 'https://www.youtube.com/embed/' . $matches[1];
+                                        $url = 'https://www.youtube.com/embed/'.$matches[1];
                                     }
 
                                     $set('url', $url);
@@ -129,22 +128,22 @@ class ProductResource extends Resource
                     ]);
 
                     $tabs[] = Tab::make('Attributes')->schema([
-                        Repeater::make('attributes')->hiddenLabel()->maxItems(fn() => Attribute::has('values')->count())->schema([
+                        Repeater::make('attributes')->hiddenLabel()->maxItems(fn () => Attribute::has('values')->count())->schema([
                             Select::make('attribute')->searchable()->preload()->reactive()
-                                ->options(fn() => Attribute::has('values')->limit(50)->pluck('name', 'id')->toArray())
+                                ->options(fn () => Attribute::has('values')->limit(50)->pluck('name', 'id')->toArray())
                                 ->exists(Attribute::class, 'id')->required()
                                 ->disableOptionsWhenSelectedInSiblingRepeaterItems()
-                                ->getSearchResultsUsing(fn(string $search): array => Attribute::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
-                                ->afterStateUpdated(fn($set) => $set('values', [])),
+                                ->getSearchResultsUsing(fn (string $search): array => Attribute::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray())
+                                ->afterStateUpdated(fn ($set) => $set('values', [])),
 
                             Select::make('values')->searchable()->preload()->multiple()->reactive()->required()
-                                ->options(fn($get, $state) => AttributeValue::where('attribute_id', $get('attribute'))->get()
+                                ->options(fn ($get, $state) => AttributeValue::where('attribute_id', $get('attribute'))->get()
                                     ->map(function ($value) use ($state) {
                                         $value->order = array_search($value->id, $state);
 
                                         return $value;
                                     })->sortBy('order')
-                                    ->mapWithKeys(fn($value, $key) => [$value->id => $value->title ? $value->title : $value->value])->toArray()),
+                                    ->mapWithKeys(fn ($value, $key) => [$value->id => $value->title ? $value->title : $value->value])->toArray()),
                         ])->live()->defaultItems(1)->columns(2)->columnSpanFull(),
                     ]);
 
@@ -163,7 +162,7 @@ class ProductResource extends Resource
                                 Tabs::make()->schema(function () {
                                     foreach (locales() as $key => $locale) {
                                         $tabs[] = Tab::make($locale)->schema([
-                                            CuratorPicker::make('media_' . $key)->label('admin.Media')->multiple()->constrained()
+                                            CuratorPicker::make('media_'.$key)->label('admin.Media')->multiple()->constrained()
                                                 ->typeValue($key)
                                                 ->listDisplay(true)->size('sm')
                                                 ->relationship('media_items', 'id'),
@@ -175,10 +174,10 @@ class ProductResource extends Resource
                             ])
                             ->mutateStateForValidationUsing(function ($state) {
                                 return collect($state)
-                                    ->filter(fn($spec) => collect($spec['title'])->filter(fn($locale_title) => $locale_title)->count())
+                                    ->filter(fn ($spec) => collect($spec['title'])->filter(fn ($locale_title) => $locale_title)->count())
                                     ->map(function ($spec) {
                                         $spec_title = collect($spec['title'])->filter()->first();
-                                        $spec['title'] = collect($spec['title'])->map(fn($title) => $title ?: $spec_title);
+                                        $spec['title'] = collect($spec['title'])->map(fn ($title) => $title ?: $spec_title);
 
                                         return $spec;
                                     })
@@ -190,7 +189,7 @@ class ProductResource extends Resource
                             ->defaultItems(0)->columnSpanFull(),
                     ]);
 
-                    $attributes = Attribute::whereIn('id', collect($get('attributes'))->filter(fn($attribute) => count($attribute['values']))->pluck('attribute')->toArray())->orderBy('id')->get();
+                    $attributes = Attribute::whereIn('id', collect($get('attributes'))->filter(fn ($attribute) => count($attribute['values']))->pluck('attribute')->toArray())->orderBy('id')->get();
 
                     $tabs[] = Tab::make('Variants')->schema([
                         Repeater::make('variants')->label('admin.Available variants')
@@ -200,56 +199,56 @@ class ProductResource extends Resource
 
                                 return [
                                     Section::make()
-                                    ->columns(2)
-                                    ->schema([
-                                    Repeater::make('attribute_values_product_variant')->hiddenLabel()
-                                        ->simple(function () use ($cloned_attributes, $selected_attributes) {
-                                            $attribute = $cloned_attributes->shift();
-                                            $values = optional($selected_attributes->where('attribute', optional($attribute)->id)->first())['values'];
-
-                                            return $attribute ? Select::make('attribute_value_id')->label($attribute->name)->hiddenLabel()
-                                                ->prefix($attribute->name)->searchable()->preload()
-                                                ->required()->in($values ?: [])
-                                                ->relationship('attribute_value', 'value', fn($query) => $query->whereIn('id', $values ?? []))
-                                                ->getOptionLabelFromRecordUsing(fn($record) => $record->getTranslation('title', app()->getLocale(), true) ?: $record->value) : null;
-                                        })
-                                        ->relationship('attribute_values_product_variant')->columnSpanFull()->grid(3)->deletable(false)
-                                        ->saveRelationshipsUsing(function ($record, $state) {
-                                            $record->attribute_values()->sync(collect($state)->pluck('attribute_value_id')->toArray());
-                                        })
-                                        ->minItems($attributes->count())->maxItems($attributes->count())->defaultItems($attributes->count())
-                                        ->rule(
-                                            fn($component) => function (string $attribute, $value, Closure $fail) use ($component) {
-                                                $variants = $component->getContainer()->getParentComponent()->getState();
-                                                $variants_values = collect($variants)->pluck('attribute_values_product_variant')
-                                                    ->map(fn($attribute) => collect($attribute ?: [])->map(fn($a) => (int) $a['attribute_value_id'])->values())->toArray();
-
-                                                $values = collect($value)->map(fn($a) => (int) $a['attribute_value_id'])->values()->toArray();
-
-                                                $occurances = 0;
-                                                foreach ($variants_values as $variant_values) {
-                                                    if ($values == $variant_values) {
-                                                        $occurances++;
-                                                    }
-                                                }
-                                                if ($occurances > 1) {
-                                                    $fail(__('admin.The variant is duplicated'));
-                                                }
-                                            },
-                                        ),
-
-                                        Grid::make(3) // 3 أعمدة في السطر الواحد
+                                        ->columns(2)
                                         ->schema([
-                                            TextInput::make('price')->hiddenLabel()->prefix(__('admin.Price'))->numeric()->step(0.01)->rules(['decimal:0,2'])->requiredWith('price_before_discount'),
+                                            Repeater::make('attribute_values_product_variant')->hiddenLabel()
+                                                ->simple(function () use ($cloned_attributes, $selected_attributes) {
+                                                    $attribute = $cloned_attributes->shift();
+                                                    $values = optional($selected_attributes->where('attribute', optional($attribute)->id)->first())['values'];
 
-                                            TextInput::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount'))->numeric()->step(0.01)
-                                                ->rules(['decimal:0,2'])->gt('price'),
-                                            Toggle::make('status')
-                                                ->label(__('admin.status'))
-                                                ->onColor('success')
-                                                ->offColor('danger'),
+                                                    return $attribute ? Select::make('attribute_value_id')->label($attribute->name)->hiddenLabel()
+                                                        ->prefix($attribute->name)->searchable()->preload()
+                                                        ->required()->in($values ?: [])
+                                                        ->relationship('attribute_value', 'value', fn ($query) => $query->whereIn('id', $values ?? []))
+                                                        ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('title', app()->getLocale(), true) ?: $record->value) : null;
+                                                })
+                                                ->relationship('attribute_values_product_variant')->columnSpanFull()->grid(3)->deletable(false)
+                                                ->saveRelationshipsUsing(function ($record, $state) {
+                                                    $record->attribute_values()->sync(collect($state)->pluck('attribute_value_id')->toArray());
+                                                })
+                                                ->minItems($attributes->count())->maxItems($attributes->count())->defaultItems($attributes->count())
+                                                ->rule(
+                                                    fn ($component) => function (string $attribute, $value, Closure $fail) use ($component) {
+                                                        $variants = $component->getContainer()->getParentComponent()->getState();
+                                                        $variants_values = collect($variants)->pluck('attribute_values_product_variant')
+                                                            ->map(fn ($attribute) => collect($attribute ?: [])->map(fn ($a) => (int) $a['attribute_value_id'])->values())->toArray();
+
+                                                        $values = collect($value)->map(fn ($a) => (int) $a['attribute_value_id'])->values()->toArray();
+
+                                                        $occurances = 0;
+                                                        foreach ($variants_values as $variant_values) {
+                                                            if ($values == $variant_values) {
+                                                                $occurances++;
+                                                            }
+                                                        }
+                                                        if ($occurances > 1) {
+                                                            $fail(__('admin.The variant is duplicated'));
+                                                        }
+                                                    },
+                                                ),
+
+                                            Grid::make(3) // 3 أعمدة في السطر الواحد
+                                                ->schema([
+                                                    TextInput::make('price')->hiddenLabel()->prefix(__('admin.Price'))->numeric()->step(0.01)->rules(['decimal:0,2'])->requiredWith('price_before_discount'),
+
+                                                    TextInput::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount'))->numeric()->step(0.01)
+                                                        ->rules(['decimal:0,2'])->gt('price'),
+                                                    Toggle::make('status')
+                                                        ->label(__('admin.status'))
+                                                        ->onColor('success')
+                                                        ->offColor('danger'),
+                                                ]),
                                         ]),
-                                    ]),
                                 ];
                             })
 
@@ -299,18 +298,18 @@ class ProductResource extends Resource
                 ToggleColumn::make('is_available')->toggleable(true, true),
                 RatingColumn::make('rate')->stars(10)->theme(RatingTheme::HalfStars)->size('sm')->toggleable(true, true),
                 TextColumn::make('created_at')->date()->toggleable(true, true)->sortable(),
-                TextColumn::make('locales')->getStateUsing(fn($record) => collect($record->locales())->map(fn($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
+                TextColumn::make('locales')->getStateUsing(fn ($record) => collect($record->locales())->map(fn ($locale) => locales()[$locale] ?? $locale)->toArray())->toggleable(true, true),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make()->url(fn($record) => self::getUrl('view', compact('record'))),
-                    Tables\Actions\EditAction::make()->url(fn($record) => self::getUrl('edit', compact('record'))),
+                    Tables\Actions\ViewAction::make()->url(fn ($record) => self::getUrl('view', compact('record'))),
+                    Tables\Actions\EditAction::make()->url(fn ($record) => self::getUrl('edit', compact('record'))),
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\Action::make('preview')->groupedIcon('heroicon-o-arrow-top-right-on-square')
-                        ->url(fn($record) => route('products.show', $record), true),
+                        ->url(fn ($record) => route('products.show', $record), true),
                 ]),
             ])
             ->bulkActions([
@@ -348,7 +347,7 @@ class ProductResource extends Resource
                     TextEntry::make('description')->columnSpanFull()->html()->state(function (Product $product) {
                         $content = $product->description ? tiptap_converter()->asHTML($product->description) : __('admin.No Content');
 
-                        return Blade::render('<div class="prose max-w-full text-sm">' . $content . '</div>');
+                        return Blade::render('<div class="prose max-w-full text-sm">'.$content.'</div>');
                     }),
                 ])->columns(2),
 
@@ -356,11 +355,11 @@ class ProductResource extends Resource
                     RepeatableEntry::make('variants')->hiddenLabel()->schema([
                         RepeatableEntry::make('attribute_values_product_variant')->hiddenLabel()->schema([
                             TextEntry::make('attribute_value')->hiddenLabel()
-                                ->formatStateUsing(fn($state) => $state->title ? $state->title : $state->value),
+                                ->formatStateUsing(fn ($state) => $state->title ? $state->title : $state->value),
                         ])->grid(4)->columnSpanFull(),
 
-                        TextEntry::make('price')->hiddenLabel()->prefix(__('admin.Price') . ': ')->hidden(fn($state) => ! $state),
-                        TextEntry::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount') . ': ')->hidden(fn($state) => ! $state),
+                        TextEntry::make('price')->hiddenLabel()->prefix(__('admin.Price').': ')->hidden(fn ($state) => ! $state),
+                        TextEntry::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount').': ')->hidden(fn ($state) => ! $state),
                     ])->columns(2),
                 ]),
             ])->columnSpanFull()->persistTabInQueryString(),
@@ -376,7 +375,7 @@ class ProductResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with(['media' => fn($query) => $query->where('media_items.type', 'product-image')]);
+        return parent::getEloquentQuery()->with(['media' => fn ($query) => $query->where('media_items.type', 'product-image')]);
     }
 
     public static function getPages(): array

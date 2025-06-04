@@ -16,6 +16,7 @@ class ProductController extends Controller
 
         return view('products.index', compact('products'));
     }
+
     /**
      * productStore
      *
@@ -47,9 +48,10 @@ class ProductController extends Controller
 
         return view('products.show', compact('product', 'related_products'));
     }
+
     public function showStore(Product $product)
     {
-       $product= Product::whereHas('variantsStatusOn')->with('media', 'specs.media', 'variantsStatusOn.attribute_values.attribute', 'category', 'tags')->find($product->id);
+        $product = Product::whereHas('variantsStatusOn')->with('media', 'specs.media', 'variantsStatusOn.attribute_values.attribute', 'category', 'tags')->find($product->id);
         // $product->loadMissing('media', 'specs.media', 'variantsStatusOn.attribute_values.attribute', 'category', 'tags');
 
         $related_products = collect();

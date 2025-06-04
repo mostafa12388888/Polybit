@@ -14,13 +14,13 @@ use Livewire\Livewire;
 
 Livewire::setUpdateRoute(fn ($handle) => Route::post('/livewire/update', $handle));
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/search', SearchController::class)->name('search');
 
 Route::resource('products', ProductController::class)->only('index', 'show');
-Route::get('/product-store-show/{product}', [ProductController::class,'showStore'])->name('products.show.store');
-Route::get('/product-store', [ProductController::class,'productStore'])->name('product.store');
+Route::get('/product-store-show/{product}', [ProductController::class, 'showStore'])->name('products.show.store');
+Route::get('/product-store', [ProductController::class, 'productStore'])->name('product.store');
 Route::get('/store-categories/{category}', [ProductController::class, 'category_products'])->name('store-categories.show');
 Route::view('/cart', 'products.cart')->name('cart');
 Route::view('/wishlist', 'products.wishlist')->name('wishlist');

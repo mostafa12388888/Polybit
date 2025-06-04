@@ -14,6 +14,7 @@ class AttributeValue extends NonTranslatableAttributeValue
     {
         return $this->belongsToMany(ProductVariant::class, 'attribute_value_product_variant');
     }
+
     public function attribute()
     {
         return $this->belongsTo(Attribute::class, 'attribute_id');

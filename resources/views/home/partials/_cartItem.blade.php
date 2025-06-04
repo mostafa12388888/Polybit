@@ -1,17 +1,15 @@
 <section class="w-full py-12">
     <div class="grid grid-cols-1 md:grid-cols-3 mt-10 gap-4 lg:gap-6 xl:gap-8">
         @forelse ($cards as $card)
-            @php
-                $media = DB::table('curator_media')->where('id', $card->image_or_video)->first();
-            @endphp
+
             <div
                 class="group rounded-lg shadow-md p-2 text-center hover:shadow-lg ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative sm:hover:-translate-y-1 sm:hover:scale-105 transition-transform">
                 <div class="relative w-full rounded-lg shadow-md overflow-hidden" style="height:280px">
 
                     {{-- النوع 1 = صورة --}}
-                    @if ($card->is_video == 1 && $media)
+                    @if ($card->is_video == 1 && $card->media_file)
                         <a href="{{ $card->link ?? '#' }}" target="_blank" class="w-full block h-full">
-                            <img src="{{ '/storage/' . $media->path }}" alt="">
+                            <img src="{{ '/storage/' . $card->media_file->path }}" alt="">
                             <div
                                 class="group-hover:opacity-100 opacity-0 transition-opacity absolute inset-0 bg-dark-900/60 flex items-center justify-center text-white">
                                 <x-icons.link class="!w-9 !h-9" stroke-width="1.5" />
@@ -19,11 +17,11 @@
                         </a>
 
                         {{-- النوع 2 = فيديو داخلي --}}
-                    @elseif ($card->is_video == 2 && $media)
+                    @elseif ($card->is_video == 2 && $card->media_file)
                         <video class="customVideo w-full h-full object-cover" controls preload="none"
-                            poster="{{ asset('/storage/thumbnails/' . pathinfo($media->path, PATHINFO_FILENAME) . '.jpg') }}"
+                            poster="{{ asset('/storage/thumbnails/' . pathinfo($card->media_file->path, PATHINFO_FILENAME) . '.jpg') }}"
                             style="cursor: pointer;">
-                            <source src="{{ '/storage/' . $media->path }}" type="video/mp4">
+                            <source src="{{ '/storage/' . $card->media_file->path }}" type="video/mp4">
                             متصفحك لا يدعم عرض الفيديو.
                         </video>
                         <div>
