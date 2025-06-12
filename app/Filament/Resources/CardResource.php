@@ -48,7 +48,7 @@ class CardResource extends Resource
                 Tabs::make(__('admin.Media'))
                     ->tabs([
                         Tab::make(__('admin.image'))
-                            ->visible(fn ($get) => $get('is_video') == 1)
+                            ->visible(fn($get) => $get('is_video') == 1)
                             ->schema([
                                 CuratorPicker::make('image_or_video')
                                     ->label('Card Image')
@@ -64,7 +64,7 @@ class CardResource extends Resource
                             ]),
 
                         Tab::make(__('videos'))
-                            ->visible(fn ($get) => $get('is_video') == 2)
+                            ->visible(fn($get) => $get('is_video') == 2)
                             ->schema([
                                 CuratorPicker::make('image_or_video')
                                     ->label(__('admin.upload video'))
@@ -73,35 +73,35 @@ class CardResource extends Resource
                                     ->relationship('media_file', 'id'),
                             ]),
 
-                        Tab::make( __('admin.link video external'))
-                            ->visible(fn ($get) => $get('is_video') == 3)
+                        Tab::make(__('admin.link video external'))
+                            ->visible(fn($get) => $get('is_video') == 3)
                             ->schema([
                                 // Repeater::make('external_videos')
                                 //     ->label(__('admin.link video'))
                                 //     ->schema([
-                                        TextInput::make('url')
-                                            ->label(__('admin.link video'))
-                                            ->afterStateUpdated(function (callable $set, ?string $state) {
-                                                preg_match('/src="([^"]+)"/i', $state, $match);
-                                                $url = array_pop($match) ?: $state;
+                                TextInput::make('external_videos')
+                                    ->label(__('admin.link video'))
+                                    ->afterStateUpdated(function (callable $set, ?string $state) {
+                                        preg_match('/src="([^"]+)"/i', $state, $match);
+                                        $url = $match[1] ?? $state;
 
-                                                if (
-                                                    preg_match('/youtube\.com\/watch\?v=([^&]+)/', $url, $matches) ||
-                                                    preg_match('/youtu\.be\/([^?]+)/', $url, $matches)
-                                                ) {
-                                                    $url = 'https://www.youtube.com/embed/'.$matches[1];
-                                                }
+                                        if (
+                                            preg_match('/youtube\.com\/watch\?v=([^&]+)/', $url, $matches) ||
+                                            preg_match('/youtu\.be\/([^?&]+)/', $url, $matches) ||
+                                            preg_match('/youtube\.com\/embed\/([^?&]+)/', $url, $matches)
+                                        ) {
+                                            $url = 'https://www.youtube.com/embed/' . $matches[1];
+                                        } else {
+                                            // Optionally reset or nullify if not a recognized YouTube link
+                                            $url = null;
+                                        }
 
-                                                if (preg_match('/youtube\.com\/embed\/([^?]+)/', $url, $matches)) {
-                                                    $url = 'https://www.youtube.com/embed/'.$matches[1];
-                                                }
+                                        $set('url', $url);
+                                    })
 
-                                                $set('url', $url);
-                                            })
-                                            ->prefixIcon('heroicon-o-video-camera')
-                                            ->rules(['url']),
-                                    // ])
-                                    // ->columnSpanFull(),
+
+                                // ])
+                                // ->columnSpanFull(),
                             ]),
                     ]),
 
@@ -131,7 +131,7 @@ class CardResource extends Resource
 
                 ViewColumn::make('mediaFile')
                     ->label('admin.Images')
-                    ->getStateUsing(fn ($record) => $record)
+                    ->getStateUsing(fn($record) => $record)
                     ->view('filament.components.card-media-column'),
 
                 TextColumn::make('link')->label(__('admin.link'))->limit(30),
@@ -139,13 +139,13 @@ class CardResource extends Resource
                 IconColumn::make('is_video')
                     ->label(__('admin.link'))
                     ->boolean() // يظهر كأيقونة
-                    ->icon(fn ($state) => match ($state) {
+                    ->icon(fn($state) => match ($state) {
                         '1' => 'heroicon-o-photo',
                         '2' => 'heroicon-o-video-camera',
                         '3' => 'heroicon-o-link',
                         default => 'heroicon-o-question-mark-circle',
                     })
-                    ->color(fn ($state) => match ($state) {
+                    ->color(fn($state) => match ($state) {
                         '1' => 'info',
                         '2' => 'warning',
                         '3' => 'success',
