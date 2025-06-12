@@ -243,10 +243,18 @@ class ProductResource extends Resource
 
                                                     TextInput::make('price_before_discount')->hiddenLabel()->prefix(__('admin.Price before discount'))->numeric()->step(0.01)
                                                         ->rules(['decimal:0,2'])->gt('price'),
-                                                    Toggle::make('status')
+                                                        Toggle::make('status')
                                                         ->label(__('admin.status'))
                                                         ->onColor('success')
-                                                        ->offColor('danger'),
+                                                        ->offColor('danger')
+                                                        ->reactive()
+                                                        ->afterStateHydrated(function (\Filament\Forms\Set $set, $state) {
+
+                                                            // إذا كانت القيمة لا تساوي 1، نخلي التوجل off
+                                                            $set('status', $state == "on");
+                                                        })
+                                                        ->default(false), // افتراضياً off إذا كان إنشـاء
+
                                                 ]),
                                         ]),
                                 ];

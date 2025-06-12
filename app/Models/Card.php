@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Card extends Model
 {
-    use HasCuratorMedia, HasFactory,HasLocales, HasTranslations, Searchable, Seoable;
+    use HasCuratorMedia, HasFactory, HasTranslations, Searchable, Seoable;
 
     protected $fillable = ['is_video', 'image_or_video', 'link', 'title', 'description', 'external_videos'];
 

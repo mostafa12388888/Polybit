@@ -58,7 +58,7 @@ class CardResource extends Resource
                                     ->acceptedFileTypes(['image/*'])
                                     ->listDisplay(true)
                                     ->size('sm')
-                                    ->relationship('mediaFile', 'id') // relationship name and related model key
+                                    ->relationship('media_file', 'id') // relationship name and related model key
                                     ->columnSpanFull(),
 
                             ]),
@@ -70,7 +70,7 @@ class CardResource extends Resource
                                     ->label(__('admin.upload video'))
                                     ->multiple(false)
                                     ->constrained()
-                                    ->relationship('mediaFile', 'id'),
+                                    ->relationship('media_file', 'id'),
                             ]),
 
                         Tab::make( __('admin.link video external'))
@@ -107,15 +107,14 @@ class CardResource extends Resource
 
                 TextInput::make('link')
                     ->label(__('admin.add link'))
-                    ->url()
-                    ->nullable(),
-
-                TextInput::make('title.ar')
-                    ->label(__('admin.title ar'))
-                    ->required(),
+                    ->url()->required(),
 
                 TextInput::make('title.en')
                     ->label(__('admin.title en'))
+                    ->required(),
+
+                TextInput::make('title.ar')
+                    ->label(__('admin.title ar'))
                     ->required(),
 
                 Textarea::make('description.ar')->label(__('admin.description ar')),
