@@ -1,4 +1,4 @@
-<section class="w-full">
+<section class="w-full pb-12">
     <div class="grid grid-cols-1 md:grid-cols-3  gap-4 lg:gap-6 xl:gap-8">
         @forelse ($cards as $card)
             <div
