@@ -1,5 +1,5 @@
-<section class="w-full py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 mt-10 gap-4 lg:gap-6 xl:gap-8">
+<section class="w-full">
+    <div class="grid grid-cols-1 md:grid-cols-3  gap-4 lg:gap-6 xl:gap-8">
         @forelse ($cards as $card)
             <div
                 class="group rounded-lg shadow-md p-2 text-center hover:shadow-lg ltr:bg-gradient-to-bl rtl:bg-gradient-to-br from-secondary-200/20 to-secondary-200/60 dark:from-dark-700/50 dark:to-dark-700/80 relative sm:hover:-translate-y-1 sm:hover:scale-105 transition-transform">
